@@ -40,16 +40,17 @@ scripts/               辅助脚本
 
 ## 开发环境
 
-当前已探测环境见 [开发环境记录](docs/ENVIRONMENT.md)。计划中的 PC 端技术栈为 Python、OpenCV，GUI 后续优先考虑 PySide6。M1 前不安装或锁定大批依赖。
+当前已探测环境见 [开发环境记录](docs/ENVIRONMENT.md)。PC 端 M1 使用 Python、OpenCV；GUI 后续优先考虑 PySide6。
 
 ## 如何开始
 
 1. 阅读 `AGENTS.md` 和 `docs/PROJECT_SPEC.md`。
-2. 阅读 `docs/ROADMAP.md`，确认当前 milestone 的输入条件。
-3. 使用 `notes/templates/` 中的模板记录真实实验、问题、测试和技术决策。
-4. 开发前运行 `git status`，避免覆盖已有修改。
+2. 创建并激活环境：`python -m venv .venv`，然后运行 `python -m pip install -r requirements.txt`。
+3. 枚举摄像头：`python -m pc.camera --config pc/config/camera.json enumerate`。
+4. 运行 M1 稳定性测试：`python -m pc.camera --config pc/config/camera.json stability --output test_data/m1/camera-stability.json --sample-frame evidence/screenshots/M1-camera-sample.jpg`。
+5. 使用 `notes/templates/` 中的模板记录真实实验、问题、测试和技术决策。
 
-当前没有可运行应用，因此这里不编造启动命令。
+以上命令只涉及摄像头采集与测试，不包含轮廓识别。
 
 ## 当前尚未确定的硬件信息
 
