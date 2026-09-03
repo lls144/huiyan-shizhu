@@ -1,0 +1,41 @@
+# Python virtual environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# IDE and local editor state
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.code-workspace
+
+# Build and packaging outputs
+build/
+dist/
+*.egg-info/
+
+# OS and temporary files
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+*.bak
+~$*
+
+# Large/raw capture data (keep curated report screenshots under evidence/)
+test_data/raw/
+*.avi
+*.mp4
+*.mov
+*.mkv
+
+# Local runtime output
+logs/
+output/
