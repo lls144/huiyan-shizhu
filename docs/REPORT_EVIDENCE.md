@@ -21,8 +21,8 @@
 | TEST-001 | TODO | TODO | TODO | TODO | TODO | TODO | 测试方案与结果 |
 | DOC-001 | TODO | TODO | TODO | TODO | TODO | TODO | 问题分析与改进方向 |
 | HW-001 | TODO | TODO | TODO | TODO | TODO | TODO | 硬件平台/PLC |
-| HW-002 | TODO | TODO | TODO | TODO | TODO | TODO | 软件与运行环境 |
-| HW-003 | TODO | TODO | TODO | TODO | TODO | TODO | 硬件平台/摄像头 |
+| HW-002 | `pc/camera/`、`requirements.txt` | `d2b864d` | TEST-001 | `notes/daily/2026-09-03-M1-USB摄像头稳定采集.md` | `evidence/screenshots/M1-insta360-1080p-sample.jpg` | `test_data/m1/2026-09-03-insta360-stability.json` | 软件与运行环境 |
+| HW-003 | `pc/camera/`、`pc/config/camera.json` | `d2b864d` | TEST-001 | `notes/daily/2026-09-03-M1-USB摄像头稳定采集.md` | `evidence/screenshots/M1-insta360-1080p-sample.jpg` | `test_data/m1/2026-09-03-insta360-stability.json` | 硬件平台/摄像头 |
 | HW-004 | TODO | TODO | TODO | TODO | TODO | TODO | 实验对象与样本 |
 | HW-005 | TODO | TODO | TODO | TODO | TODO | TODO | 实验场地与背景 |
 | HW-006 | TODO | TODO | TODO | TODO | TODO | TODO | 硬件平台/通信连接 |

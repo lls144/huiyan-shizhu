@@ -16,21 +16,31 @@
 | Git 可执行文件 | `C:\Program Files\Git\cmd\git.exe` | `Get-Command git` |
 | Codex 运行目录 | `C:\Users\developer\Desktop\huiyan-shizhu` | `Get-Location` |
 
-## 已知但尚未验证
+## M1 已验证运行环境
 
-- 主开发机为 Windows 11；另有 Ubuntu 环境，具体版本与本项目用途为 TODO。
-- 计划优先使用 Insta360 Ace Pro 2 的 USB Webcam 模式；本机枚举、画面稳定性、分辨率与帧率均待 M1 实测。
+| 项目 | 已验证值 | 证据 |
+|---|---|---|
+| Python | 3.12.10 | TEST-001 |
+| OpenCV | 包 `opencv-python` 5.0.0.93；运行时 `cv2.__version__` 为 5.0.0 | `requirements.txt`、TEST-001 |
+| NumPy | 2.5.2 | `requirements.txt` |
+| pytest | 9.1.1 | 13 项自动化测试通过 |
+| 摄像头枚举 | `cv2-enumerate-cameras` 1.3.3 | `requirements.txt` |
+| 首选摄像头 | Insta360 Ace Pro 2，VID `2E1A`，PID `1003` | TEST-001 |
+| 当前 DirectShow 索引 | 1 | 仅为本次枚举结果；运行时仍按名称选择 |
+| 采集模式 | DirectShow / MJPG / 1920×1080 / 请求 30 fps | TEST-001 |
+
+- 另检测到 `USB2.0 HD UVC WebCam`（索引 0）和 `OBS Virtual Camera`（DirectShow 索引 2）。
+- FFmpeg 未安装；M1 使用 OpenCV/DirectShow，不依赖 FFmpeg。
+- Ubuntu 环境具体版本与本项目用途仍为 TODO。
 
 ## 待确认或待安装评估
 
 | 项目 | 状态 | 说明 |
 |---|---|---|
-| OpenCV (`opencv-python`) | TODO | 未在 Phase 0 安装或验证；M1 决定版本 |
 | PySide6 | TODO | M5 前评估并锁定版本 |
-| 测试框架（如 pytest） | TODO | 随第一个可测试模块确定 |
 | PLC 型号与固件 | TODO | 需在实验室读取铭牌/工程信息 |
 | PLC 编程软件及版本 | TODO | 不依据经验猜测 |
 | PLC IP、端口、协议 | TODO | 需结合实验室网络与 PLC 能力确认 |
-| USB 摄像头设备 ID | TODO | M1 枚举后写入配置，不硬编码 |
+| 三脚架垂直俯拍与 A3 背景 | TODO | 本次只验证 USB 采集稳定性；M2 前布置并记录 |
 
-Phase 0 不创建复杂 `requirements.txt`。依赖文件应在 M1 根据可运行的摄像头/OpenCV 环境生成，并记录精确版本。
+M1 的最小依赖已锁定在 `requirements.txt`。虚拟环境 `.venv/` 不进入 Git。

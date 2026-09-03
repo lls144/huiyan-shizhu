@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-09-03T13:22:30+08:00",
+  "finished_at": "2026-09-03T13:23:47+08:00",
+  "config_path": "pc\\config\\camera.json",
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10",
+    "opencv": "5.0.0"
+  },
+  "device": {
+    "index": 1,
+    "name": "Insta360 Ace Pro 2",
+    "path": "<device-instance-redacted>",
+    "vid": 11802,
+    "pid": 4099,
+    "backend_name": "DSHOW",
+    "backend_id": 700
+  },
+  "requested": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30.0,
+    "fourcc": "MJPG"
+  },
+  "actual_properties": {
+    "width": 1920.0,
+    "height": 1080.0,
+    "fps": 30.00003000003,
+    "fourcc": "MJPG",
+    "backend": "DSHOW"
+  },
+  "duration": {
+    "requested_seconds": 60.0,
+    "measured_seconds": 60.027896
+  },
+  "frames": {
+    "attempted": 1793,
+    "successful": 1793,
+    "failed": 0,
+    "success_rate": 1.0,
+    "measured_fps": 29.869446,
+    "maximum_successful_frame_gap_seconds": 0.069013,
+    "observed_shapes": {
+      "1080x1920x3": 1793
+    }
+  },
+  "reopen_cycles": [
+    {
+      "cycle": 1,
+      "opened": true,
+      "frame_read": true,
+      "frame_shape": [
+        1080,
+        1920,
+        3
+      ],
+      "elapsed_seconds": 3.741778
+    },
+    {
+      "cycle": 2,
+      "opened": true,
+      "frame_read": true,
+      "frame_shape": [
+        1080,
+        1920,
+        3
+      ],
+      "elapsed_seconds": 3.704824
+    },
+    {
+      "cycle": 3,
+      "opened": true,
+      "frame_read": true,
+      "frame_shape": [
+        1080,
+        1920,
+        3
+      ],
+      "elapsed_seconds": 3.700554
+    }
+  ],
+  "criteria": {
+    "all_reopen_cycles_passed": true,
+    "read_success_rate_passed": true,
+    "maximum_frame_gap_passed": true,
+    "actual_frame_size_matches_request": true
+  },
+  "passed": true,
+  "sample_frame": "evidence\\screenshots\\M1-insta360-1080p-sample.jpg",
+  "sample_frame_sha256": "612e24cbd4d88f1f0ace674d453b323ca5ed60c4878fa493b26938a950383006"
+}

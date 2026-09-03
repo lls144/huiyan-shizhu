@@ -18,7 +18,7 @@
 - `DONE`：已有实现、测试与可追溯证据。
 - `BLOCKED`：受明确外部条件阻塞，并记录原因。
 
-当前处于 M0。除项目初始化文档外，所有任务书功能与交付物均为 `TODO`。
+当前已完成 M1。仅 HW-002 的 M1 运行环境部分和 HW-003 摄像头采集要求已有真实证据；视觉识别、GUI、通信、PLC 与系统测试仍为 `TODO`。
 
 ## 3. 需求明细
 
@@ -209,20 +209,20 @@
 - **原始要求**：普通笔记本电脑（Windows/Linux），配备 USB 接口，运行 Python + OpenCV 轮廓识别程序。
 - **工程化解释**：主开发环境采用当前 Windows 11；Ubuntu 可作为补充但不是当前必需。运行环境在 M1 锁定。
 - **验收条件**：记录可复现 Python/OpenCV 版本；目标电脑可运行采集和识别程序。
-- **当前状态**：TODO
+- **当前状态**：DONE（M1 运行环境已锁定并完成采集验证；不代表视觉算法已实现）
 - **对应代码模块**：`pc/`、`docs/ENVIRONMENT.md`
-- **对应测试**：待建立 `T-ENV-PC-001`
-- **最终报告证据**：环境清单、依赖锁定文件、运行截图、Git commit；当前 TODO。
+- **对应测试**：`notes/tests/TEST-001-M1-Insta360稳定采集.md`
+- **最终报告证据**：`requirements.txt`、`docs/ENVIRONMENT.md`、TEST-001、commit `d2b864d852e3910ba10a6572c0bd98bb8249a9f0`。
 
 #### HW-003 USB 摄像头
 
 - **原始要求**：使用电脑摄像头拍摄待识别物体。
 - **工程化解释**：当前优先尝试 Insta360 Ace Pro 2 USB Webcam 模式；是否满足要求须实测，不写死设备 ID。
 - **验收条件**：目标电脑能稳定打开摄像头并持续采集；分辨率、帧率、设备 ID 和固定方式有记录。
-- **当前状态**：TODO
+- **当前状态**：DONE（USB Webcam 采集与稳定性已验证；三脚架垂直俯拍和 A3 背景留待 M2 前布置）
 - **对应代码模块**：`pc/camera/`、`pc/config/`
-- **对应测试**：待建立 `T-CAMERA-STABILITY-001`
-- **最终报告证据**：设备/架设照片、采集日志、样帧、Git commit；当前 TODO。
+- **对应测试**：`notes/tests/TEST-001-M1-Insta360稳定采集.md`
+- **最终报告证据**：`test_data/m1/2026-09-03-insta360-stability.json`、`evidence/screenshots/M1-insta360-1080p-sample.jpg`、TEST-001、commit `d2b864d852e3910ba10a6572c0bd98bb8249a9f0`。
 
 #### HW-004 三类纸板物体
 
