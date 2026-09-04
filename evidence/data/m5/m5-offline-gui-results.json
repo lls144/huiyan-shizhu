@@ -1,0 +1,1281 @@
+{
+  "started_at": "2026-09-04T21:21:19.215+08:00",
+  "finished_at": "2026-09-04T21:22:19.271+08:00",
+  "duration_seconds": 60.01133,
+  "source_type": "synthetic",
+  "source_metadata": {
+    "source_type": "synthetic",
+    "dataset_root": "test_data\\m3\\synthetic",
+    "target_fps": 30.0,
+    "frames_per_scene": 20,
+    "loop": true,
+    "sequence": [
+      "blank",
+      "normal",
+      "normal_hold",
+      "bright",
+      "dark",
+      "occlusion",
+      "touching",
+      "blank"
+    ]
+  },
+  "frames_read": 1284,
+  "frames_processed": 1284,
+  "detection_count": 2560,
+  "event_count": 64,
+  "processing_fps": 21.39596,
+  "average_processing_ms": 6.537603,
+  "p95_processing_ms": 9.37235,
+  "failed_reads": 0,
+  "error": null,
+  "ended_reason": "stopped",
+  "worker_clean_shutdown": true,
+  "events": [
+    {
+      "event_id": 1,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 1,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 21
+    },
+    {
+      "event_id": 2,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 2,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 21
+    },
+    {
+      "event_id": 3,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 3,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 21
+    },
+    {
+      "event_id": 4,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 4,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 101
+    },
+    {
+      "event_id": 5,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 2,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 103
+    },
+    {
+      "event_id": 6,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 3,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 103
+    },
+    {
+      "event_id": 7,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 1,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 143
+    },
+    {
+      "event_id": 8,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 4,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 143
+    },
+    {
+      "event_id": 9,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 5,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 181
+    },
+    {
+      "event_id": 10,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 6,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 181
+    },
+    {
+      "event_id": 11,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 7,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 181
+    },
+    {
+      "event_id": 12,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 8,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 261
+    },
+    {
+      "event_id": 13,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 6,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 263
+    },
+    {
+      "event_id": 14,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 7,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 263
+    },
+    {
+      "event_id": 15,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 5,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 303
+    },
+    {
+      "event_id": 16,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 8,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 303
+    },
+    {
+      "event_id": 17,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 9,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 341
+    },
+    {
+      "event_id": 18,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 10,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 341
+    },
+    {
+      "event_id": 19,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 11,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 341
+    },
+    {
+      "event_id": 20,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 12,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 421
+    },
+    {
+      "event_id": 21,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 10,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 423
+    },
+    {
+      "event_id": 22,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 11,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 423
+    },
+    {
+      "event_id": 23,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 9,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 463
+    },
+    {
+      "event_id": 24,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 12,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 463
+    },
+    {
+      "event_id": 25,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 13,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 501
+    },
+    {
+      "event_id": 26,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 14,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 501
+    },
+    {
+      "event_id": 27,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 15,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 501
+    },
+    {
+      "event_id": 28,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 16,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 581
+    },
+    {
+      "event_id": 29,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 14,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 583
+    },
+    {
+      "event_id": 30,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 15,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 583
+    },
+    {
+      "event_id": 31,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 13,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 623
+    },
+    {
+      "event_id": 32,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 16,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 623
+    },
+    {
+      "event_id": 33,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 17,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 661
+    },
+    {
+      "event_id": 34,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 18,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 661
+    },
+    {
+      "event_id": 35,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 19,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 661
+    },
+    {
+      "event_id": 36,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 20,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 741
+    },
+    {
+      "event_id": 37,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 18,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 743
+    },
+    {
+      "event_id": 38,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 19,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 743
+    },
+    {
+      "event_id": 39,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 17,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 783
+    },
+    {
+      "event_id": 40,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 20,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 783
+    },
+    {
+      "event_id": 41,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 21,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 821
+    },
+    {
+      "event_id": 42,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 22,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 821
+    },
+    {
+      "event_id": 43,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 23,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 821
+    },
+    {
+      "event_id": 44,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 24,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 901
+    },
+    {
+      "event_id": 45,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 22,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 903
+    },
+    {
+      "event_id": 46,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 23,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 903
+    },
+    {
+      "event_id": 47,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 21,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 943
+    },
+    {
+      "event_id": 48,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 24,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 943
+    },
+    {
+      "event_id": 49,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 25,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 981
+    },
+    {
+      "event_id": 50,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 26,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 981
+    },
+    {
+      "event_id": 51,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 27,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 981
+    },
+    {
+      "event_id": 52,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 28,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 1061
+    },
+    {
+      "event_id": 53,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 26,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 1063
+    },
+    {
+      "event_id": 54,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 27,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 1063
+    },
+    {
+      "event_id": 55,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 25,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 1103
+    },
+    {
+      "event_id": 56,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 28,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 1103
+    },
+    {
+      "event_id": 57,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 29,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 1141
+    },
+    {
+      "event_id": 58,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 30,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 1141
+    },
+    {
+      "event_id": 59,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 31,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 1141
+    },
+    {
+      "event_id": 60,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 32,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 1221
+    },
+    {
+      "event_id": 61,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 30,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 1223
+    },
+    {
+      "event_id": 62,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 31,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 1223
+    },
+    {
+      "event_id": 63,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 29,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 1263
+    },
+    {
+      "event_id": 64,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 32,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 1263
+    }
+  ],
+  "final_object_states": [
+    {
+      "object_id": 1,
+      "label": "triangle",
+      "bbox": [
+        510,
+        191,
+        221,
+        310
+      ],
+      "first_seen": 20,
+      "last_seen": 139,
+      "hit_count": 120,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.990642
+    },
+    {
+      "object_id": 2,
+      "label": "rectangle",
+      "bbox": [
+        820,
+        220,
+        221,
+        261
+      ],
+      "first_seen": 20,
+      "last_seen": 99,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 1.0
+    },
+    {
+      "object_id": 3,
+      "label": "circle",
+      "bbox": [
+        1160,
+        230,
+        241,
+        241
+      ],
+      "first_seen": 20,
+      "last_seen": 99,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.975998
+    },
+    {
+      "object_id": 4,
+      "label": "unknown",
+      "bbox": [
+        820,
+        220,
+        461,
+        261
+      ],
+      "first_seen": 100,
+      "last_seen": 139,
+      "hit_count": 40,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 5,
+      "label": "triangle",
+      "bbox": [
+        510,
+        191,
+        221,
+        310
+      ],
+      "first_seen": 180,
+      "last_seen": 299,
+      "hit_count": 120,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.990642
+    },
+    {
+      "object_id": 6,
+      "label": "rectangle",
+      "bbox": [
+        820,
+        220,
+        221,
+        261
+      ],
+      "first_seen": 180,
+      "last_seen": 259,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 1.0
+    },
+    {
+      "object_id": 7,
+      "label": "circle",
+      "bbox": [
+        1160,
+        230,
+        241,
+        241
+      ],
+      "first_seen": 180,
+      "last_seen": 259,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.975998
+    },
+    {
+      "object_id": 8,
+      "label": "unknown",
+      "bbox": [
+        820,
+        220,
+        461,
+        261
+      ],
+      "first_seen": 260,
+      "last_seen": 299,
+      "hit_count": 40,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 9,
+      "label": "triangle",
+      "bbox": [
+        510,
+        191,
+        221,
+        310
+      ],
+      "first_seen": 340,
+      "last_seen": 459,
+      "hit_count": 120,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.990642
+    },
+    {
+      "object_id": 10,
+      "label": "rectangle",
+      "bbox": [
+        820,
+        220,
+        221,
+        261
+      ],
+      "first_seen": 340,
+      "last_seen": 419,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 1.0
+    },
+    {
+      "object_id": 11,
+      "label": "circle",
+      "bbox": [
+        1160,
+        230,
+        241,
+        241
+      ],
+      "first_seen": 340,
+      "last_seen": 419,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.975998
+    },
+    {
+      "object_id": 12,
+      "label": "unknown",
+      "bbox": [
+        820,
+        220,
+        461,
+        261
+      ],
+      "first_seen": 420,
+      "last_seen": 459,
+      "hit_count": 40,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 13,
+      "label": "triangle",
+      "bbox": [
+        510,
+        191,
+        221,
+        310
+      ],
+      "first_seen": 500,
+      "last_seen": 619,
+      "hit_count": 120,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.990642
+    },
+    {
+      "object_id": 14,
+      "label": "rectangle",
+      "bbox": [
+        820,
+        220,
+        221,
+        261
+      ],
+      "first_seen": 500,
+      "last_seen": 579,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 1.0
+    },
+    {
+      "object_id": 15,
+      "label": "circle",
+      "bbox": [
+        1160,
+        230,
+        241,
+        241
+      ],
+      "first_seen": 500,
+      "last_seen": 579,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.975998
+    },
+    {
+      "object_id": 16,
+      "label": "unknown",
+      "bbox": [
+        820,
+        220,
+        461,
+        261
+      ],
+      "first_seen": 580,
+      "last_seen": 619,
+      "hit_count": 40,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 17,
+      "label": "triangle",
+      "bbox": [
+        510,
+        191,
+        221,
+        310
+      ],
+      "first_seen": 660,
+      "last_seen": 779,
+      "hit_count": 120,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.990642
+    },
+    {
+      "object_id": 18,
+      "label": "rectangle",
+      "bbox": [
+        820,
+        220,
+        221,
+        261
+      ],
+      "first_seen": 660,
+      "last_seen": 739,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 1.0
+    },
+    {
+      "object_id": 19,
+      "label": "circle",
+      "bbox": [
+        1160,
+        230,
+        241,
+        241
+      ],
+      "first_seen": 660,
+      "last_seen": 739,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.975998
+    },
+    {
+      "object_id": 20,
+      "label": "unknown",
+      "bbox": [
+        820,
+        220,
+        461,
+        261
+      ],
+      "first_seen": 740,
+      "last_seen": 779,
+      "hit_count": 40,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 21,
+      "label": "triangle",
+      "bbox": [
+        510,
+        191,
+        221,
+        310
+      ],
+      "first_seen": 820,
+      "last_seen": 939,
+      "hit_count": 120,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.990642
+    },
+    {
+      "object_id": 22,
+      "label": "rectangle",
+      "bbox": [
+        820,
+        220,
+        221,
+        261
+      ],
+      "first_seen": 820,
+      "last_seen": 899,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 1.0
+    },
+    {
+      "object_id": 23,
+      "label": "circle",
+      "bbox": [
+        1160,
+        230,
+        241,
+        241
+      ],
+      "first_seen": 820,
+      "last_seen": 899,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.975998
+    },
+    {
+      "object_id": 24,
+      "label": "unknown",
+      "bbox": [
+        820,
+        220,
+        461,
+        261
+      ],
+      "first_seen": 900,
+      "last_seen": 939,
+      "hit_count": 40,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 25,
+      "label": "triangle",
+      "bbox": [
+        510,
+        191,
+        221,
+        310
+      ],
+      "first_seen": 980,
+      "last_seen": 1099,
+      "hit_count": 120,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.990642
+    },
+    {
+      "object_id": 26,
+      "label": "rectangle",
+      "bbox": [
+        820,
+        220,
+        221,
+        261
+      ],
+      "first_seen": 980,
+      "last_seen": 1059,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 1.0
+    },
+    {
+      "object_id": 27,
+      "label": "circle",
+      "bbox": [
+        1160,
+        230,
+        241,
+        241
+      ],
+      "first_seen": 980,
+      "last_seen": 1059,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.975998
+    },
+    {
+      "object_id": 28,
+      "label": "unknown",
+      "bbox": [
+        820,
+        220,
+        461,
+        261
+      ],
+      "first_seen": 1060,
+      "last_seen": 1099,
+      "hit_count": 40,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 29,
+      "label": "triangle",
+      "bbox": [
+        510,
+        191,
+        221,
+        310
+      ],
+      "first_seen": 1140,
+      "last_seen": 1259,
+      "hit_count": 120,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.990642
+    },
+    {
+      "object_id": 30,
+      "label": "rectangle",
+      "bbox": [
+        820,
+        220,
+        221,
+        261
+      ],
+      "first_seen": 1140,
+      "last_seen": 1219,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 1.0
+    },
+    {
+      "object_id": 31,
+      "label": "circle",
+      "bbox": [
+        1160,
+        230,
+        241,
+        241
+      ],
+      "first_seen": 1140,
+      "last_seen": 1219,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.975998
+    },
+    {
+      "object_id": 32,
+      "label": "unknown",
+      "bbox": [
+        820,
+        220,
+        461,
+        261
+      ],
+      "first_seen": 1220,
+      "last_seen": 1259,
+      "hit_count": 40,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    }
+  ],
+  "evidence_records": [],
+  "schema_version": 1,
+  "milestone": "M5",
+  "acceptance_status": "synthetic_offline_observation",
+  "git": {
+    "commit": "eb7a1fdf61ff46157a8a5955c02944c90400580f",
+    "dirty": false
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10",
+    "pyside6": "6.11.2"
+  },
+  "vision_config": {
+    "roi_left": 0.24,
+    "roi_top": 0.08,
+    "roi_right": 0.76,
+    "roi_bottom": 0.75,
+    "gaussian_kernel_size": 5,
+    "morphology_kernel_size": 3,
+    "morphology_open_iterations": 1,
+    "canny_low_threshold": 50,
+    "canny_high_threshold": 150,
+    "min_area_ratio": 0.02,
+    "max_area_ratio": 0.25,
+    "min_solidity": 0.9,
+    "border_margin_pixels": 2,
+    "approx_epsilon_ratio": 0.02,
+    "rectangle_max_angle_deviation_degrees": 25.0,
+    "rectangle_min_fill_ratio": 0.8,
+    "circle_min_vertices": 6,
+    "circle_min_circularity": 0.78,
+    "circle_min_aspect_ratio": 0.8,
+    "triangle_confidence_good_circularity": 0.62,
+    "triangle_confidence_max_circularity": 0.72,
+    "rectangle_confidence_good_angle_deviation_degrees": 5.0,
+    "rectangle_confidence_good_fill_ratio": 0.95,
+    "circle_confidence_good_vertices": 8,
+    "circle_confidence_good_circularity": 0.92,
+    "circle_confidence_good_aspect_ratio": 0.95,
+    "confidence_good_solidity": 0.98,
+    "confidence_good_area_clearance_ratio": 0.03,
+    "confidence_topology_weight": 0.5,
+    "confidence_geometry_weight": 0.3,
+    "confidence_quality_weight": 0.2,
+    "auto_hsv_min_value": 140,
+    "auto_hsv_max_saturation": 100,
+    "auto_morphology_kernel_size": 11,
+    "auto_morphology_close_iterations": 2,
+    "auto_morphology_open_iterations": 1,
+    "auto_min_area_ratio": 0.12,
+    "auto_max_area_ratio": 0.85,
+    "auto_preferred_area_ratio": 0.35,
+    "auto_min_rectangularity": 0.7,
+    "auto_max_center_distance_ratio": 0.5,
+    "auto_min_bright_fraction": 0.6,
+    "auto_approx_epsilon_ratio": 0.03,
+    "auto_inner_margin_ratio": 0.04,
+    "auto_min_score": 0.45,
+    "auto_score_area_weight": 0.2,
+    "auto_score_rectangularity_weight": 0.3,
+    "auto_score_center_weight": 0.25,
+    "auto_score_brightness_weight": 0.25,
+    "manual_min_width_pixels": 80,
+    "manual_min_height_pixels": 80,
+    "stability_window_size": 5,
+    "stability_min_votes": 3,
+    "fps_smoothing_window": 30,
+    "live_max_consecutive_read_failures": 30,
+    "live_preview_width": 1280,
+    "live_preview_height": 720,
+    "preprocess_mode": "otsu",
+    "comparison_preprocess_mode": "clahe_otsu",
+    "clahe_clip_limit": 2.0,
+    "clahe_tile_grid_size": 8
+  },
+  "event_config": {
+    "min_confirm_frames": 2,
+    "max_missing_frames": 3,
+    "iou_threshold": 0.3,
+    "center_distance_threshold": 80.0
+  },
+  "gui_updates": 1284,
+  "gui_update_fps": 21.39596,
+  "display_frames_dropped": 0,
+  "buffer_overwrites": 0,
+  "clean_shutdown": true,
+  "requested_soak_seconds": 60.0,
+  "python_traced_current_bytes": 55931591,
+  "python_traced_peak_bytes": 64671161,
+  "screenshot": "evidence\\screenshots\\m5\\synthetic\\m5-gui-soak.png"
+}

@@ -47,14 +47,14 @@
 - **是否可在宿舍完成**：是。
 - **当前状态**：DOING。已建立 Detection、ObjectState、VisionEvent、确定性 label+IoU/中心距离关联、2 帧确认、3 帧短时缺失容忍和 ENTER/EXIT 去重。12 个离线 detection-sequence 场景全部通过，M3 `multi_normal` 实际检测结果可连续输入并产生 3 个稳定 ENTER；`multi-live --events` 入口已准备但未实际运行。ROADMAP 的自动化最低条件已满足，但按本轮用户指定的更严格边界，完成一次真实摄像头“进入→停留→短暂遮挡→离场→重入”验收前不标记 `DONE`。
 
-## M5 GUI 上位机 — TODO
+## M5 GUI 上位机 — DOING
 
 - **输入条件**：M1–M4 稳定 API；确认 PySide6 选型。
 - **实现任务**：显示实时画面、识别结果、置信度和必要状态；处理线程/生命周期与异常提示。
 - **验收标准**：持续运行无明显阻塞；画面和识别信息同步；性能和恢复行为有实测记录。
 - **所需真实硬件**：摄像头。
 - **是否可在宿舍完成**：是。
-- **当前状态**：TODO。
+- **当前状态**：DOING。PySide6 6.11.2 已锁定；QObject/QThread worker、容量 1 的 latest-frame buffer、synthetic/camera source adapter、M3/M4 同步 snapshot、Start/Stop/restart/close 和异常恢复均已实现。106 项全量 pytest 通过；60.011 秒 synthetic/offscreen soak 处理并显示 1284 帧，processing/GUI FPS 均为 21.395960，0 failed read、0 error、正常退出。该证据不是摄像头实测；完成真实 Insta360 GUI 连续刷新、同步显示、性能与正常关闭验收前不得标记 `DONE`。
 
 ## M6 Fake PLC 模拟器 — TODO
 

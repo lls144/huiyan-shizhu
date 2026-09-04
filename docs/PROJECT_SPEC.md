@@ -79,12 +79,12 @@
 #### GUI-001 实时识别界面
 
 - **原始要求**：实现识别结果的可视化 GUI，实时显示摄像头画面、识别结果与置信度。
-- **工程化解释**：GUI 展示实时视频、每个目标的类别和置信度，并避免阻塞采集/处理；PySide6 只是当前优先候选。
-- **验收条件**：连续运行时界面可刷新，画面、类别与置信度同步可见；“实时”的帧率目标在 M5 前确定并实测。
-- **当前状态**：TODO
-- **对应代码模块**：`pc/gui/`、`pc/camera/`、`pc/vision/`
-- **对应测试**：待建立 `T-GUI-REALTIME-001`
-- **最终报告证据**：GUI 截图、运行视频、性能记录、Git commit；当前 TODO。
+- **工程化解释**：PySide6 GUI 展示实时视频、每个目标的类别/几何 confidence、M4 object/event 和运行状态；视觉与采集位于 QObject/QThread worker，UI 只消费同步 snapshot。显示缓冲采用容量 1 的 latest-frame-wins 策略。
+- **验收条件**：连续运行时界面可刷新，画面、类别与置信度同步可见；软件目标为 processing ≥ 20 FPS、GUI update ≥ 15 FPS，最终仍需真实摄像头实测。
+- **当前状态**：DOING（离线软件、offscreen 自动化测试和 60 秒 synthetic soak 已通过；真实 Insta360 GUI 验收待执行）
+- **对应代码模块**：`pc/gui/`、`pc/camera/`、`pc/vision/`、`pc/events/`
+- **对应测试**：`TEST-006` Part A PASS；Part B PENDING
+- **最终报告证据**：实现 `bbb6fa7`、自动化测试 `eb7a1fd`；synthetic JSON/CSV/截图已留档，但不能替代真实 camera GUI 截图、FPS 和关闭记录。
 
 ### PLC 队列与分拣控制
 

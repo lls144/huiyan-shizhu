@@ -37,7 +37,7 @@
 
 | 项目 | 状态 | 说明 |
 |---|---|---|
-| PySide6 | TODO | M5 前评估并锁定版本 |
+| PySide6 | 已安装 | M5 实测锁定 6.11.2；绑定 Qt 6.11.2 |
 | PLC 型号与固件 | TODO | 需在实验室读取铭牌/工程信息 |
 | PLC 编程软件及版本 | TODO | 不依据经验猜测 |
 | PLC IP、端口、协议 | TODO | 需结合实验室网络与 PLC 能力确认 |
@@ -72,3 +72,20 @@ M1 的最小依赖已锁定在 `requirements.txt`。虚拟环境 `.venv/` 不进
 
 - 继续复用 M2 的 Python、OpenCV、NumPy、摄像头配置和 ROI 校准；未新增第三方依赖。
 - 新增多目标合成测试和 Otsu / CLAHE+Otsu 同帧证据测试；真实摄像头的光照条件、FPS 和输出尚待 TEST-004 记录。
+
+## M5 GUI 软件环境
+
+记录日期：2026-09-04（Asia/Shanghai）
+
+| 项目 | 实际值 | 说明 |
+|---|---|---|
+| Python | 3.12.10，`.venv/Scripts/python.exe` | GUI、pytest 和 soak 实际使用 |
+| PySide6 | 6.11.2 | 通过 pip 可用版本检查后安装并锁定 |
+| Qt runtime | 6.11.2 | `PySide6.QtCore.qVersion()` 实测 |
+| Qt headless | `QT_QPA_PLATFORM=offscreen` | 只在测试进程/CLI 参数内设置，不修改系统环境变量 |
+| OpenCV / NumPy | 5.0.0 / 2.5.2 | 继续复用 M2/M3 管线，未升级 |
+| pytest | 9.1.1 | 加入 M5 后全量 106 项通过 |
+
+- `pip check` 最终回归结果：`No broken requirements found.`。
+- 60 秒 synthetic soak 达到 processing 21.395960 FPS、GUI update 21.395960 FPS；这不是 Insta360 camera FPS。
+- PySide6 是 M5 的正式 GUI 选型，不混用 PyQt、QML、Web 或 Electron。
