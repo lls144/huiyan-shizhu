@@ -6,6 +6,9 @@ import numpy as np
 
 from pc.camera.config import load_camera_config
 from pc.camera.devices import CameraDevice
+from pc.events.adapters import detections_from_analysis
+from pc.events.config import EventConfig
+from pc.events.tracker import ObjectStateManager
 from pc.vision.config import load_vision_config
 from pc.vision.live import LiveCamera
 from pc.vision.m3_live import analyze_preprocess_modes, save_m3_comparison_evidence
@@ -137,6 +140,12 @@ def test_m3_evidence_saves_same_frame_method_pair_as_pending(
 ) -> None:
     frame = _three_shape_scene()
     analyses = analyze_preprocess_modes(frame, CONFIG, FULL_ROI)
+    manager = ObjectStateManager(EventConfig())
+    manager.process_frame(0, detections_from_analysis(analyses["otsu"], 0))
+    event_update = manager.process_frame(
+        1,
+        detections_from_analysis(analyses["otsu"], 1),
+    )
     monkeypatch.setattr(
         "pc.vision.m3_live._git_state",
         lambda: {"commit": "mock", "dirty": True},
@@ -151,6 +160,7 @@ def test_m3_evidence_saves_same_frame_method_pair_as_pending(
         _camera(),
         CONFIG,
         tmp_path,
+        event_update,
     )
 
     payload = json.loads(json_path.read_text(encoding="utf-8"))
@@ -160,5 +170,10 @@ def test_m3_evidence_saves_same_frame_method_pair_as_pending(
     assert set(payload["methods"]) == {"otsu", "clahe_otsu"}
     assert all(record["object_count"] == 3 for record in payload["methods"].values())
     assert all(record["matches_expected_labels"] for record in payload["methods"].values())
+    assert [event["event_type"] for event in payload["m4_event_snapshot"]["events"]] == [
+        "OBJECT_ENTER",
+        "OBJECT_ENTER",
+        "OBJECT_ENTER",
+    ]
     assert (json_path.parent / "comparison.csv").is_file()
     assert len(list(json_path.parent.iterdir())) == 12
