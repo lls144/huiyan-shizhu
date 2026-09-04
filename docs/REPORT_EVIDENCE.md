@@ -7,8 +7,8 @@
 | SCOPE-001 | TODO | TODO | TODO | TODO | TODO | TODO | 系统总体设计/系统集成 |
 | VISION-001 | `pc/vision/preprocess.py`、`contours.py`、`roi.py`、`live.py`、`pc/config/vision.json` | 实现 `9f7ae794`；证据 `d8f6f60b` | TEST-002（离线 PASS）、TEST-003（实时 PASS） | `notes/daily/2026-09-04-M2-离线单目标轮廓识别.md`、`2026-09-04-M2-最终真实验收.md` | 离线：`evidence/screenshots/m2/`；实时：`evidence/screenshots/m2/live/` | 离线：`test_data/m2/2026-09-04-offline-results.*`；实时精选摘要：`evidence/data/m2-live-acceptance-summary.json` | 视觉算法/图像预处理 |
 | VISION-002 | `pc/vision/classifier.py`、`pipeline.py`、`live.py` | 实现 `9f7ae794`；证据 `d8f6f60b` | TEST-002（离线 PASS）、TEST-003（实时 PASS） | 同上 | 离线：`evidence/screenshots/m2/`；实时：`evidence/screenshots/m2/live/` | 离线：`test_data/m2/2026-09-04-offline-results.*`；实时：`evidence/data/m2-live-acceptance-summary.json` | 视觉算法/形状分类 |
-| VISION-003 | `pc/vision/pipeline.py`、`m3_live.py` | `8815e443`（软件与自动化测试） | TEST-004（PENDING） | `notes/daily/2026-09-04-M3-最小实现与验收准备.md` | TODO（真实验收未执行） | TODO（runtime 将位于被忽略的 `output/m3/`） | 视觉算法/多目标检测 |
-| VISION-004 | `pc/vision/preprocess.py`、`m3_live.py`、`pc/config/vision.json` | `8815e443`（软件与自动化测试） | TEST-004（PENDING） | 同上 | TODO（真实三种光照未执行） | TODO（同帧 JSON/CSV 待产生） | 视觉算法/抗光照处理 |
+| VISION-003 | `pc/vision/pipeline.py`、`m3_live.py`、`m3_reporting.py`、`synthetic.py` | 基础实现 `8815e443`；数据集 `935e637`；离线 runner `32c06ba`；离线证据 `445f0b2` | TEST-004（离线 synthetic 已验证；真实 PENDING） | `notes/daily/2026-09-04-M3-最小实现与验收准备.md`、`2026-09-04-M3-离线合成验证.md` | 合成：`evidence/screenshots/m3/synthetic/`；真实 TODO | 合成真值：`test_data/m3/synthetic/ground_truth.json`；结果：`evidence/data/m3/m3-offline-synthetic-results.*`；真实 runtime 待产生 | 视觉算法/多目标检测 |
+| VISION-004 | `pc/vision/preprocess.py`、`m3_live.py`、`m3_reporting.py`、`pc/config/vision.json` | 基础实现 `8815e443`；数据集 `935e637`；离线 runner `32c06ba`；离线证据 `445f0b2` | TEST-004（离线 synthetic 已验证；真实 PENDING） | 同上 | 合成：`evidence/screenshots/m3/synthetic/`；真实三种光照 TODO | 合成同帧双方案：`evidence/data/m3/m3-offline-synthetic-results.*`；真实同帧 JSON/CSV 待产生 | 视觉算法/抗光照处理 |
 | GUI-001 | TODO | TODO | TODO | TODO | TODO | TODO | 上位机界面 |
 | PLC-001 | TODO | TODO | TODO | TODO | TODO | TODO | PLC 设计/FIFO |
 | PLC-002 | TODO | TODO | TODO | TODO | TODO | TODO | PLC 设计/生产者消费者 |
@@ -43,4 +43,5 @@
 - **实验日志**：链接到 `notes/daily/` 中对应日期记录。
 - **截图/数据文件**：只登记真实存在的仓库路径或明确的外部归档位置。
 - `output/m2/` 中完整 runtime 数据被 Git 忽略；最终证据链只引用从这些真实文件审计后筛选出的标注图和摘要，不提交完整运行数据。
+- M3 的 `test_data/m3/synthetic/` 与 `evidence/**/m3/` 均为合成软件验证材料，不能替代 `output/m3/` 中待执行的真实摄像头验收及后续精选真实证据。
 - **报告章节**：当前仅是建议归属；最终目录确定后再填写准确章节号。

@@ -6,15 +6,15 @@ tags:
   - test
   - M3
   - camera
-result: pending
+result: offline-synthetic-pass-live-pending
 ---
 
 # TEST-004 M3 多目标与抗光照验收
 
 - **Test ID**：TEST-004
 - **对应 Requirement ID**：VISION-003、VISION-004
-- **Git commit**：软件与自动化测试 `8815e44335bf3287af37ad2dafd5269cdf998545`；后续真实运行的准确 HEAD 与 dirty 状态由 session JSON 自动记录
-- **结果**：PENDING，尚无真实 M3 摄像头运行
+- **Git commit**：多目标基础 `8815e443`；合成数据集 `935e637`；离线 runner `32c06ba`；离线证据 `445f0b2`；后续真实运行的准确 HEAD 与 dirty 状态由 session JSON 自动记录
+- **结果**：离线 synthetic 验证 PASS；真实 M3 摄像头验收 PENDING
 
 ## 测试目标
 
@@ -63,18 +63,34 @@ VISION-003 只有在真实分离多目标画面中至少两个目标被独立输
 - 每个场景：原帧、ROI、两种 normalized gray、binary、Canny、annotated、`evidence.json`、`comparison.csv`。
 - 运行级 session：设备、ROI、处理帧数、failed reads、FPS、保存记录和异常。
 
-## 自动化前置结果
+## 离线 synthetic 实际结果
 
-- 最新完整 pytest：`67 passed in 0.61s`。
+2026-09-04 使用固定生成器参数运行 6 个场景、2 种方案。分离目标场景要求精确匹配；遮挡/接触只记录观察，不强制通过。
+
+| 场景 | 期望 | Otsu | CLAHE+Otsu | 结论 |
+|---|---|---|---|---|
+| normal | 3：triangle、rectangle、circle | 3，三类正确 | 3，三类正确 | PASS（synthetic） |
+| bright | 3：triangle、rectangle、circle | 3，三类正确 | 3，三类正确 | PASS（synthetic） |
+| dark | 3：triangle、rectangle、circle | 3，三类正确 | 3，三类正确 | PASS（synthetic） |
+| side_light | 3：triangle、rectangle、circle | 3，三类正确 | 3，三类正确 | PASS（synthetic） |
+| partial_occlusion | 物理目标 3 | 2：triangle、unknown | 2：triangle、unknown | 已记录合并轮廓局限 |
+| touching | 物理目标 3 | 2：triangle、unknown | 2：triangle、unknown | 已记录合并轮廓局限 |
+
+版本化原始结果位于 `../../evidence/data/m3/m3-offline-synthetic-results.json` 和 `.csv`；其中包含每个目标的 confidence、bbox、area ratio、solidity、circularity、处理耗时、真值匹配和环境。12 张两方案标注图位于 `../../evidence/screenshots/m3/synthetic/`。
+
+## 自动化与回归结果
+
+- 最新完整 pytest：`72 passed in 1.40s`。
 - M2 真实离线数据回归：10/10 与标签一致。
 - `pip check`：`No broken requirements found.`。
-- 合成三目标图验证 triangle、rectangle、circle 分别输出并按中心从左到右排序。
-- Otsu 与 CLAHE+Otsu 均通过暗灰合成背景测试。
-- 接触目标测试只要求不虚假拆分。
-- 证据测试确认同帧双方案 JSON/CSV 和图片齐全，且状态固定为 `pending_user_validation`。
-- 这些结果不能替代真实摄像头验收。
+- 数据集测试确认 6 张图片、尺寸、确定性和 ground truth 字段完整。
+- 离线 runner 测试确认双方案结构一致、JSON 可序列化、CSV 字段完整。
+- 正常合成三目标图验证 triangle、rectangle、circle 分别输出并按中心从左到右排序。
+- 接触/遮挡结果只记录观察，不把合并轮廓虚假拆分成多个对象。
+- 这些 PASS 只代表软件与 synthetic 离线验证，不能替代真实摄像头验收。
 
 ## 关联记录
 
 - [[../decisions/DECISION-003-M3-多目标与抗光照最小扩展]]
 - [[../daily/2026-09-04-M3-最小实现与验收准备]]
+- [[../daily/2026-09-04-M3-离线合成验证]]
