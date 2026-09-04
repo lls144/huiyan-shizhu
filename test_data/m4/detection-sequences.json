@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "source_type": "offline_simulated_detection_sequence",
+  "bbox_format": "x_y_width_height_pixels",
+  "notes": "Deterministic M4 state-machine fixtures; no image or camera input.",
+  "scenarios": [
+    {
+      "name": "persistent_object",
+      "description": "One circle remains for ten frames and must emit one ENTER only.",
+      "frames": [
+        {"frame_index": 0, "detections": [{"label": "circle", "confidence": 0.97, "bbox": [100, 100, 100, 100]}]},
+        {"frame_index": 1, "detections": [{"label": "circle", "confidence": 0.97, "bbox": [100, 100, 100, 100]}]},
+        {"frame_index": 2, "detections": [{"label": "circle", "confidence": 0.97, "bbox": [100, 100, 100, 100]}]},
+        {"frame_index": 3, "detections": [{"label": "circle", "confidence": 0.97, "bbox": [100, 100, 100, 100]}]},
+        {"frame_index": 4, "detections": [{"label": "circle", "confidence": 0.97, "bbox": [100, 100, 100, 100]}]},
+        {"frame_index": 5, "detections": [{"label": "circle", "confidence": 0.97, "bbox": [100, 100, 100, 100]}]},
+        {"frame_index": 6, "detections": [{"label": "circle", "confidence": 0.97, "bbox": [100, 100, 100, 100]}]},
+        {"frame_index": 7, "detections": [{"label": "circle", "confidence": 0.97, "bbox": [100, 100, 100, 100]}]},
+        {"frame_index": 8, "detections": [{"label": "circle", "confidence": 0.97, "bbox": [100, 100, 100, 100]}]},
+        {"frame_index": 9, "detections": [{"label": "circle", "confidence": 0.97, "bbox": [100, 100, 100, 100]}]}
+      ],
+      "expected": {
+        "events": [{"event_type": "OBJECT_ENTER", "object_id": 1, "label": "circle", "frame_index": 1}],
+        "active_object_ids": [1]
+      }
+    },
+    {
+      "name": "single_frame_noise",
+      "description": "One isolated circle detection must remain unconfirmed.",
+      "frames": [
+        {"frame_index": 0, "detections": []},
+        {"frame_index": 1, "detections": [{"label": "circle", "confidence": 0.51, "bbox": [100, 100, 100, 100]}]},
+        {"frame_index": 2, "detections": []}
+      ],
+      "expected": {"events": [], "active_object_ids": []}
+    },
+    {
+      "name": "short_dropout",
+      "description": "One missing frame must not change identity or re-emit ENTER.",
+      "frames": [
+        {"frame_index": 0, "detections": [{"label": "circle", "confidence": 0.96, "bbox": [100, 100, 100, 100]}]},
+        {"frame_index": 1, "detections": [{"label": "circle", "confidence": 0.95, "bbox": [102, 100, 100, 100]}]},
+        {"frame_index": 2, "detections": []},
+        {"frame_index": 3, "detections": [{"label": "circle", "confidence": 0.94, "bbox": [104, 101, 100, 100]}]},
+        {"frame_index": 4, "detections": [{"label": "circle", "confidence": 0.95, "bbox": [105, 101, 100, 100]}]}
+      ],
+      "expected": {
+        "events": [{"event_type": "OBJECT_ENTER", "object_id": 1, "label": "circle", "frame_index": 1}],
+        "active_object_ids": [1]
+      }
+    },
+    {
+      "name": "true_removal",
+      "description": "Four missing frames exceed tolerance and emit one EXIT.",
+      "frames": [
+        {"frame_index": 0, "detections": [{"label": "circle", "confidence": 0.96, "bbox": [100, 100, 100, 100]}]},
+        {"frame_index": 1, "detections": [{"label": "circle", "confidence": 0.96, "bbox": [100, 100, 100, 100]}]},
+        {"frame_index": 2, "detections": []},
+        {"frame_index": 3, "detections": []},
+        {"frame_index": 4, "detections": []},
+        {"frame_index": 5, "detections": []}
+      ],
+      "expected": {
+        "events": [
+          {"event_type": "OBJECT_ENTER", "object_id": 1, "label": "circle", "frame_index": 1},
+          {"event_type": "OBJECT_EXIT", "object_id": 1, "label": "circle", "frame_index": 5}
+        ],
+        "active_object_ids": []
+      }
+    },
+    {
+      "name": "reentry",
+      "description": "A circle that returns after EXIT must receive a new object ID.",
+      "frames": [
+        {"frame_index": 0, "detections": [{"label": "circle", "confidence": 0.96, "bbox": [100, 100, 100, 100]}]},
+        {"frame_index": 1, "detections": [{"label": "circle", "confidence": 0.96, "bbox": [100, 100, 100, 100]}]},
+        {"frame_index": 2, "detections": []},
+        {"frame_index": 3, "detections": []},
+        {"frame_index": 4, "detections": []},
+        {"frame_index": 5, "detections": []},
+        {"frame_index": 6, "detections": [{"label": "circle", "confidence": 0.97, "bbox": [101, 100, 100, 100]}]},
+        {"frame_index": 7, "detections": [{"label": "circle", "confidence": 0.97, "bbox": [101, 100, 100, 100]}]}
+      ],
+      "expected": {
+        "events": [
+          {"event_type": "OBJECT_ENTER", "object_id": 1, "label": "circle", "frame_index": 1},
+          {"event_type": "OBJECT_EXIT", "object_id": 1, "label": "circle", "frame_index": 5},
+          {"event_type": "OBJECT_ENTER", "object_id": 2, "label": "circle", "frame_index": 7}
+        ],
+        "active_object_ids": [2]
+      }
+    },
+    {
+      "name": "multi_class",
+      "description": "Triangle and circle maintain independent identities.",
+      "frames": [
+        {"frame_index": 0, "detections": [{"label": "triangle", "confidence": 0.95, "bbox": [100, 100, 100, 120]}, {"label": "circle", "confidence": 0.97, "bbox": [500, 100, 120, 120]}]},
+        {"frame_index": 1, "detections": [{"label": "triangle", "confidence": 0.95, "bbox": [100, 100, 100, 120]}, {"label": "circle", "confidence": 0.97, "bbox": [500, 100, 120, 120]}]}
+      ],
+      "expected": {
+        "events": [
+          {"event_type": "OBJECT_ENTER", "object_id": 1, "label": "triangle", "frame_index": 1},
+          {"event_type": "OBJECT_ENTER", "object_id": 2, "label": "circle", "frame_index": 1}
+        ],
+        "active_object_ids": [1, 2]
+      }
+    },
+    {
+      "name": "three_objects",
+      "description": "Triangle, rectangle, and circle each produce one ENTER.",
+      "frames": [
+        {"frame_index": 0, "detections": [{"label": "triangle", "confidence": 0.95, "bbox": [100, 100, 100, 120]}, {"label": "rectangle", "confidence": 0.98, "bbox": [350, 100, 140, 110]}, {"label": "circle", "confidence": 0.97, "bbox": [700, 100, 120, 120]}]},
+        {"frame_index": 1, "detections": [{"label": "triangle", "confidence": 0.95, "bbox": [100, 100, 100, 120]}, {"label": "rectangle", "confidence": 0.98, "bbox": [350, 100, 140, 110]}, {"label": "circle", "confidence": 0.97, "bbox": [700, 100, 120, 120]}]}
+      ],
+      "expected": {
+        "events": [
+          {"event_type": "OBJECT_ENTER", "object_id": 1, "label": "triangle", "frame_index": 1},
+          {"event_type": "OBJECT_ENTER", "object_id": 2, "label": "rectangle", "frame_index": 1},
+          {"event_type": "OBJECT_ENTER", "object_id": 3, "label": "circle", "frame_index": 1}
+        ],
+        "active_object_ids": [1, 2, 3]
+      }
+    },
+    {
+      "name": "same_label_objects",
+      "description": "Two circles are separated by spatial association, not label alone.",
+      "frames": [
+        {"frame_index": 0, "detections": [{"label": "circle", "confidence": 0.96, "bbox": [500, 100, 100, 100]}, {"label": "circle", "confidence": 0.97, "bbox": [100, 100, 100, 100]}]},
+        {"frame_index": 1, "detections": [{"label": "circle", "confidence": 0.97, "bbox": [100, 100, 100, 100]}, {"label": "circle", "confidence": 0.96, "bbox": [500, 100, 100, 100]}]}
+      ],
+      "expected": {
+        "events": [
+          {"event_type": "OBJECT_ENTER", "object_id": 1, "label": "circle", "frame_index": 1},
+          {"event_type": "OBJECT_ENTER", "object_id": 2, "label": "circle", "frame_index": 1}
+        ],
+        "active_object_ids": [1, 2]
+      }
+    },
+    {
+      "name": "small_movement",
+      "description": "Small bbox motion remains one object.",
+      "frames": [
+        {"frame_index": 0, "detections": [{"label": "circle", "confidence": 0.96, "bbox": [100, 100, 100, 100]}]},
+        {"frame_index": 1, "detections": [{"label": "circle", "confidence": 0.96, "bbox": [108, 106, 100, 100]}]},
+        {"frame_index": 2, "detections": [{"label": "circle", "confidence": 0.96, "bbox": [114, 112, 100, 100]}]},
+        {"frame_index": 3, "detections": [{"label": "circle", "confidence": 0.96, "bbox": [120, 120, 100, 100]}]}
+      ],
+      "expected": {
+        "events": [{"event_type": "OBJECT_ENTER", "object_id": 1, "label": "circle", "frame_index": 1}],
+        "active_object_ids": [1]
+      }
+    },
+    {
+      "name": "confidence_variation",
+      "description": "Confidence changes do not affect identity association.",
+      "frames": [
+        {"frame_index": 0, "detections": [{"label": "circle", "confidence": 0.98, "bbox": [100, 100, 100, 100]}]},
+        {"frame_index": 1, "detections": [{"label": "circle", "confidence": 0.91, "bbox": [100, 100, 100, 100]}]},
+        {"frame_index": 2, "detections": [{"label": "circle", "confidence": 0.95, "bbox": [100, 100, 100, 100]}]}
+      ],
+      "expected": {
+        "events": [{"event_type": "OBJECT_ENTER", "object_id": 1, "label": "circle", "frame_index": 1}],
+        "active_object_ids": [1]
+      }
+    },
+    {
+      "name": "detection_order_change",
+      "description": "Detection list order changes without changing identities.",
+      "frames": [
+        {"frame_index": 0, "detections": [{"label": "triangle", "confidence": 0.95, "bbox": [100, 100, 100, 120]}, {"label": "circle", "confidence": 0.97, "bbox": [500, 100, 120, 120]}]},
+        {"frame_index": 1, "detections": [{"label": "circle", "confidence": 0.97, "bbox": [500, 100, 120, 120]}, {"label": "triangle", "confidence": 0.95, "bbox": [100, 100, 100, 120]}]}
+      ],
+      "expected": {
+        "events": [
+          {"event_type": "OBJECT_ENTER", "object_id": 1, "label": "triangle", "frame_index": 1},
+          {"event_type": "OBJECT_ENTER", "object_id": 2, "label": "circle", "frame_index": 1}
+        ],
+        "active_object_ids": [1, 2]
+      }
+    },
+    {
+      "name": "clear_all",
+      "description": "Three confirmed objects all exit exactly once after removal.",
+      "frames": [
+        {"frame_index": 0, "detections": [{"label": "triangle", "confidence": 0.95, "bbox": [100, 100, 100, 120]}, {"label": "rectangle", "confidence": 0.98, "bbox": [350, 100, 140, 110]}, {"label": "circle", "confidence": 0.97, "bbox": [700, 100, 120, 120]}]},
+        {"frame_index": 1, "detections": [{"label": "triangle", "confidence": 0.95, "bbox": [100, 100, 100, 120]}, {"label": "rectangle", "confidence": 0.98, "bbox": [350, 100, 140, 110]}, {"label": "circle", "confidence": 0.97, "bbox": [700, 100, 120, 120]}]},
+        {"frame_index": 2, "detections": []},
+        {"frame_index": 3, "detections": []},
+        {"frame_index": 4, "detections": []},
+        {"frame_index": 5, "detections": []}
+      ],
+      "expected": {
+        "events": [
+          {"event_type": "OBJECT_ENTER", "object_id": 1, "label": "triangle", "frame_index": 1},
+          {"event_type": "OBJECT_ENTER", "object_id": 2, "label": "rectangle", "frame_index": 1},
+          {"event_type": "OBJECT_ENTER", "object_id": 3, "label": "circle", "frame_index": 1},
+          {"event_type": "OBJECT_EXIT", "object_id": 1, "label": "triangle", "frame_index": 5},
+          {"event_type": "OBJECT_EXIT", "object_id": 2, "label": "rectangle", "frame_index": 5},
+          {"event_type": "OBJECT_EXIT", "object_id": 3, "label": "circle", "frame_index": 5}
+        ],
+        "active_object_ids": []
+      }
+    }
+  ]
+}
