@@ -7,8 +7,8 @@
 | SCOPE-001 | TODO | TODO | TODO | TODO | TODO | TODO | 系统总体设计/系统集成 |
 | VISION-001 | `pc/vision/preprocess.py`、`contours.py`、`roi.py`、`live.py`、`pc/config/vision.json` | 实现 `9f7ae794`；证据 `d8f6f60b` | TEST-002（离线 PASS）、TEST-003（实时 PASS） | `notes/daily/2026-09-04-M2-离线单目标轮廓识别.md`、`2026-09-04-M2-最终真实验收.md` | 离线：`evidence/screenshots/m2/`；实时：`evidence/screenshots/m2/live/` | 离线：`test_data/m2/2026-09-04-offline-results.*`；实时精选摘要：`evidence/data/m2-live-acceptance-summary.json` | 视觉算法/图像预处理 |
 | VISION-002 | `pc/vision/classifier.py`、`pipeline.py`、`live.py` | 实现 `9f7ae794`；证据 `d8f6f60b` | TEST-002（离线 PASS）、TEST-003（实时 PASS） | 同上 | 离线：`evidence/screenshots/m2/`；实时：`evidence/screenshots/m2/live/` | 离线：`test_data/m2/2026-09-04-offline-results.*`；实时：`evidence/data/m2-live-acceptance-summary.json` | 视觉算法/形状分类 |
-| VISION-003 | TODO | TODO | TODO | TODO | TODO | TODO | 视觉算法/多目标检测 |
-| VISION-004 | TODO | TODO | TODO | TODO | TODO | TODO | 视觉算法/抗光照处理 |
+| VISION-003 | `pc/vision/pipeline.py`、`m3_live.py` | `8815e443`（软件与自动化测试） | TEST-004（PENDING） | `notes/daily/2026-09-04-M3-最小实现与验收准备.md` | TODO（真实验收未执行） | TODO（runtime 将位于被忽略的 `output/m3/`） | 视觉算法/多目标检测 |
+| VISION-004 | `pc/vision/preprocess.py`、`m3_live.py`、`pc/config/vision.json` | `8815e443`（软件与自动化测试） | TEST-004（PENDING） | 同上 | TODO（真实三种光照未执行） | TODO（同帧 JSON/CSV 待产生） | 视觉算法/抗光照处理 |
 | GUI-001 | TODO | TODO | TODO | TODO | TODO | TODO | 上位机界面 |
 | PLC-001 | TODO | TODO | TODO | TODO | TODO | TODO | PLC 设计/FIFO |
 | PLC-002 | TODO | TODO | TODO | TODO | TODO | TODO | PLC 设计/生产者消费者 |

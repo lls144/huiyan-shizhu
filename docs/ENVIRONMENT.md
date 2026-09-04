@@ -67,3 +67,8 @@ M1 的最小依赖已锁定在 `requirements.txt`。虚拟环境 `.venv/` 不进
 - 自动化测试通过 mock 验证复用 M1 摄像头打开函数；真实验收另行使用 Insta360 Ace Pro 2 USB Webcam，VID `2E1A`、PID `1003`、DirectShow、MJPG、1920×1080@30。
 - 第一轮 session 处理 13087 帧，处理 FPS 27.547318；第二轮处理 8989 帧，处理 FPS 29.473403。两轮均 `failed_reads=0`、`error=null`。
 - 第一轮使用 manual / selected ROI；第二轮改变相机机位后未复用旧 ROI，使用 auto / detected ROI，score 0.677265。实际数据见 TEST-003 和 `evidence/data/m2-live-acceptance-summary.json`。
+
+## M3 软件准备环境
+
+- 继续复用 M2 的 Python、OpenCV、NumPy、摄像头配置和 ROI 校准；未新增第三方依赖。
+- 新增多目标合成测试和 Otsu / CLAHE+Otsu 同帧证据测试；真实摄像头的光照条件、FPS 和输出尚待 TEST-004 记录。
