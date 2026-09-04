@@ -38,7 +38,7 @@ result: offline-pass-live-pending
 | close running | `closeEvent` 请求中断并等待 worker 正常退出 | PASS |
 | backpressure | 容量 1；连续发布 1/2/3 后只取得 frame 3，2 次 overwrite | PASS |
 | resize | pixmap 使用 `KeepAspectRatio`，不触发视觉重算 | PASS |
-| compact overlay | ROI 细线、ID-aware label、源图不被修改 | PASS |
+| compact overlay | ROI 细线、类别色 bbox、深色外描边、自动黑白文字、ID-aware label、源图不被修改 | PASS |
 
 相关 pytest 文件：`../../pc/tests/test_gui_buffer.py`、`../../pc/tests/test_gui_overlay.py`、`../../pc/tests/test_gui_window.py`。测试没有使用几秒固定 `sleep()`，而是确定性 source 和有上限的 Qt event-loop 条件等待。
 
@@ -64,7 +64,7 @@ soak 由真实 `.venv` 进程运行，但输入是 synthetic、Qt 平台是 offs
 
 ### 回归
 
-- 完整 pytest：UI/UX 重构后 `109 passed in 4.03s`。
+- 完整 pytest：UI/UX 重构及 overlay 对比度优化后 `110 passed in 3.81s`。
 - M2 十张真实离线图片：`10/10`，background 1/1、circle 3/3、rectangle 3/3、triangle 3/3。
 - M3 synthetic：4 个强制光照场景、两种方案均精确输出三类，`all_required_scenes_pass=true`；遮挡/接触局限未改写。
 - M4：12/12 detection-sequence 场景通过，`failing_scenarios=0`。

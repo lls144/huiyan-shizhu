@@ -55,7 +55,7 @@ Vision Workspace 与 Inspector 初始比例约为 72:28，允许拖动；Inspect
 - source open/read failure 和 vision exception 可见且可重试；
 - synthetic 与 camera 两种 source adapter。
 
-GUI 专用 overlay 位于 `pc/gui/overlay.py`：ROI 为 1 px 低权重灰线；detection bbox 为 2 px 克制蓝线；标签格式为 `#1 TRIANGLE 99.1%`。object ID、类别和 confidence 全部来自现有 M3/M4 结果，overlay 不重新分类或关联，也不改变用于 runtime evidence 的既有 M3 annotation。
+GUI 专用 overlay 位于 `pc/gui/overlay.py`：ROI 为 1 px 低权重灰线；detection 使用 YOLO 风格的类别色边框、深色外描边和同色实心标签，triangle/rectangle/circle/unknown 分别使用可区分颜色，标签文字根据底色亮度自动选择深色或白色，格式为 `#1 TRIANGLE 99.1%`。object ID、类别和 confidence 全部来自现有 M3/M4 结果，overlay 不重新分类或关联，也不改变用于 runtime evidence 的既有 M3 annotation。
 
 没有加入无实际功能的重校准按钮。camera source 启动时直接复用 M2/M3 的 `auto -> manual -> fixed_normalized` 校准流程，ROI 在本次运行内锁定，不做逐帧动态追踪。
 

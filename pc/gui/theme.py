@@ -44,13 +44,16 @@ THEME = ThemeTokens()
 @dataclass(frozen=True)
 class OverlayTokens:
     roi_bgr: tuple[int, int, int] = (112, 112, 112)
-    bbox_bgr: tuple[int, int, int] = (217, 134, 63)
-    label_background_bgr: tuple[int, int, int] = (38, 38, 38)
-    label_text_bgr: tuple[int, int, int] = (235, 235, 235)
+    triangle_bgr: tuple[int, int, int] = (94, 197, 34)
+    rectangle_bgr: tuple[int, int, int] = (246, 130, 59)
+    circle_bgr: tuple[int, int, int] = (22, 115, 249)
+    unknown_bgr: tuple[int, int, int] = (68, 68, 239)
+    bbox_outline_bgr: tuple[int, int, int] = (24, 24, 24)
     roi_thickness: int = 1
-    bbox_thickness: int = 2
-    font_scale: float = 0.58
-    font_thickness: int = 1
+    bbox_outline_thickness: int = 5
+    bbox_thickness: int = 3
+    font_scale: float = 0.62
+    font_thickness: int = 2
     label_padding_x: int = 7
     label_padding_y: int = 5
 

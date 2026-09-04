@@ -6,7 +6,7 @@ import numpy as np
 from pc.events.adapters import detections_from_analysis
 from pc.events.config import load_event_config
 from pc.events.tracker import ObjectStateManager
-from pc.gui.overlay import annotated_gui_frame
+from pc.gui.overlay import _class_color, _contrasting_text, annotated_gui_frame
 from pc.gui.theme import OVERLAY
 from pc.vision.config import load_vision_config
 from pc.vision.pipeline import analyze_multiple_objects
@@ -58,3 +58,12 @@ def test_gui_overlay_uses_subdued_roi_token() -> None:
     assert roi_pixel[0] == roi_pixel[1] == roi_pixel[2]
     assert OVERLAY.roi_bgr[0] <= roi_pixel[0] < int(source[top, left, 0])
     assert OVERLAY.roi_thickness == 1
+
+
+def test_gui_overlay_uses_distinct_yolo_style_class_colors() -> None:
+    colors = [_class_color(label) for label in ("triangle", "rectangle", "circle", "unknown")]
+
+    assert len(set(colors)) == 4
+    assert OVERLAY.bbox_thickness == 3
+    assert OVERLAY.bbox_outline_thickness > OVERLAY.bbox_thickness
+    assert all(_contrasting_text(color) in ((18, 18, 18), (250, 250, 250)) for color in colors)

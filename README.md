@@ -17,7 +17,7 @@
 - 实时入口复用 M1 的设备选择和 `open_configured_camera`，没有复制第二套摄像头管理逻辑。
 - M3 已建立多目标薄层扩展、确定性合成数据集、离线双方案评估和 Otsu / CLAHE+Otsu 同帧实时证据入口；6 个合成场景的离线结果已留档，真实三种光照、遮挡和粘连测试待项目负责人执行。
 - M4 的软件与离线模拟验证已完成：连续停留、短时漏检、离场、重入、多目标和同类多目标均有确定性测试；真实摄像头生命周期验收待执行。
-- M5 已完成 PySide6 离线软件部分及 desktop vision workspace UI/UX 重构：threaded worker、synthetic/camera source adapter、M3/M4 同步展示、异常恢复、109 项全量测试和 60 秒 synthetic soak；真实摄像头 GUI 验收待执行。
+- M5 已完成 PySide6 离线软件部分及 desktop vision workspace UI/UX 重构：threaded worker、synthetic/camera source adapter、M3/M4 同步展示、异常恢复、110 项全量测试和 60 秒 synthetic soak；真实摄像头 GUI 验收待执行。
 - M6、通信和 PLC 均尚未开始。
 - 所有尚无真实测试证据的结果均标记为 `TODO` 或“待测试”。
 
