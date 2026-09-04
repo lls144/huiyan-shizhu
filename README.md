@@ -12,11 +12,12 @@
 
 ## 当前状态
 
-- 当前阶段：M2 单目标轮廓识别已完成，M3 多目标识别与抗光照处于 `DOING`。
+- 当前阶段：M2 单目标轮廓识别已完成；M3 多目标识别与抗光照、M4 防重复识别与事件生成均处于 `DOING`。
 - 10 张真实离线图片回归与两种机位下共 8 项 Insta360 实时摄像头验收均通过；实时证据见 `TEST-003` 和 `evidence/screenshots/m2/live/`。
 - 实时入口复用 M1 的设备选择和 `open_configured_camera`，没有复制第二套摄像头管理逻辑。
 - M3 已建立多目标薄层扩展、确定性合成数据集、离线双方案评估和 Otsu / CLAHE+Otsu 同帧实时证据入口；6 个合成场景的离线结果已留档，真实三种光照、遮挡和粘连测试待项目负责人执行。
-- M4、GUI、通信、PLC 和事件去重均尚未开始。
+- M4 的软件与离线模拟验证已完成：连续停留、短时漏检、离场、重入、多目标和同类多目标均有确定性测试；真实摄像头生命周期验收待执行。
+- M5、M6、GUI、通信和 PLC 均尚未开始。
 - 所有尚无真实测试证据的结果均标记为 `TODO` 或“待测试”。
 
 ## 项目目录结构
@@ -56,7 +57,9 @@ scripts/               辅助脚本
 8. 重新生成 M3 合成数据：`.\.venv\Scripts\python.exe -m pc.vision.synthetic --output-root test_data/m3/synthetic`。
 9. 运行 M3 离线双方案批处理：`.\.venv\Scripts\python.exe -m pc.vision --config pc/config/vision.json multi-batch --input-root test_data/m3/synthetic --ground-truth test_data/m3/synthetic/ground_truth.json --output-json output/m3/offline-results.json --output-csv output/m3/offline-results.csv --diagnostics-dir output/m3/offline-diagnostics`。
 10. 运行 M3 多目标/光照真实验收：`.\.venv\Scripts\python.exe -m pc.vision --config pc/config/vision.json multi-live --camera-config pc/config/camera.json --roi-mode auto --expected-labels triangle rectangle circle`。
-11. 使用 `notes/templates/` 中的模板记录真实实验、问题、测试和技术决策。
+11. 运行 M4 离线检测序列：`.\.venv\Scripts\python.exe -m pc.events --config pc/config/events.json simulate --input test_data/m4/detection-sequences.json --output-json output/m4/event-results.json --output-csv output/m4/event-results.csv`。
+12. 在 M3 live 中启用 M4：在第 10 步命令末尾增加 `--events --event-config pc/config/events.json`。
+13. 使用 `notes/templates/` 中的模板记录真实实验、问题、测试和技术决策。
 
 实时预览只使用 OpenCV 窗口。Canny 仅生成诊断证据，分类轮廓来自二值图；ROI 只在启动或按 `R` 时校准，运行期间不会逐帧漂移。
 
@@ -76,7 +79,7 @@ scripts/               辅助脚本
 | M1 | USB 摄像头稳定采集 | DONE |
 | M2 | 单目标轮廓识别 | DONE |
 | M3 | 多目标识别与抗光照 | DOING（软件与离线合成验收完成，五项真实摄像头验收待执行） |
-| M4 | 防重复识别/事件生成 | TODO |
+| M4 | 防重复识别/事件生成 | DOING（软件与离线模拟验收完成，真实摄像头生命周期验收待执行） |
 | M5 | GUI 上位机 | TODO |
 | M6 | Fake PLC 模拟器 | TODO |
 | M7 | PC-PLC 通信协议 | TODO |
