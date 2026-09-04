@@ -55,5 +55,9 @@
   "fps_smoothing_window": 30,
   "live_max_consecutive_read_failures": 30,
   "live_preview_width": 1280,
-  "live_preview_height": 720
+  "live_preview_height": 720,
+  "preprocess_mode": "otsu",
+  "comparison_preprocess_mode": "clahe_otsu",
+  "clahe_clip_limit": 2.0,
+  "clahe_tile_grid_size": 8
 }

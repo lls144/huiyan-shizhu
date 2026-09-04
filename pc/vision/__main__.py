@@ -1,4 +1,4 @@
-"""Offline-only command-line entry point for M2 single-object recognition."""
+"""Command-line entry point for M2 single-object and M3 multi-object vision."""
 
 from __future__ import annotations
 
@@ -75,6 +75,46 @@ def _parser() -> argparse.ArgumentParser:
         default=Path("output/m2/live-evidence"),
         help="ignored directory for S-key frame evidence and session JSON",
     )
+    multi_live = subparsers.add_parser(
+        "multi-live",
+        help="run M3 multi-object preview and paired lighting-method evidence capture",
+    )
+    multi_live.add_argument(
+        "--camera-config",
+        type=Path,
+        default=Path("pc/config/camera.json"),
+        help="existing M1 camera JSON config path",
+    )
+    multi_live.add_argument(
+        "--roi-mode",
+        choices=("auto", "manual", "fixed_normalized"),
+        default="auto",
+        help="startup calibration mode; auto falls back to manual then fixed_normalized",
+    )
+    multi_live.add_argument(
+        "--calibration-file",
+        type=Path,
+        default=Path("output/m3/runtime-calibration.json"),
+        help="ignored local M3 runtime calibration JSON",
+    )
+    multi_live.add_argument(
+        "--reuse-calibration",
+        action="store_true",
+        help="explicitly restore the saved normalized ROI instead of recalibrating at startup",
+    )
+    multi_live.add_argument(
+        "--evidence-dir",
+        type=Path,
+        default=Path("output/m3/live-evidence"),
+        help="ignored directory for paired evidence and session JSON",
+    )
+    multi_live.add_argument(
+        "--expected-labels",
+        nargs="*",
+        choices=("triangle", "rectangle", "circle"),
+        default=(),
+        help="operator-declared shapes actually placed in the work area",
+    )
     return parser
 
 
@@ -90,6 +130,18 @@ def main() -> int:
             requested_roi_mode=args.roi_mode,
             calibration_path=args.calibration_file,
             evidence_root=args.evidence_dir,
+            reuse_calibration=args.reuse_calibration,
+        )
+    if args.command == "multi-live":
+        from .m3_live import run_m3_live_session
+
+        return run_m3_live_session(
+            camera_config_path=args.camera_config,
+            vision_config=config,
+            requested_roi_mode=args.roi_mode,
+            calibration_path=args.calibration_file,
+            evidence_root=args.evidence_dir,
+            expected_labels=tuple(args.expected_labels),
             reuse_calibration=args.reuse_calibration,
         )
 

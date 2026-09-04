@@ -1,4 +1,4 @@
-"""ROI extraction and observable image preprocessing for M2."""
+"""ROI extraction and observable M2/M3 preprocessing."""
 
 from __future__ import annotations
 
@@ -21,10 +21,12 @@ class PreprocessResult:
     roi_bounds: tuple[int, int, int, int]
     roi: Image
     gray: Image
+    normalized_gray: Image
     blurred: Image
     binary: Image
     canny: Image
     otsu_threshold: float
+    preprocess_mode: str
 
 
 def normalized_roi_bounds(
@@ -60,8 +62,16 @@ def preprocess_image(
     left, top, right, bottom = bounds
     roi = image[top:bottom, left:right].copy()
     gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+    if config.preprocess_mode == "clahe_otsu":
+        clahe = cv2.createCLAHE(
+            clipLimit=config.clahe_clip_limit,
+            tileGridSize=(config.clahe_tile_grid_size, config.clahe_tile_grid_size),
+        )
+        normalized_gray = clahe.apply(gray)
+    else:
+        normalized_gray = gray.copy()
     kernel = (config.gaussian_kernel_size, config.gaussian_kernel_size)
-    blurred = cv2.GaussianBlur(gray, kernel, 0)
+    blurred = cv2.GaussianBlur(normalized_gray, kernel, 0)
     otsu_threshold, binary = cv2.threshold(
         blurred, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU
     )
@@ -81,4 +91,14 @@ def preprocess_image(
         config.canny_low_threshold,
         config.canny_high_threshold,
     )
-    return PreprocessResult(bounds, roi, gray, blurred, binary, canny, otsu_threshold)
+    return PreprocessResult(
+        bounds,
+        roi,
+        gray,
+        normalized_gray,
+        blurred,
+        binary,
+        canny,
+        otsu_threshold,
+        config.preprocess_mode,
+    )

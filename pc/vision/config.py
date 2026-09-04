@@ -1,4 +1,4 @@
-"""Load and validate all M2 vision parameters from one JSON file."""
+"""Load and validate shared M2/M3 vision parameters from one JSON file."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from typing import Any
 
 @dataclass(frozen=True)
 class VisionConfig:
-    """Configuration for the offline single-object contour pipeline."""
+    """Configuration for single- and multi-object contour pipelines."""
 
     roi_left: float
     roi_top: float
@@ -69,6 +69,10 @@ class VisionConfig:
     live_max_consecutive_read_failures: int = 30
     live_preview_width: int = 1280
     live_preview_height: int = 720
+    preprocess_mode: str = "otsu"
+    comparison_preprocess_mode: str = "clahe_otsu"
+    clahe_clip_limit: float = 2.0
+    clahe_tile_grid_size: int = 8
 
     @classmethod
     def from_dict(cls, values: dict[str, Any]) -> "VisionConfig":
@@ -188,6 +192,19 @@ class VisionConfig:
             raise ValueError("live_max_consecutive_read_failures must be positive")
         if self.live_preview_width <= 0 or self.live_preview_height <= 0:
             raise ValueError("live preview dimensions must be positive")
+        supported_preprocess_modes = {"otsu", "clahe_otsu"}
+        if self.preprocess_mode not in supported_preprocess_modes:
+            raise ValueError(f"unsupported preprocess_mode: {self.preprocess_mode}")
+        if self.comparison_preprocess_mode not in supported_preprocess_modes:
+            raise ValueError(
+                f"unsupported comparison_preprocess_mode: {self.comparison_preprocess_mode}"
+            )
+        if self.preprocess_mode == self.comparison_preprocess_mode:
+            raise ValueError("preprocess comparison modes must be different")
+        if self.clahe_clip_limit <= 0:
+            raise ValueError("clahe_clip_limit must be positive")
+        if self.clahe_tile_grid_size <= 0:
+            raise ValueError("clahe_tile_grid_size must be positive")
 
 
 def load_vision_config(path: str | Path) -> VisionConfig:

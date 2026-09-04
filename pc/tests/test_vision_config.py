@@ -64,6 +64,10 @@ def test_valid_vision_config_is_accepted() -> None:
         ("fps_smoothing_window", 1),
         ("live_max_consecutive_read_failures", 0),
         ("live_preview_width", 0),
+        ("preprocess_mode", "adaptive"),
+        ("comparison_preprocess_mode", "otsu"),
+        ("clahe_clip_limit", 0),
+        ("clahe_tile_grid_size", 0),
     ],
 )
 def test_invalid_vision_values_are_rejected(field: str, value: object) -> None:

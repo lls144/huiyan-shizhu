@@ -1,6 +1,13 @@
-"""Configurable OpenCV shape recognition for M2 offline images."""
+"""Configurable OpenCV shape recognition shared by M2 and M3."""
 
 from .config import VisionConfig, load_vision_config
-from .pipeline import ImageAnalysis, analyze_image
+from .pipeline import ImageAnalysis, MultiImageAnalysis, analyze_image, analyze_multiple_objects
 
-__all__ = ["ImageAnalysis", "VisionConfig", "analyze_image", "load_vision_config"]
+__all__ = [
+    "ImageAnalysis",
+    "MultiImageAnalysis",
+    "VisionConfig",
+    "analyze_image",
+    "analyze_multiple_objects",
+    "load_vision_config",
+]
