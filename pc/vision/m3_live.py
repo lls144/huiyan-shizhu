@@ -14,6 +14,11 @@ from typing import Any, Sequence
 import cv2
 import numpy as np
 
+from pc.events.adapters import detections_from_analysis
+from pc.events.config import EventConfig, load_event_config
+from pc.events.models import FrameUpdate, VisionEvent
+from pc.events.tracker import ObjectStateManager
+
 from .config import VisionConfig
 from .live import (
     FpsMeter,
@@ -93,8 +98,10 @@ def render_m3_overlay(
     analysis: MultiImageAnalysis,
     fps: float,
     calibration: CalibrationResult,
+    event_update: FrameUpdate | None = None,
+    latest_event: VisionEvent | None = None,
 ) -> Image:
-    """Draw independent objects and operator keys without any M4 tracking state."""
+    """Draw M3 objects plus optional compact M4 state and event information."""
 
     output = annotated_multi_image(frame, analysis, draw_summary=False)
     labels = ", ".join(detection.label for detection in analysis.detections) or "no_object"
@@ -105,6 +112,17 @@ def render_m3_overlay(
         "T toggle method | R recalibrate | Q/ESC quit",
         "save pair: 1 normal | 2 bright/side | 3 dark | 4 occlusion | 5 touching",
     ]
+    if event_update is not None:
+        tracked = ", ".join(
+            f"#{state.object_id}:{state.label}"
+            for state in event_update.active_objects
+        ) or "none"
+        lines.append(f"M4 tracked={tracked}")
+        if latest_event is not None:
+            lines.append(
+                f"M4 last={latest_event.event_type.value} "
+                f"#{latest_event.object_id}:{latest_event.label}"
+            )
     for index, text in enumerate(lines):
         y = 30 + index * 28
         cv2.putText(output, text, (18, y), cv2.FONT_HERSHEY_SIMPLEX, 0.68, (0, 0, 0), 4)
@@ -176,6 +194,7 @@ def save_m3_comparison_evidence(
     camera: LiveCamera,
     vision_config: VisionConfig,
     evidence_root: Path,
+    event_update: FrameUpdate | None = None,
 ) -> Path:
     """Save paired same-frame results; acceptance remains pending human review."""
 
@@ -231,6 +250,7 @@ def save_m3_comparison_evidence(
         "lighting_statistics": _lighting_statistics(first_analysis),
         "methods": method_records,
         "vision_config_snapshot": asdict(vision_config),
+        "m4_event_snapshot": event_update.to_record() if event_update is not None else None,
         "artifacts": {
             "frame": "frame.jpg",
             "roi": "roi.jpg",
@@ -257,9 +277,16 @@ def run_m3_live_session(
     evidence_root: Path,
     expected_labels: Sequence[str],
     reuse_calibration: bool = False,
+    event_config_path: Path | None = None,
 ) -> int:
-    """Run raw multi-object preview and save paired method evidence on keys 1-5."""
+    """Run M3 preview with optional M4 events and paired evidence on keys 1-5."""
 
+    event_config: EventConfig | None = (
+        load_event_config(event_config_path) if event_config_path is not None else None
+    )
+    event_manager = ObjectStateManager(event_config) if event_config is not None else None
+    event_records: list[dict[str, object]] = []
+    latest_event: VisionEvent | None = None
     camera = open_live_camera(camera_config_path)
     capture = camera.capture
     session_started = time.perf_counter()
@@ -291,6 +318,16 @@ def run_m3_live_session(
         "calibration_file": str(calibration_path),
         "calibration_history": calibration_history,
         "evidence_records": evidence_records,
+        "m4_event_tracking": {
+            "enabled": event_manager is not None,
+            "config_path": str(event_config_path) if event_config_path is not None else None,
+            "config": asdict(event_config) if event_config is not None else None,
+            "detection_preprocess_mode": (
+                vision_config.preprocess_mode if event_manager is not None else None
+            ),
+            "events": event_records,
+            "live_acceptance_status": "pending_user_validation",
+        },
     }
     _write_session_report(session_path, session_report)
 
@@ -336,8 +373,40 @@ def run_m3_live_session(
         while True:
             active_config = _config_for_mode(vision_config, active_mode)
             analysis = analyze_multiple_objects(frame, active_config, calibration.roi)
+            event_update: FrameUpdate | None = None
+            if event_manager is not None:
+                event_analysis = (
+                    analysis
+                    if active_mode == vision_config.preprocess_mode
+                    else analyze_multiple_objects(
+                        frame,
+                        _config_for_mode(vision_config, vision_config.preprocess_mode),
+                        calibration.roi,
+                    )
+                )
+                event_update = event_manager.process_frame(
+                    frames_processed,
+                    detections_from_analysis(event_analysis, frames_processed),
+                )
+                if event_update.events:
+                    for event in event_update.events:
+                        latest_event = event
+                        event_records.append(event.to_record())
+                        print(
+                            f"M4 {event.event_type.value} event_id={event.event_id} "
+                            f"object_id={event.object_id} label={event.label} "
+                            f"confidence={event.confidence:.3f} frame={event.frame_index}"
+                        )
+                    _write_session_report(session_path, session_report)
             fps = fps_meter.update()
-            annotated = render_m3_overlay(frame, analysis, fps, calibration)
+            annotated = render_m3_overlay(
+                frame,
+                analysis,
+                fps,
+                calibration,
+                event_update,
+                latest_event,
+            )
             cv2.imshow(window_name, annotated)
             frames_processed += 1
             key = cv2.waitKey(1) & 0xFF
@@ -375,6 +444,7 @@ def run_m3_live_session(
                     camera,
                     vision_config,
                     evidence_root,
+                    event_update,
                 )
                 evidence_records.append(
                     {
@@ -427,4 +497,8 @@ def run_m3_live_session(
                 "error": session_error,
             }
         )
+        if event_manager is not None:
+            session_report["m4_event_tracking"]["final_object_states"] = [
+                state.to_record() for state in event_manager.object_states()
+            ]
         _write_session_report(session_path, session_report)

@@ -115,6 +115,17 @@ def _parser() -> argparse.ArgumentParser:
         default=(),
         help="operator-declared shapes actually placed in the work area",
     )
+    multi_live.add_argument(
+        "--events",
+        action="store_true",
+        help="enable optional M4 frame-detection deduplication and lifecycle events",
+    )
+    multi_live.add_argument(
+        "--event-config",
+        type=Path,
+        default=Path("pc/config/events.json"),
+        help="M4 event association JSON config used only with --events",
+    )
     multi_batch = subparsers.add_parser(
         "multi-batch",
         help="evaluate an M3 scene manifest with both preprocessing modes",
@@ -156,6 +167,7 @@ def main() -> int:
             evidence_root=args.evidence_dir,
             expected_labels=tuple(args.expected_labels),
             reuse_calibration=args.reuse_calibration,
+            event_config_path=args.event_config if args.events else None,
         )
     if args.command == "multi-batch":
         from .m3_reporting import (
