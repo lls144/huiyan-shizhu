@@ -1,0 +1,3835 @@
+{
+  "schema_version": 1,
+  "milestone": "M4",
+  "source_type": "offline_simulated_detection_sequence",
+  "generated_at": "2026-09-04T20:38:42+08:00",
+  "acceptance_status": "offline_simulation_validated",
+  "scope": "M4 detection-sequence to event validation; not live camera evidence",
+  "git": {
+    "commit": "bdaca0b723a3c3b83d065889f5c754ba2f5751c8",
+    "dirty": false
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10"
+  },
+  "manifest_path": "test_data\\m4\\detection-sequences.json",
+  "config_path": "pc\\config\\events.json",
+  "event_config_snapshot": {
+    "min_confirm_frames": 2,
+    "max_missing_frames": 3,
+    "iou_threshold": 0.3,
+    "center_distance_threshold": 80.0
+  },
+  "summary": {
+    "scenario_count": 12,
+    "passing_scenarios": 12,
+    "failing_scenarios": 0,
+    "all_scenarios_pass": true,
+    "live_camera_validation_complete": false
+  },
+  "performance": {
+    "source_type": "offline_simulated_detection_sequence",
+    "frames": 300,
+    "detections": 900,
+    "events": 3,
+    "processing_ms": 4.294,
+    "frames_per_second": 69861.674,
+    "note": "State-manager-only timing; excludes image processing and I/O."
+  },
+  "limitations": [
+    "Inputs are offline simulated detections, not live camera frames.",
+    "Association uses only label, bbox IoU, and center distance; no motion model or ReID.",
+    "M3 remains pending its five-scene real camera acceptance.",
+    "M4 remains pending one short real camera lifecycle validation."
+  ],
+  "results": [
+    {
+      "scenario": "persistent_object",
+      "description": "One circle remains for ten frames and must emit one ENTER only.",
+      "source_type": "offline_simulated_detection_sequence",
+      "frame_count": 10,
+      "detection_count": 10,
+      "processing_ms": 0.279,
+      "expected": {
+        "events": [
+          {
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "circle",
+            "frame_index": 1
+          }
+        ],
+        "active_object_ids": [
+          1
+        ]
+      },
+      "actual": {
+        "events": [
+          {
+            "event_id": 1,
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "circle",
+            "confidence": 0.97,
+            "frame_index": 1
+          }
+        ],
+        "final_active_object_ids": [
+          1
+        ],
+        "final_object_states": [
+          {
+            "object_id": 1,
+            "label": "circle",
+            "bbox": [
+              100,
+              100,
+              100,
+              100
+            ],
+            "first_seen": 0,
+            "last_seen": 9,
+            "hit_count": 10,
+            "consecutive_hits": 10,
+            "miss_count": 0,
+            "confirmed": true,
+            "active": true,
+            "event_emitted": true,
+            "status": "confirmed",
+            "confidence": 0.97
+          }
+        ]
+      },
+      "events_match": true,
+      "active_objects_match": true,
+      "scenario_pass": true,
+      "frames": [
+        {
+          "frame_index": 0,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 0
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 0,
+              "hit_count": 1,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": false,
+              "active": true,
+              "event_emitted": false,
+              "status": "candidate",
+              "confidence": 0.97
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 1,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 1
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 2,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.97
+            }
+          ],
+          "events": [
+            {
+              "event_id": 1,
+              "event_type": "OBJECT_ENTER",
+              "object_id": 1,
+              "label": "circle",
+              "confidence": 0.97,
+              "frame_index": 1
+            }
+          ]
+        },
+        {
+          "frame_index": 2,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 2
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 2,
+              "hit_count": 3,
+              "consecutive_hits": 3,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.97
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 3,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 3
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 3,
+              "hit_count": 4,
+              "consecutive_hits": 4,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.97
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 4,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 4
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 4,
+              "hit_count": 5,
+              "consecutive_hits": 5,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.97
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 5,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 5
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 5,
+              "hit_count": 6,
+              "consecutive_hits": 6,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.97
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 6,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 6
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 6,
+              "hit_count": 7,
+              "consecutive_hits": 7,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.97
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 7,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 7
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 7,
+              "hit_count": 8,
+              "consecutive_hits": 8,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.97
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 8,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 8
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 8,
+              "hit_count": 9,
+              "consecutive_hits": 9,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.97
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 9,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 9
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 9,
+              "hit_count": 10,
+              "consecutive_hits": 10,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.97
+            }
+          ],
+          "events": []
+        }
+      ]
+    },
+    {
+      "scenario": "single_frame_noise",
+      "description": "One isolated circle detection must remain unconfirmed.",
+      "source_type": "offline_simulated_detection_sequence",
+      "frame_count": 3,
+      "detection_count": 1,
+      "processing_ms": 0.037,
+      "expected": {
+        "events": [],
+        "active_object_ids": []
+      },
+      "actual": {
+        "events": [],
+        "final_active_object_ids": [],
+        "final_object_states": [
+          {
+            "object_id": 1,
+            "label": "circle",
+            "bbox": [
+              100,
+              100,
+              100,
+              100
+            ],
+            "first_seen": 1,
+            "last_seen": 1,
+            "hit_count": 1,
+            "consecutive_hits": 0,
+            "miss_count": 1,
+            "confirmed": false,
+            "active": false,
+            "event_emitted": false,
+            "status": "exited",
+            "confidence": 0.51
+          }
+        ]
+      },
+      "events_match": true,
+      "active_objects_match": true,
+      "scenario_pass": true,
+      "frames": [
+        {
+          "frame_index": 0,
+          "detections": [],
+          "object_states": [],
+          "events": []
+        },
+        {
+          "frame_index": 1,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.51,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 1
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 1,
+              "last_seen": 1,
+              "hit_count": 1,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": false,
+              "active": true,
+              "event_emitted": false,
+              "status": "candidate",
+              "confidence": 0.51
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 2,
+          "detections": [],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 1,
+              "last_seen": 1,
+              "hit_count": 1,
+              "consecutive_hits": 0,
+              "miss_count": 1,
+              "confirmed": false,
+              "active": false,
+              "event_emitted": false,
+              "status": "exited",
+              "confidence": 0.51
+            }
+          ],
+          "events": []
+        }
+      ]
+    },
+    {
+      "scenario": "short_dropout",
+      "description": "One missing frame must not change identity or re-emit ENTER.",
+      "source_type": "offline_simulated_detection_sequence",
+      "frame_count": 5,
+      "detection_count": 4,
+      "processing_ms": 0.091,
+      "expected": {
+        "events": [
+          {
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "circle",
+            "frame_index": 1
+          }
+        ],
+        "active_object_ids": [
+          1
+        ]
+      },
+      "actual": {
+        "events": [
+          {
+            "event_id": 1,
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "circle",
+            "confidence": 0.955,
+            "frame_index": 1
+          }
+        ],
+        "final_active_object_ids": [
+          1
+        ],
+        "final_object_states": [
+          {
+            "object_id": 1,
+            "label": "circle",
+            "bbox": [
+              105,
+              101,
+              100,
+              100
+            ],
+            "first_seen": 0,
+            "last_seen": 4,
+            "hit_count": 4,
+            "consecutive_hits": 2,
+            "miss_count": 0,
+            "confirmed": true,
+            "active": true,
+            "event_emitted": true,
+            "status": "confirmed",
+            "confidence": 0.95
+          }
+        ]
+      },
+      "events_match": true,
+      "active_objects_match": true,
+      "scenario_pass": true,
+      "frames": [
+        {
+          "frame_index": 0,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.96,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 0
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 0,
+              "hit_count": 1,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": false,
+              "active": true,
+              "event_emitted": false,
+              "status": "candidate",
+              "confidence": 0.96
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 1,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.95,
+              "bbox": [
+                102,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 1
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                102,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 2,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.955
+            }
+          ],
+          "events": [
+            {
+              "event_id": 1,
+              "event_type": "OBJECT_ENTER",
+              "object_id": 1,
+              "label": "circle",
+              "confidence": 0.955,
+              "frame_index": 1
+            }
+          ]
+        },
+        {
+          "frame_index": 2,
+          "detections": [],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                102,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 1,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "missing",
+              "confidence": 0.955
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 3,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.94,
+              "bbox": [
+                104,
+                101,
+                100,
+                100
+              ],
+              "frame_index": 3
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                104,
+                101,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 3,
+              "hit_count": 3,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.95
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 4,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.95,
+              "bbox": [
+                105,
+                101,
+                100,
+                100
+              ],
+              "frame_index": 4
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                105,
+                101,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 4,
+              "hit_count": 4,
+              "consecutive_hits": 2,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.95
+            }
+          ],
+          "events": []
+        }
+      ]
+    },
+    {
+      "scenario": "true_removal",
+      "description": "Four missing frames exceed tolerance and emit one EXIT.",
+      "source_type": "offline_simulated_detection_sequence",
+      "frame_count": 6,
+      "detection_count": 2,
+      "processing_ms": 0.09,
+      "expected": {
+        "events": [
+          {
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "circle",
+            "frame_index": 1
+          },
+          {
+            "event_type": "OBJECT_EXIT",
+            "object_id": 1,
+            "label": "circle",
+            "frame_index": 5
+          }
+        ],
+        "active_object_ids": []
+      },
+      "actual": {
+        "events": [
+          {
+            "event_id": 1,
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "circle",
+            "confidence": 0.96,
+            "frame_index": 1
+          },
+          {
+            "event_id": 2,
+            "event_type": "OBJECT_EXIT",
+            "object_id": 1,
+            "label": "circle",
+            "confidence": 0.96,
+            "frame_index": 5
+          }
+        ],
+        "final_active_object_ids": [],
+        "final_object_states": [
+          {
+            "object_id": 1,
+            "label": "circle",
+            "bbox": [
+              100,
+              100,
+              100,
+              100
+            ],
+            "first_seen": 0,
+            "last_seen": 1,
+            "hit_count": 2,
+            "consecutive_hits": 0,
+            "miss_count": 4,
+            "confirmed": true,
+            "active": false,
+            "event_emitted": true,
+            "status": "exited",
+            "confidence": 0.96
+          }
+        ]
+      },
+      "events_match": true,
+      "active_objects_match": true,
+      "scenario_pass": true,
+      "frames": [
+        {
+          "frame_index": 0,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.96,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 0
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 0,
+              "hit_count": 1,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": false,
+              "active": true,
+              "event_emitted": false,
+              "status": "candidate",
+              "confidence": 0.96
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 1,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.96,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 1
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 2,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.96
+            }
+          ],
+          "events": [
+            {
+              "event_id": 1,
+              "event_type": "OBJECT_ENTER",
+              "object_id": 1,
+              "label": "circle",
+              "confidence": 0.96,
+              "frame_index": 1
+            }
+          ]
+        },
+        {
+          "frame_index": 2,
+          "detections": [],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 1,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "missing",
+              "confidence": 0.96
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 3,
+          "detections": [],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 2,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "missing",
+              "confidence": 0.96
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 4,
+          "detections": [],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 3,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "missing",
+              "confidence": 0.96
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 5,
+          "detections": [],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 4,
+              "confirmed": true,
+              "active": false,
+              "event_emitted": true,
+              "status": "exited",
+              "confidence": 0.96
+            }
+          ],
+          "events": [
+            {
+              "event_id": 2,
+              "event_type": "OBJECT_EXIT",
+              "object_id": 1,
+              "label": "circle",
+              "confidence": 0.96,
+              "frame_index": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "reentry",
+      "description": "A circle that returns after EXIT must receive a new object ID.",
+      "source_type": "offline_simulated_detection_sequence",
+      "frame_count": 8,
+      "detection_count": 4,
+      "processing_ms": 0.136,
+      "expected": {
+        "events": [
+          {
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "circle",
+            "frame_index": 1
+          },
+          {
+            "event_type": "OBJECT_EXIT",
+            "object_id": 1,
+            "label": "circle",
+            "frame_index": 5
+          },
+          {
+            "event_type": "OBJECT_ENTER",
+            "object_id": 2,
+            "label": "circle",
+            "frame_index": 7
+          }
+        ],
+        "active_object_ids": [
+          2
+        ]
+      },
+      "actual": {
+        "events": [
+          {
+            "event_id": 1,
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "circle",
+            "confidence": 0.96,
+            "frame_index": 1
+          },
+          {
+            "event_id": 2,
+            "event_type": "OBJECT_EXIT",
+            "object_id": 1,
+            "label": "circle",
+            "confidence": 0.96,
+            "frame_index": 5
+          },
+          {
+            "event_id": 3,
+            "event_type": "OBJECT_ENTER",
+            "object_id": 2,
+            "label": "circle",
+            "confidence": 0.97,
+            "frame_index": 7
+          }
+        ],
+        "final_active_object_ids": [
+          2
+        ],
+        "final_object_states": [
+          {
+            "object_id": 1,
+            "label": "circle",
+            "bbox": [
+              100,
+              100,
+              100,
+              100
+            ],
+            "first_seen": 0,
+            "last_seen": 1,
+            "hit_count": 2,
+            "consecutive_hits": 0,
+            "miss_count": 4,
+            "confirmed": true,
+            "active": false,
+            "event_emitted": true,
+            "status": "exited",
+            "confidence": 0.96
+          },
+          {
+            "object_id": 2,
+            "label": "circle",
+            "bbox": [
+              101,
+              100,
+              100,
+              100
+            ],
+            "first_seen": 6,
+            "last_seen": 7,
+            "hit_count": 2,
+            "consecutive_hits": 2,
+            "miss_count": 0,
+            "confirmed": true,
+            "active": true,
+            "event_emitted": true,
+            "status": "confirmed",
+            "confidence": 0.97
+          }
+        ]
+      },
+      "events_match": true,
+      "active_objects_match": true,
+      "scenario_pass": true,
+      "frames": [
+        {
+          "frame_index": 0,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.96,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 0
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 0,
+              "hit_count": 1,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": false,
+              "active": true,
+              "event_emitted": false,
+              "status": "candidate",
+              "confidence": 0.96
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 1,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.96,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 1
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 2,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.96
+            }
+          ],
+          "events": [
+            {
+              "event_id": 1,
+              "event_type": "OBJECT_ENTER",
+              "object_id": 1,
+              "label": "circle",
+              "confidence": 0.96,
+              "frame_index": 1
+            }
+          ]
+        },
+        {
+          "frame_index": 2,
+          "detections": [],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 1,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "missing",
+              "confidence": 0.96
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 3,
+          "detections": [],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 2,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "missing",
+              "confidence": 0.96
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 4,
+          "detections": [],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 3,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "missing",
+              "confidence": 0.96
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 5,
+          "detections": [],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 4,
+              "confirmed": true,
+              "active": false,
+              "event_emitted": true,
+              "status": "exited",
+              "confidence": 0.96
+            }
+          ],
+          "events": [
+            {
+              "event_id": 2,
+              "event_type": "OBJECT_EXIT",
+              "object_id": 1,
+              "label": "circle",
+              "confidence": 0.96,
+              "frame_index": 5
+            }
+          ]
+        },
+        {
+          "frame_index": 6,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                101,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 6
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 4,
+              "confirmed": true,
+              "active": false,
+              "event_emitted": true,
+              "status": "exited",
+              "confidence": 0.96
+            },
+            {
+              "object_id": 2,
+              "label": "circle",
+              "bbox": [
+                101,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 6,
+              "last_seen": 6,
+              "hit_count": 1,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": false,
+              "active": true,
+              "event_emitted": false,
+              "status": "candidate",
+              "confidence": 0.97
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 7,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                101,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 7
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 4,
+              "confirmed": true,
+              "active": false,
+              "event_emitted": true,
+              "status": "exited",
+              "confidence": 0.96
+            },
+            {
+              "object_id": 2,
+              "label": "circle",
+              "bbox": [
+                101,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 6,
+              "last_seen": 7,
+              "hit_count": 2,
+              "consecutive_hits": 2,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.97
+            }
+          ],
+          "events": [
+            {
+              "event_id": 3,
+              "event_type": "OBJECT_ENTER",
+              "object_id": 2,
+              "label": "circle",
+              "confidence": 0.97,
+              "frame_index": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "multi_class",
+      "description": "Triangle and circle maintain independent identities.",
+      "source_type": "offline_simulated_detection_sequence",
+      "frame_count": 2,
+      "detection_count": 4,
+      "processing_ms": 0.069,
+      "expected": {
+        "events": [
+          {
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "triangle",
+            "frame_index": 1
+          },
+          {
+            "event_type": "OBJECT_ENTER",
+            "object_id": 2,
+            "label": "circle",
+            "frame_index": 1
+          }
+        ],
+        "active_object_ids": [
+          1,
+          2
+        ]
+      },
+      "actual": {
+        "events": [
+          {
+            "event_id": 1,
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "triangle",
+            "confidence": 0.95,
+            "frame_index": 1
+          },
+          {
+            "event_id": 2,
+            "event_type": "OBJECT_ENTER",
+            "object_id": 2,
+            "label": "circle",
+            "confidence": 0.97,
+            "frame_index": 1
+          }
+        ],
+        "final_active_object_ids": [
+          1,
+          2
+        ],
+        "final_object_states": [
+          {
+            "object_id": 1,
+            "label": "triangle",
+            "bbox": [
+              100,
+              100,
+              100,
+              120
+            ],
+            "first_seen": 0,
+            "last_seen": 1,
+            "hit_count": 2,
+            "consecutive_hits": 2,
+            "miss_count": 0,
+            "confirmed": true,
+            "active": true,
+            "event_emitted": true,
+            "status": "confirmed",
+            "confidence": 0.95
+          },
+          {
+            "object_id": 2,
+            "label": "circle",
+            "bbox": [
+              500,
+              100,
+              120,
+              120
+            ],
+            "first_seen": 0,
+            "last_seen": 1,
+            "hit_count": 2,
+            "consecutive_hits": 2,
+            "miss_count": 0,
+            "confirmed": true,
+            "active": true,
+            "event_emitted": true,
+            "status": "confirmed",
+            "confidence": 0.97
+          }
+        ]
+      },
+      "events_match": true,
+      "active_objects_match": true,
+      "scenario_pass": true,
+      "frames": [
+        {
+          "frame_index": 0,
+          "detections": [
+            {
+              "label": "triangle",
+              "confidence": 0.95,
+              "bbox": [
+                100,
+                100,
+                100,
+                120
+              ],
+              "frame_index": 0
+            },
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                500,
+                100,
+                120,
+                120
+              ],
+              "frame_index": 0
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "triangle",
+              "bbox": [
+                100,
+                100,
+                100,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 0,
+              "hit_count": 1,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": false,
+              "active": true,
+              "event_emitted": false,
+              "status": "candidate",
+              "confidence": 0.95
+            },
+            {
+              "object_id": 2,
+              "label": "circle",
+              "bbox": [
+                500,
+                100,
+                120,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 0,
+              "hit_count": 1,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": false,
+              "active": true,
+              "event_emitted": false,
+              "status": "candidate",
+              "confidence": 0.97
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 1,
+          "detections": [
+            {
+              "label": "triangle",
+              "confidence": 0.95,
+              "bbox": [
+                100,
+                100,
+                100,
+                120
+              ],
+              "frame_index": 1
+            },
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                500,
+                100,
+                120,
+                120
+              ],
+              "frame_index": 1
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "triangle",
+              "bbox": [
+                100,
+                100,
+                100,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 2,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.95
+            },
+            {
+              "object_id": 2,
+              "label": "circle",
+              "bbox": [
+                500,
+                100,
+                120,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 2,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.97
+            }
+          ],
+          "events": [
+            {
+              "event_id": 1,
+              "event_type": "OBJECT_ENTER",
+              "object_id": 1,
+              "label": "triangle",
+              "confidence": 0.95,
+              "frame_index": 1
+            },
+            {
+              "event_id": 2,
+              "event_type": "OBJECT_ENTER",
+              "object_id": 2,
+              "label": "circle",
+              "confidence": 0.97,
+              "frame_index": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "three_objects",
+      "description": "Triangle, rectangle, and circle each produce one ENTER.",
+      "source_type": "offline_simulated_detection_sequence",
+      "frame_count": 2,
+      "detection_count": 6,
+      "processing_ms": 0.098,
+      "expected": {
+        "events": [
+          {
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "triangle",
+            "frame_index": 1
+          },
+          {
+            "event_type": "OBJECT_ENTER",
+            "object_id": 2,
+            "label": "rectangle",
+            "frame_index": 1
+          },
+          {
+            "event_type": "OBJECT_ENTER",
+            "object_id": 3,
+            "label": "circle",
+            "frame_index": 1
+          }
+        ],
+        "active_object_ids": [
+          1,
+          2,
+          3
+        ]
+      },
+      "actual": {
+        "events": [
+          {
+            "event_id": 1,
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "triangle",
+            "confidence": 0.95,
+            "frame_index": 1
+          },
+          {
+            "event_id": 2,
+            "event_type": "OBJECT_ENTER",
+            "object_id": 2,
+            "label": "rectangle",
+            "confidence": 0.98,
+            "frame_index": 1
+          },
+          {
+            "event_id": 3,
+            "event_type": "OBJECT_ENTER",
+            "object_id": 3,
+            "label": "circle",
+            "confidence": 0.97,
+            "frame_index": 1
+          }
+        ],
+        "final_active_object_ids": [
+          1,
+          2,
+          3
+        ],
+        "final_object_states": [
+          {
+            "object_id": 1,
+            "label": "triangle",
+            "bbox": [
+              100,
+              100,
+              100,
+              120
+            ],
+            "first_seen": 0,
+            "last_seen": 1,
+            "hit_count": 2,
+            "consecutive_hits": 2,
+            "miss_count": 0,
+            "confirmed": true,
+            "active": true,
+            "event_emitted": true,
+            "status": "confirmed",
+            "confidence": 0.95
+          },
+          {
+            "object_id": 2,
+            "label": "rectangle",
+            "bbox": [
+              350,
+              100,
+              140,
+              110
+            ],
+            "first_seen": 0,
+            "last_seen": 1,
+            "hit_count": 2,
+            "consecutive_hits": 2,
+            "miss_count": 0,
+            "confirmed": true,
+            "active": true,
+            "event_emitted": true,
+            "status": "confirmed",
+            "confidence": 0.98
+          },
+          {
+            "object_id": 3,
+            "label": "circle",
+            "bbox": [
+              700,
+              100,
+              120,
+              120
+            ],
+            "first_seen": 0,
+            "last_seen": 1,
+            "hit_count": 2,
+            "consecutive_hits": 2,
+            "miss_count": 0,
+            "confirmed": true,
+            "active": true,
+            "event_emitted": true,
+            "status": "confirmed",
+            "confidence": 0.97
+          }
+        ]
+      },
+      "events_match": true,
+      "active_objects_match": true,
+      "scenario_pass": true,
+      "frames": [
+        {
+          "frame_index": 0,
+          "detections": [
+            {
+              "label": "triangle",
+              "confidence": 0.95,
+              "bbox": [
+                100,
+                100,
+                100,
+                120
+              ],
+              "frame_index": 0
+            },
+            {
+              "label": "rectangle",
+              "confidence": 0.98,
+              "bbox": [
+                350,
+                100,
+                140,
+                110
+              ],
+              "frame_index": 0
+            },
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                700,
+                100,
+                120,
+                120
+              ],
+              "frame_index": 0
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "triangle",
+              "bbox": [
+                100,
+                100,
+                100,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 0,
+              "hit_count": 1,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": false,
+              "active": true,
+              "event_emitted": false,
+              "status": "candidate",
+              "confidence": 0.95
+            },
+            {
+              "object_id": 2,
+              "label": "rectangle",
+              "bbox": [
+                350,
+                100,
+                140,
+                110
+              ],
+              "first_seen": 0,
+              "last_seen": 0,
+              "hit_count": 1,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": false,
+              "active": true,
+              "event_emitted": false,
+              "status": "candidate",
+              "confidence": 0.98
+            },
+            {
+              "object_id": 3,
+              "label": "circle",
+              "bbox": [
+                700,
+                100,
+                120,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 0,
+              "hit_count": 1,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": false,
+              "active": true,
+              "event_emitted": false,
+              "status": "candidate",
+              "confidence": 0.97
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 1,
+          "detections": [
+            {
+              "label": "triangle",
+              "confidence": 0.95,
+              "bbox": [
+                100,
+                100,
+                100,
+                120
+              ],
+              "frame_index": 1
+            },
+            {
+              "label": "rectangle",
+              "confidence": 0.98,
+              "bbox": [
+                350,
+                100,
+                140,
+                110
+              ],
+              "frame_index": 1
+            },
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                700,
+                100,
+                120,
+                120
+              ],
+              "frame_index": 1
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "triangle",
+              "bbox": [
+                100,
+                100,
+                100,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 2,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.95
+            },
+            {
+              "object_id": 2,
+              "label": "rectangle",
+              "bbox": [
+                350,
+                100,
+                140,
+                110
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 2,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.98
+            },
+            {
+              "object_id": 3,
+              "label": "circle",
+              "bbox": [
+                700,
+                100,
+                120,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 2,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.97
+            }
+          ],
+          "events": [
+            {
+              "event_id": 1,
+              "event_type": "OBJECT_ENTER",
+              "object_id": 1,
+              "label": "triangle",
+              "confidence": 0.95,
+              "frame_index": 1
+            },
+            {
+              "event_id": 2,
+              "event_type": "OBJECT_ENTER",
+              "object_id": 2,
+              "label": "rectangle",
+              "confidence": 0.98,
+              "frame_index": 1
+            },
+            {
+              "event_id": 3,
+              "event_type": "OBJECT_ENTER",
+              "object_id": 3,
+              "label": "circle",
+              "confidence": 0.97,
+              "frame_index": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "same_label_objects",
+      "description": "Two circles are separated by spatial association, not label alone.",
+      "source_type": "offline_simulated_detection_sequence",
+      "frame_count": 2,
+      "detection_count": 4,
+      "processing_ms": 0.088,
+      "expected": {
+        "events": [
+          {
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "circle",
+            "frame_index": 1
+          },
+          {
+            "event_type": "OBJECT_ENTER",
+            "object_id": 2,
+            "label": "circle",
+            "frame_index": 1
+          }
+        ],
+        "active_object_ids": [
+          1,
+          2
+        ]
+      },
+      "actual": {
+        "events": [
+          {
+            "event_id": 1,
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "circle",
+            "confidence": 0.97,
+            "frame_index": 1
+          },
+          {
+            "event_id": 2,
+            "event_type": "OBJECT_ENTER",
+            "object_id": 2,
+            "label": "circle",
+            "confidence": 0.96,
+            "frame_index": 1
+          }
+        ],
+        "final_active_object_ids": [
+          1,
+          2
+        ],
+        "final_object_states": [
+          {
+            "object_id": 1,
+            "label": "circle",
+            "bbox": [
+              100,
+              100,
+              100,
+              100
+            ],
+            "first_seen": 0,
+            "last_seen": 1,
+            "hit_count": 2,
+            "consecutive_hits": 2,
+            "miss_count": 0,
+            "confirmed": true,
+            "active": true,
+            "event_emitted": true,
+            "status": "confirmed",
+            "confidence": 0.97
+          },
+          {
+            "object_id": 2,
+            "label": "circle",
+            "bbox": [
+              500,
+              100,
+              100,
+              100
+            ],
+            "first_seen": 0,
+            "last_seen": 1,
+            "hit_count": 2,
+            "consecutive_hits": 2,
+            "miss_count": 0,
+            "confirmed": true,
+            "active": true,
+            "event_emitted": true,
+            "status": "confirmed",
+            "confidence": 0.96
+          }
+        ]
+      },
+      "events_match": true,
+      "active_objects_match": true,
+      "scenario_pass": true,
+      "frames": [
+        {
+          "frame_index": 0,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.96,
+              "bbox": [
+                500,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 0
+            },
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 0
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 0,
+              "hit_count": 1,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": false,
+              "active": true,
+              "event_emitted": false,
+              "status": "candidate",
+              "confidence": 0.97
+            },
+            {
+              "object_id": 2,
+              "label": "circle",
+              "bbox": [
+                500,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 0,
+              "hit_count": 1,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": false,
+              "active": true,
+              "event_emitted": false,
+              "status": "candidate",
+              "confidence": 0.96
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 1,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 1
+            },
+            {
+              "label": "circle",
+              "confidence": 0.96,
+              "bbox": [
+                500,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 1
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 2,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.97
+            },
+            {
+              "object_id": 2,
+              "label": "circle",
+              "bbox": [
+                500,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 2,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.96
+            }
+          ],
+          "events": [
+            {
+              "event_id": 1,
+              "event_type": "OBJECT_ENTER",
+              "object_id": 1,
+              "label": "circle",
+              "confidence": 0.97,
+              "frame_index": 1
+            },
+            {
+              "event_id": 2,
+              "event_type": "OBJECT_ENTER",
+              "object_id": 2,
+              "label": "circle",
+              "confidence": 0.96,
+              "frame_index": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "small_movement",
+      "description": "Small bbox motion remains one object.",
+      "source_type": "offline_simulated_detection_sequence",
+      "frame_count": 4,
+      "detection_count": 4,
+      "processing_ms": 0.073,
+      "expected": {
+        "events": [
+          {
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "circle",
+            "frame_index": 1
+          }
+        ],
+        "active_object_ids": [
+          1
+        ]
+      },
+      "actual": {
+        "events": [
+          {
+            "event_id": 1,
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "circle",
+            "confidence": 0.96,
+            "frame_index": 1
+          }
+        ],
+        "final_active_object_ids": [
+          1
+        ],
+        "final_object_states": [
+          {
+            "object_id": 1,
+            "label": "circle",
+            "bbox": [
+              120,
+              120,
+              100,
+              100
+            ],
+            "first_seen": 0,
+            "last_seen": 3,
+            "hit_count": 4,
+            "consecutive_hits": 4,
+            "miss_count": 0,
+            "confirmed": true,
+            "active": true,
+            "event_emitted": true,
+            "status": "confirmed",
+            "confidence": 0.96
+          }
+        ]
+      },
+      "events_match": true,
+      "active_objects_match": true,
+      "scenario_pass": true,
+      "frames": [
+        {
+          "frame_index": 0,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.96,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 0
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 0,
+              "hit_count": 1,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": false,
+              "active": true,
+              "event_emitted": false,
+              "status": "candidate",
+              "confidence": 0.96
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 1,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.96,
+              "bbox": [
+                108,
+                106,
+                100,
+                100
+              ],
+              "frame_index": 1
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                108,
+                106,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 2,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.96
+            }
+          ],
+          "events": [
+            {
+              "event_id": 1,
+              "event_type": "OBJECT_ENTER",
+              "object_id": 1,
+              "label": "circle",
+              "confidence": 0.96,
+              "frame_index": 1
+            }
+          ]
+        },
+        {
+          "frame_index": 2,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.96,
+              "bbox": [
+                114,
+                112,
+                100,
+                100
+              ],
+              "frame_index": 2
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                114,
+                112,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 2,
+              "hit_count": 3,
+              "consecutive_hits": 3,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.96
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 3,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.96,
+              "bbox": [
+                120,
+                120,
+                100,
+                100
+              ],
+              "frame_index": 3
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                120,
+                120,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 3,
+              "hit_count": 4,
+              "consecutive_hits": 4,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.96
+            }
+          ],
+          "events": []
+        }
+      ]
+    },
+    {
+      "scenario": "confidence_variation",
+      "description": "Confidence changes do not affect identity association.",
+      "source_type": "offline_simulated_detection_sequence",
+      "frame_count": 3,
+      "detection_count": 3,
+      "processing_ms": 0.054,
+      "expected": {
+        "events": [
+          {
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "circle",
+            "frame_index": 1
+          }
+        ],
+        "active_object_ids": [
+          1
+        ]
+      },
+      "actual": {
+        "events": [
+          {
+            "event_id": 1,
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "circle",
+            "confidence": 0.945,
+            "frame_index": 1
+          }
+        ],
+        "final_active_object_ids": [
+          1
+        ],
+        "final_object_states": [
+          {
+            "object_id": 1,
+            "label": "circle",
+            "bbox": [
+              100,
+              100,
+              100,
+              100
+            ],
+            "first_seen": 0,
+            "last_seen": 2,
+            "hit_count": 3,
+            "consecutive_hits": 3,
+            "miss_count": 0,
+            "confirmed": true,
+            "active": true,
+            "event_emitted": true,
+            "status": "confirmed",
+            "confidence": 0.946667
+          }
+        ]
+      },
+      "events_match": true,
+      "active_objects_match": true,
+      "scenario_pass": true,
+      "frames": [
+        {
+          "frame_index": 0,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.98,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 0
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 0,
+              "hit_count": 1,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": false,
+              "active": true,
+              "event_emitted": false,
+              "status": "candidate",
+              "confidence": 0.98
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 1,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.91,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 1
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 2,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.945
+            }
+          ],
+          "events": [
+            {
+              "event_id": 1,
+              "event_type": "OBJECT_ENTER",
+              "object_id": 1,
+              "label": "circle",
+              "confidence": 0.945,
+              "frame_index": 1
+            }
+          ]
+        },
+        {
+          "frame_index": 2,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.95,
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "frame_index": 2
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "circle",
+              "bbox": [
+                100,
+                100,
+                100,
+                100
+              ],
+              "first_seen": 0,
+              "last_seen": 2,
+              "hit_count": 3,
+              "consecutive_hits": 3,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.946667
+            }
+          ],
+          "events": []
+        }
+      ]
+    },
+    {
+      "scenario": "detection_order_change",
+      "description": "Detection list order changes without changing identities.",
+      "source_type": "offline_simulated_detection_sequence",
+      "frame_count": 2,
+      "detection_count": 4,
+      "processing_ms": 0.065,
+      "expected": {
+        "events": [
+          {
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "triangle",
+            "frame_index": 1
+          },
+          {
+            "event_type": "OBJECT_ENTER",
+            "object_id": 2,
+            "label": "circle",
+            "frame_index": 1
+          }
+        ],
+        "active_object_ids": [
+          1,
+          2
+        ]
+      },
+      "actual": {
+        "events": [
+          {
+            "event_id": 1,
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "triangle",
+            "confidence": 0.95,
+            "frame_index": 1
+          },
+          {
+            "event_id": 2,
+            "event_type": "OBJECT_ENTER",
+            "object_id": 2,
+            "label": "circle",
+            "confidence": 0.97,
+            "frame_index": 1
+          }
+        ],
+        "final_active_object_ids": [
+          1,
+          2
+        ],
+        "final_object_states": [
+          {
+            "object_id": 1,
+            "label": "triangle",
+            "bbox": [
+              100,
+              100,
+              100,
+              120
+            ],
+            "first_seen": 0,
+            "last_seen": 1,
+            "hit_count": 2,
+            "consecutive_hits": 2,
+            "miss_count": 0,
+            "confirmed": true,
+            "active": true,
+            "event_emitted": true,
+            "status": "confirmed",
+            "confidence": 0.95
+          },
+          {
+            "object_id": 2,
+            "label": "circle",
+            "bbox": [
+              500,
+              100,
+              120,
+              120
+            ],
+            "first_seen": 0,
+            "last_seen": 1,
+            "hit_count": 2,
+            "consecutive_hits": 2,
+            "miss_count": 0,
+            "confirmed": true,
+            "active": true,
+            "event_emitted": true,
+            "status": "confirmed",
+            "confidence": 0.97
+          }
+        ]
+      },
+      "events_match": true,
+      "active_objects_match": true,
+      "scenario_pass": true,
+      "frames": [
+        {
+          "frame_index": 0,
+          "detections": [
+            {
+              "label": "triangle",
+              "confidence": 0.95,
+              "bbox": [
+                100,
+                100,
+                100,
+                120
+              ],
+              "frame_index": 0
+            },
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                500,
+                100,
+                120,
+                120
+              ],
+              "frame_index": 0
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "triangle",
+              "bbox": [
+                100,
+                100,
+                100,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 0,
+              "hit_count": 1,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": false,
+              "active": true,
+              "event_emitted": false,
+              "status": "candidate",
+              "confidence": 0.95
+            },
+            {
+              "object_id": 2,
+              "label": "circle",
+              "bbox": [
+                500,
+                100,
+                120,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 0,
+              "hit_count": 1,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": false,
+              "active": true,
+              "event_emitted": false,
+              "status": "candidate",
+              "confidence": 0.97
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 1,
+          "detections": [
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                500,
+                100,
+                120,
+                120
+              ],
+              "frame_index": 1
+            },
+            {
+              "label": "triangle",
+              "confidence": 0.95,
+              "bbox": [
+                100,
+                100,
+                100,
+                120
+              ],
+              "frame_index": 1
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "triangle",
+              "bbox": [
+                100,
+                100,
+                100,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 2,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.95
+            },
+            {
+              "object_id": 2,
+              "label": "circle",
+              "bbox": [
+                500,
+                100,
+                120,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 2,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.97
+            }
+          ],
+          "events": [
+            {
+              "event_id": 1,
+              "event_type": "OBJECT_ENTER",
+              "object_id": 1,
+              "label": "triangle",
+              "confidence": 0.95,
+              "frame_index": 1
+            },
+            {
+              "event_id": 2,
+              "event_type": "OBJECT_ENTER",
+              "object_id": 2,
+              "label": "circle",
+              "confidence": 0.97,
+              "frame_index": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "clear_all",
+      "description": "Three confirmed objects all exit exactly once after removal.",
+      "source_type": "offline_simulated_detection_sequence",
+      "frame_count": 6,
+      "detection_count": 6,
+      "processing_ms": 0.2,
+      "expected": {
+        "events": [
+          {
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "triangle",
+            "frame_index": 1
+          },
+          {
+            "event_type": "OBJECT_ENTER",
+            "object_id": 2,
+            "label": "rectangle",
+            "frame_index": 1
+          },
+          {
+            "event_type": "OBJECT_ENTER",
+            "object_id": 3,
+            "label": "circle",
+            "frame_index": 1
+          },
+          {
+            "event_type": "OBJECT_EXIT",
+            "object_id": 1,
+            "label": "triangle",
+            "frame_index": 5
+          },
+          {
+            "event_type": "OBJECT_EXIT",
+            "object_id": 2,
+            "label": "rectangle",
+            "frame_index": 5
+          },
+          {
+            "event_type": "OBJECT_EXIT",
+            "object_id": 3,
+            "label": "circle",
+            "frame_index": 5
+          }
+        ],
+        "active_object_ids": []
+      },
+      "actual": {
+        "events": [
+          {
+            "event_id": 1,
+            "event_type": "OBJECT_ENTER",
+            "object_id": 1,
+            "label": "triangle",
+            "confidence": 0.95,
+            "frame_index": 1
+          },
+          {
+            "event_id": 2,
+            "event_type": "OBJECT_ENTER",
+            "object_id": 2,
+            "label": "rectangle",
+            "confidence": 0.98,
+            "frame_index": 1
+          },
+          {
+            "event_id": 3,
+            "event_type": "OBJECT_ENTER",
+            "object_id": 3,
+            "label": "circle",
+            "confidence": 0.97,
+            "frame_index": 1
+          },
+          {
+            "event_id": 4,
+            "event_type": "OBJECT_EXIT",
+            "object_id": 1,
+            "label": "triangle",
+            "confidence": 0.95,
+            "frame_index": 5
+          },
+          {
+            "event_id": 5,
+            "event_type": "OBJECT_EXIT",
+            "object_id": 2,
+            "label": "rectangle",
+            "confidence": 0.98,
+            "frame_index": 5
+          },
+          {
+            "event_id": 6,
+            "event_type": "OBJECT_EXIT",
+            "object_id": 3,
+            "label": "circle",
+            "confidence": 0.97,
+            "frame_index": 5
+          }
+        ],
+        "final_active_object_ids": [],
+        "final_object_states": [
+          {
+            "object_id": 1,
+            "label": "triangle",
+            "bbox": [
+              100,
+              100,
+              100,
+              120
+            ],
+            "first_seen": 0,
+            "last_seen": 1,
+            "hit_count": 2,
+            "consecutive_hits": 0,
+            "miss_count": 4,
+            "confirmed": true,
+            "active": false,
+            "event_emitted": true,
+            "status": "exited",
+            "confidence": 0.95
+          },
+          {
+            "object_id": 2,
+            "label": "rectangle",
+            "bbox": [
+              350,
+              100,
+              140,
+              110
+            ],
+            "first_seen": 0,
+            "last_seen": 1,
+            "hit_count": 2,
+            "consecutive_hits": 0,
+            "miss_count": 4,
+            "confirmed": true,
+            "active": false,
+            "event_emitted": true,
+            "status": "exited",
+            "confidence": 0.98
+          },
+          {
+            "object_id": 3,
+            "label": "circle",
+            "bbox": [
+              700,
+              100,
+              120,
+              120
+            ],
+            "first_seen": 0,
+            "last_seen": 1,
+            "hit_count": 2,
+            "consecutive_hits": 0,
+            "miss_count": 4,
+            "confirmed": true,
+            "active": false,
+            "event_emitted": true,
+            "status": "exited",
+            "confidence": 0.97
+          }
+        ]
+      },
+      "events_match": true,
+      "active_objects_match": true,
+      "scenario_pass": true,
+      "frames": [
+        {
+          "frame_index": 0,
+          "detections": [
+            {
+              "label": "triangle",
+              "confidence": 0.95,
+              "bbox": [
+                100,
+                100,
+                100,
+                120
+              ],
+              "frame_index": 0
+            },
+            {
+              "label": "rectangle",
+              "confidence": 0.98,
+              "bbox": [
+                350,
+                100,
+                140,
+                110
+              ],
+              "frame_index": 0
+            },
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                700,
+                100,
+                120,
+                120
+              ],
+              "frame_index": 0
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "triangle",
+              "bbox": [
+                100,
+                100,
+                100,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 0,
+              "hit_count": 1,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": false,
+              "active": true,
+              "event_emitted": false,
+              "status": "candidate",
+              "confidence": 0.95
+            },
+            {
+              "object_id": 2,
+              "label": "rectangle",
+              "bbox": [
+                350,
+                100,
+                140,
+                110
+              ],
+              "first_seen": 0,
+              "last_seen": 0,
+              "hit_count": 1,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": false,
+              "active": true,
+              "event_emitted": false,
+              "status": "candidate",
+              "confidence": 0.98
+            },
+            {
+              "object_id": 3,
+              "label": "circle",
+              "bbox": [
+                700,
+                100,
+                120,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 0,
+              "hit_count": 1,
+              "consecutive_hits": 1,
+              "miss_count": 0,
+              "confirmed": false,
+              "active": true,
+              "event_emitted": false,
+              "status": "candidate",
+              "confidence": 0.97
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 1,
+          "detections": [
+            {
+              "label": "triangle",
+              "confidence": 0.95,
+              "bbox": [
+                100,
+                100,
+                100,
+                120
+              ],
+              "frame_index": 1
+            },
+            {
+              "label": "rectangle",
+              "confidence": 0.98,
+              "bbox": [
+                350,
+                100,
+                140,
+                110
+              ],
+              "frame_index": 1
+            },
+            {
+              "label": "circle",
+              "confidence": 0.97,
+              "bbox": [
+                700,
+                100,
+                120,
+                120
+              ],
+              "frame_index": 1
+            }
+          ],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "triangle",
+              "bbox": [
+                100,
+                100,
+                100,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 2,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.95
+            },
+            {
+              "object_id": 2,
+              "label": "rectangle",
+              "bbox": [
+                350,
+                100,
+                140,
+                110
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 2,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.98
+            },
+            {
+              "object_id": 3,
+              "label": "circle",
+              "bbox": [
+                700,
+                100,
+                120,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 2,
+              "miss_count": 0,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "confirmed",
+              "confidence": 0.97
+            }
+          ],
+          "events": [
+            {
+              "event_id": 1,
+              "event_type": "OBJECT_ENTER",
+              "object_id": 1,
+              "label": "triangle",
+              "confidence": 0.95,
+              "frame_index": 1
+            },
+            {
+              "event_id": 2,
+              "event_type": "OBJECT_ENTER",
+              "object_id": 2,
+              "label": "rectangle",
+              "confidence": 0.98,
+              "frame_index": 1
+            },
+            {
+              "event_id": 3,
+              "event_type": "OBJECT_ENTER",
+              "object_id": 3,
+              "label": "circle",
+              "confidence": 0.97,
+              "frame_index": 1
+            }
+          ]
+        },
+        {
+          "frame_index": 2,
+          "detections": [],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "triangle",
+              "bbox": [
+                100,
+                100,
+                100,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 1,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "missing",
+              "confidence": 0.95
+            },
+            {
+              "object_id": 2,
+              "label": "rectangle",
+              "bbox": [
+                350,
+                100,
+                140,
+                110
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 1,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "missing",
+              "confidence": 0.98
+            },
+            {
+              "object_id": 3,
+              "label": "circle",
+              "bbox": [
+                700,
+                100,
+                120,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 1,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "missing",
+              "confidence": 0.97
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 3,
+          "detections": [],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "triangle",
+              "bbox": [
+                100,
+                100,
+                100,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 2,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "missing",
+              "confidence": 0.95
+            },
+            {
+              "object_id": 2,
+              "label": "rectangle",
+              "bbox": [
+                350,
+                100,
+                140,
+                110
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 2,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "missing",
+              "confidence": 0.98
+            },
+            {
+              "object_id": 3,
+              "label": "circle",
+              "bbox": [
+                700,
+                100,
+                120,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 2,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "missing",
+              "confidence": 0.97
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 4,
+          "detections": [],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "triangle",
+              "bbox": [
+                100,
+                100,
+                100,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 3,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "missing",
+              "confidence": 0.95
+            },
+            {
+              "object_id": 2,
+              "label": "rectangle",
+              "bbox": [
+                350,
+                100,
+                140,
+                110
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 3,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "missing",
+              "confidence": 0.98
+            },
+            {
+              "object_id": 3,
+              "label": "circle",
+              "bbox": [
+                700,
+                100,
+                120,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 3,
+              "confirmed": true,
+              "active": true,
+              "event_emitted": true,
+              "status": "missing",
+              "confidence": 0.97
+            }
+          ],
+          "events": []
+        },
+        {
+          "frame_index": 5,
+          "detections": [],
+          "object_states": [
+            {
+              "object_id": 1,
+              "label": "triangle",
+              "bbox": [
+                100,
+                100,
+                100,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 4,
+              "confirmed": true,
+              "active": false,
+              "event_emitted": true,
+              "status": "exited",
+              "confidence": 0.95
+            },
+            {
+              "object_id": 2,
+              "label": "rectangle",
+              "bbox": [
+                350,
+                100,
+                140,
+                110
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 4,
+              "confirmed": true,
+              "active": false,
+              "event_emitted": true,
+              "status": "exited",
+              "confidence": 0.98
+            },
+            {
+              "object_id": 3,
+              "label": "circle",
+              "bbox": [
+                700,
+                100,
+                120,
+                120
+              ],
+              "first_seen": 0,
+              "last_seen": 1,
+              "hit_count": 2,
+              "consecutive_hits": 0,
+              "miss_count": 4,
+              "confirmed": true,
+              "active": false,
+              "event_emitted": true,
+              "status": "exited",
+              "confidence": 0.97
+            }
+          ],
+          "events": [
+            {
+              "event_id": 4,
+              "event_type": "OBJECT_EXIT",
+              "object_id": 1,
+              "label": "triangle",
+              "confidence": 0.95,
+              "frame_index": 5
+            },
+            {
+              "event_id": 5,
+              "event_type": "OBJECT_EXIT",
+              "object_id": 2,
+              "label": "rectangle",
+              "confidence": 0.98,
+              "frame_index": 5
+            },
+            {
+              "event_id": 6,
+              "event_type": "OBJECT_EXIT",
+              "object_id": 3,
+              "label": "circle",
+              "confidence": 0.97,
+              "frame_index": 5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
