@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "milestone": "M2",
+  "test_id": "TEST-003",
+  "test_date": "2026-09-04",
+  "result": "pass",
+  "audit_basis": "Values copied from the ignored runtime evidence and session JSON files after completeness and image-decode checks.",
+  "git": {
+    "base_commit": "58507475b304748a81c3d4e0349f9d6536f01070",
+    "working_tree_dirty_during_test": true,
+    "final_m2_commit": null
+  },
+  "camera": {
+    "name": "Insta360 Ace Pro 2",
+    "vid_decimal": 11802,
+    "vid_hex": "2E1A",
+    "pid_decimal": 4099,
+    "pid_hex": "1003",
+    "backend": "DSHOW",
+    "requested_width": 1920,
+    "requested_height": 1080,
+    "requested_fps": 30.0,
+    "requested_fourcc": "MJPG",
+    "actual_width": 1920,
+    "actual_height": 1080,
+    "reported_fps": 30.00003000003
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "camera_pose": "original",
+      "session_runtime_path": "output/m2/live-evidence/session-20260904-154927-634992.json",
+      "session_status": "completed",
+      "duration_seconds": 606.130473,
+      "active_processing_seconds": 475.073471,
+      "frames_processed": 13087,
+      "failed_reads": 0,
+      "measured_processing_fps": 27.547318,
+      "evidence_frames_saved": 4,
+      "error": null,
+      "acceptance_roi": {
+        "mode": "manual",
+        "source": "selected",
+        "pixel_roi": [512, 60, 1428, 720],
+        "normalized_roi": {
+          "left": 0.26666666666666666,
+          "top": 0.05555555555555555,
+          "right": 0.74375,
+          "bottom": 0.6666666666666666
+        }
+      },
+      "calibration_note": "The four acceptance captures used the same manual ROI. Three additional R-triggered recalibrations occurred after those captures and are retained in the runtime session history.",
+      "results": [
+        {
+          "runtime_id": "20260904-155308-019724",
+          "actual_input": "background",
+          "expected_class": "no_object",
+          "predicted_class": "no_object",
+          "stable_class": "no_object",
+          "confidence": 0.0,
+          "vertices": null,
+          "area_ratio": null,
+          "solidity": null,
+          "circularity": null,
+          "passed_contour_filter": false,
+          "display_fps": 29.962376553707227,
+          "tracked_screenshot": "evidence/screenshots/m2/live/M2-live-round1-manual-background.jpg",
+          "screenshot_sha256": "6D82F44B4C7F487DEA9A2375FD764DE92675279923CDEB9D4605B82EF2AAFC75"
+        },
+        {
+          "runtime_id": "20260904-155331-109955",
+          "actual_input": "triangle",
+          "expected_class": "triangle",
+          "predicted_class": "triangle",
+          "stable_class": "triangle",
+          "confidence": 0.976873,
+          "vertices": 3,
+          "area_ratio": 0.0430618962551277,
+          "solidity": 0.9910161974913874,
+          "circularity": 0.5580555571668381,
+          "passed_contour_filter": true,
+          "display_fps": 29.924227727917774,
+          "tracked_screenshot": "evidence/screenshots/m2/live/M2-live-round1-manual-triangle.jpg",
+          "screenshot_sha256": "B789EEFA365F402395F8A6F0D1E54D5B682FA9CD0F0F843C4B309C3B8A010CAB"
+        },
+        {
+          "runtime_id": "20260904-155349-192425",
+          "actual_input": "rectangle",
+          "expected_class": "rectangle",
+          "predicted_class": "rectangle",
+          "stable_class": "rectangle",
+          "confidence": 1.0,
+          "vertices": 4,
+          "area_ratio": 0.1021403996294826,
+          "solidity": 0.9927652733118971,
+          "circularity": 0.6594000621277197,
+          "passed_contour_filter": true,
+          "display_fps": 30.070257601509653,
+          "tracked_screenshot": "evidence/screenshots/m2/live/M2-live-round1-manual-rectangle.jpg",
+          "screenshot_sha256": "59B12DBD7A94DF28220CEB771ADE008C34F5D104801334AC81A2CF3F8998D6A1"
+        },
+        {
+          "runtime_id": "20260904-155416-044725",
+          "actual_input": "circle",
+          "expected_class": "circle",
+          "predicted_class": "circle",
+          "stable_class": "circle",
+          "confidence": 0.977744,
+          "vertices": 8,
+          "area_ratio": 0.07397694190816462,
+          "solidity": 0.9956698873502827,
+          "circularity": 0.8992280528963826,
+          "passed_contour_filter": true,
+          "display_fps": 27.191580436535716,
+          "tracked_screenshot": "evidence/screenshots/m2/live/M2-live-round1-manual-circle.jpg",
+          "screenshot_sha256": "EF7D9FA70E5B2C30B3C4474263A04161EAEB6D5D0E4416940EE2659818C7AE3A"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "camera_pose": "changed_height_and_horizontal_position",
+      "session_runtime_path": "output/m2/live-evidence/session-20260904-155959-711034.json",
+      "session_status": "completed",
+      "duration_seconds": 305.664036,
+      "active_processing_seconds": 304.986836,
+      "frames_processed": 8989,
+      "failed_reads": 0,
+      "measured_processing_fps": 29.473403,
+      "evidence_frames_saved": 4,
+      "error": null,
+      "acceptance_roi": {
+        "mode": "auto",
+        "source": "detected",
+        "auto_score": 0.6772652070154296,
+        "pixel_roi": [579, 33, 1426, 798],
+        "normalized_roi": {
+          "left": 0.3015625,
+          "top": 0.030555555555555555,
+          "right": 0.7427083333333333,
+          "bottom": 0.7388888888888889
+        }
+      },
+      "calibration_note": "No previous ROI was reused. The accepted auto ROI is not required to match the paper edge exactly; it isolated the work area without a false positive in this run.",
+      "results": [
+        {
+          "runtime_id": "20260904-160150-046598",
+          "actual_input": "background",
+          "expected_class": "no_object",
+          "predicted_class": "no_object",
+          "stable_class": "no_object",
+          "confidence": 0.0,
+          "vertices": null,
+          "area_ratio": null,
+          "solidity": null,
+          "circularity": null,
+          "passed_contour_filter": false,
+          "display_fps": 29.964816139515314,
+          "tracked_screenshot": "evidence/screenshots/m2/live/M2-live-round2-auto-background.jpg",
+          "screenshot_sha256": "4FDBE904A7A0E0CCE269E4FA4D9A12E95A3D27EB35F8051B46CF05E3BEFB2D49"
+        },
+        {
+          "runtime_id": "20260904-160222-814113",
+          "actual_input": "triangle",
+          "expected_class": "triangle",
+          "predicted_class": "triangle",
+          "stable_class": "triangle",
+          "confidence": 0.914507,
+          "vertices": 3,
+          "area_ratio": 0.024351999753069273,
+          "solidity": 0.9847104343484773,
+          "circularity": 0.5612985926751582,
+          "passed_contour_filter": true,
+          "display_fps": 27.1655154576831,
+          "tracked_screenshot": "evidence/screenshots/m2/live/M2-live-round2-auto-triangle.jpg",
+          "screenshot_sha256": "20B9E7B2E2983F041073FA01594781B11425672A53EADA670AB2CA8185F6E297"
+        },
+        {
+          "runtime_id": "20260904-160247-336181",
+          "actual_input": "rectangle",
+          "expected_class": "rectangle",
+          "predicted_class": "rectangle",
+          "stable_class": "rectangle",
+          "confidence": 1.0,
+          "vertices": 4,
+          "area_ratio": 0.05991079627443264,
+          "solidity": 0.9909759272968627,
+          "circularity": 0.662527550354724,
+          "passed_contour_filter": true,
+          "display_fps": 28.050187007681433,
+          "tracked_screenshot": "evidence/screenshots/m2/live/M2-live-round2-auto-rectangle.jpg",
+          "screenshot_sha256": "37042C5B98F70CBB696A5AB96EC12EF1172A65E0550BF546B1581F5F97BA890A"
+        },
+        {
+          "runtime_id": "20260904-160257-383167",
+          "actual_input": "circle",
+          "expected_class": "circle",
+          "predicted_class": "circle",
+          "stable_class": "circle",
+          "confidence": 0.951759,
+          "vertices": 8,
+          "area_ratio": 0.042316210230648736,
+          "solidity": 0.9945771442044362,
+          "circularity": 0.8988806189130951,
+          "passed_contour_filter": true,
+          "display_fps": 27.135163054265515,
+          "tracked_screenshot": "evidence/screenshots/m2/live/M2-live-round2-auto-circle.jpg",
+          "screenshot_sha256": "BE2734F5AAEEAFC86666B710216CCC0E7117C54A4194A34E59056E8383F20EE2"
+        }
+      ]
+    }
+  ],
+  "runtime_evidence_policy": {
+    "runtime_directory_is_git_ignored": true,
+    "raw_runtime_files_committed": false,
+    "curated_annotated_frames_committed": 8,
+    "all_curated_files_verified_nonempty_and_decodable": true
+  }
+}
