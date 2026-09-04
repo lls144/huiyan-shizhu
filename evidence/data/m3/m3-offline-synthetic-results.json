@@ -1,0 +1,4720 @@
+{
+  "schema_version": 1,
+  "milestone": "M3",
+  "source_type": "synthetic",
+  "generated_at": "2026-09-04T20:06:01+08:00",
+  "acceptance_status": "synthetic_offline_validated",
+  "scope": "M3 offline multi-object and lighting-method comparison; not camera evidence",
+  "git": {
+    "commit": "32c06ba9918c155986b59b95aa39c4d6322a0777",
+    "dirty": true
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10",
+    "opencv": "5.0.0",
+    "numpy": "2.5.2"
+  },
+  "input_root": "test_data\\m3\\synthetic",
+  "ground_truth_path": "test_data\\m3\\synthetic\\ground_truth.json",
+  "config_path": "pc\\config\\vision.json",
+  "vision_config_snapshot": {
+    "roi_left": 0.24,
+    "roi_top": 0.08,
+    "roi_right": 0.76,
+    "roi_bottom": 0.75,
+    "gaussian_kernel_size": 5,
+    "morphology_kernel_size": 3,
+    "morphology_open_iterations": 1,
+    "canny_low_threshold": 50,
+    "canny_high_threshold": 150,
+    "min_area_ratio": 0.02,
+    "max_area_ratio": 0.25,
+    "min_solidity": 0.9,
+    "border_margin_pixels": 2,
+    "approx_epsilon_ratio": 0.02,
+    "rectangle_max_angle_deviation_degrees": 25.0,
+    "rectangle_min_fill_ratio": 0.8,
+    "circle_min_vertices": 6,
+    "circle_min_circularity": 0.78,
+    "circle_min_aspect_ratio": 0.8,
+    "triangle_confidence_good_circularity": 0.62,
+    "triangle_confidence_max_circularity": 0.72,
+    "rectangle_confidence_good_angle_deviation_degrees": 5.0,
+    "rectangle_confidence_good_fill_ratio": 0.95,
+    "circle_confidence_good_vertices": 8,
+    "circle_confidence_good_circularity": 0.92,
+    "circle_confidence_good_aspect_ratio": 0.95,
+    "confidence_good_solidity": 0.98,
+    "confidence_good_area_clearance_ratio": 0.03,
+    "confidence_topology_weight": 0.5,
+    "confidence_geometry_weight": 0.3,
+    "confidence_quality_weight": 0.2,
+    "auto_hsv_min_value": 140,
+    "auto_hsv_max_saturation": 100,
+    "auto_morphology_kernel_size": 11,
+    "auto_morphology_close_iterations": 2,
+    "auto_morphology_open_iterations": 1,
+    "auto_min_area_ratio": 0.12,
+    "auto_max_area_ratio": 0.85,
+    "auto_preferred_area_ratio": 0.35,
+    "auto_min_rectangularity": 0.7,
+    "auto_max_center_distance_ratio": 0.5,
+    "auto_min_bright_fraction": 0.6,
+    "auto_approx_epsilon_ratio": 0.03,
+    "auto_inner_margin_ratio": 0.04,
+    "auto_min_score": 0.45,
+    "auto_score_area_weight": 0.2,
+    "auto_score_rectangularity_weight": 0.3,
+    "auto_score_center_weight": 0.25,
+    "auto_score_brightness_weight": 0.25,
+    "manual_min_width_pixels": 80,
+    "manual_min_height_pixels": 80,
+    "stability_window_size": 5,
+    "stability_min_votes": 3,
+    "fps_smoothing_window": 30,
+    "live_max_consecutive_read_failures": 30,
+    "live_preview_width": 1280,
+    "live_preview_height": 720,
+    "preprocess_mode": "otsu",
+    "comparison_preprocess_mode": "clahe_otsu",
+    "clahe_clip_limit": 2.0,
+    "clahe_tile_grid_size": 8
+  },
+  "generator": {
+    "version": "1.0",
+    "seed": 0,
+    "deterministic": true
+  },
+  "summary": {
+    "scene_count": 6,
+    "method_count": 2,
+    "required_scene_count": 4,
+    "required_scene_pass_count": 4,
+    "all_required_scenes_pass": true,
+    "diagnostic_scene_count": 2,
+    "live_camera_validation_complete": false
+  },
+  "limitations": [
+    "Synthetic fixtures are deterministic software evidence, not real camera captures.",
+    "Overlap and touching scenes are diagnostic observations and are not forced to pass.",
+    "Real normal, bright/side, dark, occlusion, and touching scenes remain pending."
+  ],
+  "results": [
+    {
+      "filename": "multi_normal.png",
+      "source_sha256": "053ecb9ca7ab2cb878ee73c005928f6649336f1970cac9b20f95bbe371e08b72",
+      "scene": "normal",
+      "source_type": "synthetic",
+      "evaluation_kind": "required_exact_match",
+      "ground_truth": {
+        "filename": "multi_normal.png",
+        "scene": "normal",
+        "image_size": {
+          "width": 1920,
+          "height": 1080
+        },
+        "background": {
+          "type": "uniform_gray_reflectance",
+          "reflectance_value": 235
+        },
+        "foreground_reflectance_value": 22,
+        "objects": [
+          {
+            "label": "triangle",
+            "polygon": [
+              [
+                620,
+                190
+              ],
+              [
+                510,
+                500
+              ],
+              [
+                730,
+                500
+              ]
+            ],
+            "center": [
+              620,
+              397
+            ],
+            "bbox": [
+              510,
+              190,
+              221,
+              311
+            ]
+          },
+          {
+            "label": "rectangle",
+            "polygon": [
+              [
+                820,
+                220
+              ],
+              [
+                1040,
+                220
+              ],
+              [
+                1040,
+                480
+              ],
+              [
+                820,
+                480
+              ]
+            ],
+            "center": [
+              930,
+              350
+            ],
+            "bbox": [
+              820,
+              220,
+              221,
+              261
+            ]
+          },
+          {
+            "label": "circle",
+            "polygon": [
+              [
+                1400,
+                350
+              ],
+              [
+                1400,
+                360
+              ],
+              [
+                1398,
+                371
+              ],
+              [
+                1396,
+                381
+              ],
+              [
+                1393,
+                391
+              ],
+              [
+                1389,
+                401
+              ],
+              [
+                1384,
+                410
+              ],
+              [
+                1378,
+                419
+              ],
+              [
+                1372,
+                427
+              ],
+              [
+                1365,
+                435
+              ],
+              [
+                1357,
+                442
+              ],
+              [
+                1349,
+                448
+              ],
+              [
+                1340,
+                454
+              ],
+              [
+                1331,
+                459
+              ],
+              [
+                1321,
+                463
+              ],
+              [
+                1311,
+                466
+              ],
+              [
+                1301,
+                468
+              ],
+              [
+                1290,
+                470
+              ],
+              [
+                1280,
+                470
+              ],
+              [
+                1270,
+                470
+              ],
+              [
+                1259,
+                468
+              ],
+              [
+                1249,
+                466
+              ],
+              [
+                1239,
+                463
+              ],
+              [
+                1229,
+                459
+              ],
+              [
+                1220,
+                454
+              ],
+              [
+                1211,
+                448
+              ],
+              [
+                1203,
+                442
+              ],
+              [
+                1195,
+                435
+              ],
+              [
+                1188,
+                427
+              ],
+              [
+                1182,
+                419
+              ],
+              [
+                1176,
+                410
+              ],
+              [
+                1171,
+                401
+              ],
+              [
+                1167,
+                391
+              ],
+              [
+                1164,
+                381
+              ],
+              [
+                1162,
+                371
+              ],
+              [
+                1160,
+                360
+              ],
+              [
+                1160,
+                350
+              ],
+              [
+                1160,
+                340
+              ],
+              [
+                1162,
+                329
+              ],
+              [
+                1164,
+                319
+              ],
+              [
+                1167,
+                309
+              ],
+              [
+                1171,
+                299
+              ],
+              [
+                1176,
+                290
+              ],
+              [
+                1182,
+                281
+              ],
+              [
+                1188,
+                273
+              ],
+              [
+                1195,
+                265
+              ],
+              [
+                1203,
+                258
+              ],
+              [
+                1211,
+                252
+              ],
+              [
+                1220,
+                246
+              ],
+              [
+                1229,
+                241
+              ],
+              [
+                1239,
+                237
+              ],
+              [
+                1249,
+                234
+              ],
+              [
+                1259,
+                232
+              ],
+              [
+                1270,
+                230
+              ],
+              [
+                1280,
+                230
+              ],
+              [
+                1290,
+                230
+              ],
+              [
+                1301,
+                232
+              ],
+              [
+                1311,
+                234
+              ],
+              [
+                1321,
+                237
+              ],
+              [
+                1331,
+                241
+              ],
+              [
+                1340,
+                246
+              ],
+              [
+                1349,
+                252
+              ],
+              [
+                1357,
+                258
+              ],
+              [
+                1365,
+                265
+              ],
+              [
+                1372,
+                273
+              ],
+              [
+                1378,
+                281
+              ],
+              [
+                1384,
+                290
+              ],
+              [
+                1389,
+                299
+              ],
+              [
+                1393,
+                309
+              ],
+              [
+                1396,
+                319
+              ],
+              [
+                1398,
+                329
+              ],
+              [
+                1400,
+                340
+              ]
+            ],
+            "center": [
+              1280,
+              350
+            ],
+            "bbox": [
+              1160,
+              230,
+              241,
+              241
+            ]
+          }
+        ],
+        "expected_count": 3,
+        "expected_labels": [
+          "triangle",
+          "rectangle",
+          "circle"
+        ],
+        "illumination": {
+          "model": "linear",
+          "gain": 1.0,
+          "offset": 0
+        },
+        "relations": []
+      },
+      "methods": {
+        "otsu": {
+          "preprocess_mode": "otsu",
+          "object_count": 3,
+          "predicted_labels": [
+            "triangle",
+            "rectangle",
+            "circle"
+          ],
+          "objects": [
+            {
+              "object_index": 1,
+              "predicted_label": "triangle",
+              "confidence": 0.990642,
+              "center": [
+                620,
+                397
+              ],
+              "features": {
+                "area": 34099.0,
+                "area_ratio": 0.04719245120074403,
+                "perimeter": 927.9554054737091,
+                "vertices": 3,
+                "solidity": 0.991451748902393,
+                "circularity": 0.49761939059815563,
+                "bounding_box": [
+                  49,
+                  105,
+                  221,
+                  310
+                ],
+                "aspect_ratio": 0.7129032258064516,
+                "min_rect_fill_ratio": 0.5016394682718007,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 1.0,
+                "quality": 0.953208
+              }
+            },
+            {
+              "object_index": 2,
+              "predicted_label": "rectangle",
+              "confidence": 1.0,
+              "center": [
+                930,
+                350
+              ],
+              "features": {
+                "area": 57198.0,
+                "area_ratio": 0.0791610846001395,
+                "perimeter": 957.6568541526794,
+                "vertices": 4,
+                "solidity": 1.0,
+                "circularity": 0.7837379285828978,
+                "bounding_box": [
+                  359,
+                  134,
+                  221,
+                  261
+                ],
+                "aspect_ratio": 0.8467432950191571,
+                "min_rect_fill_ratio": 0.9999654084189488,
+                "max_right_angle_deviation_degrees": 0.04040461902992831,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 1.0,
+                "quality": 1.0
+              }
+            },
+            {
+              "object_index": 3,
+              "predicted_label": "circle",
+              "confidence": 0.975998,
+              "center": [
+                1280,
+                350
+              ],
+              "features": {
+                "area": 45256.0,
+                "area_ratio": 0.06263355440162093,
+                "perimeter": 795.9797916412354,
+                "vertices": 8,
+                "solidity": 0.9956001407954945,
+                "circularity": 0.897598143704547,
+                "bounding_box": [
+                  699,
+                  144,
+                  241,
+                  241
+                ],
+                "aspect_ratio": 1.0,
+                "min_rect_fill_ratio": 0.7856944444444445,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 0.9199933703733822,
+                "quality": 1.0
+              }
+            }
+          ],
+          "otsu_threshold": 127.0,
+          "roi_bounds": [
+            461,
+            86,
+            1459,
+            810
+          ],
+          "total_external_contours": 3,
+          "valid_contours": 3,
+          "contour_filter_details": [
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 57198.0,
+                "area_ratio": 0.0791610846001395,
+                "perimeter": 957.6568541526794,
+                "vertices": 4,
+                "solidity": 1.0,
+                "circularity": 0.7837379285828978,
+                "bounding_box": [
+                  359,
+                  134,
+                  221,
+                  261
+                ],
+                "aspect_ratio": 0.8467432950191571,
+                "min_rect_fill_ratio": 0.9999654084189488,
+                "max_right_angle_deviation_degrees": 0.04040461902992831,
+                "is_convex": true,
+                "touches_border": false
+              }
+            },
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 45256.0,
+                "area_ratio": 0.06263355440162093,
+                "perimeter": 795.9797916412354,
+                "vertices": 8,
+                "solidity": 0.9956001407954945,
+                "circularity": 0.897598143704547,
+                "bounding_box": [
+                  699,
+                  144,
+                  241,
+                  241
+                ],
+                "aspect_ratio": 1.0,
+                "min_rect_fill_ratio": 0.7856944444444445,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            },
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 34099.0,
+                "area_ratio": 0.04719245120074403,
+                "perimeter": 927.9554054737091,
+                "vertices": 3,
+                "solidity": 0.991451748902393,
+                "circularity": 0.49761939059815563,
+                "bounding_box": [
+                  49,
+                  105,
+                  221,
+                  310
+                ],
+                "aspect_ratio": 0.7129032258064516,
+                "min_rect_fill_ratio": 0.5016394682718007,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            }
+          ],
+          "processing_ms": 25.135,
+          "expected_count": 3,
+          "expected_labels": [
+            "triangle",
+            "rectangle",
+            "circle"
+          ],
+          "matched_label_count": 3,
+          "count_matches": true,
+          "labels_match": true,
+          "method_pass": true
+        },
+        "clahe_otsu": {
+          "preprocess_mode": "clahe_otsu",
+          "object_count": 3,
+          "predicted_labels": [
+            "triangle",
+            "rectangle",
+            "circle"
+          ],
+          "objects": [
+            {
+              "object_index": 1,
+              "predicted_label": "triangle",
+              "confidence": 0.990642,
+              "center": [
+                620,
+                397
+              ],
+              "features": {
+                "area": 34099.0,
+                "area_ratio": 0.04719245120074403,
+                "perimeter": 927.9554054737091,
+                "vertices": 3,
+                "solidity": 0.991451748902393,
+                "circularity": 0.49761939059815563,
+                "bounding_box": [
+                  49,
+                  105,
+                  221,
+                  310
+                ],
+                "aspect_ratio": 0.7129032258064516,
+                "min_rect_fill_ratio": 0.5016394682718007,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 1.0,
+                "quality": 0.953208
+              }
+            },
+            {
+              "object_index": 2,
+              "predicted_label": "rectangle",
+              "confidence": 1.0,
+              "center": [
+                930,
+                350
+              ],
+              "features": {
+                "area": 57198.0,
+                "area_ratio": 0.0791610846001395,
+                "perimeter": 957.6568541526794,
+                "vertices": 4,
+                "solidity": 1.0,
+                "circularity": 0.7837379285828978,
+                "bounding_box": [
+                  359,
+                  134,
+                  221,
+                  261
+                ],
+                "aspect_ratio": 0.8467432950191571,
+                "min_rect_fill_ratio": 0.9999654084189488,
+                "max_right_angle_deviation_degrees": 0.04040461902992831,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 1.0,
+                "quality": 1.0
+              }
+            },
+            {
+              "object_index": 3,
+              "predicted_label": "circle",
+              "confidence": 0.975998,
+              "center": [
+                1280,
+                350
+              ],
+              "features": {
+                "area": 45256.0,
+                "area_ratio": 0.06263355440162093,
+                "perimeter": 795.9797916412354,
+                "vertices": 8,
+                "solidity": 0.9956001407954945,
+                "circularity": 0.897598143704547,
+                "bounding_box": [
+                  699,
+                  144,
+                  241,
+                  241
+                ],
+                "aspect_ratio": 1.0,
+                "min_rect_fill_ratio": 0.7856944444444445,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 0.9199933703733822,
+                "quality": 1.0
+              }
+            }
+          ],
+          "otsu_threshold": 128.0,
+          "roi_bounds": [
+            461,
+            86,
+            1459,
+            810
+          ],
+          "total_external_contours": 3,
+          "valid_contours": 3,
+          "contour_filter_details": [
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 57198.0,
+                "area_ratio": 0.0791610846001395,
+                "perimeter": 957.6568541526794,
+                "vertices": 4,
+                "solidity": 1.0,
+                "circularity": 0.7837379285828978,
+                "bounding_box": [
+                  359,
+                  134,
+                  221,
+                  261
+                ],
+                "aspect_ratio": 0.8467432950191571,
+                "min_rect_fill_ratio": 0.9999654084189488,
+                "max_right_angle_deviation_degrees": 0.04040461902992831,
+                "is_convex": true,
+                "touches_border": false
+              }
+            },
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 45256.0,
+                "area_ratio": 0.06263355440162093,
+                "perimeter": 795.9797916412354,
+                "vertices": 8,
+                "solidity": 0.9956001407954945,
+                "circularity": 0.897598143704547,
+                "bounding_box": [
+                  699,
+                  144,
+                  241,
+                  241
+                ],
+                "aspect_ratio": 1.0,
+                "min_rect_fill_ratio": 0.7856944444444445,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            },
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 34099.0,
+                "area_ratio": 0.04719245120074403,
+                "perimeter": 927.9554054737091,
+                "vertices": 3,
+                "solidity": 0.991451748902393,
+                "circularity": 0.49761939059815563,
+                "bounding_box": [
+                  49,
+                  105,
+                  221,
+                  310
+                ],
+                "aspect_ratio": 0.7129032258064516,
+                "min_rect_fill_ratio": 0.5016394682718007,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            }
+          ],
+          "processing_ms": 3.876,
+          "expected_count": 3,
+          "expected_labels": [
+            "triangle",
+            "rectangle",
+            "circle"
+          ],
+          "matched_label_count": 3,
+          "count_matches": true,
+          "labels_match": true,
+          "method_pass": true
+        }
+      },
+      "required_scene_pass": true,
+      "comparison": {
+        "same_detected_count": true,
+        "same_detected_labels": true
+      }
+    },
+    {
+      "filename": "multi_bright.png",
+      "source_sha256": "d0d5fb753fd77d96e4e2c53c13b2a59e554c8ed4b550f0dfc80a1520b9014797",
+      "scene": "bright",
+      "source_type": "synthetic",
+      "evaluation_kind": "required_exact_match",
+      "ground_truth": {
+        "filename": "multi_bright.png",
+        "scene": "bright",
+        "image_size": {
+          "width": 1920,
+          "height": 1080
+        },
+        "background": {
+          "type": "uniform_gray_reflectance",
+          "reflectance_value": 235
+        },
+        "foreground_reflectance_value": 22,
+        "objects": [
+          {
+            "label": "triangle",
+            "polygon": [
+              [
+                620,
+                190
+              ],
+              [
+                510,
+                500
+              ],
+              [
+                730,
+                500
+              ]
+            ],
+            "center": [
+              620,
+              397
+            ],
+            "bbox": [
+              510,
+              190,
+              221,
+              311
+            ]
+          },
+          {
+            "label": "rectangle",
+            "polygon": [
+              [
+                820,
+                220
+              ],
+              [
+                1040,
+                220
+              ],
+              [
+                1040,
+                480
+              ],
+              [
+                820,
+                480
+              ]
+            ],
+            "center": [
+              930,
+              350
+            ],
+            "bbox": [
+              820,
+              220,
+              221,
+              261
+            ]
+          },
+          {
+            "label": "circle",
+            "polygon": [
+              [
+                1400,
+                350
+              ],
+              [
+                1400,
+                360
+              ],
+              [
+                1398,
+                371
+              ],
+              [
+                1396,
+                381
+              ],
+              [
+                1393,
+                391
+              ],
+              [
+                1389,
+                401
+              ],
+              [
+                1384,
+                410
+              ],
+              [
+                1378,
+                419
+              ],
+              [
+                1372,
+                427
+              ],
+              [
+                1365,
+                435
+              ],
+              [
+                1357,
+                442
+              ],
+              [
+                1349,
+                448
+              ],
+              [
+                1340,
+                454
+              ],
+              [
+                1331,
+                459
+              ],
+              [
+                1321,
+                463
+              ],
+              [
+                1311,
+                466
+              ],
+              [
+                1301,
+                468
+              ],
+              [
+                1290,
+                470
+              ],
+              [
+                1280,
+                470
+              ],
+              [
+                1270,
+                470
+              ],
+              [
+                1259,
+                468
+              ],
+              [
+                1249,
+                466
+              ],
+              [
+                1239,
+                463
+              ],
+              [
+                1229,
+                459
+              ],
+              [
+                1220,
+                454
+              ],
+              [
+                1211,
+                448
+              ],
+              [
+                1203,
+                442
+              ],
+              [
+                1195,
+                435
+              ],
+              [
+                1188,
+                427
+              ],
+              [
+                1182,
+                419
+              ],
+              [
+                1176,
+                410
+              ],
+              [
+                1171,
+                401
+              ],
+              [
+                1167,
+                391
+              ],
+              [
+                1164,
+                381
+              ],
+              [
+                1162,
+                371
+              ],
+              [
+                1160,
+                360
+              ],
+              [
+                1160,
+                350
+              ],
+              [
+                1160,
+                340
+              ],
+              [
+                1162,
+                329
+              ],
+              [
+                1164,
+                319
+              ],
+              [
+                1167,
+                309
+              ],
+              [
+                1171,
+                299
+              ],
+              [
+                1176,
+                290
+              ],
+              [
+                1182,
+                281
+              ],
+              [
+                1188,
+                273
+              ],
+              [
+                1195,
+                265
+              ],
+              [
+                1203,
+                258
+              ],
+              [
+                1211,
+                252
+              ],
+              [
+                1220,
+                246
+              ],
+              [
+                1229,
+                241
+              ],
+              [
+                1239,
+                237
+              ],
+              [
+                1249,
+                234
+              ],
+              [
+                1259,
+                232
+              ],
+              [
+                1270,
+                230
+              ],
+              [
+                1280,
+                230
+              ],
+              [
+                1290,
+                230
+              ],
+              [
+                1301,
+                232
+              ],
+              [
+                1311,
+                234
+              ],
+              [
+                1321,
+                237
+              ],
+              [
+                1331,
+                241
+              ],
+              [
+                1340,
+                246
+              ],
+              [
+                1349,
+                252
+              ],
+              [
+                1357,
+                258
+              ],
+              [
+                1365,
+                265
+              ],
+              [
+                1372,
+                273
+              ],
+              [
+                1378,
+                281
+              ],
+              [
+                1384,
+                290
+              ],
+              [
+                1389,
+                299
+              ],
+              [
+                1393,
+                309
+              ],
+              [
+                1396,
+                319
+              ],
+              [
+                1398,
+                329
+              ],
+              [
+                1400,
+                340
+              ]
+            ],
+            "center": [
+              1280,
+              350
+            ],
+            "bbox": [
+              1160,
+              230,
+              241,
+              241
+            ]
+          }
+        ],
+        "expected_count": 3,
+        "expected_labels": [
+          "triangle",
+          "rectangle",
+          "circle"
+        ],
+        "illumination": {
+          "model": "linear",
+          "gain": 0.76,
+          "offset": 62
+        },
+        "relations": []
+      },
+      "methods": {
+        "otsu": {
+          "preprocess_mode": "otsu",
+          "object_count": 3,
+          "predicted_labels": [
+            "triangle",
+            "rectangle",
+            "circle"
+          ],
+          "objects": [
+            {
+              "object_index": 1,
+              "predicted_label": "triangle",
+              "confidence": 0.990642,
+              "center": [
+                620,
+                397
+              ],
+              "features": {
+                "area": 34099.0,
+                "area_ratio": 0.04719245120074403,
+                "perimeter": 927.9554054737091,
+                "vertices": 3,
+                "solidity": 0.991451748902393,
+                "circularity": 0.49761939059815563,
+                "bounding_box": [
+                  49,
+                  105,
+                  221,
+                  310
+                ],
+                "aspect_ratio": 0.7129032258064516,
+                "min_rect_fill_ratio": 0.5016394682718007,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 1.0,
+                "quality": 0.953208
+              }
+            },
+            {
+              "object_index": 2,
+              "predicted_label": "rectangle",
+              "confidence": 1.0,
+              "center": [
+                930,
+                350
+              ],
+              "features": {
+                "area": 57198.0,
+                "area_ratio": 0.0791610846001395,
+                "perimeter": 957.6568541526794,
+                "vertices": 4,
+                "solidity": 1.0,
+                "circularity": 0.7837379285828978,
+                "bounding_box": [
+                  359,
+                  134,
+                  221,
+                  261
+                ],
+                "aspect_ratio": 0.8467432950191571,
+                "min_rect_fill_ratio": 0.9999654084189488,
+                "max_right_angle_deviation_degrees": 0.04040461902992831,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 1.0,
+                "quality": 1.0
+              }
+            },
+            {
+              "object_index": 3,
+              "predicted_label": "circle",
+              "confidence": 0.975998,
+              "center": [
+                1280,
+                350
+              ],
+              "features": {
+                "area": 45256.0,
+                "area_ratio": 0.06263355440162093,
+                "perimeter": 795.9797916412354,
+                "vertices": 8,
+                "solidity": 0.9956001407954945,
+                "circularity": 0.897598143704547,
+                "bounding_box": [
+                  699,
+                  144,
+                  241,
+                  241
+                ],
+                "aspect_ratio": 1.0,
+                "min_rect_fill_ratio": 0.7856944444444445,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 0.9199933703733822,
+                "quality": 1.0
+              }
+            }
+          ],
+          "otsu_threshold": 158.0,
+          "roi_bounds": [
+            461,
+            86,
+            1459,
+            810
+          ],
+          "total_external_contours": 3,
+          "valid_contours": 3,
+          "contour_filter_details": [
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 57198.0,
+                "area_ratio": 0.0791610846001395,
+                "perimeter": 957.6568541526794,
+                "vertices": 4,
+                "solidity": 1.0,
+                "circularity": 0.7837379285828978,
+                "bounding_box": [
+                  359,
+                  134,
+                  221,
+                  261
+                ],
+                "aspect_ratio": 0.8467432950191571,
+                "min_rect_fill_ratio": 0.9999654084189488,
+                "max_right_angle_deviation_degrees": 0.04040461902992831,
+                "is_convex": true,
+                "touches_border": false
+              }
+            },
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 45256.0,
+                "area_ratio": 0.06263355440162093,
+                "perimeter": 795.9797916412354,
+                "vertices": 8,
+                "solidity": 0.9956001407954945,
+                "circularity": 0.897598143704547,
+                "bounding_box": [
+                  699,
+                  144,
+                  241,
+                  241
+                ],
+                "aspect_ratio": 1.0,
+                "min_rect_fill_ratio": 0.7856944444444445,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            },
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 34099.0,
+                "area_ratio": 0.04719245120074403,
+                "perimeter": 927.9554054737091,
+                "vertices": 3,
+                "solidity": 0.991451748902393,
+                "circularity": 0.49761939059815563,
+                "bounding_box": [
+                  49,
+                  105,
+                  221,
+                  310
+                ],
+                "aspect_ratio": 0.7129032258064516,
+                "min_rect_fill_ratio": 0.5016394682718007,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            }
+          ],
+          "processing_ms": 3.597,
+          "expected_count": 3,
+          "expected_labels": [
+            "triangle",
+            "rectangle",
+            "circle"
+          ],
+          "matched_label_count": 3,
+          "count_matches": true,
+          "labels_match": true,
+          "method_pass": true
+        },
+        "clahe_otsu": {
+          "preprocess_mode": "clahe_otsu",
+          "object_count": 3,
+          "predicted_labels": [
+            "triangle",
+            "rectangle",
+            "circle"
+          ],
+          "objects": [
+            {
+              "object_index": 1,
+              "predicted_label": "triangle",
+              "confidence": 0.990642,
+              "center": [
+                620,
+                397
+              ],
+              "features": {
+                "area": 34099.0,
+                "area_ratio": 0.04719245120074403,
+                "perimeter": 927.9554054737091,
+                "vertices": 3,
+                "solidity": 0.991451748902393,
+                "circularity": 0.49761939059815563,
+                "bounding_box": [
+                  49,
+                  105,
+                  221,
+                  310
+                ],
+                "aspect_ratio": 0.7129032258064516,
+                "min_rect_fill_ratio": 0.5016394682718007,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 1.0,
+                "quality": 0.953208
+              }
+            },
+            {
+              "object_index": 2,
+              "predicted_label": "rectangle",
+              "confidence": 1.0,
+              "center": [
+                930,
+                350
+              ],
+              "features": {
+                "area": 57198.0,
+                "area_ratio": 0.0791610846001395,
+                "perimeter": 957.6568541526794,
+                "vertices": 4,
+                "solidity": 1.0,
+                "circularity": 0.7837379285828978,
+                "bounding_box": [
+                  359,
+                  134,
+                  221,
+                  261
+                ],
+                "aspect_ratio": 0.8467432950191571,
+                "min_rect_fill_ratio": 0.9999654084189488,
+                "max_right_angle_deviation_degrees": 0.04040461902992831,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 1.0,
+                "quality": 1.0
+              }
+            },
+            {
+              "object_index": 3,
+              "predicted_label": "circle",
+              "confidence": 0.975998,
+              "center": [
+                1280,
+                350
+              ],
+              "features": {
+                "area": 45256.0,
+                "area_ratio": 0.06263355440162093,
+                "perimeter": 795.9797916412354,
+                "vertices": 8,
+                "solidity": 0.9956001407954945,
+                "circularity": 0.897598143704547,
+                "bounding_box": [
+                  699,
+                  144,
+                  241,
+                  241
+                ],
+                "aspect_ratio": 1.0,
+                "min_rect_fill_ratio": 0.7856944444444445,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 0.9199933703733822,
+                "quality": 1.0
+              }
+            }
+          ],
+          "otsu_threshold": 158.0,
+          "roi_bounds": [
+            461,
+            86,
+            1459,
+            810
+          ],
+          "total_external_contours": 3,
+          "valid_contours": 3,
+          "contour_filter_details": [
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 57198.0,
+                "area_ratio": 0.0791610846001395,
+                "perimeter": 957.6568541526794,
+                "vertices": 4,
+                "solidity": 1.0,
+                "circularity": 0.7837379285828978,
+                "bounding_box": [
+                  359,
+                  134,
+                  221,
+                  261
+                ],
+                "aspect_ratio": 0.8467432950191571,
+                "min_rect_fill_ratio": 0.9999654084189488,
+                "max_right_angle_deviation_degrees": 0.04040461902992831,
+                "is_convex": true,
+                "touches_border": false
+              }
+            },
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 45256.0,
+                "area_ratio": 0.06263355440162093,
+                "perimeter": 795.9797916412354,
+                "vertices": 8,
+                "solidity": 0.9956001407954945,
+                "circularity": 0.897598143704547,
+                "bounding_box": [
+                  699,
+                  144,
+                  241,
+                  241
+                ],
+                "aspect_ratio": 1.0,
+                "min_rect_fill_ratio": 0.7856944444444445,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            },
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 34099.0,
+                "area_ratio": 0.04719245120074403,
+                "perimeter": 927.9554054737091,
+                "vertices": 3,
+                "solidity": 0.991451748902393,
+                "circularity": 0.49761939059815563,
+                "bounding_box": [
+                  49,
+                  105,
+                  221,
+                  310
+                ],
+                "aspect_ratio": 0.7129032258064516,
+                "min_rect_fill_ratio": 0.5016394682718007,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            }
+          ],
+          "processing_ms": 3.759,
+          "expected_count": 3,
+          "expected_labels": [
+            "triangle",
+            "rectangle",
+            "circle"
+          ],
+          "matched_label_count": 3,
+          "count_matches": true,
+          "labels_match": true,
+          "method_pass": true
+        }
+      },
+      "required_scene_pass": true,
+      "comparison": {
+        "same_detected_count": true,
+        "same_detected_labels": true
+      }
+    },
+    {
+      "filename": "multi_dark.png",
+      "source_sha256": "760f447e92fd53f72a0ba5988f9a67b0e23057b36fbf4dac94e05ee5f2ae729f",
+      "scene": "dark",
+      "source_type": "synthetic",
+      "evaluation_kind": "required_exact_match",
+      "ground_truth": {
+        "filename": "multi_dark.png",
+        "scene": "dark",
+        "image_size": {
+          "width": 1920,
+          "height": 1080
+        },
+        "background": {
+          "type": "uniform_gray_reflectance",
+          "reflectance_value": 235
+        },
+        "foreground_reflectance_value": 22,
+        "objects": [
+          {
+            "label": "triangle",
+            "polygon": [
+              [
+                620,
+                190
+              ],
+              [
+                510,
+                500
+              ],
+              [
+                730,
+                500
+              ]
+            ],
+            "center": [
+              620,
+              397
+            ],
+            "bbox": [
+              510,
+              190,
+              221,
+              311
+            ]
+          },
+          {
+            "label": "rectangle",
+            "polygon": [
+              [
+                820,
+                220
+              ],
+              [
+                1040,
+                220
+              ],
+              [
+                1040,
+                480
+              ],
+              [
+                820,
+                480
+              ]
+            ],
+            "center": [
+              930,
+              350
+            ],
+            "bbox": [
+              820,
+              220,
+              221,
+              261
+            ]
+          },
+          {
+            "label": "circle",
+            "polygon": [
+              [
+                1400,
+                350
+              ],
+              [
+                1400,
+                360
+              ],
+              [
+                1398,
+                371
+              ],
+              [
+                1396,
+                381
+              ],
+              [
+                1393,
+                391
+              ],
+              [
+                1389,
+                401
+              ],
+              [
+                1384,
+                410
+              ],
+              [
+                1378,
+                419
+              ],
+              [
+                1372,
+                427
+              ],
+              [
+                1365,
+                435
+              ],
+              [
+                1357,
+                442
+              ],
+              [
+                1349,
+                448
+              ],
+              [
+                1340,
+                454
+              ],
+              [
+                1331,
+                459
+              ],
+              [
+                1321,
+                463
+              ],
+              [
+                1311,
+                466
+              ],
+              [
+                1301,
+                468
+              ],
+              [
+                1290,
+                470
+              ],
+              [
+                1280,
+                470
+              ],
+              [
+                1270,
+                470
+              ],
+              [
+                1259,
+                468
+              ],
+              [
+                1249,
+                466
+              ],
+              [
+                1239,
+                463
+              ],
+              [
+                1229,
+                459
+              ],
+              [
+                1220,
+                454
+              ],
+              [
+                1211,
+                448
+              ],
+              [
+                1203,
+                442
+              ],
+              [
+                1195,
+                435
+              ],
+              [
+                1188,
+                427
+              ],
+              [
+                1182,
+                419
+              ],
+              [
+                1176,
+                410
+              ],
+              [
+                1171,
+                401
+              ],
+              [
+                1167,
+                391
+              ],
+              [
+                1164,
+                381
+              ],
+              [
+                1162,
+                371
+              ],
+              [
+                1160,
+                360
+              ],
+              [
+                1160,
+                350
+              ],
+              [
+                1160,
+                340
+              ],
+              [
+                1162,
+                329
+              ],
+              [
+                1164,
+                319
+              ],
+              [
+                1167,
+                309
+              ],
+              [
+                1171,
+                299
+              ],
+              [
+                1176,
+                290
+              ],
+              [
+                1182,
+                281
+              ],
+              [
+                1188,
+                273
+              ],
+              [
+                1195,
+                265
+              ],
+              [
+                1203,
+                258
+              ],
+              [
+                1211,
+                252
+              ],
+              [
+                1220,
+                246
+              ],
+              [
+                1229,
+                241
+              ],
+              [
+                1239,
+                237
+              ],
+              [
+                1249,
+                234
+              ],
+              [
+                1259,
+                232
+              ],
+              [
+                1270,
+                230
+              ],
+              [
+                1280,
+                230
+              ],
+              [
+                1290,
+                230
+              ],
+              [
+                1301,
+                232
+              ],
+              [
+                1311,
+                234
+              ],
+              [
+                1321,
+                237
+              ],
+              [
+                1331,
+                241
+              ],
+              [
+                1340,
+                246
+              ],
+              [
+                1349,
+                252
+              ],
+              [
+                1357,
+                258
+              ],
+              [
+                1365,
+                265
+              ],
+              [
+                1372,
+                273
+              ],
+              [
+                1378,
+                281
+              ],
+              [
+                1384,
+                290
+              ],
+              [
+                1389,
+                299
+              ],
+              [
+                1393,
+                309
+              ],
+              [
+                1396,
+                319
+              ],
+              [
+                1398,
+                329
+              ],
+              [
+                1400,
+                340
+              ]
+            ],
+            "center": [
+              1280,
+              350
+            ],
+            "bbox": [
+              1160,
+              230,
+              241,
+              241
+            ]
+          }
+        ],
+        "expected_count": 3,
+        "expected_labels": [
+          "triangle",
+          "rectangle",
+          "circle"
+        ],
+        "illumination": {
+          "model": "linear",
+          "gain": 0.32,
+          "offset": 8
+        },
+        "relations": []
+      },
+      "methods": {
+        "otsu": {
+          "preprocess_mode": "otsu",
+          "object_count": 3,
+          "predicted_labels": [
+            "triangle",
+            "rectangle",
+            "circle"
+          ],
+          "objects": [
+            {
+              "object_index": 1,
+              "predicted_label": "triangle",
+              "confidence": 0.990642,
+              "center": [
+                620,
+                397
+              ],
+              "features": {
+                "area": 34099.0,
+                "area_ratio": 0.04719245120074403,
+                "perimeter": 927.9554054737091,
+                "vertices": 3,
+                "solidity": 0.991451748902393,
+                "circularity": 0.49761939059815563,
+                "bounding_box": [
+                  49,
+                  105,
+                  221,
+                  310
+                ],
+                "aspect_ratio": 0.7129032258064516,
+                "min_rect_fill_ratio": 0.5016394682718007,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 1.0,
+                "quality": 0.953208
+              }
+            },
+            {
+              "object_index": 2,
+              "predicted_label": "rectangle",
+              "confidence": 1.0,
+              "center": [
+                930,
+                350
+              ],
+              "features": {
+                "area": 57198.0,
+                "area_ratio": 0.0791610846001395,
+                "perimeter": 957.6568541526794,
+                "vertices": 4,
+                "solidity": 1.0,
+                "circularity": 0.7837379285828978,
+                "bounding_box": [
+                  359,
+                  134,
+                  221,
+                  261
+                ],
+                "aspect_ratio": 0.8467432950191571,
+                "min_rect_fill_ratio": 0.9999654084189488,
+                "max_right_angle_deviation_degrees": 0.04040461902992831,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 1.0,
+                "quality": 1.0
+              }
+            },
+            {
+              "object_index": 3,
+              "predicted_label": "circle",
+              "confidence": 0.975998,
+              "center": [
+                1280,
+                350
+              ],
+              "features": {
+                "area": 45256.0,
+                "area_ratio": 0.06263355440162093,
+                "perimeter": 795.9797916412354,
+                "vertices": 8,
+                "solidity": 0.9956001407954945,
+                "circularity": 0.897598143704547,
+                "bounding_box": [
+                  699,
+                  144,
+                  241,
+                  241
+                ],
+                "aspect_ratio": 1.0,
+                "min_rect_fill_ratio": 0.7856944444444445,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 0.9199933703733822,
+                "quality": 1.0
+              }
+            }
+          ],
+          "otsu_threshold": 48.0,
+          "roi_bounds": [
+            461,
+            86,
+            1459,
+            810
+          ],
+          "total_external_contours": 3,
+          "valid_contours": 3,
+          "contour_filter_details": [
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 57198.0,
+                "area_ratio": 0.0791610846001395,
+                "perimeter": 957.6568541526794,
+                "vertices": 4,
+                "solidity": 1.0,
+                "circularity": 0.7837379285828978,
+                "bounding_box": [
+                  359,
+                  134,
+                  221,
+                  261
+                ],
+                "aspect_ratio": 0.8467432950191571,
+                "min_rect_fill_ratio": 0.9999654084189488,
+                "max_right_angle_deviation_degrees": 0.04040461902992831,
+                "is_convex": true,
+                "touches_border": false
+              }
+            },
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 45256.0,
+                "area_ratio": 0.06263355440162093,
+                "perimeter": 795.9797916412354,
+                "vertices": 8,
+                "solidity": 0.9956001407954945,
+                "circularity": 0.897598143704547,
+                "bounding_box": [
+                  699,
+                  144,
+                  241,
+                  241
+                ],
+                "aspect_ratio": 1.0,
+                "min_rect_fill_ratio": 0.7856944444444445,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            },
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 34099.0,
+                "area_ratio": 0.04719245120074403,
+                "perimeter": 927.9554054737091,
+                "vertices": 3,
+                "solidity": 0.991451748902393,
+                "circularity": 0.49761939059815563,
+                "bounding_box": [
+                  49,
+                  105,
+                  221,
+                  310
+                ],
+                "aspect_ratio": 0.7129032258064516,
+                "min_rect_fill_ratio": 0.5016394682718007,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            }
+          ],
+          "processing_ms": 3.037,
+          "expected_count": 3,
+          "expected_labels": [
+            "triangle",
+            "rectangle",
+            "circle"
+          ],
+          "matched_label_count": 3,
+          "count_matches": true,
+          "labels_match": true,
+          "method_pass": true
+        },
+        "clahe_otsu": {
+          "preprocess_mode": "clahe_otsu",
+          "object_count": 3,
+          "predicted_labels": [
+            "triangle",
+            "rectangle",
+            "circle"
+          ],
+          "objects": [
+            {
+              "object_index": 1,
+              "predicted_label": "triangle",
+              "confidence": 0.990642,
+              "center": [
+                620,
+                397
+              ],
+              "features": {
+                "area": 34099.0,
+                "area_ratio": 0.04719245120074403,
+                "perimeter": 927.9554054737091,
+                "vertices": 3,
+                "solidity": 0.991451748902393,
+                "circularity": 0.49761939059815563,
+                "bounding_box": [
+                  49,
+                  105,
+                  221,
+                  310
+                ],
+                "aspect_ratio": 0.7129032258064516,
+                "min_rect_fill_ratio": 0.5016394682718007,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 1.0,
+                "quality": 0.953208
+              }
+            },
+            {
+              "object_index": 2,
+              "predicted_label": "rectangle",
+              "confidence": 1.0,
+              "center": [
+                930,
+                350
+              ],
+              "features": {
+                "area": 57198.0,
+                "area_ratio": 0.0791610846001395,
+                "perimeter": 957.6568541526794,
+                "vertices": 4,
+                "solidity": 1.0,
+                "circularity": 0.7837379285828978,
+                "bounding_box": [
+                  359,
+                  134,
+                  221,
+                  261
+                ],
+                "aspect_ratio": 0.8467432950191571,
+                "min_rect_fill_ratio": 0.9999654084189488,
+                "max_right_angle_deviation_degrees": 0.04040461902992831,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 1.0,
+                "quality": 1.0
+              }
+            },
+            {
+              "object_index": 3,
+              "predicted_label": "circle",
+              "confidence": 0.975998,
+              "center": [
+                1280,
+                350
+              ],
+              "features": {
+                "area": 45256.0,
+                "area_ratio": 0.06263355440162093,
+                "perimeter": 795.9797916412354,
+                "vertices": 8,
+                "solidity": 0.9956001407954945,
+                "circularity": 0.897598143704547,
+                "bounding_box": [
+                  699,
+                  144,
+                  241,
+                  241
+                ],
+                "aspect_ratio": 1.0,
+                "min_rect_fill_ratio": 0.7856944444444445,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 0.9199933703733822,
+                "quality": 1.0
+              }
+            }
+          ],
+          "otsu_threshold": 51.0,
+          "roi_bounds": [
+            461,
+            86,
+            1459,
+            810
+          ],
+          "total_external_contours": 3,
+          "valid_contours": 3,
+          "contour_filter_details": [
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 57198.0,
+                "area_ratio": 0.0791610846001395,
+                "perimeter": 957.6568541526794,
+                "vertices": 4,
+                "solidity": 1.0,
+                "circularity": 0.7837379285828978,
+                "bounding_box": [
+                  359,
+                  134,
+                  221,
+                  261
+                ],
+                "aspect_ratio": 0.8467432950191571,
+                "min_rect_fill_ratio": 0.9999654084189488,
+                "max_right_angle_deviation_degrees": 0.04040461902992831,
+                "is_convex": true,
+                "touches_border": false
+              }
+            },
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 45256.0,
+                "area_ratio": 0.06263355440162093,
+                "perimeter": 795.9797916412354,
+                "vertices": 8,
+                "solidity": 0.9956001407954945,
+                "circularity": 0.897598143704547,
+                "bounding_box": [
+                  699,
+                  144,
+                  241,
+                  241
+                ],
+                "aspect_ratio": 1.0,
+                "min_rect_fill_ratio": 0.7856944444444445,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            },
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 34099.0,
+                "area_ratio": 0.04719245120074403,
+                "perimeter": 927.9554054737091,
+                "vertices": 3,
+                "solidity": 0.991451748902393,
+                "circularity": 0.49761939059815563,
+                "bounding_box": [
+                  49,
+                  105,
+                  221,
+                  310
+                ],
+                "aspect_ratio": 0.7129032258064516,
+                "min_rect_fill_ratio": 0.5016394682718007,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            }
+          ],
+          "processing_ms": 4.115,
+          "expected_count": 3,
+          "expected_labels": [
+            "triangle",
+            "rectangle",
+            "circle"
+          ],
+          "matched_label_count": 3,
+          "count_matches": true,
+          "labels_match": true,
+          "method_pass": true
+        }
+      },
+      "required_scene_pass": true,
+      "comparison": {
+        "same_detected_count": true,
+        "same_detected_labels": true
+      }
+    },
+    {
+      "filename": "multi_side_light.png",
+      "source_sha256": "d7e9ee6859034b3c4a43caab2288c63d89def54bb26e0da364794243f30126f6",
+      "scene": "side_light",
+      "source_type": "synthetic",
+      "evaluation_kind": "required_exact_match",
+      "ground_truth": {
+        "filename": "multi_side_light.png",
+        "scene": "side_light",
+        "image_size": {
+          "width": 1920,
+          "height": 1080
+        },
+        "background": {
+          "type": "uniform_gray_reflectance",
+          "reflectance_value": 235
+        },
+        "foreground_reflectance_value": 22,
+        "objects": [
+          {
+            "label": "triangle",
+            "polygon": [
+              [
+                620,
+                190
+              ],
+              [
+                510,
+                500
+              ],
+              [
+                730,
+                500
+              ]
+            ],
+            "center": [
+              620,
+              397
+            ],
+            "bbox": [
+              510,
+              190,
+              221,
+              311
+            ]
+          },
+          {
+            "label": "rectangle",
+            "polygon": [
+              [
+                820,
+                220
+              ],
+              [
+                1040,
+                220
+              ],
+              [
+                1040,
+                480
+              ],
+              [
+                820,
+                480
+              ]
+            ],
+            "center": [
+              930,
+              350
+            ],
+            "bbox": [
+              820,
+              220,
+              221,
+              261
+            ]
+          },
+          {
+            "label": "circle",
+            "polygon": [
+              [
+                1400,
+                350
+              ],
+              [
+                1400,
+                360
+              ],
+              [
+                1398,
+                371
+              ],
+              [
+                1396,
+                381
+              ],
+              [
+                1393,
+                391
+              ],
+              [
+                1389,
+                401
+              ],
+              [
+                1384,
+                410
+              ],
+              [
+                1378,
+                419
+              ],
+              [
+                1372,
+                427
+              ],
+              [
+                1365,
+                435
+              ],
+              [
+                1357,
+                442
+              ],
+              [
+                1349,
+                448
+              ],
+              [
+                1340,
+                454
+              ],
+              [
+                1331,
+                459
+              ],
+              [
+                1321,
+                463
+              ],
+              [
+                1311,
+                466
+              ],
+              [
+                1301,
+                468
+              ],
+              [
+                1290,
+                470
+              ],
+              [
+                1280,
+                470
+              ],
+              [
+                1270,
+                470
+              ],
+              [
+                1259,
+                468
+              ],
+              [
+                1249,
+                466
+              ],
+              [
+                1239,
+                463
+              ],
+              [
+                1229,
+                459
+              ],
+              [
+                1220,
+                454
+              ],
+              [
+                1211,
+                448
+              ],
+              [
+                1203,
+                442
+              ],
+              [
+                1195,
+                435
+              ],
+              [
+                1188,
+                427
+              ],
+              [
+                1182,
+                419
+              ],
+              [
+                1176,
+                410
+              ],
+              [
+                1171,
+                401
+              ],
+              [
+                1167,
+                391
+              ],
+              [
+                1164,
+                381
+              ],
+              [
+                1162,
+                371
+              ],
+              [
+                1160,
+                360
+              ],
+              [
+                1160,
+                350
+              ],
+              [
+                1160,
+                340
+              ],
+              [
+                1162,
+                329
+              ],
+              [
+                1164,
+                319
+              ],
+              [
+                1167,
+                309
+              ],
+              [
+                1171,
+                299
+              ],
+              [
+                1176,
+                290
+              ],
+              [
+                1182,
+                281
+              ],
+              [
+                1188,
+                273
+              ],
+              [
+                1195,
+                265
+              ],
+              [
+                1203,
+                258
+              ],
+              [
+                1211,
+                252
+              ],
+              [
+                1220,
+                246
+              ],
+              [
+                1229,
+                241
+              ],
+              [
+                1239,
+                237
+              ],
+              [
+                1249,
+                234
+              ],
+              [
+                1259,
+                232
+              ],
+              [
+                1270,
+                230
+              ],
+              [
+                1280,
+                230
+              ],
+              [
+                1290,
+                230
+              ],
+              [
+                1301,
+                232
+              ],
+              [
+                1311,
+                234
+              ],
+              [
+                1321,
+                237
+              ],
+              [
+                1331,
+                241
+              ],
+              [
+                1340,
+                246
+              ],
+              [
+                1349,
+                252
+              ],
+              [
+                1357,
+                258
+              ],
+              [
+                1365,
+                265
+              ],
+              [
+                1372,
+                273
+              ],
+              [
+                1378,
+                281
+              ],
+              [
+                1384,
+                290
+              ],
+              [
+                1389,
+                299
+              ],
+              [
+                1393,
+                309
+              ],
+              [
+                1396,
+                319
+              ],
+              [
+                1398,
+                329
+              ],
+              [
+                1400,
+                340
+              ]
+            ],
+            "center": [
+              1280,
+              350
+            ],
+            "bbox": [
+              1160,
+              230,
+              241,
+              241
+            ]
+          }
+        ],
+        "expected_count": 3,
+        "expected_labels": [
+          "triangle",
+          "rectangle",
+          "circle"
+        ],
+        "illumination": {
+          "model": "horizontal_linear_gain",
+          "left_gain": 1.04,
+          "right_gain": 0.62,
+          "offset": 6
+        },
+        "relations": []
+      },
+      "methods": {
+        "otsu": {
+          "preprocess_mode": "otsu",
+          "object_count": 3,
+          "predicted_labels": [
+            "triangle",
+            "rectangle",
+            "circle"
+          ],
+          "objects": [
+            {
+              "object_index": 1,
+              "predicted_label": "triangle",
+              "confidence": 0.990618,
+              "center": [
+                620,
+                397
+              ],
+              "features": {
+                "area": 34094.0,
+                "area_ratio": 0.0471855312835616,
+                "perimeter": 923.1269783973694,
+                "vertices": 3,
+                "solidity": 0.9915658445788739,
+                "circularity": 0.5027648811870911,
+                "bounding_box": [
+                  50,
+                  106,
+                  219,
+                  309
+                ],
+                "aspect_ratio": 0.7087378640776699,
+                "min_rect_fill_ratio": 0.5077743357559872,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 1.0,
+                "quality": 0.953092
+              }
+            },
+            {
+              "object_index": 2,
+              "predicted_label": "rectangle",
+              "confidence": 1.0,
+              "center": [
+                930,
+                350
+              ],
+              "features": {
+                "area": 57198.0,
+                "area_ratio": 0.0791610846001395,
+                "perimeter": 957.6568541526794,
+                "vertices": 4,
+                "solidity": 1.0,
+                "circularity": 0.7837379285828978,
+                "bounding_box": [
+                  359,
+                  134,
+                  221,
+                  261
+                ],
+                "aspect_ratio": 0.8467432950191571,
+                "min_rect_fill_ratio": 0.9999654084189488,
+                "max_right_angle_deviation_degrees": 0.04040461902992831,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 1.0,
+                "quality": 1.0
+              }
+            },
+            {
+              "object_index": 3,
+              "predicted_label": "circle",
+              "confidence": 0.976721,
+              "center": [
+                1280,
+                350
+              ],
+              "features": {
+                "area": 45290.0,
+                "area_ratio": 0.06268060983846145,
+                "perimeter": 795.9797921180725,
+                "vertices": 8,
+                "solidity": 0.9956034293251264,
+                "circularity": 0.8982724915960966,
+                "bounding_box": [
+                  699,
+                  144,
+                  241,
+                  241
+                ],
+                "aspect_ratio": 1.0,
+                "min_rect_fill_ratio": 0.7862847222222222,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 0.9224017557003448,
+                "quality": 1.0
+              }
+            }
+          ],
+          "otsu_threshold": 112.0,
+          "roi_bounds": [
+            461,
+            86,
+            1459,
+            810
+          ],
+          "total_external_contours": 3,
+          "valid_contours": 3,
+          "contour_filter_details": [
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 57198.0,
+                "area_ratio": 0.0791610846001395,
+                "perimeter": 957.6568541526794,
+                "vertices": 4,
+                "solidity": 1.0,
+                "circularity": 0.7837379285828978,
+                "bounding_box": [
+                  359,
+                  134,
+                  221,
+                  261
+                ],
+                "aspect_ratio": 0.8467432950191571,
+                "min_rect_fill_ratio": 0.9999654084189488,
+                "max_right_angle_deviation_degrees": 0.04040461902992831,
+                "is_convex": true,
+                "touches_border": false
+              }
+            },
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 45290.0,
+                "area_ratio": 0.06268060983846145,
+                "perimeter": 795.9797921180725,
+                "vertices": 8,
+                "solidity": 0.9956034293251264,
+                "circularity": 0.8982724915960966,
+                "bounding_box": [
+                  699,
+                  144,
+                  241,
+                  241
+                ],
+                "aspect_ratio": 1.0,
+                "min_rect_fill_ratio": 0.7862847222222222,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            },
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 34094.0,
+                "area_ratio": 0.0471855312835616,
+                "perimeter": 923.1269783973694,
+                "vertices": 3,
+                "solidity": 0.9915658445788739,
+                "circularity": 0.5027648811870911,
+                "bounding_box": [
+                  50,
+                  106,
+                  219,
+                  309
+                ],
+                "aspect_ratio": 0.7087378640776699,
+                "min_rect_fill_ratio": 0.5077743357559872,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            }
+          ],
+          "processing_ms": 3.192,
+          "expected_count": 3,
+          "expected_labels": [
+            "triangle",
+            "rectangle",
+            "circle"
+          ],
+          "matched_label_count": 3,
+          "count_matches": true,
+          "labels_match": true,
+          "method_pass": true
+        },
+        "clahe_otsu": {
+          "preprocess_mode": "clahe_otsu",
+          "object_count": 3,
+          "predicted_labels": [
+            "triangle",
+            "rectangle",
+            "circle"
+          ],
+          "objects": [
+            {
+              "object_index": 1,
+              "predicted_label": "triangle",
+              "confidence": 0.990618,
+              "center": [
+                620,
+                397
+              ],
+              "features": {
+                "area": 34094.0,
+                "area_ratio": 0.0471855312835616,
+                "perimeter": 923.1269783973694,
+                "vertices": 3,
+                "solidity": 0.9915658445788739,
+                "circularity": 0.5027648811870911,
+                "bounding_box": [
+                  50,
+                  106,
+                  219,
+                  309
+                ],
+                "aspect_ratio": 0.7087378640776699,
+                "min_rect_fill_ratio": 0.5077743357559872,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 1.0,
+                "quality": 0.953092
+              }
+            },
+            {
+              "object_index": 2,
+              "predicted_label": "rectangle",
+              "confidence": 1.0,
+              "center": [
+                930,
+                350
+              ],
+              "features": {
+                "area": 57198.0,
+                "area_ratio": 0.0791610846001395,
+                "perimeter": 957.6568541526794,
+                "vertices": 4,
+                "solidity": 1.0,
+                "circularity": 0.7837379285828978,
+                "bounding_box": [
+                  359,
+                  134,
+                  221,
+                  261
+                ],
+                "aspect_ratio": 0.8467432950191571,
+                "min_rect_fill_ratio": 0.9999654084189488,
+                "max_right_angle_deviation_degrees": 0.04040461902992831,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 1.0,
+                "quality": 1.0
+              }
+            },
+            {
+              "object_index": 3,
+              "predicted_label": "circle",
+              "confidence": 0.976168,
+              "center": [
+                1280,
+                350
+              ],
+              "features": {
+                "area": 45264.0,
+                "area_ratio": 0.06264462626911281,
+                "perimeter": 795.9797916412354,
+                "vertices": 8,
+                "solidity": 0.9956118644627009,
+                "circularity": 0.8977568140499075,
+                "bounding_box": [
+                  699,
+                  144,
+                  241,
+                  241
+                ],
+                "aspect_ratio": 1.0,
+                "min_rect_fill_ratio": 0.7858333333333334,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 0.9205600501782409,
+                "quality": 1.0
+              }
+            }
+          ],
+          "otsu_threshold": 112.0,
+          "roi_bounds": [
+            461,
+            86,
+            1459,
+            810
+          ],
+          "total_external_contours": 3,
+          "valid_contours": 3,
+          "contour_filter_details": [
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 57198.0,
+                "area_ratio": 0.0791610846001395,
+                "perimeter": 957.6568541526794,
+                "vertices": 4,
+                "solidity": 1.0,
+                "circularity": 0.7837379285828978,
+                "bounding_box": [
+                  359,
+                  134,
+                  221,
+                  261
+                ],
+                "aspect_ratio": 0.8467432950191571,
+                "min_rect_fill_ratio": 0.9999654084189488,
+                "max_right_angle_deviation_degrees": 0.04040461902992831,
+                "is_convex": true,
+                "touches_border": false
+              }
+            },
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 45264.0,
+                "area_ratio": 0.06264462626911281,
+                "perimeter": 795.9797916412354,
+                "vertices": 8,
+                "solidity": 0.9956118644627009,
+                "circularity": 0.8977568140499075,
+                "bounding_box": [
+                  699,
+                  144,
+                  241,
+                  241
+                ],
+                "aspect_ratio": 1.0,
+                "min_rect_fill_ratio": 0.7858333333333334,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            },
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 34094.0,
+                "area_ratio": 0.0471855312835616,
+                "perimeter": 923.1269783973694,
+                "vertices": 3,
+                "solidity": 0.9915658445788739,
+                "circularity": 0.5027648811870911,
+                "bounding_box": [
+                  50,
+                  106,
+                  219,
+                  309
+                ],
+                "aspect_ratio": 0.7087378640776699,
+                "min_rect_fill_ratio": 0.5077743357559872,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            }
+          ],
+          "processing_ms": 3.617,
+          "expected_count": 3,
+          "expected_labels": [
+            "triangle",
+            "rectangle",
+            "circle"
+          ],
+          "matched_label_count": 3,
+          "count_matches": true,
+          "labels_match": true,
+          "method_pass": true
+        }
+      },
+      "required_scene_pass": true,
+      "comparison": {
+        "same_detected_count": true,
+        "same_detected_labels": true
+      }
+    },
+    {
+      "filename": "multi_occlusion.png",
+      "source_sha256": "3269abf29211e1a5e66625aad5d0a89b6a37483512471056c061437e8058371e",
+      "scene": "partial_occlusion",
+      "source_type": "synthetic",
+      "evaluation_kind": "diagnostic_only",
+      "ground_truth": {
+        "filename": "multi_occlusion.png",
+        "scene": "partial_occlusion",
+        "image_size": {
+          "width": 1920,
+          "height": 1080
+        },
+        "background": {
+          "type": "uniform_gray_reflectance",
+          "reflectance_value": 235
+        },
+        "foreground_reflectance_value": 22,
+        "objects": [
+          {
+            "label": "triangle",
+            "polygon": [
+              [
+                620,
+                190
+              ],
+              [
+                510,
+                500
+              ],
+              [
+                730,
+                500
+              ]
+            ],
+            "center": [
+              620,
+              397
+            ],
+            "bbox": [
+              510,
+              190,
+              221,
+              311
+            ]
+          },
+          {
+            "label": "rectangle",
+            "polygon": [
+              [
+                900,
+                220
+              ],
+              [
+                1120,
+                220
+              ],
+              [
+                1120,
+                480
+              ],
+              [
+                900,
+                480
+              ]
+            ],
+            "center": [
+              1010,
+              350
+            ],
+            "bbox": [
+              900,
+              220,
+              221,
+              261
+            ]
+          },
+          {
+            "label": "circle",
+            "polygon": [
+              [
+                1230,
+                350
+              ],
+              [
+                1230,
+                360
+              ],
+              [
+                1228,
+                371
+              ],
+              [
+                1226,
+                381
+              ],
+              [
+                1223,
+                391
+              ],
+              [
+                1219,
+                401
+              ],
+              [
+                1214,
+                410
+              ],
+              [
+                1208,
+                419
+              ],
+              [
+                1202,
+                427
+              ],
+              [
+                1195,
+                435
+              ],
+              [
+                1187,
+                442
+              ],
+              [
+                1179,
+                448
+              ],
+              [
+                1170,
+                454
+              ],
+              [
+                1161,
+                459
+              ],
+              [
+                1151,
+                463
+              ],
+              [
+                1141,
+                466
+              ],
+              [
+                1131,
+                468
+              ],
+              [
+                1120,
+                470
+              ],
+              [
+                1110,
+                470
+              ],
+              [
+                1100,
+                470
+              ],
+              [
+                1089,
+                468
+              ],
+              [
+                1079,
+                466
+              ],
+              [
+                1069,
+                463
+              ],
+              [
+                1059,
+                459
+              ],
+              [
+                1050,
+                454
+              ],
+              [
+                1041,
+                448
+              ],
+              [
+                1033,
+                442
+              ],
+              [
+                1025,
+                435
+              ],
+              [
+                1018,
+                427
+              ],
+              [
+                1012,
+                419
+              ],
+              [
+                1006,
+                410
+              ],
+              [
+                1001,
+                401
+              ],
+              [
+                997,
+                391
+              ],
+              [
+                994,
+                381
+              ],
+              [
+                992,
+                371
+              ],
+              [
+                990,
+                360
+              ],
+              [
+                990,
+                350
+              ],
+              [
+                990,
+                340
+              ],
+              [
+                992,
+                329
+              ],
+              [
+                994,
+                319
+              ],
+              [
+                997,
+                309
+              ],
+              [
+                1001,
+                299
+              ],
+              [
+                1006,
+                290
+              ],
+              [
+                1012,
+                281
+              ],
+              [
+                1018,
+                273
+              ],
+              [
+                1025,
+                265
+              ],
+              [
+                1033,
+                258
+              ],
+              [
+                1041,
+                252
+              ],
+              [
+                1050,
+                246
+              ],
+              [
+                1059,
+                241
+              ],
+              [
+                1069,
+                237
+              ],
+              [
+                1079,
+                234
+              ],
+              [
+                1089,
+                232
+              ],
+              [
+                1100,
+                230
+              ],
+              [
+                1110,
+                230
+              ],
+              [
+                1120,
+                230
+              ],
+              [
+                1131,
+                232
+              ],
+              [
+                1141,
+                234
+              ],
+              [
+                1151,
+                237
+              ],
+              [
+                1161,
+                241
+              ],
+              [
+                1170,
+                246
+              ],
+              [
+                1179,
+                252
+              ],
+              [
+                1187,
+                258
+              ],
+              [
+                1195,
+                265
+              ],
+              [
+                1202,
+                273
+              ],
+              [
+                1208,
+                281
+              ],
+              [
+                1214,
+                290
+              ],
+              [
+                1219,
+                299
+              ],
+              [
+                1223,
+                309
+              ],
+              [
+                1226,
+                319
+              ],
+              [
+                1228,
+                329
+              ],
+              [
+                1230,
+                340
+              ]
+            ],
+            "center": [
+              1110,
+              350
+            ],
+            "bbox": [
+              990,
+              230,
+              241,
+              241
+            ]
+          }
+        ],
+        "expected_count": 3,
+        "expected_labels": [
+          "triangle",
+          "rectangle",
+          "circle"
+        ],
+        "illumination": {
+          "model": "linear",
+          "gain": 1.0,
+          "offset": 0
+        },
+        "relations": [
+          {
+            "type": "overlap",
+            "objects": [
+              "rectangle",
+              "circle"
+            ],
+            "description": "same-colour silhouettes partially overlap"
+          }
+        ]
+      },
+      "methods": {
+        "otsu": {
+          "preprocess_mode": "otsu",
+          "object_count": 2,
+          "predicted_labels": [
+            "triangle",
+            "unknown"
+          ],
+          "objects": [
+            {
+              "object_index": 1,
+              "predicted_label": "triangle",
+              "confidence": 0.990642,
+              "center": [
+                620,
+                397
+              ],
+              "features": {
+                "area": 34099.0,
+                "area_ratio": 0.04719245120074403,
+                "perimeter": 927.9554054737091,
+                "vertices": 3,
+                "solidity": 0.991451748902393,
+                "circularity": 0.49761939059815563,
+                "bounding_box": [
+                  49,
+                  105,
+                  221,
+                  310
+                ],
+                "aspect_ratio": 0.7129032258064516,
+                "min_rect_fill_ratio": 0.5016394682718007,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 1.0,
+                "quality": 0.953208
+              }
+            },
+            {
+              "object_index": 2,
+              "predicted_label": "unknown",
+              "confidence": 0.0,
+              "center": [
+                1051,
+                350
+              ],
+              "features": {
+                "area": 77430.0,
+                "area_ratio": 0.10716183748712896,
+                "perimeter": 1093.303603887558,
+                "vertices": 6,
+                "solidity": 0.9951546775997018,
+                "circularity": 0.8140246643957271,
+                "bounding_box": [
+                  439,
+                  134,
+                  331,
+                  261
+                ],
+                "aspect_ratio": 0.7885196374622356,
+                "min_rect_fill_ratio": 0.9024479312099817,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 0.0,
+                "geometry": 0.0,
+                "quality": 1.0
+              }
+            }
+          ],
+          "otsu_threshold": 127.0,
+          "roi_bounds": [
+            461,
+            86,
+            1459,
+            810
+          ],
+          "total_external_contours": 2,
+          "valid_contours": 2,
+          "contour_filter_details": [
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 77430.0,
+                "area_ratio": 0.10716183748712896,
+                "perimeter": 1093.303603887558,
+                "vertices": 6,
+                "solidity": 0.9951546775997018,
+                "circularity": 0.8140246643957271,
+                "bounding_box": [
+                  439,
+                  134,
+                  331,
+                  261
+                ],
+                "aspect_ratio": 0.7885196374622356,
+                "min_rect_fill_ratio": 0.9024479312099817,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            },
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 34099.0,
+                "area_ratio": 0.04719245120074403,
+                "perimeter": 927.9554054737091,
+                "vertices": 3,
+                "solidity": 0.991451748902393,
+                "circularity": 0.49761939059815563,
+                "bounding_box": [
+                  49,
+                  105,
+                  221,
+                  310
+                ],
+                "aspect_ratio": 0.7129032258064516,
+                "min_rect_fill_ratio": 0.5016394682718007,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            }
+          ],
+          "processing_ms": 3.047,
+          "expected_count": 3,
+          "expected_labels": [
+            "triangle",
+            "rectangle",
+            "circle"
+          ],
+          "matched_label_count": 1,
+          "count_matches": false,
+          "labels_match": false,
+          "method_pass": null
+        },
+        "clahe_otsu": {
+          "preprocess_mode": "clahe_otsu",
+          "object_count": 2,
+          "predicted_labels": [
+            "triangle",
+            "unknown"
+          ],
+          "objects": [
+            {
+              "object_index": 1,
+              "predicted_label": "triangle",
+              "confidence": 0.990642,
+              "center": [
+                620,
+                397
+              ],
+              "features": {
+                "area": 34099.0,
+                "area_ratio": 0.04719245120074403,
+                "perimeter": 927.9554054737091,
+                "vertices": 3,
+                "solidity": 0.991451748902393,
+                "circularity": 0.49761939059815563,
+                "bounding_box": [
+                  49,
+                  105,
+                  221,
+                  310
+                ],
+                "aspect_ratio": 0.7129032258064516,
+                "min_rect_fill_ratio": 0.5016394682718007,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 1.0,
+                "quality": 0.953208
+              }
+            },
+            {
+              "object_index": 2,
+              "predicted_label": "unknown",
+              "confidence": 0.0,
+              "center": [
+                1051,
+                350
+              ],
+              "features": {
+                "area": 77430.0,
+                "area_ratio": 0.10716183748712896,
+                "perimeter": 1093.303603887558,
+                "vertices": 6,
+                "solidity": 0.9951546775997018,
+                "circularity": 0.8140246643957271,
+                "bounding_box": [
+                  439,
+                  134,
+                  331,
+                  261
+                ],
+                "aspect_ratio": 0.7885196374622356,
+                "min_rect_fill_ratio": 0.9024479312099817,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 0.0,
+                "geometry": 0.0,
+                "quality": 1.0
+              }
+            }
+          ],
+          "otsu_threshold": 128.0,
+          "roi_bounds": [
+            461,
+            86,
+            1459,
+            810
+          ],
+          "total_external_contours": 2,
+          "valid_contours": 2,
+          "contour_filter_details": [
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 77430.0,
+                "area_ratio": 0.10716183748712896,
+                "perimeter": 1093.303603887558,
+                "vertices": 6,
+                "solidity": 0.9951546775997018,
+                "circularity": 0.8140246643957271,
+                "bounding_box": [
+                  439,
+                  134,
+                  331,
+                  261
+                ],
+                "aspect_ratio": 0.7885196374622356,
+                "min_rect_fill_ratio": 0.9024479312099817,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            },
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 34099.0,
+                "area_ratio": 0.04719245120074403,
+                "perimeter": 927.9554054737091,
+                "vertices": 3,
+                "solidity": 0.991451748902393,
+                "circularity": 0.49761939059815563,
+                "bounding_box": [
+                  49,
+                  105,
+                  221,
+                  310
+                ],
+                "aspect_ratio": 0.7129032258064516,
+                "min_rect_fill_ratio": 0.5016394682718007,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            }
+          ],
+          "processing_ms": 5.976,
+          "expected_count": 3,
+          "expected_labels": [
+            "triangle",
+            "rectangle",
+            "circle"
+          ],
+          "matched_label_count": 1,
+          "count_matches": false,
+          "labels_match": false,
+          "method_pass": null
+        }
+      },
+      "required_scene_pass": null,
+      "comparison": {
+        "same_detected_count": true,
+        "same_detected_labels": true
+      }
+    },
+    {
+      "filename": "multi_touching.png",
+      "source_sha256": "4b0050e1f5f88e579901426654c93f75313e8a78900ef760f7f83116a553d365",
+      "scene": "touching",
+      "source_type": "synthetic",
+      "evaluation_kind": "diagnostic_only",
+      "ground_truth": {
+        "filename": "multi_touching.png",
+        "scene": "touching",
+        "image_size": {
+          "width": 1920,
+          "height": 1080
+        },
+        "background": {
+          "type": "uniform_gray_reflectance",
+          "reflectance_value": 235
+        },
+        "foreground_reflectance_value": 22,
+        "objects": [
+          {
+            "label": "triangle",
+            "polygon": [
+              [
+                620,
+                190
+              ],
+              [
+                510,
+                500
+              ],
+              [
+                730,
+                500
+              ]
+            ],
+            "center": [
+              620,
+              397
+            ],
+            "bbox": [
+              510,
+              190,
+              221,
+              311
+            ]
+          },
+          {
+            "label": "rectangle",
+            "polygon": [
+              [
+                820,
+                220
+              ],
+              [
+                1040,
+                220
+              ],
+              [
+                1040,
+                480
+              ],
+              [
+                820,
+                480
+              ]
+            ],
+            "center": [
+              930,
+              350
+            ],
+            "bbox": [
+              820,
+              220,
+              221,
+              261
+            ]
+          },
+          {
+            "label": "circle",
+            "polygon": [
+              [
+                1280,
+                350
+              ],
+              [
+                1280,
+                360
+              ],
+              [
+                1278,
+                371
+              ],
+              [
+                1276,
+                381
+              ],
+              [
+                1273,
+                391
+              ],
+              [
+                1269,
+                401
+              ],
+              [
+                1264,
+                410
+              ],
+              [
+                1258,
+                419
+              ],
+              [
+                1252,
+                427
+              ],
+              [
+                1245,
+                435
+              ],
+              [
+                1237,
+                442
+              ],
+              [
+                1229,
+                448
+              ],
+              [
+                1220,
+                454
+              ],
+              [
+                1211,
+                459
+              ],
+              [
+                1201,
+                463
+              ],
+              [
+                1191,
+                466
+              ],
+              [
+                1181,
+                468
+              ],
+              [
+                1170,
+                470
+              ],
+              [
+                1160,
+                470
+              ],
+              [
+                1150,
+                470
+              ],
+              [
+                1139,
+                468
+              ],
+              [
+                1129,
+                466
+              ],
+              [
+                1119,
+                463
+              ],
+              [
+                1109,
+                459
+              ],
+              [
+                1100,
+                454
+              ],
+              [
+                1091,
+                448
+              ],
+              [
+                1083,
+                442
+              ],
+              [
+                1075,
+                435
+              ],
+              [
+                1068,
+                427
+              ],
+              [
+                1062,
+                419
+              ],
+              [
+                1056,
+                410
+              ],
+              [
+                1051,
+                401
+              ],
+              [
+                1047,
+                391
+              ],
+              [
+                1044,
+                381
+              ],
+              [
+                1042,
+                371
+              ],
+              [
+                1040,
+                360
+              ],
+              [
+                1040,
+                350
+              ],
+              [
+                1040,
+                340
+              ],
+              [
+                1042,
+                329
+              ],
+              [
+                1044,
+                319
+              ],
+              [
+                1047,
+                309
+              ],
+              [
+                1051,
+                299
+              ],
+              [
+                1056,
+                290
+              ],
+              [
+                1062,
+                281
+              ],
+              [
+                1068,
+                273
+              ],
+              [
+                1075,
+                265
+              ],
+              [
+                1083,
+                258
+              ],
+              [
+                1091,
+                252
+              ],
+              [
+                1100,
+                246
+              ],
+              [
+                1109,
+                241
+              ],
+              [
+                1119,
+                237
+              ],
+              [
+                1129,
+                234
+              ],
+              [
+                1139,
+                232
+              ],
+              [
+                1150,
+                230
+              ],
+              [
+                1160,
+                230
+              ],
+              [
+                1170,
+                230
+              ],
+              [
+                1181,
+                232
+              ],
+              [
+                1191,
+                234
+              ],
+              [
+                1201,
+                237
+              ],
+              [
+                1211,
+                241
+              ],
+              [
+                1220,
+                246
+              ],
+              [
+                1229,
+                252
+              ],
+              [
+                1237,
+                258
+              ],
+              [
+                1245,
+                265
+              ],
+              [
+                1252,
+                273
+              ],
+              [
+                1258,
+                281
+              ],
+              [
+                1264,
+                290
+              ],
+              [
+                1269,
+                299
+              ],
+              [
+                1273,
+                309
+              ],
+              [
+                1276,
+                319
+              ],
+              [
+                1278,
+                329
+              ],
+              [
+                1280,
+                340
+              ]
+            ],
+            "center": [
+              1160,
+              350
+            ],
+            "bbox": [
+              1040,
+              230,
+              241,
+              241
+            ]
+          }
+        ],
+        "expected_count": 3,
+        "expected_labels": [
+          "triangle",
+          "rectangle",
+          "circle"
+        ],
+        "illumination": {
+          "model": "linear",
+          "gain": 1.0,
+          "offset": 0
+        },
+        "relations": [
+          {
+            "type": "edge_contact",
+            "objects": [
+              "rectangle",
+              "circle"
+            ],
+            "description": "circle touches rectangle at one boundary point"
+          }
+        ]
+      },
+      "methods": {
+        "otsu": {
+          "preprocess_mode": "otsu",
+          "object_count": 2,
+          "predicted_labels": [
+            "triangle",
+            "unknown"
+          ],
+          "objects": [
+            {
+              "object_index": 1,
+              "predicted_label": "triangle",
+              "confidence": 0.990642,
+              "center": [
+                620,
+                397
+              ],
+              "features": {
+                "area": 34099.0,
+                "area_ratio": 0.04719245120074403,
+                "perimeter": 927.9554054737091,
+                "vertices": 3,
+                "solidity": 0.991451748902393,
+                "circularity": 0.49761939059815563,
+                "bounding_box": [
+                  49,
+                  105,
+                  221,
+                  310
+                ],
+                "aspect_ratio": 0.7129032258064516,
+                "min_rect_fill_ratio": 0.5016394682718007,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 1.0,
+                "quality": 0.953208
+              }
+            },
+            {
+              "object_index": 2,
+              "predicted_label": "unknown",
+              "confidence": 0.0,
+              "center": [
+                1032,
+                350
+              ],
+              "features": {
+                "area": 102485.0,
+                "area_ratio": 0.1418375424882915,
+                "perimeter": 1662.808218717575,
+                "vertices": 11,
+                "solidity": 0.931368539673019,
+                "circularity": 0.46578537120390673,
+                "bounding_box": [
+                  359,
+                  134,
+                  461,
+                  261
+                ],
+                "aspect_ratio": 0.5661605206073753,
+                "min_rect_fill_ratio": 0.8568983081660597,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": false,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 0.0,
+                "geometry": 0.0,
+                "quality": 0.696053
+              }
+            }
+          ],
+          "otsu_threshold": 127.0,
+          "roi_bounds": [
+            461,
+            86,
+            1459,
+            810
+          ],
+          "total_external_contours": 2,
+          "valid_contours": 2,
+          "contour_filter_details": [
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 102485.0,
+                "area_ratio": 0.1418375424882915,
+                "perimeter": 1662.808218717575,
+                "vertices": 11,
+                "solidity": 0.931368539673019,
+                "circularity": 0.46578537120390673,
+                "bounding_box": [
+                  359,
+                  134,
+                  461,
+                  261
+                ],
+                "aspect_ratio": 0.5661605206073753,
+                "min_rect_fill_ratio": 0.8568983081660597,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": false,
+                "touches_border": false
+              }
+            },
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 34099.0,
+                "area_ratio": 0.04719245120074403,
+                "perimeter": 927.9554054737091,
+                "vertices": 3,
+                "solidity": 0.991451748902393,
+                "circularity": 0.49761939059815563,
+                "bounding_box": [
+                  49,
+                  105,
+                  221,
+                  310
+                ],
+                "aspect_ratio": 0.7129032258064516,
+                "min_rect_fill_ratio": 0.5016394682718007,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            }
+          ],
+          "processing_ms": 3.451,
+          "expected_count": 3,
+          "expected_labels": [
+            "triangle",
+            "rectangle",
+            "circle"
+          ],
+          "matched_label_count": 1,
+          "count_matches": false,
+          "labels_match": false,
+          "method_pass": null
+        },
+        "clahe_otsu": {
+          "preprocess_mode": "clahe_otsu",
+          "object_count": 2,
+          "predicted_labels": [
+            "triangle",
+            "unknown"
+          ],
+          "objects": [
+            {
+              "object_index": 1,
+              "predicted_label": "triangle",
+              "confidence": 0.990642,
+              "center": [
+                620,
+                397
+              ],
+              "features": {
+                "area": 34099.0,
+                "area_ratio": 0.04719245120074403,
+                "perimeter": 927.9554054737091,
+                "vertices": 3,
+                "solidity": 0.991451748902393,
+                "circularity": 0.49761939059815563,
+                "bounding_box": [
+                  49,
+                  105,
+                  221,
+                  310
+                ],
+                "aspect_ratio": 0.7129032258064516,
+                "min_rect_fill_ratio": 0.5016394682718007,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 1.0,
+                "geometry": 1.0,
+                "quality": 0.953208
+              }
+            },
+            {
+              "object_index": 2,
+              "predicted_label": "unknown",
+              "confidence": 0.0,
+              "center": [
+                1032,
+                350
+              ],
+              "features": {
+                "area": 102485.0,
+                "area_ratio": 0.1418375424882915,
+                "perimeter": 1662.808218717575,
+                "vertices": 11,
+                "solidity": 0.931368539673019,
+                "circularity": 0.46578537120390673,
+                "bounding_box": [
+                  359,
+                  134,
+                  461,
+                  261
+                ],
+                "aspect_ratio": 0.5661605206073753,
+                "min_rect_fill_ratio": 0.8568983081660597,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": false,
+                "touches_border": false
+              },
+              "classification_scores": {
+                "topology": 0.0,
+                "geometry": 0.0,
+                "quality": 0.696053
+              }
+            }
+          ],
+          "otsu_threshold": 128.0,
+          "roi_bounds": [
+            461,
+            86,
+            1459,
+            810
+          ],
+          "total_external_contours": 2,
+          "valid_contours": 2,
+          "contour_filter_details": [
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 102485.0,
+                "area_ratio": 0.1418375424882915,
+                "perimeter": 1662.808218717575,
+                "vertices": 11,
+                "solidity": 0.931368539673019,
+                "circularity": 0.46578537120390673,
+                "bounding_box": [
+                  359,
+                  134,
+                  461,
+                  261
+                ],
+                "aspect_ratio": 0.5661605206073753,
+                "min_rect_fill_ratio": 0.8568983081660597,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": false,
+                "touches_border": false
+              }
+            },
+            {
+              "passed_filter": true,
+              "rejection_reasons": [],
+              "features": {
+                "area": 34099.0,
+                "area_ratio": 0.04719245120074403,
+                "perimeter": 927.9554054737091,
+                "vertices": 3,
+                "solidity": 0.991451748902393,
+                "circularity": 0.49761939059815563,
+                "bounding_box": [
+                  49,
+                  105,
+                  221,
+                  310
+                ],
+                "aspect_ratio": 0.7129032258064516,
+                "min_rect_fill_ratio": 0.5016394682718007,
+                "max_right_angle_deviation_degrees": null,
+                "is_convex": true,
+                "touches_border": false
+              }
+            }
+          ],
+          "processing_ms": 3.955,
+          "expected_count": 3,
+          "expected_labels": [
+            "triangle",
+            "rectangle",
+            "circle"
+          ],
+          "matched_label_count": 1,
+          "count_matches": false,
+          "labels_match": false,
+          "method_pass": null
+        }
+      },
+      "required_scene_pass": null,
+      "comparison": {
+        "same_detected_count": true,
+        "same_detected_labels": true
+      }
+    }
+  ]
+}
