@@ -115,6 +115,19 @@ def _parser() -> argparse.ArgumentParser:
         default=(),
         help="operator-declared shapes actually placed in the work area",
     )
+    multi_batch = subparsers.add_parser(
+        "multi-batch",
+        help="evaluate an M3 scene manifest with both preprocessing modes",
+    )
+    multi_batch.add_argument("--input-root", type=Path, required=True)
+    multi_batch.add_argument("--ground-truth", type=Path, required=True)
+    multi_batch.add_argument("--output-json", type=Path, required=True)
+    multi_batch.add_argument("--output-csv", type=Path, required=True)
+    multi_batch.add_argument(
+        "--diagnostics-dir",
+        type=Path,
+        help="optional directory for annotated results from every scene and mode",
+    )
     return parser
 
 
@@ -144,6 +157,24 @@ def main() -> int:
             expected_labels=tuple(args.expected_labels),
             reuse_calibration=args.reuse_calibration,
         )
+    if args.command == "multi-batch":
+        from .m3_reporting import (
+            evaluate_synthetic_dataset,
+            write_m3_csv_report,
+            write_m3_json_report,
+        )
+
+        report = evaluate_synthetic_dataset(
+            args.input_root,
+            args.ground_truth,
+            config,
+            args.config,
+            args.diagnostics_dir,
+        )
+        write_m3_json_report(report, args.output_json)
+        write_m3_csv_report(report, args.output_csv)
+        print(json.dumps(report["summary"], ensure_ascii=False, indent=2))
+        return 0 if report["summary"]["all_required_scenes_pass"] else 1
 
     paths = discover_images(args.input_root)
     if not paths:
