@@ -12,9 +12,10 @@
 
 ## 当前状态
 
-- 当前阶段：M1 USB 摄像头稳定采集已完成。
-- 已建立可按设备名称选择摄像头的采集模块、配置、稳定性测试和真实证据记录。
-- 视觉识别、GUI、通信、PLC 程序和形状工况测试均尚未开始。
+- 当前阶段：M2 单目标轮廓识别已完成。
+- 10 张真实离线图片回归与两种机位下共 8 项 Insta360 实时摄像头验收均通过；实时证据见 `TEST-003` 和 `evidence/screenshots/m2/live/`。
+- 实时入口复用 M1 的设备选择和 `open_configured_camera`，没有复制第二套摄像头管理逻辑。
+- 下一 milestone 为 M3，但未经明确用户指令不得开始；GUI、通信、PLC 和事件去重均尚未开始。
 - 所有尚无真实测试证据的结果均标记为 `TODO` 或“待测试”。
 
 ## 项目目录结构
@@ -48,16 +49,19 @@ scripts/               辅助脚本
 2. 创建并激活环境：`python -m venv .venv`，然后运行 `python -m pip install -r requirements.txt`。
 3. 枚举摄像头：`python -m pc.camera --config pc/config/camera.json enumerate`。
 4. 运行 M1 稳定性测试：`python -m pc.camera --config pc/config/camera.json stability --output test_data/m1/camera-stability.json --sample-frame evidence/screenshots/M1-camera-sample.jpg`。
-5. 使用 `notes/templates/` 中的模板记录真实实验、问题、测试和技术决策。
+5. 运行 M2 离线批处理：`.\.venv\Scripts\python.exe -m pc.vision --config pc/config/vision.json batch --input-root test_data/raw/m2 --output-json test_data/m2/m2-offline-results.json --output-csv test_data/m2/m2-offline-results.csv --diagnostics-dir output/m2/diagnostics --evidence-dir evidence/screenshots/m2`。
+6. 运行自动化测试：`.\.venv\Scripts\python.exe -m pytest -q`。
+7. 运行 M2 实时预览：`.\.venv\Scripts\python.exe -m pc.vision --config pc/config/vision.json live --camera-config pc/config/camera.json --roi-mode auto`。
+8. 使用 `notes/templates/` 中的模板记录真实实验、问题、测试和技术决策。
 
-以上命令只涉及摄像头采集与测试，不包含轮廓识别。
+实时预览只使用 OpenCV 窗口。Canny 仅生成诊断证据，分类轮廓来自二值图；ROI 只在启动或按 `R` 时校准，运行期间不会逐帧漂移。
 
 ## 当前尚未确定的硬件信息
 
 - PLC 型号、固件、IP、编程软件及版本。
 - PLC 可用通信协议、端口和网络拓扑。
 - PLC 按键、LED 的 I/O 地址与电气行为。
-- Insta360 Ace Pro 2 已在当前电脑验证；三脚架垂直俯拍和 A3 背景尚未布置验证。
+- Insta360 Ace Pro 2 与白色工作区已在 M2 实时识别中完成两种机位验证；背景板是否严格为 A3 及其材质仍未单独测量。
 - 实验室最终使用串口还是以太网；任务书技术要求允许二者之一，但硬件方案表列出了网线。
 
 ## Milestone 状态
@@ -66,7 +70,7 @@ scripts/               辅助脚本
 |---|---|---|
 | M0 | 项目初始化 | DONE |
 | M1 | USB 摄像头稳定采集 | DONE |
-| M2 | 单目标轮廓识别 | TODO |
+| M2 | 单目标轮廓识别 | DONE |
 | M3 | 多目标识别与抗光照 | TODO |
 | M4 | 防重复识别/事件生成 | TODO |
 | M5 | GUI 上位机 | TODO |

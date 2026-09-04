@@ -41,6 +41,29 @@
 | PLC 型号与固件 | TODO | 需在实验室读取铭牌/工程信息 |
 | PLC 编程软件及版本 | TODO | 不依据经验猜测 |
 | PLC IP、端口、协议 | TODO | 需结合实验室网络与 PLC 能力确认 |
-| 三脚架垂直俯拍与 A3 背景 | TODO | 本次只验证 USB 采集稳定性；M2 前布置并记录 |
+| 固定相机与白色工作区 | PARTIAL | M2 已在两种相机机位下完成实时识别；背景板是否严格为 A3 及其材质未单独测量 |
 
 M1 的最小依赖已锁定在 `requirements.txt`。虚拟环境 `.venv/` 不进入 Git。
+
+## M2 第一阶段已执行环境
+
+记录日期：2026-09-04（Asia/Shanghai）
+
+| 项目 | 实际值 | 说明 |
+|---|---|---|
+| Python | 3.12.10，`.venv/Scripts/python.exe` | M2 pytest 和离线批处理实际使用 |
+| OpenCV | 5.0.0 | 灰度、Otsu、形态学、Canny、轮廓和 `approxPolyDP` |
+| NumPy | 2.5.2 | 图像数组及合成轮廓测试 |
+| pytest | 9.1.1 | 完整测试执行环境 |
+| 原始图片 | 10 张 JPEG，均为 1920×1080 | 位于被 Git 忽略的 `test_data/raw/m2/` |
+
+- 系统级 `python` 当前指向 `D:\IDE\python\python.exe`，未安装 pytest；直接运行 `python -m pytest -q` 得到 `No module named pytest`，所以不作为测试结果。
+- 仓库 `.venv` 的锁定依赖完整；加入 M2 实时集成 mock/合成测试后，当前完整测试为 57 项通过。
+- M2 第一阶段不打开摄像头；拍摄装置条件来自项目负责人说明和图片内容，实时运行条件仍待后续阶段验证。
+
+## M2 第二阶段真实验证环境
+
+- 仍使用 Python 3.12.10、OpenCV 5.0.0、NumPy 2.5.2 和 pytest 9.1.1，未新增第三方依赖。
+- 自动化测试通过 mock 验证复用 M1 摄像头打开函数；真实验收另行使用 Insta360 Ace Pro 2 USB Webcam，VID `2E1A`、PID `1003`、DirectShow、MJPG、1920×1080@30。
+- 第一轮 session 处理 13087 帧，处理 FPS 27.547318；第二轮处理 8989 帧，处理 FPS 29.473403。两轮均 `failed_reads=0`、`error=null`。
+- 第一轮使用 manual / selected ROI；第二轮改变相机机位后未复用旧 ROI，使用 auto / detected ROI，score 0.677265。实际数据见 TEST-003 和 `evidence/data/m2-live-acceptance-summary.json`。

@@ -18,7 +18,7 @@
 - `DONE`：已有实现、测试与可追溯证据。
 - `BLOCKED`：受明确外部条件阻塞，并记录原因。
 
-当前已完成 M1。仅 HW-002 的 M1 运行环境部分和 HW-003 摄像头采集要求已有真实证据；视觉识别、GUI、通信、PLC 与系统测试仍为 `TODO`。
+当前已完成 M1 和 M2。VISION-001、VISION-002 已有离线与真实实时摄像头证据并更新为 `DONE`；M3、GUI、通信、PLC 与系统测试仍为 `TODO`。未经明确用户指令不得开始 M3。
 
 ## 3. 需求明细
 
@@ -41,20 +41,20 @@
 - **原始要求**：研究基于 OpenCV 的灰度化、二值化、边缘检测，实现物体轮廓的提取与分割。
 - **工程化解释**：建立可配置、可观察的预处理管线，输出灰度图、二值图、边缘图和有效轮廓；具体算子及阈值由实验决定。
 - **验收条件**：在已记录输入图像上生成各阶段结果，能够分离可用物体轮廓；参数、失败样例和测试结果可复现。
-- **当前状态**：TODO
+- **当前状态**：DONE（10 张真实离线图片和两种机位下 8 个实时工况已验证）
 - **对应代码模块**：`pc/vision/`、`pc/config/`
-- **对应测试**：待建立 `T-VISION-PRE-001`
-- **最终报告证据**：处理流程图、中间图、参数表、失败案例、Git commit；当前 TODO。
+- **对应测试**：`TEST-002` 离线 PASS；`TEST-003` 实时 PASS
+- **最终报告证据**：`test_data/m2/2026-09-04-offline-results.*`、`evidence/screenshots/m2/`、`evidence/screenshots/m2/live/`、`evidence/data/m2-live-acceptance-summary.json`；实现 commit `9f7ae794070a9d1cd853cc2893e71e742f25da52`，证据 commit `d8f6f60b7801c7a8ff8d6d5d6bc809a3875069bb`。
 
 #### VISION-002 approxPolyDP 三类形状分类
 
 - **原始要求**：研究基于轮廓近似法（`approxPolyDP`）的形状分类算法，区分三角形、矩形、圆形三种形状。
 - **工程化解释**：以多边形逼近顶点数及必要的几何量形成可解释规则；主分类路径必须实际调用 `approxPolyDP`。
 - **验收条件**：对三类纸板物体分别给出分类结果；代码可追溯到 `approxPolyDP`；阈值和圆形判据有记录并经真实样本验证。
-- **当前状态**：TODO
+- **当前状态**：DONE（离线 10/10，实时两轮 8/8；主路径使用 `approxPolyDP`）
 - **对应代码模块**：`pc/vision/`
-- **对应测试**：待建立 `T-VISION-CLS-001`
-- **最终报告证据**：核心代码、规则说明、混淆/统计数据、典型截图、Git commit；当前 TODO。
+- **对应测试**：`TEST-002` 离线 PASS；`TEST-003` 实时 PASS
+- **最终报告证据**：几何规则、离线 JSON/CSV、离线管线拼图、8 张精选实时标注图及 M2 实时验收摘要；实现 commit `9f7ae794070a9d1cd853cc2893e71e742f25da52`，证据 commit `d8f6f60b7801c7a8ff8d6d5d6bc809a3875069bb`。
 
 #### VISION-003 多目标检测
 
@@ -219,7 +219,7 @@
 - **原始要求**：使用电脑摄像头拍摄待识别物体。
 - **工程化解释**：当前优先尝试 Insta360 Ace Pro 2 USB Webcam 模式；是否满足要求须实测，不写死设备 ID。
 - **验收条件**：目标电脑能稳定打开摄像头并持续采集；分辨率、帧率、设备 ID 和固定方式有记录。
-- **当前状态**：DONE（USB Webcam 采集与稳定性已验证；三脚架垂直俯拍和 A3 背景留待 M2 前布置）
+- **当前状态**：DONE（USB Webcam 采集与稳定性已验证；M2 又完成两种机位下的固定白色工作区实时识别，背景板 A3 规格与材质未单独测量）
 - **对应代码模块**：`pc/camera/`、`pc/config/`
 - **对应测试**：`notes/tests/TEST-001-M1-Insta360稳定采集.md`
 - **最终报告证据**：`test_data/m1/2026-09-03-insta360-stability.json`、`evidence/screenshots/M1-insta360-1080p-sample.jpg`、TEST-001、commit `d2b864d852e3910ba10a6572c0bd98bb8249a9f0`。

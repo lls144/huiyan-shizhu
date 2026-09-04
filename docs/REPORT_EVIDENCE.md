@@ -5,8 +5,8 @@
 | Requirement ID | 实现代码 | Git commit | Test ID | 实验日志 | 截图 | 数据文件 | 报告章节 |
 |---|---|---|---|---|---|---|---|
 | SCOPE-001 | TODO | TODO | TODO | TODO | TODO | TODO | 系统总体设计/系统集成 |
-| VISION-001 | TODO | TODO | TODO | TODO | TODO | TODO | 视觉算法/图像预处理 |
-| VISION-002 | TODO | TODO | TODO | TODO | TODO | TODO | 视觉算法/形状分类 |
+| VISION-001 | `pc/vision/preprocess.py`、`contours.py`、`roi.py`、`live.py`、`pc/config/vision.json` | 实现 `9f7ae794`；证据 `d8f6f60b` | TEST-002（离线 PASS）、TEST-003（实时 PASS） | `notes/daily/2026-09-04-M2-离线单目标轮廓识别.md`、`2026-09-04-M2-最终真实验收.md` | 离线：`evidence/screenshots/m2/`；实时：`evidence/screenshots/m2/live/` | 离线：`test_data/m2/2026-09-04-offline-results.*`；实时精选摘要：`evidence/data/m2-live-acceptance-summary.json` | 视觉算法/图像预处理 |
+| VISION-002 | `pc/vision/classifier.py`、`pipeline.py`、`live.py` | 实现 `9f7ae794`；证据 `d8f6f60b` | TEST-002（离线 PASS）、TEST-003（实时 PASS） | 同上 | 离线：`evidence/screenshots/m2/`；实时：`evidence/screenshots/m2/live/` | 离线：`test_data/m2/2026-09-04-offline-results.*`；实时：`evidence/data/m2-live-acceptance-summary.json` | 视觉算法/形状分类 |
 | VISION-003 | TODO | TODO | TODO | TODO | TODO | TODO | 视觉算法/多目标检测 |
 | VISION-004 | TODO | TODO | TODO | TODO | TODO | TODO | 视觉算法/抗光照处理 |
 | GUI-001 | TODO | TODO | TODO | TODO | TODO | TODO | 上位机界面 |
@@ -42,4 +42,5 @@
 - **Test ID**：链接到 `notes/tests/` 中的实际测试记录。
 - **实验日志**：链接到 `notes/daily/` 中对应日期记录。
 - **截图/数据文件**：只登记真实存在的仓库路径或明确的外部归档位置。
+- `output/m2/` 中完整 runtime 数据被 Git 忽略；最终证据链只引用从这些真实文件审计后筛选出的标注图和摘要，不提交完整运行数据。
 - **报告章节**：当前仅是建议归属；最终目录确定后再填写准确章节号。

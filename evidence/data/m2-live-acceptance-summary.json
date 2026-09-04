@@ -6,9 +6,10 @@
   "result": "pass",
   "audit_basis": "Values copied from the ignored runtime evidence and session JSON files after completeness and image-decode checks.",
   "git": {
-    "base_commit": "58507475b304748a81c3d4e0349f9d6536f01070",
+    "tested_worktree_base_commit": "58507475b304748a81c3d4e0349f9d6536f01070",
     "working_tree_dirty_during_test": true,
-    "final_m2_commit": null
+    "implementation_commit": "9f7ae794070a9d1cd853cc2893e71e742f25da52",
+    "evidence_commit": "d8f6f60b7801c7a8ff8d6d5d6bc809a3875069bb"
   },
   "camera": {
     "name": "Insta360 Ace Pro 2",
