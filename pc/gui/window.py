@@ -12,7 +12,7 @@ from typing import Callable, Sequence
 import cv2
 import PySide6
 from PySide6.QtCore import Qt, QThread
-from PySide6.QtGui import QCloseEvent, QImage, QKeyEvent, QPixmap, QResizeEvent
+from PySide6.QtGui import QColor, QCloseEvent, QImage, QKeyEvent, QPixmap, QResizeEvent
 from PySide6.QtWidgets import (
     QApplication,
     QFrame,
@@ -20,9 +20,12 @@ from PySide6.QtWidgets import (
     QHBoxLayout,
     QLabel,
     QListWidget,
+    QListWidgetItem,
     QMainWindow,
-    QPushButton,
+    QSizePolicy,
     QSplitter,
+    QStatusBar,
+    QToolButton,
     QVBoxLayout,
     QWidget,
 )
@@ -33,7 +36,7 @@ from pc.vision.live import _git_state
 
 from .models import GuiSnapshot, GuiState, WorkerSummary
 from .sources import FrameSource
-from .style import APP_STYLE, load_ui_fonts
+from .theme import APP_STYLE, THEME, load_ui_fonts
 from .worker import Analyzer, EvidenceRequestBuffer, LatestSnapshotBuffer, VisionWorker
 
 SourceFactory = Callable[[], FrameSource]
@@ -47,17 +50,39 @@ def bgr_to_qimage(frame: object) -> QImage:
     return QImage(rgb.data, width, height, channels * width, QImage.Format.Format_RGB888).copy()
 
 
-def _card(title: str, content: QWidget) -> QFrame:
-    frame = QFrame()
-    frame.setObjectName("card")
-    layout = QVBoxLayout(frame)
-    layout.setContentsMargins(14, 12, 14, 12)
-    layout.setSpacing(8)
+def _divider() -> QFrame:
+    line = QFrame()
+    line.setObjectName("divider")
+    line.setFrameShape(QFrame.Shape.HLine)
+    line.setFixedHeight(1)
+    return line
+
+
+def _section(title: str, content: QWidget) -> QWidget:
+    section = QWidget()
+    layout = QVBoxLayout(section)
+    layout.setContentsMargins(12, 8, 10, 6)
+    layout.setSpacing(4)
     heading = QLabel(title.upper())
     heading.setObjectName("sectionTitle")
     layout.addWidget(heading)
-    layout.addWidget(content)
-    return frame
+    layout.addWidget(content, 1)
+    return section
+
+
+def _tool_button(text: str, object_name: str = "") -> QToolButton:
+    button = QToolButton()
+    button.setText(text)
+    button.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonTextOnly)
+    if object_name:
+        button.setObjectName(object_name)
+    return button
+
+
+def _set_dynamic_property(widget: QWidget, name: str, value: object) -> None:
+    widget.setProperty(name, value)
+    widget.style().unpolish(widget)
+    widget.style().polish(widget)
 
 
 class MainWindow(QMainWindow):
@@ -90,118 +115,211 @@ class MainWindow(QMainWindow):
         self._last_frame_index = -1
         self._last_snapshot: GuiSnapshot | None = None
         self._gui_updates = 0
-        self._recent_events: deque[str] = deque(maxlen=30)
+        self._recent_events: deque[tuple[str, str]] = deque(maxlen=30)
         self._state = GuiState.IDLE
         self.last_session_summary: dict[str, object] | None = None
         self.session_annotations: dict[str, object] = {}
         self._build_ui()
         self.setStyleSheet(APP_STYLE)
         self.setWindowTitle("慧眼识珠 · Vision Console")
-        self.resize(1380, 840)
+        self.setMinimumSize(960, 600)
+        self.resize(1366, 768)
         self._set_state(GuiState.IDLE)
 
     def _build_ui(self) -> None:
         root = QWidget()
+        root.setObjectName("root")
         outer = QVBoxLayout(root)
-        outer.setContentsMargins(18, 16, 18, 16)
-        outer.setSpacing(14)
+        outer.setContentsMargins(0, 0, 0, 0)
+        outer.setSpacing(0)
+        outer.addWidget(self._build_application_bar())
 
-        header = QHBoxLayout()
-        title_box = QVBoxLayout()
+        self.workspace_splitter = QSplitter(Qt.Orientation.Horizontal)
+        self.workspace_splitter.setChildrenCollapsible(False)
+        self.workspace_splitter.addWidget(self._build_workspace())
+        self.workspace_splitter.addWidget(self._build_inspector())
+        self.workspace_splitter.setStretchFactor(0, 1)
+        self.workspace_splitter.setStretchFactor(1, 0)
+        self.workspace_splitter.setSizes([1000, 366])
+        outer.addWidget(self.workspace_splitter, 1)
+        self.setCentralWidget(root)
+        self._build_status_bar()
+
+    def _build_application_bar(self) -> QFrame:
+        bar = QFrame()
+        bar.setObjectName("applicationBar")
+        bar.setFixedHeight(THEME.app_bar_height)
+        layout = QHBoxLayout(bar)
+        layout.setContentsMargins(12, 0, 12, 0)
+        layout.setSpacing(10)
         title = QLabel("慧眼识珠")
-        title.setObjectName("title")
-        subtitle = QLabel("AI visual warehouse · local vision console")
-        subtitle.setObjectName("subtitle")
-        title_box.addWidget(title)
-        title_box.addWidget(subtitle)
-        header.addLayout(title_box)
-        header.addStretch()
-        self.state_chip = QLabel("IDLE")
-        self.state_chip.setObjectName("stateChip")
-        header.addWidget(self.state_chip)
-        outer.addLayout(header)
+        title.setObjectName("appTitle")
+        subtitle = QLabel("AI VISUAL WAREHOUSE")
+        subtitle.setObjectName("appSubtitle")
+        layout.addWidget(title)
+        layout.addWidget(subtitle)
+        layout.addStretch()
+        self.state_dot = QLabel("●")
+        self.state_dot.setObjectName("stateDot")
+        self.state_text = QLabel("Idle")
+        self.state_text.setObjectName("stateText")
+        self.state_chip = self.state_text
+        layout.addWidget(self.state_dot)
+        layout.addWidget(self.state_text)
+        return bar
 
-        splitter = QSplitter(Qt.Orientation.Horizontal)
-        video_column = QWidget()
-        video_layout = QVBoxLayout(video_column)
-        video_layout.setContentsMargins(0, 0, 0, 0)
-        self.video_label = QLabel("Start a synthetic or camera session")
-        self.video_label.setObjectName("video")
-        self.video_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.video_label.setMinimumSize(720, 480)
-        video_layout.addWidget(self.video_label, 1)
+    def _build_workspace(self) -> QFrame:
+        workspace = QFrame()
+        workspace.setObjectName("workspace")
+        layout = QVBoxLayout(workspace)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.setSpacing(0)
 
-        controls = QHBoxLayout()
-        self.start_button = QPushButton("Start")
-        self.start_button.setObjectName("primary")
-        self.stop_button = QPushButton("Stop")
+        toolbar = QFrame()
+        toolbar.setObjectName("workspaceToolbar")
+        toolbar.setFixedHeight(THEME.workspace_bar_height)
+        tools = QHBoxLayout(toolbar)
+        tools.setContentsMargins(10, 0, 8, 0)
+        tools.setSpacing(5)
+        heading = QLabel("VISION")
+        heading.setObjectName("workspaceTitle")
+        self.source_badge = QLabel(self.source_type.upper())
+        self.source_badge.setObjectName("sourceBadge")
+        tools.addWidget(heading)
+        tools.addWidget(self.source_badge)
+        tools.addStretch()
+        self.start_button = _tool_button("Start", "startTool")
+        self.stop_button = _tool_button("Stop")
         self.start_button.clicked.connect(self.start_session)
         self.stop_button.clicked.connect(self.stop_session)
-        controls.addWidget(self.start_button)
-        controls.addWidget(self.stop_button)
-        controls.addSpacing(8)
-        self.scenario_buttons: list[QPushButton] = []
-        for key, label, scenario in (
+        tools.addWidget(self.start_button)
+        tools.addWidget(self.stop_button)
+        layout.addWidget(toolbar)
+
+        self.video_label = QLabel("No video source\nSelect Start to begin")
+        self.video_label.setObjectName("video")
+        self.video_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.video_label.setMinimumSize(480, 300)
+        self.video_label.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        layout.addWidget(self.video_label, 1)
+
+        evidence = QFrame()
+        evidence.setObjectName("evidenceToolbar")
+        evidence.setFixedHeight(THEME.evidence_bar_height)
+        evidence_layout = QHBoxLayout(evidence)
+        evidence_layout.setContentsMargins(10, 0, 8, 0)
+        evidence_layout.setSpacing(2)
+        label = QLabel("EVIDENCE")
+        label.setObjectName("sectionTitle")
+        evidence_layout.addWidget(label)
+        evidence_layout.addSpacing(5)
+        self.scenario_buttons: list[QToolButton] = []
+        for key, text, scenario in (
             ("1", "Normal", "normal_light"),
-            ("2", "Bright / side", "bright_or_side_light"),
+            ("2", "Bright", "bright_or_side_light"),
             ("3", "Dark", "dark_light"),
             ("4", "Occlusion", "partial_occlusion"),
             ("5", "Touching", "touching_or_merged"),
         ):
-            button = QPushButton(f"{key}  {label}")
+            button = _tool_button(f"{key}  {text}", "evidenceTool")
             button.clicked.connect(lambda checked=False, value=scenario: self.request_evidence(value))
             self.scenario_buttons.append(button)
-            controls.addWidget(button)
-        controls.addStretch()
-        video_layout.addLayout(controls)
-        splitter.addWidget(video_column)
+            evidence_layout.addWidget(button)
+        evidence_layout.addStretch()
+        layout.addWidget(evidence)
+        return workspace
 
-        side = QWidget()
-        side.setMinimumWidth(360)
-        side.setMaximumWidth(470)
-        side_layout = QVBoxLayout(side)
-        side_layout.setContentsMargins(0, 0, 0, 0)
-        side_layout.setSpacing(10)
+    def _build_inspector(self) -> QFrame:
+        inspector = QFrame()
+        inspector.setObjectName("inspector")
+        inspector.setMinimumWidth(THEME.sidebar_min_width)
+        inspector.setMaximumWidth(THEME.sidebar_max_width)
+        layout = QVBoxLayout(inspector)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.setSpacing(0)
 
-        status = QWidget()
-        grid = QGridLayout(status)
+        header = QWidget()
+        header.setFixedHeight(THEME.workspace_bar_height)
+        header_layout = QHBoxLayout(header)
+        header_layout.setContentsMargins(12, 0, 10, 0)
+        title = QLabel("INSPECTOR")
+        title.setObjectName("inspectorTitle")
+        header_layout.addWidget(title)
+        header_layout.addStretch()
+        layout.addWidget(header)
+        layout.addWidget(_divider())
+
+        session = QWidget()
+        grid = QGridLayout(session)
         grid.setContentsMargins(0, 0, 0, 0)
-        self.metrics: dict[str, QLabel] = {}
-        for row, (name, label) in enumerate(
-            (
-                ("source", "Source"),
-                ("fps", "Processed FPS"),
-                ("latency", "Processing"),
-                ("frame", "Frame"),
-                ("roi", "ROI"),
-                ("preprocess", "Preprocess"),
-                ("error", "Last error"),
-            )
+        grid.setHorizontalSpacing(10)
+        grid.setVerticalSpacing(4)
+        self.roi_bounds_value = QLabel("—")
+        self.roi_bounds_value.setObjectName("metadataValue")
+        self.error_value = QLabel("No errors")
+        self.error_value.setObjectName("errorValue")
+        self.error_value.setWordWrap(True)
+        for row, (key_text, value) in enumerate(
+            (("ROI bounds", self.roi_bounds_value), ("Last error", self.error_value))
         ):
-            key = QLabel(label)
-            key.setObjectName("subtitle")
-            value = QLabel("—")
-            value.setObjectName("metricValue")
-            value.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
-            self.metrics[name] = value
+            key = QLabel(key_text)
+            key.setObjectName("metadataKey")
             grid.addWidget(key, row, 0)
             grid.addWidget(value, row, 1)
-        side_layout.addWidget(_card("Runtime", status))
+        layout.addWidget(_section("Session", session))
+        layout.addWidget(_divider())
 
         self.detection_list = QListWidget()
-        self.detection_list.setMinimumHeight(125)
-        side_layout.addWidget(_card("Detections · geometric confidence", self.detection_list))
+        layout.addWidget(_section("Detections", self.detection_list), 1)
+        layout.addWidget(_divider())
         self.object_list = QListWidget()
-        self.object_list.setMinimumHeight(125)
-        side_layout.addWidget(_card("Tracked objects", self.object_list))
+        layout.addWidget(_section("Tracked objects", self.object_list), 1)
+        layout.addWidget(_divider())
         self.event_list = QListWidget()
-        self.event_list.setMinimumHeight(115)
-        side_layout.addWidget(_card("Recent events", self.event_list), 1)
-        splitter.addWidget(side)
-        splitter.setStretchFactor(0, 1)
-        splitter.setStretchFactor(1, 0)
-        outer.addWidget(splitter, 1)
-        self.setCentralWidget(root)
+        layout.addWidget(_section("Events", self.event_list), 1)
+        return inspector
+
+    def _build_status_bar(self) -> None:
+        bar = QStatusBar()
+        bar.setObjectName("statusBar")
+        bar.setSizeGripEnabled(False)
+        self.setStatusBar(bar)
+        self.status_source = QLabel("SOURCE —")
+        self.status_fps = QLabel("— FPS")
+        self.status_latency = QLabel("— ms")
+        self.status_frame = QLabel("FRAME —")
+        self.status_roi = QLabel("ROI —")
+        self.status_preprocess = QLabel("PIPELINE —")
+        self.status_state = QLabel("IDLE")
+        self.status_source.setObjectName("statusSource")
+        self.status_state.setObjectName("statusState")
+        for widget in (
+            self.status_fps,
+            self.status_latency,
+            self.status_frame,
+            self.status_roi,
+            self.status_preprocess,
+        ):
+            widget.setObjectName("statusItem")
+        for widget in (
+            self.status_source,
+            self.status_fps,
+            self.status_latency,
+            self.status_frame,
+            self.status_roi,
+            self.status_preprocess,
+        ):
+            bar.addWidget(widget)
+        bar.addPermanentWidget(self.status_state)
+        self.metrics: dict[str, QLabel] = {
+            "source": self.status_source,
+            "fps": self.status_fps,
+            "latency": self.status_latency,
+            "frame": self.status_frame,
+            "roi": self.status_roi,
+            "preprocess": self.status_preprocess,
+            "error": self.error_value,
+        }
 
     @property
     def is_running(self) -> bool:
@@ -217,7 +335,10 @@ class MainWindow(QMainWindow):
 
     def _set_state(self, state: GuiState) -> None:
         self._state = state
-        self.state_chip.setText(state.value.upper())
+        display = state.value.title()
+        self.state_text.setText(display)
+        self.status_state.setText(state.value.upper())
+        _set_dynamic_property(self.state_dot, "state", state.value)
         active = state in {GuiState.STARTING, GuiState.RUNNING, GuiState.STOPPING}
         self.start_button.setEnabled(not active)
         self.stop_button.setEnabled(state in {GuiState.STARTING, GuiState.RUNNING})
@@ -232,7 +353,8 @@ class MainWindow(QMainWindow):
         self._gui_updates = 0
         self._recent_events.clear()
         self.event_list.clear()
-        self.metrics["error"].setText("—")
+        self.error_value.setText("No errors")
+        _set_dynamic_property(self.error_value, "hasError", False)
         self._buffer = LatestSnapshotBuffer()
         self._requests = EvidenceRequestBuffer()
         source = self.source_factory()
@@ -274,11 +396,16 @@ class MainWindow(QMainWindow):
         if self.source_type != "camera" or self._requests is None or not self.is_running:
             return
         self._requests.request(scenario)
-        self.statusBar().showMessage(f"Queued M3 evidence: {scenario}", 2500)
+        self.statusBar().showMessage(f"Evidence queued · {scenario.replace('_', ' ').title()}", 2500)
 
     def _on_worker_state(self, value: str) -> None:
-        state = GuiState(value)
-        self._set_state(state)
+        self._set_state(GuiState(value))
+
+    @staticmethod
+    def _add_muted_item(widget: QListWidget, text: str) -> None:
+        item = QListWidgetItem(text)
+        item.setForeground(QColor(THEME.muted_text))
+        widget.addItem(item)
 
     def _consume_latest(self) -> None:
         if self._buffer is None:
@@ -291,37 +418,46 @@ class MainWindow(QMainWindow):
         self._gui_updates += 1
         self._last_image = bgr_to_qimage(snapshot.annotated_frame)
         self._render_image()
-        self.metrics["source"].setText(f"{snapshot.source_type} · {snapshot.source_status}")
-        self.metrics["fps"].setText(f"{snapshot.processed_fps:.1f}")
-        self.metrics["latency"].setText(f"{snapshot.processing_ms:.2f} ms")
-        self.metrics["frame"].setText(str(snapshot.frame_index))
-        bounds = ",".join(str(value) for value in snapshot.roi_bounds)
-        self.metrics["roi"].setText(
-            f"{snapshot.roi_mode} / {snapshot.roi_source} · [{bounds}]"
-        )
-        self.metrics["preprocess"].setText(snapshot.preprocess_method)
-        self.metrics["error"].setText(snapshot.error or "—")
+
+        self.status_source.setText(snapshot.source_type.upper())
+        self.status_fps.setText(f"{snapshot.processed_fps:.1f} FPS")
+        self.status_latency.setText(f"{snapshot.processing_ms:.2f} ms")
+        self.status_frame.setText(f"FRAME {snapshot.frame_index}")
+        self.status_roi.setText(f"ROI {snapshot.roi_mode.replace('_normalized', '').upper()}")
+        self.status_preprocess.setText(snapshot.preprocess_method.upper())
+        bounds = ", ".join(str(value) for value in snapshot.roi_bounds)
+        self.roi_bounds_value.setText(f"[{bounds}]")
 
         self.detection_list.clear()
         for detection in snapshot.detections:
-            self.detection_list.addItem(f"{detection.label:<10}  {detection.confidence:.3f}")
+            self.detection_list.addItem(
+                f"{detection.label.title():<20}{detection.confidence * 100:>6.1f}%"
+            )
         if not snapshot.detections:
-            self.detection_list.addItem("No object")
+            self._add_muted_item(self.detection_list, "No detections")
 
         self.object_list.clear()
         for state in snapshot.tracked_objects:
             if state.active:
-                self.object_list.addItem(f"#{state.object_id}  {state.label:<10}  {state.status}")
+                self.object_list.addItem(
+                    f"#{state.object_id:<3}{state.label.title():<15}{state.status.upper():>10}"
+                )
         if self.object_list.count() == 0:
-            self.object_list.addItem("No active object")
+            self._add_muted_item(self.object_list, "No tracked objects")
 
+        event_time = snapshot.timestamp[11:19] if len(snapshot.timestamp) >= 19 else "--:--:--"
         for event in snapshot.events:
+            kind = event.event_type.value.removeprefix("OBJECT_")
             self._recent_events.appendleft(
-                f"{event.event_type.value.removeprefix('OBJECT_'):<5}  "
-                f"#{event.object_id}  {event.label}  · F{event.frame_index}"
+                (f"{event_time}  {kind:<5}  #{event.object_id:<3}{event.label}", kind)
             )
         self.event_list.clear()
-        self.event_list.addItems(list(self._recent_events) or ["No event yet"])
+        for text, kind in self._recent_events:
+            item = QListWidgetItem(text)
+            item.setForeground(QColor(THEME.success if kind == "ENTER" else THEME.warning))
+            self.event_list.addItem(item)
+        if not self._recent_events:
+            self._add_muted_item(self.event_list, "No events")
 
     def _render_image(self) -> None:
         if self._last_image is None:
@@ -366,7 +502,10 @@ class MainWindow(QMainWindow):
         path = self.session_dir / f"session-{safe_timestamp}.json"
         path.write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         if summary.error:
-            self.metrics["error"].setText(summary.error)
+            self.error_value.setText(summary.error)
+            _set_dynamic_property(self.error_value, "hasError", True)
+            if self._last_image is None:
+                self.video_label.setText("Source unavailable\nSee Last error in Inspector")
             self._set_state(GuiState.ERROR)
 
     def _on_thread_finished(self) -> None:
@@ -398,7 +537,8 @@ class MainWindow(QMainWindow):
         if self.is_running:
             self.stop_session(block=True)
         if self.is_running:
-            self.metrics["error"].setText("Worker did not stop within 5 seconds")
+            self.error_value.setText("Worker did not stop within 5 seconds")
+            _set_dynamic_property(self.error_value, "hasError", True)
             event.ignore()
             return
         event.accept()

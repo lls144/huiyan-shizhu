@@ -23,7 +23,7 @@ result: offline-pass-live-pending
 
 | 检查项 | 实际验证 | 结果 |
 |---|---|---|
-| window create | offscreen `QApplication` 创建、显示并关闭 `MainWindow` | PASS |
+| window create | offscreen `QApplication` 创建、显示并关闭 `MainWindow`；无 Card，72:28 splitter、40 px app bar、≤26 px status bar | PASS |
 | synthetic start | 注入 synthetic sequence，worker 进入 RUNNING 并产生 snapshot | PASS |
 | frame/result sync | 每个 detection 的 `frame_index` 等于 snapshot frame | PASS |
 | multi-target | `multi_normal.png` 得到 triangle、rectangle、circle | PASS |
@@ -38,8 +38,9 @@ result: offline-pass-live-pending
 | close running | `closeEvent` 请求中断并等待 worker 正常退出 | PASS |
 | backpressure | 容量 1；连续发布 1/2/3 后只取得 frame 3，2 次 overwrite | PASS |
 | resize | pixmap 使用 `KeepAspectRatio`，不触发视觉重算 | PASS |
+| compact overlay | ROI 细线、ID-aware label、源图不被修改 | PASS |
 
-相关 pytest 文件：`../../pc/tests/test_gui_buffer.py`、`../../pc/tests/test_gui_window.py`。测试没有使用几秒固定 `sleep()`，而是确定性 source 和有上限的 Qt event-loop 条件等待。
+相关 pytest 文件：`../../pc/tests/test_gui_buffer.py`、`../../pc/tests/test_gui_overlay.py`、`../../pc/tests/test_gui_window.py`。测试没有使用几秒固定 `sleep()`，而是确定性 source 和有上限的 Qt event-loop 条件等待。
 
 ### 60 秒 synthetic soak
 
@@ -63,7 +64,7 @@ soak 由真实 `.venv` 进程运行，但输入是 synthetic、Qt 平台是 offs
 
 ### 回归
 
-- 完整 pytest：`106 passed in 4.02s`。
+- 完整 pytest：UI/UX 重构后 `109 passed in 4.03s`。
 - M2 十张真实离线图片：`10/10`，background 1/1、circle 3/3、rectangle 3/3、triangle 3/3。
 - M3 synthetic：4 个强制光照场景、两种方案均精确输出三类，`all_required_scenes_pass=true`；遮挡/接触局限未改写。
 - M4：12/12 detection-sequence 场景通过，`failing_scenarios=0`。
@@ -75,6 +76,7 @@ soak 由真实 `.venv` 进程运行，但输入是 synthetic、Qt 平台是 offs
 - CSV：`../../evidence/data/m5/m5-offline-gui-results.csv`
 - 三目标 GUI：`../../evidence/screenshots/m5/synthetic/m5-gui-three-target-demo.png`
 - soak 结束画面：`../../evidence/screenshots/m5/synthetic/m5-gui-soak.png`
+- desktop workspace 重构验收图：`../../evidence/screenshots/m5/synthetic/m5-gui-desktop-workspace.png`
 
 ## Part B：真实 Insta360 摄像头 GUI 验收 — PENDING
 

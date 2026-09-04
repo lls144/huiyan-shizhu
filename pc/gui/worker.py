@@ -18,10 +18,11 @@ from pc.events.models import VisionEvent
 from pc.events.tracker import ObjectStateManager
 from pc.vision.config import VisionConfig
 from pc.vision.m3_live import analyze_preprocess_modes, save_m3_comparison_evidence
-from pc.vision.pipeline import MultiImageAnalysis, analyze_multiple_objects, annotated_multi_image
+from pc.vision.pipeline import MultiImageAnalysis, analyze_multiple_objects
 from pc.vision.preprocess import Image
 
 from .models import GuiSnapshot, GuiState, WorkerSummary
+from .overlay import annotated_gui_frame
 from .sources import CameraFrameSource, FrameSource
 
 Analyzer = Callable[[Image, VisionConfig, object], MultiImageAnalysis]
@@ -135,7 +136,12 @@ class VisionWorker(QObject):
                 analysis = self.analyzer(frame, self.vision_config, self.source.roi)
                 detections = detections_from_analysis(analysis, frames_processed)
                 update = manager.process_frame(frames_processed, detections)
-                annotated = annotated_multi_image(frame, analysis)
+                annotated = annotated_gui_frame(
+                    frame,
+                    analysis,
+                    detections,
+                    update.object_states,
+                )
                 processing_ms = (time.perf_counter() - processing_started) * 1000.0
                 processing_times.append(processing_ms)
                 detection_count += len(detections)

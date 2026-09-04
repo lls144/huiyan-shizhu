@@ -10,7 +10,7 @@ import cv2
 import numpy as np
 import pytest
 from PySide6.QtCore import QEventLoop
-from PySide6.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication, QFrame
 
 from pc.events.config import EventConfig, load_event_config
 from pc.gui.models import GuiState
@@ -117,6 +117,27 @@ def test_qimage_owns_data_after_numpy_frame_changes() -> None:
     assert image.width() == 20
     assert image.height() == 10
     assert image.pixelColor(0, 0).red() == 0
+
+
+def test_desktop_workspace_hierarchy_is_compact(qt_app: QApplication, tmp_path: Path) -> None:
+    window = _window(tmp_path, lambda: SequenceSource([NORMAL_IMAGE]))
+    window.resize(1366, 768)
+    qt_app.processEvents()
+
+    assert window.findChild(QFrame, "applicationBar").height() == 40
+    assert window.findChild(QFrame, "inspector").width() >= 300
+    assert window.workspace_splitter.count() == 2
+    assert window.workspace_splitter.sizes()[0] > window.workspace_splitter.sizes()[1] * 2
+    assert window.statusBar().height() <= 26
+    assert window.start_button.height() <= 30
+    assert window.stop_button.height() <= 30
+    assert not window.findChildren(QFrame, "card")
+
+    window.resize(1920, 1080)
+    qt_app.processEvents()
+    assert window.findChild(QFrame, "inspector").width() <= 420
+    assert window.statusBar().height() <= 26
+    window.close()
 
 
 def test_window_displays_synchronized_m3_m4_snapshot_and_resize(

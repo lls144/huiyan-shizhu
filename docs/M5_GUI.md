@@ -22,7 +22,28 @@ UI 线程只做 `QImage/QPixmap` 转换和控件刷新，不读取摄像头、�
 
 ## 界面与交互
 
-界面采用克制的深色桌面工具风格，参考现代编辑器的信息层级和密度，但不复制 Claude、Codex 或 VS Code 的品牌资源。主区域为保持宽高比的标注画面，右侧依次显示运行状态、detections、tracked objects 和最近事件。
+界面采用克制的深色桌面工具风格，参考现代编辑器的信息层级和密度，但不复制 Claude、Codex、VS Code 或 JetBrains 的品牌资源。2026-09-04 的 UI/UX 重构移除了“大标题 + 多个圆角 Card”的 Dashboard 结构，改为：
+
+```text
+Application Bar
+└── QSplitter
+    ├── Vision Workspace
+    │   ├── compact workspace toolbar
+    │   ├── borderless video viewport
+    │   └── compact evidence toolbar
+    └── continuous Inspector
+        ├── Session
+        ├── Detections
+        ├── Tracked objects
+        └── Events
+└── Status Bar
+```
+
+Vision Workspace 与 Inspector 初始比例约为 72:28，允许拖动；Inspector 宽度限制在 300～420 px。1366×768 下无需整体滚动，视频仍是视觉主体。Inspector section 依靠 1 px divider、紧凑间距和小型 uppercase heading 分层，不再使用独立卡片或标题底板。
+
+底部连续 Status Bar 显示 source、processed FPS、processing latency、frame、ROI mode、preprocess 和 state。顶部 Application Bar 压缩为 40 px，仅显示项目名、弱化副标题和小型状态点。Start/Stop 与 evidence 场景均使用 28 px `QToolButton`，没有网页 CTA、渐变、阴影或动画。
+
+颜色、字体、尺寸、间距和 overlay 参数集中在 `pc/gui/theme.py` 的 `ThemeTokens` / `OverlayTokens`。主色为 `#181818` / `#1e1e1e`，侧栏 `#1b1b1b`，divider `#303030`，主要文字 `#d4d4d4`，强调蓝 `#3f86d9`，成功/错误色仅用于状态。Windows 使用 Segoe UI，并保留 Microsoft YaHei UI 中文回退。
 
 已实现：
 
@@ -33,6 +54,8 @@ UI 线程只做 `QImage/QPixmap` 转换和控件刷新，不读取摄像头、�
 - Start、Stop、再次 Start、安全关闭；
 - source open/read failure 和 vision exception 可见且可重试；
 - synthetic 与 camera 两种 source adapter。
+
+GUI 专用 overlay 位于 `pc/gui/overlay.py`：ROI 为 1 px 低权重灰线；detection bbox 为 2 px 克制蓝线；标签格式为 `#1 TRIANGLE 99.1%`。object ID、类别和 confidence 全部来自现有 M3/M4 结果，overlay 不重新分类或关联，也不改变用于 runtime evidence 的既有 M3 annotation。
 
 没有加入无实际功能的重校准按钮。camera source 启动时直接复用 M2/M3 的 `auto -> manual -> fixed_normalized` 校准流程，ROI 在本次运行内锁定，不做逐帧动态追踪。
 
@@ -75,3 +98,4 @@ UI 线程只做 `QImage/QPixmap` 转换和控件刷新，不读取摄像头、�
 - M3 合并轮廓的 `unknown` 会原样进入 M4/GUI，GUI 不负责修复分类。
 - Stop 等待 worker 最多 5 秒；若未退出，窗口拒绝关闭并显示错误，不强杀线程。
 - camera manual ROI 继续使用现有 OpenCV selector，没有为 Qt 重写一套 ROI 工具。
+- UI/UX 重构截图为 synthetic/offscreen 画面：`evidence/screenshots/m5/synthetic/m5-gui-desktop-workspace.png`，不能冒充 camera evidence。

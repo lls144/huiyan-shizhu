@@ -84,7 +84,7 @@ M1 的最小依赖已锁定在 `requirements.txt`。虚拟环境 `.venv/` 不进
 | Qt runtime | 6.11.2 | `PySide6.QtCore.qVersion()` 实测 |
 | Qt headless | `QT_QPA_PLATFORM=offscreen` | 只在测试进程/CLI 参数内设置，不修改系统环境变量 |
 | OpenCV / NumPy | 5.0.0 / 2.5.2 | 继续复用 M2/M3 管线，未升级 |
-| pytest | 9.1.1 | 加入 M5 后全量 106 项通过 |
+| pytest | 9.1.1 | M5 UI/UX 重构后全量 109 项通过 |
 
 - `pip check` 最终回归结果：`No broken requirements found.`。
 - 60 秒 synthetic soak 达到 processing 21.395960 FPS、GUI update 21.395960 FPS；这不是 Insta360 camera FPS。
