@@ -61,6 +61,8 @@ M2 已完成。M3 保持 `DOING`：只等待正常、较亮/侧光、较暗、�
 
 ## 两人协作必读
 
+2026-09-05 后续明确授权 M6 纯离线 Fake PLC，并已通过 TEST-007（16 个场景、确定性重放、M4 集成），M6 为 DONE。前述 PLC 资料委派阶段“不启动 M6”是当时边界，现由此单独授权更新。M3/M4/M5 仍 DOING；M7/M8/M9 仍 TODO，完成 M6 后停止，不自动推进。模拟器位于 `simulator/`，共享协议未冻结，真实 COMM/PLC 需求不因模拟结果关闭。
+
 - 项目负责人（仓库所有者）主导需求、架构、PC 端、接口定版、阶段验收与主分支合并；PLC 同学负责 `plc/`。Collaborator 权限不等于项目决策权。
 - 每次工作先读 `docs/COLLABORATION.md`、`docs/PLC_HARDWARE.md`、`docs/PLC_INTERFACE.md`；修改 `plc/` 前还须读 `plc/AGENTS.md`。
 - PLC 同学及其 Codex 不直接向主分支推送、不自行合并 PR、不修改根规则或 PC 文件来适配 PLC；跨边界需求写入 `plc/docs/` 提案交负责人审核。

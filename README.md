@@ -18,7 +18,7 @@
 - M3 已建立多目标薄层扩展、确定性合成数据集、离线双方案评估和 Otsu / CLAHE+Otsu 同帧实时证据入口；6 个合成场景的离线结果已留档，真实三种光照、遮挡和粘连测试待项目负责人执行。
 - M4 的软件与离线模拟验证已完成：连续停留、短时漏检、离场、重入、多目标和同类多目标均有确定性测试；真实摄像头生命周期验收待执行。
 - M5 已完成 PySide6 离线软件部分及 desktop vision workspace UI/UX 重构：threaded worker、synthetic/camera source adapter、M3/M4 同步展示、异常恢复、110 项全量测试和 60 秒 synthetic soak；真实摄像头 GUI 验收待执行。
-- M6、通信和 PLC 均尚未开始。
+- M6 Fake PLC 已完成纯离线验收（16 场景、确定性故障重放、M4 集成）；通信协议与真实 PLC 实现仍未开始。
 - 所有尚无真实测试证据的结果均标记为 `TODO` 或“待测试”。
 
 ## 项目目录结构
@@ -84,10 +84,18 @@ scripts/               辅助脚本
 | M3 | 多目标识别与抗光照 | DOING（软件与离线合成验收完成，五项真实摄像头验收待执行） |
 | M4 | 防重复识别/事件生成 | DOING（软件与离线模拟验收完成，真实摄像头生命周期验收待执行） |
 | M5 | GUI 上位机 | DOING（离线软件与 synthetic 验收完成，真实摄像头 GUI 验收待执行） |
-| M6 | Fake PLC 模拟器 | TODO |
+| M6 | Fake PLC 模拟器 | DONE（纯软件模拟器验收；无真实 PLC） |
 | M7 | PC-PLC 通信协议 | TODO |
 | M8 | PLC FIFO 与 LED 逻辑 | TODO |
 | M9 | 心跳、超时重发、队列满处理 | TODO |
 | M10 | 实验室真实 PLC 联调 | TODO |
 | M11 | 多工况系统测试 | TODO |
 | M12 | 报告、PPT、演示视频整理 | TODO |
+
+## M6 Fake PLC
+
+```powershell
+.\.venv\Scripts\python.exe -m simulator --scenario all
+```
+
+输出 JSON/CSV 至 `output/m6/`；所有预期通过退出 0，否则非零。支持 `--scenario ack_loss` 等单场景和 `--config`。使用虚拟毫秒时钟，无摄像头、无真实 PLC、无真实通信。Fake PLC ≠ real PLC，不代表 M7/M8/M9 完成。架构、接口、边界见 [M6 使用说明](docs/M6_FAKE_PLC.md)，正式证据见 [TEST-007](notes/tests/TEST-007-M6-Fake-PLC模拟器验收.md)。

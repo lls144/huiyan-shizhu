@@ -56,14 +56,14 @@
 - **是否可在宿舍完成**：是。
 - **当前状态**：DOING。PySide6 6.11.2 已锁定；QObject/QThread worker、容量 1 的 latest-frame buffer、synthetic/camera source adapter、M3/M4 同步 snapshot、Start/Stop/restart/close 和异常恢复均已实现。GUI 已重构为 Application Bar、Vision Workspace、连续 Inspector 和 Status Bar 的桌面工程工具布局，检测叠加采用带深色外描边的 YOLO 风格类别色框。110 项全量 pytest 通过；60.011 秒 synthetic/offscreen soak 处理并显示 1284 帧，processing/GUI FPS 均为 21.395960，0 failed read、0 error、正常退出。该证据不是摄像头实测；完成真实 Insta360 GUI 连续刷新、同步显示、性能与正常关闭验收前不得标记 `DONE`。
 
-## M6 Fake PLC 模拟器 — TODO
+## M6 Fake PLC 模拟器 — DONE
 
 - **输入条件**：初版指令模型和队列语义。
 - **实现任务**：模拟 FIFO、确认/超时、队列满、心跳和断连，以便无实验室 PLC 时开发。
 - **验收标准**：可脚本化重现正常、满队列、丢包/延迟和心跳中断场景；行为与协议草案一致。
 - **所需真实硬件**：无。
 - **是否可在宿舍完成**：是。
-- **当前状态**：TODO。
+- **当前状态**：DONE。2026-09-05 明确授权后完成协议无关模型、FIFO、设备侧重复保护、虚拟毫秒时钟、内存链路、确定性故障计划和 M4 实际事件集成。16/16 CLI 场景及逐字段重放通过，62 项 M6 测试、172 项全量测试通过。证据见 TEST-007、`evidence/data/m6/`。本阶段无真实硬件要求；结果只证明软件模拟语义，M7/M8/M9 仍 TODO，共享协议未冻结。
 
 ## M7 PC-PLC 通信协议 — TODO
 
@@ -121,4 +121,4 @@
 
 ## 2026-09-05 PLC 分工补充
 
-负责人已委派同学负责 PLC。按 `COLLABORATION.md` 可独立开展硬件核实、内部设计和分配的 PLC 子任务；共享接口由负责人定版，PC/M6 与系统联调不因委派自动启动。此轮仅更新资料和规范，M6–M10 保持 TODO，后续实际进度由负责人根据证据维护。
+负责人已委派同学负责 PLC。按 `COLLABORATION.md` 可独立开展硬件核实、内部设计和分配的 PLC 子任务；共享接口由负责人定版，PC/M6 与系统联调不因委派自动启动。资料更新当时 M6–M10 保持 TODO；随后负责人另行授权 M6 完整离线执行，已按本页 M6 条目和 TEST-007 验收为 DONE。M7–M10 未因此启动。

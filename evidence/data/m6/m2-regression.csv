@@ -1,0 +1,11 @@
+﻿image,expected_label,predicted_label,matches_expected_label,confidence,vertices,area_ratio,solidity,circularity,passed_contour_filter,otsu_threshold,valid_contours
+background/background_01.jpg,no_object,no_object,True,0.0,,,,,False,134.0,0
+circle/circle_01.jpg,circle,circle,True,0.97804,8,0.09700824300534772,0.9963185387868235,0.8995035552773162,True,113.0,1
+circle/circle_02.jpg,circle,circle,True,0.968281,8,0.08633565473488414,0.9958494300948245,0.8950462848980268,True,111.0,1
+circle/circle_03.jpg,circle,circle,True,0.975308,8,0.09321889635624842,0.9960884353741497,0.8969542386399061,True,115.0,1
+rectangle/rectangle_01.jpg,rectangle,rectangle,True,1.0,4,0.12262093247268016,0.9922001422228195,0.7362065587649939,True,112.0,1
+rectangle/rectangle_02.jpg,rectangle,rectangle,True,1.0,4,0.14031654469159313,0.9955909068591349,0.7660888921445062,True,123.0,1
+rectangle/rectangle_03.jpg,rectangle,rectangle,True,1.0,4,0.14405053200323298,0.9945914954610606,0.7586278485645973,True,112.0,1
+triangle/triangle_01.jpg,triangle,triangle,True,1.0,3,0.05381827190292186,0.988283880805642,0.5629295471622566,True,117.0,1
+triangle/triangle_02.jpg,triangle,triangle,True,1.0,3,0.057311446096613115,0.9908477496231426,0.5565798498268751,True,126.0,1
+triangle/triangle_03.jpg,triangle,triangle,True,0.991126,3,0.047337769461575085,0.9843869166678658,0.5457742414734734,True,115.0,1

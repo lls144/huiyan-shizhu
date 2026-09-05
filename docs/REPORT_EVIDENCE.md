@@ -51,3 +51,14 @@
 ## PLC 资料来源（非测试证据，2026-09-05）
 
 指导书已原样归档到 `reference/PLC实验指导书（实验箱版20251015）(1).docx`，SHA-256 见 `reference/README.md`，核查结果见 `docs/PLC_HARDWARE.md`。负责人确认实物 CPU 1214C DC/DC/DC；没有执行 TIA 编译、下载、I/O、通信或真实 PLC 验收，不替换上表的测试 TODO。PLC 同学后续提交 `plc/records/` 和精选证据，由负责人审核并汇总。
+
+## M6 模拟器独立验收（2026-09-05）
+
+| 范围 | 实现与版本 | Test / Daily | 数据 | 结论 |
+|---|---|---|---|---|
+| M6 软件模拟器 | `simulator/`、`pc/tests/test_m6_simulator.py`；`00fa6fb3256f8d763cb6b8be765fdf34a716b007` | `notes/tests/TEST-007-M6-Fake-PLC模拟器验收.md`；`notes/daily/2026-09-05-M6-Fake-PLC离线验收.md` | `evidence/data/m6/m6-fake-plc-scenario-results.json` 与 `.csv` | 16/16 场景、确定性重放、M4集成 PASS；M6 DONE |
+| 本轮上游离线回归 | 同一代码commit | 同上 | `evidence/data/m6/m6-regression-summary.json`、M2–M5 CSV、`m5-synthetic-smoke.json` | 全量172 passed；照片10/10、M3四必验光照通过、M4十二场景通过、M5功能冒烟正常关闭 |
+
+正式模拟器 JSON 生成时 dirty=false；含源码SHA-256、配置、故障、步骤、expected/actual、最终PLC状态及benchmark。所有 M6 数据为 **simulated / Fake PLC / no physical PLC**，没有截图要求。M5短时冒烟16.73FPS不算性能验收。实现和接口限制见 `M6_FAKE_PLC.md`。
+
+M6 fault scenarios 可供未来 M7/M9 复用，仅为 supporting simulator available；上表 PLC-001–004、COMM-001–003 的真实/正式验收仍待执行，不填未来 PASS。
