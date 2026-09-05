@@ -47,3 +47,7 @@
 - M4 的 `test_data/m4/` 与 `evidence/data/m4/` 是 detection-sequence 离线模拟证据，不是 PLC 队列证据，也不能替代待执行的真实摄像头生命周期验收。
 - M5 的 `evidence/data/m5/` 与 `evidence/screenshots/m5/synthetic/` 是 PySide6 离线软件证据；只有审计真实 camera session 后精选的截图和摘要才能关闭 GUI-001。
 - **报告章节**：当前仅是建议归属；最终目录确定后再填写准确章节号。
+
+## PLC 资料来源（非测试证据，2026-09-05）
+
+指导书已原样归档到 `reference/PLC实验指导书（实验箱版20251015）(1).docx`，SHA-256 见 `reference/README.md`，核查结果见 `docs/PLC_HARDWARE.md`。负责人确认实物 CPU 1214C DC/DC/DC；没有执行 TIA 编译、下载、I/O、通信或真实 PLC 验收，不替换上表的测试 TODO。PLC 同学后续提交 `plc/records/` 和精选证据，由负责人审核并汇总。

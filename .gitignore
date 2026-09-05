@@ -39,3 +39,14 @@ test_data/raw/
 # Local runtime output
 logs/
 output/
+
+# PLC local working copies and VM images (curated TIA archives remain trackable)
+plc/work/
+plc/local/
+*.vmdk
+*.vdi
+*.vhd
+*.vhdx
+*.vmem
+*.vmss
+*.iso
