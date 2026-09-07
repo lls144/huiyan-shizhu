@@ -7,11 +7,11 @@
 | SCOPE-001 | TODO | TODO | TODO | TODO | TODO | TODO | 系统总体设计/系统集成 |
 | VISION-001 | `pc/vision/preprocess.py`、`contours.py`、`roi.py`、`live.py`、`pc/config/vision.json` | 实现 `9f7ae794`；证据 `d8f6f60b` | TEST-002（离线 PASS）、TEST-003（实时 PASS） | `notes/daily/2026-09-04-M2-离线单目标轮廓识别.md`、`2026-09-04-M2-最终真实验收.md` | 离线：`evidence/screenshots/m2/`；实时：`evidence/screenshots/m2/live/` | 离线：`test_data/m2/2026-09-04-offline-results.*`；实时精选摘要：`evidence/data/m2-live-acceptance-summary.json` | 视觉算法/图像预处理 |
 | VISION-002 | `pc/vision/classifier.py`、`pipeline.py`、`live.py` | 实现 `9f7ae794`；证据 `d8f6f60b` | TEST-002（离线 PASS）、TEST-003（实时 PASS） | 同上 | 离线：`evidence/screenshots/m2/`；实时：`evidence/screenshots/m2/live/` | 离线：`test_data/m2/2026-09-04-offline-results.*`；实时：`evidence/data/m2-live-acceptance-summary.json` | 视觉算法/形状分类 |
-| VISION-003 | `pc/vision/pipeline.py`、`m3_live.py`、`m3_reporting.py`、`synthetic.py` | 基础实现 `8815e443`；数据集 `935e637`；离线 runner `32c06ba`；离线证据 `445f0b2` | TEST-004（离线 synthetic 已验证；真实 PENDING） | `notes/daily/2026-09-04-M3-最小实现与验收准备.md`、`2026-09-04-M3-离线合成验证.md` | 合成：`evidence/screenshots/m3/synthetic/`；真实 TODO | 合成真值：`test_data/m3/synthetic/ground_truth.json`；结果：`evidence/data/m3/m3-offline-synthetic-results.*`；真实 runtime 待产生 | 视觉算法/多目标检测 |
-| VISION-004 | `pc/vision/preprocess.py`、`m3_live.py`、`m3_reporting.py`、`pc/config/vision.json` | 基础实现 `8815e443`；数据集 `935e637`；离线 runner `32c06ba`；离线证据 `445f0b2` | TEST-004（离线 synthetic 已验证；真实 PENDING） | 同上 | 合成：`evidence/screenshots/m3/synthetic/`；真实三种光照 TODO | 合成同帧双方案：`evidence/data/m3/m3-offline-synthetic-results.*`；真实同帧 JSON/CSV 待产生 | 视觉算法/抗光照处理 |
-| GUI-001 | `pc/gui/`（PySide6、QThread worker、source adapters、snapshot/latest-frame buffer、desktop workspace theme/overlay） | 实现 `bbb6fa7`；自动化测试 `eb7a1fd`；UI/UX 重构见当前 M5 refactor commit | TEST-006（Part A synthetic PASS；Part B camera PENDING） | `notes/daily/2026-09-04-M5-GUI离线软件验证.md` | synthetic：`evidence/screenshots/m5/synthetic/m5-gui-desktop-workspace.png`；真实 camera TODO | synthetic soak：`evidence/data/m5/m5-offline-gui-results.*`；真实 session 精选摘要 TODO | 上位机界面 |
+| VISION-003 | `pc/vision/pipeline.py`、`m3_live.py`、`m3_reporting.py`、`synthetic.py` | 基础实现 `8815e443`；离线证据 `445f0b2`；真实运行 `78597f58`；精选证据 `68c89d9` | TEST-004（synthetic + camera PASS） | `notes/daily/2026-09-04-M3-离线合成验证.md`、`2026-09-07-M3-M4-M5-最终真实验收.md` | 合成：`evidence/screenshots/m3/synthetic/`；真实：`evidence/screenshots/m3/live/` | 合成：`evidence/data/m3/m3-offline-synthetic-results.*`；真实五场景：`evidence/data/m3/live/` | 视觉算法/多目标检测 |
+| VISION-004 | `pc/vision/preprocess.py`、`m3_live.py`、`m3_reporting.py`、`pc/config/vision.json` | 基础实现 `8815e443`；离线证据 `445f0b2`；真实运行 `78597f58`；精选证据 `68c89d9` | TEST-004（真实三种光照双方案 PASS） | 同上 | `evidence/screenshots/m3/live/normal_light/`、`bright_or_side_light/`、`dark_light/`；失败样例同级保留 | 每场景原始 `evidence.json` / `comparison.csv` 位于 `evidence/data/m3/live/` | 视觉算法/抗光照处理 |
+| GUI-001 | `pc/gui/`（PySide6、QThread worker、source adapters、snapshot/latest-frame buffer、desktop workspace theme/overlay） | 实现 `bbb6fa7`；自动化测试 `eb7a1fd`；真实运行 `78597f58`；精选证据 `68c89d9` | TEST-006（Part A synthetic、Part B camera 均 PASS） | `notes/daily/2026-09-04-M5-GUI离线软件验证.md`、`2026-09-07-M3-M4-M5-最终真实验收.md` | synthetic：`evidence/screenshots/m5/synthetic/`；真实 running/Idle：`evidence/screenshots/m5/live/` | synthetic soak：`evidence/data/m5/m5-offline-gui-results.*`；真实摘要：`evidence/data/m5/m5-live-camera-session-summary.json` | 上位机界面 |
 | PLC-001 | TODO | TODO | TODO | TODO | TODO | TODO | PLC 设计/FIFO |
-| PLC-002 | M4 子能力：`pc/events/`、`pc/config/events.json`；PLC 部分 TODO | M4 实现 `7d83c57`；离线测试 `bdaca0b`；证据 `46bb2a6`；live 证据结构测试 `506fad2`；PLC TODO | TEST-005（离线模拟 PASS；真实 PENDING）；完整 PLC 测试 TODO | `notes/daily/2026-09-04-M4-离线事件去重验证.md` | M4 无需截图；真实 live TODO | `test_data/m4/detection-sequences.json`；`evidence/data/m4/m4-offline-event-results.*` | 事件去重/生产者消费者前置 |
+| PLC-002 | M4 子能力：`pc/events/`、`pc/config/events.json`；PLC 部分 TODO | M4 实现 `7d83c57`；离线证据 `46bb2a6`；真实运行 `78597f58`；精选证据 `68c89d9`；PLC TODO | TEST-005（M4 离线 + camera 生命周期 PASS）；完整 PLC 测试 TODO | `notes/daily/2026-09-04-M4-离线事件去重验证.md`、`2026-09-07-M3-M4-M5-最终真实验收.md` | `evidence/screenshots/m4/live/m4-live-lifecycle-events.png.png` | 离线：`evidence/data/m4/m4-offline-event-results.*`；真实：`evidence/data/m4/m4-live-lifecycle-summary.json`、`evidence/data/m4/m4-live-lifecycle-events.csv` | 事件去重/生产者消费者前置 |
 | PLC-003 | TODO | TODO | TODO | TODO | TODO | TODO | PLC 设计/LED 分拣 |
 | PLC-004 | TODO | TODO | TODO | TODO | TODO | TODO | PLC 设计/队列状态与复位 |
 | COMM-001 | TODO | TODO | TODO | TODO | TODO | TODO | 通信协议/帧格式 |
@@ -43,10 +43,16 @@
 - **实验日志**：链接到 `notes/daily/` 中对应日期记录。
 - **截图/数据文件**：只登记真实存在的仓库路径或明确的外部归档位置。
 - `output/m2/` 中完整 runtime 数据被 Git 忽略；最终证据链只引用从这些真实文件审计后筛选出的标注图和摘要，不提交完整运行数据。
-- M3 的 `test_data/m3/synthetic/` 与 `evidence/**/m3/` 均为合成软件验证材料，不能替代 `output/m3/` 中待执行的真实摄像头验收及后续精选真实证据。
-- M4 的 `test_data/m4/` 与 `evidence/data/m4/` 是 detection-sequence 离线模拟证据，不是 PLC 队列证据，也不能替代待执行的真实摄像头生命周期验收。
-- M5 的 `evidence/data/m5/` 与 `evidence/screenshots/m5/synthetic/` 是 PySide6 离线软件证据；只有审计真实 camera session 后精选的截图和摘要才能关闭 GUI-001。
+- M3 的 `synthetic/` 子目录与 `m3-offline-synthetic-results.*` 仍只表示合成软件验证；真实证据必须明确指向 `evidence/data/m3/live/` 和 `evidence/screenshots/m3/live/`，二者不可混称。
+- M4 的 `m4-offline-event-results.*` 是 detection-sequence 离线模拟；`m4-live-lifecycle-*` 与 `screenshots/m4/live/` 才是 camera 生命周期证据。即使 M4 已 DONE，也不是 PLC 队列证据。
+- M5 的 `screenshots/m5/synthetic/` 和 `m5-offline-gui-results.*` 仍是离线证据；`m5-live-camera-session-summary.json` 与 `screenshots/m5/live/` 才是本次真实 camera GUI 验收材料。
 - **报告章节**：当前仅是建议归属；最终目录确定后再填写准确章节号。
+
+## M3/M4/M5 最终真实验收（2026-09-07）
+
+真实运行基线为 `78597f58e63f8f262fd0df25757218994345dc39`，精选原始证据 commit 为 `68c89d9`。M3 的 5 个原始场景 JSON/CSV、15 张 frame/annotated 图片，M4 focused lifecycle JSON/CSV 和截图，以及 M5 camera session 摘要与 running/Idle 截图均已进入上表对应路径。完整 runtime 继续位于 ignored `output/`，未提交、未覆盖、未删除。
+
+本次最终回归为 172 项 pytest 全部通过、M2 10/10、M3 synthetic 必验光照 4/4、M4 12/12、M5 短时功能冒烟正常关闭、M6 16/16 且确定性重放；摘要见 `evidence/data/m3-m5-final-regression-summary.json`。M5 短时 synthetic 的 17.327158 FPS 不作为性能证据，真实性能只引用 camera session 的 29.315668 FPS。
 
 ## PLC 资料来源（非测试证据，2026-09-05）
 

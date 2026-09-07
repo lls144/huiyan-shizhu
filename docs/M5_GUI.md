@@ -2,7 +2,7 @@
 
 ## 当前状态与边界
 
-M5 为 `DOING`。离线软件、线程生命周期、异常处理、自动化测试和 60 秒 synthetic soak 已完成；真实 Insta360 摄像头 GUI 验收尚未执行，因此 GUI-001 和 M5 不得标记 `DONE`。本模块不包含 Fake PLC、通信、FIFO、ACK、心跳或重发。
+M5 为 `DONE`。离线软件、线程生命周期、异常处理、自动化测试和 60 秒 synthetic soak 已完成；2026-09-07 的真实 Insta360 摄像头 GUI 又完成连续刷新、信息同步、性能和 Stop→Idle 正常关闭验收。本模块不包含 Fake PLC、通信、FIFO、ACK、心跳或重发。
 
 ## 数据流与线程边界
 
@@ -71,11 +71,11 @@ GUI 专用 overlay 位于 `pc/gui/overlay.py`：ROI 为 1 px 低权重灰线；d
 
 - `processed FPS`：worker 完成 source read、M3、M4 和标注后的实际吞吐，不使用摄像头 advertised FPS。
 - `GUI update FPS`：主线程实际消费并展示 snapshot 的速率。
-- M5 软件目标：处理链不低于 20 FPS，GUI 更新不低于 15 FPS；真实摄像头是否达到目标仍须 TEST-006 Part B 验证。
+- M5 软件目标：处理链不低于 20 FPS，GUI 更新不低于 15 FPS；2026-09-07 真实摄像头实测已达到该目标。
 
 2026-09-04 的 offscreen synthetic soak 请求 30 FPS，实际运行 60.011 s，处理和展示 1284 帧：`processing_fps=21.395960`、`gui_update_fps=21.395960`、平均处理 6.538 ms、P95 9.372 ms、0 failed read、0 display drop、0 buffer overwrite、`error=null`、正常停止。Python `tracemalloc` 峰值 64,671,161 bytes，只代表 Python 可追踪分配，不是进程总内存，也不据此宣称无内存泄漏。
 
-上述是 synthetic/offscreen 软件证据，不能替代真实摄像头 FPS、画面流畅性或窗口交互验收。
+上述仍只是 synthetic/offscreen 软件证据；真实摄像头验收数据单独列于下节，没有混用。
 
 ## Camera 启动与联合验收
 
@@ -91,11 +91,23 @@ GUI 专用 overlay 位于 `pc/gui/overlay.py`：ROI 为 1 px 低权重灰线；d
 
 相机模式下数字键或界面按钮 `1`～`5` 分别保存 normal、bright/side、dark、occlusion、touching 的 M3 同帧双预处理 runtime evidence。M4 状态和事件自动进入 M5 session JSON。完整 runtime 位于被忽略的 `output/`；审计后才能精选真实证据进入 `evidence/`。
 
+### 2026-09-07 真实结果
+
+- 设备：Insta360 Ace Pro 2，DirectShow / MJPG / 1920×1080，请求 30 FPS，reported 30.000030 FPS。
+- calibration：请求 auto；未找到合格中央白色四边形后降级 manual/selected；ROI `[548,126,1346,698]` 全程锁定。
+- session：1577.142974 秒；46235 read / processed / GUI updates；processing 和 GUI update 均 29.315668 FPS。
+- 健康：0 failed read、0 display drop、0 buffer overwrite、`error=null`、`ended_reason=stopped`、worker 与 GUI 均 clean shutdown。
+- 同步展示：running 截图同时显示真实 circle 画面、`#76`、96.9% 几何 confidence、confirmed state、事件、29.3 FPS、ROI MANUAL 和 No errors。
+- 停止：Stop 后截图显示顶部 Idle 与底部 IDLE，最后画面保留用于检查。
+
+精选摘要位于 `evidence/data/m5/m5-live-camera-session-summary.json`；截图位于 `evidence/screenshots/m5/live/`。完整 session 继续保留在 ignored `output/m5/sessions/`，未覆盖或删除。
+
 ## 已知限制
 
-- camera GUI 尚未真实运行；不能将 synthetic 截图或 FPS 描述为摄像头结果。
 - 当前 recent events 控件最多保留 30 条，完整事件保存在 session JSON。
 - M3 合并轮廓的 `unknown` 会原样进入 M4/GUI，GUI 不负责修复分类。
 - Stop 等待 worker 最多 5 秒；若未退出，窗口拒绝关闭并显示错误，不强杀线程。
 - camera manual ROI 继续使用现有 OpenCV selector，没有为 Qt 重写一套 ROI 工具。
 - UI/UX 重构截图为 synthetic/offscreen 画面：`evidence/screenshots/m5/synthetic/m5-gui-desktop-workspace.png`，不能冒充 camera evidence。
+- 本次 auto ROI 未找到合格中央白色四边形；manual fallback 成功。这不支持“auto 100% 成功”的结论。
+- 控制台曾出现 `QFont::setPointSize Point size <=0 (-1)`；该警告未进入 session JSON。由于 GUI 正常运行、Last error 为 No errors、session `error=null` 且 clean shutdown，归类为非阻断 UI warning，不视为视觉或摄像头错误。

@@ -71,7 +71,7 @@ M1 的最小依赖已锁定在 `requirements.txt`。虚拟环境 `.venv/` 不进
 ## M3 软件准备环境
 
 - 继续复用 M2 的 Python、OpenCV、NumPy、摄像头配置和 ROI 校准；未新增第三方依赖。
-- 新增多目标合成测试和 Otsu / CLAHE+Otsu 同帧证据测试；真实摄像头的光照条件、FPS 和输出尚待 TEST-004 记录。
+- 新增多目标合成测试和 Otsu / CLAHE+Otsu 同帧证据测试；2026-09-07 已用真实 Insta360 Ace Pro 2 完成 normal、bright/side、dark、partial occlusion、touching/merged 五项验收，详见 TEST-004。
 
 ## M5 GUI 软件环境
 
@@ -84,8 +84,27 @@ M1 的最小依赖已锁定在 `requirements.txt`。虚拟环境 `.venv/` 不进
 | Qt runtime | 6.11.2 | `PySide6.QtCore.qVersion()` 实测 |
 | Qt headless | `QT_QPA_PLATFORM=offscreen` | 只在测试进程/CLI 参数内设置，不修改系统环境变量 |
 | OpenCV / NumPy | 5.0.0 / 2.5.2 | 继续复用 M2/M3 管线，未升级 |
-| pytest | 9.1.1 | M5 UI/UX 重构及 overlay 对比度优化后全量 110 项通过 |
+| pytest | 9.1.1 | M5 UI/UX 阶段曾为 110 项；2026-09-07 加入 M6 后仓库全量回归 172 项通过 |
 
 - `pip check` 最终回归结果：`No broken requirements found.`。
 - 60 秒 synthetic soak 达到 processing 21.395960 FPS、GUI update 21.395960 FPS；这不是 Insta360 camera FPS。
 - PySide6 是 M5 的正式 GUI 选型，不混用 PyQt、QML、Web 或 Electron。
+
+## M3/M4/M5 真实联合验收环境
+
+记录日期：2026-09-07（Asia/Shanghai）。
+
+| 项目 | 实际值 | 证据 |
+|---|---|---|
+| 运行代码 | `78597f58e63f8f262fd0df25757218994345dc39` | M3 evidence 与 M5 session |
+| 摄像头 | Insta360 Ace Pro 2，VID 2E1A、PID 1003 | session `source_metadata.device` |
+| 采集 | DirectShow / MJPG / 1920×1080 / 请求 30 FPS | session camera config |
+| actual properties | 1920×1080、reported 30.000030 FPS | session source metadata |
+| Python / PySide6 | 3.12.10 / 6.11.2 | session environment |
+| OpenCV / NumPy | 5.0.0 / 2.5.2 | 每组 M3 evidence environment |
+| ROI | auto 请求失败后 manual/selected `[548,126,1346,698]` | session calibration 与五组 evidence |
+| session | 1577.142974 s、46235 read/processed/GUI updates | M5 session summary |
+| throughput | processing/GUI update 均 29.315668 FPS | M5 session summary |
+| health | 0 failed read、0 display drop、0 buffer overwrite、`error=null`、clean shutdown | M5 session summary |
+
+原始 session 报告 `git.dirty=true`；审计开始时没有 tracked diff，只有操作者保存的 M4/M5 live 截图为未跟踪文件。M3 五组 evidence 在保存时均记录 `dirty=false`。Qt 控制台的 `QFont::setPointSize Point size <=0 (-1)` 仅为现场观察且未写入 session；GUI 正常、Last error 为 No errors、session `error=null`，因此记为非阻断 UI warning。

@@ -2,7 +2,7 @@
 
 ## 当前状态
 
-M3 为 `DOING`。多目标代码、Otsu 与 CLAHE+Otsu 同帧对比、确定性合成数据集、离线批处理、版本化离线证据和自动化测试已完成；真实摄像头的三种光照、部分遮挡和目标接触/粘连尚未执行，因此 VISION-003、VISION-004 和 M3 不得标记 `DONE`。
+M3 为 `DONE`。多目标代码、Otsu 与 CLAHE+Otsu 同帧对比、确定性合成数据集、离线批处理和自动化测试已完成；2026-09-07 又完成并审计真实 Insta360 摄像头的正常、较亮/侧光、较暗、部分遮挡和目标接触/粘连五个场景。VISION-003、VISION-004 均已有真实证据。
 
 ## 最小实现
 
@@ -22,7 +22,7 @@ M3: 所有通过筛选的外轮廓 -> 分别分类 -> 按中心从左到右输�
 | `otsu` | 灰度 -> Gaussian blur -> inverse Otsu | M2 基线 |
 | `clahe_otsu` | 灰度 -> CLAHE -> Gaussian blur -> inverse Otsu | 最小改动的局部对比度增强方案 |
 
-两种模式共享后续轮廓筛选和分类参数。CLAHE 的 clip limit 与 tile grid size 位于 `pc/config/vision.json`。当前不预先宣称哪种更好；必须用同一真实帧的成对结果决定。若两者表现一致，优先保留更简单的 Otsu 基线。
+两种模式共享后续轮廓筛选和分类参数。CLAHE 的 clip limit 与 tile grid size 位于 `pc/config/vision.json`。真实实验前不预先宣称哪种更好；必须用同一真实帧的成对结果决定。2026-09-07 的三种真实分离光照中两者分类结果一致，因此最终保留更简单的 Otsu 基线，CLAHE+Otsu 继续作为对照/诊断方法。本轮没有独立性能对比，不声称两者存在速度差异。
 
 ## 离线合成验证
 
@@ -46,7 +46,7 @@ M3: 所有通过筛选的外轮廓 -> 分别分类 -> 按中心从左到右输�
 
 数据见 `evidence/data/m3/m3-offline-synthetic-results.json` 与 `.csv`，标注图见 `evidence/screenshots/m3/synthetic/`。这些是软件验证证据，不是相机实拍证据。
 
-## 实时入口
+## 实时入口与真实验收
 
 ```powershell
 .\.venv\Scripts\python.exe -m pc.vision `
@@ -70,12 +70,24 @@ M3: 所有通过筛选的外轮廓 -> 分别分类 -> 按中心从左到右输�
 
 按 `1`～`5` 时，两种预处理方案会处理同一原始帧，并保存 frame、ROI、两套 normalized gray/binary/Canny/annotated、JSON 和 CSV。`scenario` 来自操作者按键，`expected_labels` 来自启动参数；两者仍需结合截图人工核对，程序不会把操作者声明冒充视觉真值。
 
+2026-09-07 五组真实 runtime 均使用运行基线 `78597f58`，设备为 Insta360 Ace Pro 2、DirectShow、MJPG、1920×1080@30。auto ROI 未找到合格中央白色四边形，按设计降级到 manual/selected ROI `[548,126,1346,698]`，随后整次运行锁定。
+
+| 场景 | Otsu | CLAHE+Otsu | 结论 |
+|---|---|---|---|
+| normal | 3：circle/rectangle/triangle | 同左 | PASS |
+| bright/side | 3：circle/rectangle/triangle | 同左 | PASS |
+| dark | 3：circle/rectangle/triangle | 同左 | PASS |
+| partial occlusion | 3：circle/unknown/triangle | 同左 | 遮挡目标变为 unknown，诊断局限 |
+| touching/merged | 2：unknown/triangle | 同左 | 圆形与矩形合并为外轮廓，诊断局限 |
+
+人工逐张查看了 frame 与两种 annotated 图，确认 normal 为三个分离目标、bright/side 有手机侧向补光、dark 整体亮度降低、occlusion 有手部遮挡、touching 中矩形与圆形实际接触。详细数值和路径见 TEST-004。
+
 ## 证据边界
 
-完整 runtime 数据默认位于被 Git 忽略的 `output/m3/live-evidence/`。所有新证据初始写为 `pending_user_validation`。只有实际读取 JSON、核对截图和 session、记录失败情况后，才从中选择少量代表性材料进入 `evidence/`。
+完整 runtime 数据仍位于被 Git 忽略的 `output/m3/live-evidence/`，未覆盖或删除；runtime 文件的初始 `pending_user_validation` 字段保持原样。审计后的原始 JSON/CSV 精选副本位于 `evidence/data/m3/live/`，每个场景的 frame 与两种 annotated 图位于 `evidence/screenshots/m3/live/`。normalized gray/binary/Canny/ROI 等完整中间图仍只保留在 runtime。
 
 遮挡和粘连不要求本阶段完全解决。当前使用 `RETR_EXTERNAL`，接触目标可能形成一个轮廓；M3 的要求是如实保存结果和局限，不为单个失败场景引入复杂分水岭、实例分割或跟踪。
 
-## 剩余真实验收
+## 最终结论
 
-今晚软件与离线验证结束后，项目负责人只需：固定相机并启动上述 `multi-live` 命令，完成 ROI 校准，依次摆放五个场景并按 `1`～`5`，最后按 `Q`。随后必须审计 frame、两种 annotated 图、JSON/CSV、session 中的设备、FPS、failed reads 和 error，再决定 M3 是否可以关闭。
+真实多目标与三种光照满足 M3 原定验收；遮挡和粘连结果没有被美化或额外修算法。M3 于 2026-09-07 封口为 `DONE`，后续更复杂遮挡分割、严重透视、更多材质与系统级鲁棒性归入 M11，不在 M3 继续扩展。

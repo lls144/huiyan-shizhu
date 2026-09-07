@@ -2,7 +2,7 @@
 
 ## 当前状态
 
-M4 为 `DOING`。软件实现、12 个 detection-only 离线模拟场景、M3 synthetic 集成测试和结构化证据均已完成；`multi-live --events` 已准备但未执行真实摄像头验收。M3 仍为 `DOING`，本模块没有修改 M3 分类规则。
+M4 为 `DONE`。软件实现、12 个 detection-only 离线模拟场景、M3 synthetic 集成测试和结构化证据均已完成；2026-09-07 又完成真实 Insta360 camera 生命周期验收。本模块没有修改 M3 分类规则，也不代表 PLC-002 整体完成。
 
 ## 数据流与边界
 
@@ -55,7 +55,7 @@ M4 只接收 detections，不接收图像，也不调用灰度化、二值化、
 
 自动化集成测试实际读取 `test_data/m3/synthetic/multi_normal.png`，调用现有 `analyze_multiple_objects()`，再将同一组三个 detections 连续输入 M4 两帧。第一帧无事件，第二帧产生 triangle、rectangle、circle 三个稳定 ENTER；没有复制或修改 M3 classifier。
 
-## 明天的最小 live 入口
+## Live 入口与真实验收
 
 ```powershell
 .\.venv\Scripts\python.exe -m pc.vision `
@@ -70,11 +70,15 @@ M4 只接收 detections，不接收图像，也不调用灰度化、二值化、
 
 事件跟踪固定使用默认 Otsu detection，避免 `T` 键切换显示方案改变状态。画面显示 tracked IDs 和最近事件；控制台逐条打印 ENTER/EXIT；session JSON 自动记录配置、全部事件和最终对象状态。M4 验证无需额外按键，M3 的 `1`～`5` 仍只用于保存五场景成对证据。
 
+2026-09-07 的真实 session 运行 1577.142974 秒并记录 117 个事件。审计确认 event ID 1～117 连续，所有 object ID 至多一次 ENTER 和一次 EXIT。重点 circle 生命周期：frame 31606 `OBJECT_ENTER #75`；#75 持续命中 2050 次且没有第二次 ENTER；离场后 frame 33660 `OBJECT_EXIT #75`；重入后 frame 33928 `OBJECT_ENTER #76`。#76 截至 Stop 仍 active/confirmed。
+
+短暂遮挡保持 ID 是现场人工观察 + GUI 截图结论；session 没有保存该时间段的逐帧 snapshot，故不写成 JSON 单独可证明。结构化摘要与 focused CSV 位于 `evidence/data/m4/`，事件截图位于 `evidence/screenshots/m4/live/`。
+
 ## 已知限制
 
 - 关联只使用 label、IoU 和中心距离，不预测运动，不处理交叉后 ReID。
 - `max_missing_frames` 按处理帧而非墙钟时间计数；实时运行帧率变化会改变实际容忍时长。
 - 严重跳动超过两个空间阈值会创建新对象。
 - M3 合并轮廓输出 `unknown` 时，M4 不会把物理目标重新分开。
-- 没有 GUI、PLC 队列、通信、ACK、重发或队列满逻辑。
-- 离线模拟不能替代真实摄像头生命周期验收。
+- M4 已接入 GUI 展示，但没有 PLC 队列、通信、ACK、重发或队列满逻辑。
+- M4 `DONE` 只关闭 PC 事件层；PLC-002、M7 及以后仍按各自验收条件推进。

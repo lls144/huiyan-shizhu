@@ -12,12 +12,12 @@
 
 ## 当前状态
 
-- 当前阶段：M2 单目标轮廓识别已完成；M3 多目标识别与抗光照、M4 防重复识别与事件生成、M5 GUI 均处于 `DOING`。
+- 当前阶段：M2 单目标、M3 多目标与抗光照、M4 防重复识别与事件生成、M5 GUI、M6 Fake PLC 均已完成各自定义范围内的验收；M7 及以后未开始。
 - 10 张真实离线图片回归与两种机位下共 8 项 Insta360 实时摄像头验收均通过；实时证据见 `TEST-003` 和 `evidence/screenshots/m2/live/`。
 - 实时入口复用 M1 的设备选择和 `open_configured_camera`，没有复制第二套摄像头管理逻辑。
-- M3 已建立多目标薄层扩展、确定性合成数据集、离线双方案评估和 Otsu / CLAHE+Otsu 同帧实时证据入口；6 个合成场景的离线结果已留档，真实三种光照、遮挡和粘连测试待项目负责人执行。
-- M4 的软件与离线模拟验证已完成：连续停留、短时漏检、离场、重入、多目标和同类多目标均有确定性测试；真实摄像头生命周期验收待执行。
-- M5 已完成 PySide6 离线软件部分及 desktop vision workspace UI/UX 重构：threaded worker、synthetic/camera source adapter、M3/M4 同步展示、异常恢复、110 项全量测试和 60 秒 synthetic soak；真实摄像头 GUI 验收待执行。
+- M3 已用 Insta360 对正常、较亮/侧光、较暗、部分遮挡和接触/粘连 5 个真实场景完成 Otsu / CLAHE+Otsu 同帧审计。前三种光照两种方法均完整识别三类；遮挡输出 `circle + unknown + triangle`，接触输出 `unknown + triangle`，失败样例已保留。默认方案继续使用更简单的 Otsu。
+- M4 已完成真实 circle 生命周期审计：同一 #75 持续停留仅一次 ENTER，离场产生 EXIT，重入后新 #76 产生 ENTER；短暂遮挡保持 ID 的结论明确标记为现场人工观察 + GUI 截图，而非 JSON 逐帧证据。
+- M5 已完成 1577.142974 秒 Insta360 GUI 真实运行：46235/46235 帧，processing/GUI 均为 29.315668 FPS，0 failed read、0 error，Stop 后 clean shutdown。auto ROI 未找到合格区域后 manual ROI 成功并锁定。
 - M6 Fake PLC 已完成纯离线验收（16 场景、确定性故障重放、M4 集成）；通信协议与真实 PLC 实现仍未开始。
 - 所有尚无真实测试证据的结果均标记为 `TODO` 或“待测试”。
 
@@ -81,9 +81,9 @@ scripts/               辅助脚本
 | M0 | 项目初始化 | DONE |
 | M1 | USB 摄像头稳定采集 | DONE |
 | M2 | 单目标轮廓识别 | DONE |
-| M3 | 多目标识别与抗光照 | DOING（软件与离线合成验收完成，五项真实摄像头验收待执行） |
-| M4 | 防重复识别/事件生成 | DOING（软件与离线模拟验收完成，真实摄像头生命周期验收待执行） |
-| M5 | GUI 上位机 | DOING（离线软件与 synthetic 验收完成，真实摄像头 GUI 验收待执行） |
+| M3 | 多目标识别与抗光照 | DONE（5 个真实摄像头场景及双方案证据已审计） |
+| M4 | 防重复识别/事件生成 | DONE（PC 事件层真实生命周期已审计；不代表 PLC-002 整体完成） |
+| M5 | GUI 上位机 | DONE（真实 Insta360 GUI 性能、同步显示与正常关闭已审计） |
 | M6 | Fake PLC 模拟器 | DONE（纯软件模拟器验收；无真实 PLC） |
 | M7 | PC-PLC 通信协议 | TODO |
 | M8 | PLC FIFO 与 LED 逻辑 | TODO |

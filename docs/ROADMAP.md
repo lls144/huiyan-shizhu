@@ -29,32 +29,32 @@
 - **是否可在宿舍完成**：是。
 - **当前状态**：DONE。10 张真实离线图片回归为 10/10；原机位 manual ROI 与改变机位后的 auto ROI 两轮共 8 个实时工况均与真实输入一致。两个 session 均完成且 `failed_reads=0`、`error=null`。ROI 采用“启动校准 → 运行锁定”，相机重新架设时重新校准；不逐帧追踪。证据见 TEST-002、TEST-003、`evidence/screenshots/m2/` 和 `evidence/data/m2-live-acceptance-summary.json`。
 
-## M3 多目标识别与抗光照 — DOING
+## M3 多目标识别与抗光照 — DONE
 
 - **输入条件**：M2 分类管线；至少 2 个物体；可控的多种光照条件。
 - **实现任务**：单帧多轮廓处理、目标筛选、抗光照方案对比、遮挡和粘连情况记录。
 - **验收标准**：同屏至少 2 个目标可独立输出；完成多种光照的真实对比测试；参数与局限可追溯。
 - **所需真实硬件**：摄像头、多个纸板物体、背景板、可调整照明。
 - **是否可在宿舍完成**：是。
-- **当前状态**：DOING。已复用 M2 管线实现所有有效轮廓的独立分类，建立 Otsu 与 CLAHE+Otsu 的同帧对比、确定性 6 场景合成数据集和离线批处理。正常、较亮、较暗、侧光的合成场景在两种方案下均为 3/3；合成遮挡和接触场景均真实输出 `triangle + unknown` 两个轮廓，作为 `RETR_EXTERNAL` 合并轮廓的已知局限。版本化 JSON/CSV/标注图已留档，但正常、较亮/侧光、较暗、部分遮挡和接触/粘连的真实摄像头测试尚未执行，故不得标记 `DONE`。
+- **当前状态**：DONE。2026-09-07 在 Insta360 Ace Pro 2、1920×1080、manual/selected ROI 下保存并审计 5 个真实场景。正常、较亮/侧光、较暗三种分离场景中 Otsu 与 CLAHE+Otsu 均为 3 个对象且精确输出 `circle, rectangle, triangle`；CLAHE 未体现额外分类正确性收益，故 Otsu 保持默认，CLAHE+Otsu 保留为对照/诊断。部分遮挡时两种方法均输出 `circle, unknown, triangle`；矩形与圆形接触时均输出 `unknown, triangle`，如实保留为 `RETR_EXTERNAL` 外轮廓局限。原帧、两种标注图、JSON/CSV 与测试记录可追溯。
 
-## M4 防重复识别/事件生成 — DOING
+## M4 防重复识别/事件生成 — DONE
 
 - **输入条件**：M3 多目标输出；已定义目标 ID/事件模型。
 - **实现任务**：把逐帧检测转为离散入队事件；处理目标停留、短暂丢失和重复检测。
 - **验收标准**：同一物体持续停留不产生重复入队；移除再放入的规则明确并有自动化/录像测试。
 - **所需真实硬件**：摄像头与样本；可先用录像/图片开发。
 - **是否可在宿舍完成**：是。
-- **当前状态**：DOING。已建立 Detection、ObjectState、VisionEvent、确定性 label+IoU/中心距离关联、2 帧确认、3 帧短时缺失容忍和 ENTER/EXIT 去重。12 个离线 detection-sequence 场景全部通过，M3 `multi_normal` 实际检测结果可连续输入并产生 3 个稳定 ENTER；`multi-live --events` 入口已准备但未实际运行。ROADMAP 的自动化最低条件已满足，但按本轮用户指定的更严格边界，完成一次真实摄像头“进入→停留→短暂遮挡→离场→重入”验收前不标记 `DONE`。
+- **当前状态**：DONE。除原有 12 个离线 detection-sequence 场景外，2026-09-07 真实 camera GUI session 记录 117 个事件且 event ID 1～117 连续；每个 object 至多一个 ENTER 和一个 EXIT。重点 circle 生命周期为 frame 31606 `ENTER #75`、frame 33660 `EXIT #75`、frame 33928 `ENTER #76`；#75 在 2050 次命中期间无重复 ENTER，离场后重入分配新 ID。短暂遮挡保持 ID 由现场人工观察与 GUI 截图支持，session 未保存该区段逐帧 snapshot，因此不伪装为 JSON 单独证明。M4 完成仅指 PC 事件子能力；PLC-002 整体仍未完成。
 
-## M5 GUI 上位机 — DOING
+## M5 GUI 上位机 — DONE
 
 - **输入条件**：M1–M4 稳定 API；确认 PySide6 选型。
 - **实现任务**：显示实时画面、识别结果、置信度和必要状态；处理线程/生命周期与异常提示。
 - **验收标准**：持续运行无明显阻塞；画面和识别信息同步；性能和恢复行为有实测记录。
 - **所需真实硬件**：摄像头。
 - **是否可在宿舍完成**：是。
-- **当前状态**：DOING。PySide6 6.11.2 已锁定；QObject/QThread worker、容量 1 的 latest-frame buffer、synthetic/camera source adapter、M3/M4 同步 snapshot、Start/Stop/restart/close 和异常恢复均已实现。GUI 已重构为 Application Bar、Vision Workspace、连续 Inspector 和 Status Bar 的桌面工程工具布局，检测叠加采用带深色外描边的 YOLO 风格类别色框。110 项全量 pytest 通过；60.011 秒 synthetic/offscreen soak 处理并显示 1284 帧，processing/GUI FPS 均为 21.395960，0 failed read、0 error、正常退出。该证据不是摄像头实测；完成真实 Insta360 GUI 连续刷新、同步显示、性能与正常关闭验收前不得标记 `DONE`。
+- **当前状态**：DONE。PySide6 6.11.2 的离线自动化与 synthetic soak 保持通过；2026-09-07 使用 Insta360 Ace Pro 2 真实运行 1577.142974 秒，读取/处理/GUI 更新均为 46235 帧，processing 与 GUI update 均为 29.315668 FPS，0 failed read、0 display drop、0 buffer overwrite、`error=null`，Stop 后 `clean_shutdown=true`。running 截图显示真实画面、label/confidence、#76 状态、事件、29.3 FPS、ROI manual 和 No errors；Idle 截图确认 Stop 后正常停止。启动 auto ROI 未找到合格中央白色四边形，按设计降级 manual，ROI `[548,126,1346,698]` 在整次运行中锁定。Qt 的 `QFont::setPointSize Point size <=0 (-1)` 为现场控制台非阻断 UI warning，不是视觉或摄像头错误。
 
 ## M6 Fake PLC 模拟器 — DONE
 

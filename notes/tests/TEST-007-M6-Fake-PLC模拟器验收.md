@@ -70,7 +70,7 @@ git diff --check
 - M2 真实离线图片：10/10 匹配目录标签；是已有照片回归，没有本次摄像头实测。
 - M3：6 场景 × 2 方法；4 个必验光照场景全部通过；遮挡/接触属于诊断场景，仍为 triangle + unknown，不能写成6/6完整识别。
 - M4：12/12 场景通过。
-- M5：5.019595s synthetic/offscreen 冒烟，84帧，16.734417 processing FPS，0 failed_reads，error=null，worker_clean_shutdown=true。测试与其他回归并行；仅证明功能/正常关闭，不作为20 FPS性能验收，也不替换已有60秒soak或待执行摄像头验收。
+- M5：5.019595s synthetic/offscreen 冒烟，84帧，16.734417 processing FPS，0 failed_reads，error=null，worker_clean_shutdown=true。测试与其他回归并行；仅证明功能/正常关闭，不作为20 FPS性能验收，也不替换已有60秒 soak 或后来 2026-09-07 的独立真实摄像头验收。
 - M6 benchmark：250轮、1500次显式操作，0.0107343s；250 accepted、250 duplicate、250 consumed。含 enqueue/dequeue/duplicate/heartbeat/故障与时钟推进；只作开发效率参考，无硬件性能结论。
 - pip check：No broken requirements found。
 - git diff --check：通过；Git 的 LF/CRLF 提示不是 whitespace error。
@@ -87,4 +87,4 @@ git diff --check
 
 ## 结论与限制
 
-M6 **PASS / DONE**。FIFO/ACK/队列满/丢包/延迟/断连/心跳/重放/M4 集成均有实际软件测试证据。未执行真实 PLC、M7 帧编解码、M8按钮/LED、M9自动重发及可靠性闭环。M3/M4/M5 保持 DOING，M7/M8/M9 保持 TODO。去重历史与日志只在进程内保留且无上限，适用于有界测试；正式重启/持久化策略未定义。
+M6 **PASS / DONE**。FIFO/ACK/队列满/丢包/延迟/断连/心跳/重放/M4 集成均有实际软件测试证据。未执行真实 PLC、M7 帧编解码、M8按钮/LED、M9自动重发及可靠性闭环。M6 验收当时 M3/M4/M5 仍为 DOING，三者后来于 2026-09-07 通过独立真实摄像头验收；M7/M8/M9 始终保持 TODO。去重历史与日志只在进程内保留且无上限，适用于有界测试；正式重启/持久化策略未定义。

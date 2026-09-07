@@ -5,13 +5,13 @@ tags:
   - 慧眼识珠
   - decision
   - M3
-status: proposed-pending-real-validation
+status: accepted
 ---
 
 # DECISION-003 M3 多目标与抗光照最小扩展
 
 - **Decision ID**：DECISION-003
-- **状态**：PROPOSED，等待真实光照证据决定最终预处理模式
+- **状态**：ACCEPTED，2026-09-07 真实光照证据已完成方案选择
 
 ## 选择
 
@@ -29,6 +29,12 @@ status: proposed-pending-real-validation
 2026-09-04 的确定性合成验证中，normal、bright、dark、side-light 四个分离场景在 Otsu 与 CLAHE+Otsu 下都精确输出三类目标，CLAHE 未显示额外收益。因此真实摄像头验收前暂时保留 Otsu 为默认主链路，CLAHE+Otsu 继续作为同帧比较方案；最终选择仍由三种真实光照证据决定。
 
 部分遮挡与接触场景在两种方案下都把相连黑色区域作为一个外轮廓，输出 `triangle + unknown`。该行为与 `RETR_EXTERNAL` 设计一致，记录为局限，不扩展分水岭或实例分割。
+
+## 真实验收后的最终结论
+
+2026-09-07 的正常、较亮/侧光、较暗三组真实 Insta360 同帧证据中，Otsu 与 CLAHE+Otsu 均完整输出 circle、rectangle、triangle。CLAHE+Otsu 没有体现额外分类正确性收益，因此接受原提案：Otsu 作为默认实时方案，CLAHE+Otsu 只保留为对照/诊断。本轮没有独立性能 benchmark，不推断速度优劣。
+
+真实部分遮挡场景两种方法均输出 `circle + unknown + triangle`；矩形与圆形接触场景均输出 `unknown + triangle`。这些结果继续支持不在 M3 引入复杂实例分割的边界。
 
 ## 明确不做
 

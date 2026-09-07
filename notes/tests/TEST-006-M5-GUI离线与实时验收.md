@@ -5,7 +5,7 @@ tags:
   - 慧眼识珠
   - test
   - M5
-result: offline-pass-live-pending
+result: pass
 ---
 
 # TEST-006 M5 GUI 离线与实时验收
@@ -14,8 +14,9 @@ result: offline-pass-live-pending
 - **对应 Requirement ID**：GUI-001
 - **实现 commit**：`bbb6fa7`
 - **自动化测试 commit**：`eb7a1fd`
+- **真实运行 HEAD / 精选证据 commit**：`78597f58e63f8f262fd0df25757218994345dc39` / `68c89d9`
 - **环境**：Windows 11 10.0.26200、Python 3.12.10、PySide6 6.11.2、Qt 6.11.2、OpenCV 5.0.0、NumPy 2.5.2
-- **总结果**：Part A synthetic/offscreen PASS；Part B Insta360 live PENDING
+- **总结果**：Part A synthetic/offscreen PASS；Part B Insta360 live PASS
 
 ## Part A：离线软件验收
 
@@ -64,11 +65,12 @@ soak 由真实 `.venv` 进程运行，但输入是 synthetic、Qt 平台是 offs
 
 ### 回归
 
-- 完整 pytest：UI/UX 重构及 overlay 对比度优化后 `110 passed in 3.81s`。
+- M5 UI/UX 阶段当时完整 pytest 为 `110 passed in 3.81s`；2026-09-07 最终仓库回归为 `172 passed in 3.59s`。
 - M2 十张真实离线图片：`10/10`，background 1/1、circle 3/3、rectangle 3/3、triangle 3/3。
 - M3 synthetic：4 个强制光照场景、两种方案均精确输出三类，`all_required_scenes_pass=true`；遮挡/接触局限未改写。
 - M4：12/12 detection-sequence 场景通过，`failing_scenarios=0`。
 - `pip check`：`No broken requirements found.`。
+- 同次 M5 synthetic/offscreen 冒烟 5.021020 秒、87 帧、0 failed read、`error=null`、正常关闭；其 17.327158 FPS 只作为短时功能回归，不替代真实 camera 的 29.315668 FPS 性能验收。M6 16/16 且确定性重放；完整摘要见 `../../evidence/data/m3-m5-final-regression-summary.json`。
 
 ### Part A 证据
 
@@ -78,14 +80,51 @@ soak 由真实 `.venv` 进程运行，但输入是 synthetic、Qt 平台是 offs
 - soak 结束画面：`../../evidence/screenshots/m5/synthetic/m5-gui-soak.png`
 - desktop workspace 重构验收图：`../../evidence/screenshots/m5/synthetic/m5-gui-desktop-workspace.png`
 
-## Part B：真实 Insta360 摄像头 GUI 验收 — PENDING
+## Part B：真实 Insta360 摄像头 GUI 验收 — PASS
 
-待验证：启动 calibration、画面连续刷新、三目标 label/confidence、M4 ID/ENTER/EXIT、五个 M3 场景保存、processed/GUI FPS、failed reads/error、Stop/Close。未经读取真实 session JSON 和截图，不填写 PASS。
+2026-09-07 审计 `output/m5/sessions/session-2026-09-07T145826.788_0800.json`，SHA-256 `ADF9E4E0D438B076210F5AADDDB7D82BBFE050ED471842143F9C2F9D97184F96`。该文件由真实 camera source 生成；设备为 Insta360 Ace Pro 2（VID 2E1A、PID 1003）、DirectShow、MJPG，请求与实际分辨率 1920×1080，reported FPS 30.000030。
 
-> [!warning] 验收边界
-> Part A 证明软件链路、线程、异常处理和 synthetic 性能；不能证明真实摄像头 GUI 稳定性。因此 GUI-001 与 M5 保持 `DOING`。
+### 启动校准
+
+启动请求 `roi-mode=auto`，但 auto 没有找到合格的中央白色四边形，记录为 `area=6, not_convex_quadrilateral=1`；程序按设计降级为 manual。manual/selected ROI `[548, 126, 1346, 698]` 接受后在整次运行中锁定，normalized ROI 为 `(0.285417, 0.116667, 0.701042, 0.646296)`，没有逐帧追踪。此结果证明 fallback 有效，不声称 auto ROI 本次成功或 100% 成功。
+
+### Session 实际值
+
+| 字段 | 实际值 | 判定 |
+|---|---:|---|
+| start / finish | 14:58:26.788 / 15:24:43.931 (+08:00) | 同一真实 session |
+| duration | 1577.142974 s | 长时间运行 |
+| frames read / processed | 46235 / 46235 | 一致 |
+| GUI updates | 46235 | 与处理帧一致 |
+| detections / events | 94975 / 117 | 已记录 |
+| processing FPS | 29.315668 | ≥20 目标，PASS |
+| GUI update FPS | 29.315668 | ≥15 目标，PASS |
+| average / P95 processing | 3.342837 / 4.620590 ms | 如实记录 |
+| failed reads | 0 | PASS |
+| display drops / buffer overwrites | 0 / 0 | PASS |
+| error | `null` | PASS |
+| ended reason | `stopped` | 用户 Stop |
+| worker / GUI clean shutdown | true / true | PASS |
+
+running 截图显示真实 camera 画面、`#76 CIRCLE 96.9%`、Detections、Tracked Objects、ENTER/EXIT events、29.3 FPS、ROI MANUAL 和 `Last error: No errors`；Stop 后截图显示顶部及底部 `Idle/IDLE`，且最后一帧保留供检查。五个 M3 evidence record 也在同一 session 中完整登记。
+
+Qt 控制台曾输出 `QFont::setPointSize Point size <=0 (-1)`。该文字未进入 session JSON，仅有现场操作者观察；结合 GUI 正常运行、`Last error: No errors`、session `error=null`、`clean_shutdown=true`，判定为非阻断 UI warning，不冒充视觉、摄像头或线程错误。
+
+session 原样记录 `git.dirty=true`；审计开始时没有 tracked diff，只有操作者保存的 M4/M5 live 截图未跟踪。真实运行代码基线仍由 commit `78597f58` 唯一定位。
+
+### Part B 证据
+
+- 摘要：`../../evidence/data/m5/m5-live-camera-session-summary.json`
+- running：`../../evidence/screenshots/m5/live/m5-live-camera-running.png`
+- Stop → Idle：`../../evidence/screenshots/m5/live/m5-live-after-stop-idle.png`
+- M4 lifecycle：`../../evidence/data/m4/m4-live-lifecycle-summary.json`
+- M3 五场景：`../../evidence/data/m3/live/`、`../../evidence/screenshots/m3/live/`
+
+> [!success] 验收结论
+> Part A 与 Part B 均满足原定验收条件，GUI-001 与 M5 为 `DONE`。这不包含 Fake PLC、通信、FIFO、ACK、心跳、重发或真实 PLC 功能。
 
 ## 关联记录
 
 - [[../daily/2026-09-04-M5-GUI离线软件验证]]
+- [[../daily/2026-09-07-M3-M4-M5-最终真实验收]]
 - `../../docs/M5_GUI.md`
