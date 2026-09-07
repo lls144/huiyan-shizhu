@@ -68,8 +68,8 @@ scripts/               辅助脚本
 
 ## 当前尚未确定的硬件信息
 
-- 实际 CPU 1214C DC/DC/DC 已由负责人确认；V4.1 为同学提供固件值，TIA V20 为其计划虚拟机环境。
-- 完整参数、指导书示例差异、协议能力与待核实项见 [PLC 硬件登记](docs/PLC_HARDWARE.md)。PLC IP 和最终 I/O 映射仍待确认。
+- 现场确认实际设备为普通 S7-1200 CPU 1214C DC/DC/DC，完整 MLFB `6ES7 214-1AG40-0XB0`；固件 V4.1 仍为操作者报告、待 TIA 在线读取。TIA Portal V20 当前作为实际编程环境使用，其 Update、许可和设备目录兼容性仍待记录。
+- PLC 登记地址为 `192.0.2.1/24`；Windows Host 的 Realtek PLC 专用网卡为 `192.0.2.10/24`，Host ping 4/4 且 ARP reachable。该结果只证明物理链路上地址可达，目标 PLC 身份仍待 TIA Accessible devices / Online diagnostics 确认。完整参数和待核实项见 [PLC 硬件登记](docs/PLC_HARDWARE.md)，最终 I/O 映射仍待确认。
 - PLC 同学克隆后先读 [协作约定](docs/COLLABORATION.md)、[共享接口登记](docs/PLC_INTERFACE.md) 和 [PLC 目录规则](plc/AGENTS.md)；只在 PLC 分支开展所分配工作，负责人审核合并。
 - Insta360 Ace Pro 2 与白色工作区已在 M2 实时识别中完成两种机位验证；背景板是否严格为 A3 及其材质仍未单独测量。
 - 实验室最终使用串口还是以太网；任务书技术要求允许二者之一，但硬件方案表列出了网线。

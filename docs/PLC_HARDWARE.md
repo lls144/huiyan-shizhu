@@ -1,10 +1,10 @@
 # PLC 硬件与环境登记
 
-更新：2026-09-05。本页是 PLC 参数唯一登记入口；属于资料核对，不是硬件验收。
+更新：2026-09-07。本页是 PLC 参数唯一登记入口；本次更新登记现场操作与只读检查已经确认的硬件/网络事实，不等于通信、I/O、PLC 程序或系统联调验收。
 
 ## 来源与优先级
 
-任务功能以 `PROJECT_SPEC.md` 和原任务书为准。按负责人要求，硬件资料以 `reference/PLC实验指导书（实验箱版20251015）(1).docx` 为基线；同学口述单列，冲突不静默覆盖。负责人随后明确确认实物为 CPU 1214C DC/DC/DC，这一确认优先于教学截图的 1215C 示例。教学截图只证明示例配置；现场铭牌、接线与在线诊断仍须核实，差异由负责人审定。
+任务功能以 `PROJECT_SPEC.md` 和原任务书为准。按负责人要求，硬件资料以 `reference/PLC实验指导书（实验箱版20251015）(1).docx` 为基线；现场确认、只读检查、操作者报告和教学示例分层登记，冲突不静默覆盖。2026-09-07，负责人根据现场设备确认实物为普通 SIMATIC S7-1200 CPU 1214C DC/DC/DC，完整 MLFB 为 `6ES7 214-1AG40-0XB0`；不得将它写成 S7-1200 G2 / 1214C G2。教学截图只证明示例配置，不能覆盖项目实物。
 
 定位采用第二章小节名及 DOCX 内图片名，避免把软件重排页码当固定页码。正文和表格已提取，关键组态与下载截图已人工查看；未声称逐图审核整本指导书。
 
@@ -14,20 +14,46 @@
 |---|---|---|
 | 实验箱 | 封面 HKPLC-1；第二章“一、S7-1200认知实验”设备表 HKPLC-01 | 保留原文名称差异，现场型号待核实 |
 | PLC 系列 | S7-1200 | 文档基线 |
-| CPU | 创建项目截图 `word/media/image8.jpeg`：CPU 1215C DC/DC/DC | 实际 CPU 1214C DC/DC/DC 已由负责人确认；1215C 仅为教学示例 |
-| 订货号 | 同图：6ES7 215-1AG40-0XB0 | 示例值；现场订货号 TODO |
-| 固件 | 同图：V4.1；同学也报 V4.1 | 示例与口述一致，在线实际版本待测试 |
+| CPU | 创建项目截图 `word/media/image8.jpeg`：CPU 1215C DC/DC/DC | **现场确认：SIMATIC S7-1200 CPU 1214C DC/DC/DC**；不是 G2。1215C 仅为教学示例 |
+| 订货号 / MLFB | 同图：6ES7 215-1AG40-0XB0 | **现场确认：`6ES7 214-1AG40-0XB0`**；教学示例订货号不适用于项目实物 |
+| 固件 | 同图：V4.1；操作者此前也报 V4.1 | **operator-reported / pending online verification**；尚未通过 TIA Online & diagnostics 再次读取，不能写成 online verified |
 | 板载 I/O | image8 / image9：DI14 × 24VDC、DQ10 × 24VDC、AI2、AQ2；说明含 2 个 PROFINET 端口 | 对应示例 1215C，不可套到实际 1214C；实际模拟量配置和网口数量另核 |
-| 编程软件 | 正文“打开Portal V16”，image5 为 TIA V16 | 同学计划 TIA Portal V20 / 虚拟机；安装、许可、Update、设备目录与 V4.1 工程编译尚待验证 |
-| 宿主机 / 虚拟机 | 同学提供本机 192.0.2.1、虚拟机 192.0.2.2 | 口述值；网卡、掩码和实际 IP 待截图核实 |
-| PLC IP | 教学下载截图 image14 为 192.0.2.1 | 只是示例，实际 PLC IP TODO；若与宿主机同为 .1 会冲突，不能直接照抄 |
-| 网络 | 指导书列 PROFINET（以太网）线缆；同学计划 PC 直连 PLC | 拓扑计划，未实测；虚拟机网卡模式、绑定物理网卡、PG/PC 接口、掩码及三方可达性待记录 |
+| 编程软件 | 正文“打开Portal V16”，image5 为 TIA V16 | **TIA Portal V20 当前作为实际编程环境使用**；Update、许可、设备目录兼容性和 V4.1 工程编译仍待记录 |
+| PLC IP / 子网 | 教学下载截图 image14 为 192.0.2.1 | **现场登记：`192.0.2.1` / `255.255.255.0`**；仍须 TIA Accessible devices / Online diagnostics 最终确认该可达地址对应目标 PLC |
+| Windows Host PLC 专用网卡 | 指导书未规定本机地址 | **只读检查确认：Realtek PCIe GbE Family Controller（接口“以太网”），`192.0.2.10/24`，无网关、无 DNS，Link Up/Connected，100 Mbps** |
+| TIA 虚拟机 | 指导书未规定；此前提供 192.0.2.2 | VMware Tools **观察到** guest IP `192.0.2.2`；VM 网卡模式、桥接目标、PLC-facing 属性和 TIA PG/PC 接口均未验证 |
+| 网络 | 指导书列 PROFINET（以太网）线缆 | Host 物理网卡至 `192.0.2.1` 可达已经只读检查；VM 到 PLC、TIA 设备发现、在线诊断和业务通信均未执行 |
 | PN 物理接口 | 指导书说明 CPU 底部以太网连接器；同学报 RJ45、10/100Mbps | 接口数量与速率按最终订货号/现场确认 |
 | DI / DQ 地址 | 同学报 I0.0–I0.7、I1.0–I1.5；Q0.0–Q0.7、Q1.0–Q1.1 | 候选地址范围，不是项目按键/LED 映射；以实际组态起始地址及接线表为准 |
 | 电气参数 | 同学报 24V DC、DI 高 >15V / 低 <5V、DQ 0.5A/通道 | 电压阈值与限流未从指导书关键资料确认，不能用作接线依据；需最终型号数据表及现场确认 |
 | RUN/STOP / ERROR / MAINT | 同学给出的 CPU 状态灯说明 | 不分配为业务 LED；物理 RUN/STOP 拨动开关是否存在未确认，不写入操作步骤 |
 
 负责人因其所述 Windows 11 家庭版安装兼容问题安排同学使用虚拟机；这是环境安排，不作为已验证的软件兼容性结论。记录虚拟机产品/版本、来宾 OS/版本、TIA Update、许可与安装结果后，才能写“环境可用”。不得自动升级 PLC 固件以迁就软件或协议。
+
+## 2026-09-07 现场网络只读检查
+
+### 已现场确认 / 已只读验证
+
+- PLC 登记地址：`192.0.2.1`，子网掩码 `255.255.255.0`。
+- Windows Host PLC 专用物理网卡：Realtek PCIe GbE Family Controller，接口名“以太网”，IPv4 `192.0.2.10`，PrefixLength `24`，子网掩码 `255.255.255.0`，Gateway none，DNS none，Link `Up / Connected`，协商速度 100 Mbps。
+- Host 执行 `ping 192.0.2.1`：sent 4、received 4、lost 0、packet loss 0%；min 2 ms、max 719 ms、avg 181 ms。
+- ARP / neighbor 只读结果：`192.0.2.1` 为 `Reachable`，MAC `02:00:00:00:00:02`。
+
+ping 与 ARP 只证明 `192.0.2.1` 在当前 Realtek 物理以太网链路上可达，不单独证明该响应设备就是目标 PLC，也不证明任何 PLC 应用协议、TIA 在线访问或项目通信已经可用。目标 PLC 身份仍须由 TIA Accessible devices / Online diagnostics 最终确认。
+
+### 已观察但尚未验证
+
+- 当前运行的 VM 配置文件：`D:\博途V20\博途V20\博途V20\博途V20.vmx`。
+- 只发现 `ethernet0`，adapter type 为 `e1000e`；没有发现 `ethernet1`。
+- `.vmx` 中没有明确的 `ethernet0.connectionType`。
+- VMware Tools 观察到 guest IP `192.0.2.2`。
+- VM adapter mode（Bridged / NAT / Custom）：TODO / pending verification。
+- 是否桥接到 Realtek：TODO / pending verification。
+- `192.0.2.2` 是否为 PLC-facing adapter：TODO / pending verification。
+- TIA PG/PC interface：TODO / pending verification。
+- VM → PLC ping、TIA Accessible devices、TIA Online diagnostics：均未执行。
+
+因此不能写“VMware 已桥接 Realtek”“TIA VM 已能访问 PLC”或“192.0.2.2 已验证为 PLC-facing adapter”。
 
 ## 通信能力核对
 
@@ -42,10 +68,10 @@
 
 ## 现场必须补齐
 
-1. 型号已确认为 1214C DC/DC/DC；补铭牌照片、完整订货号、CPU 在线固件和 TIA 设备组态截图，以锁定可下载的具体设备配置。
-2. 宿主机、虚拟机、PLC 分别登记 IP/掩码/网卡；证据包含 TIA 可访问设备与真实通信记录，不能以 ping 成功代替业务通信验收。
+1. CPU 与完整 MLFB 已登记；仍须补铭牌照片、TIA Online & diagnostics 读取的固件、Accessible devices 结果和设备组态截图，以锁定可下载的具体设备配置与在线身份。
+2. Host 物理网卡和 PLC 登记地址已记录；继续确认 VM 网卡模式、桥接目标、PG/PC 接口与 VM → PLC 连通性。ping/ARP 成功不能替代 TIA 在线身份或业务通信验收。
 3. 实验箱按键/灯的端子标签、导线接法、DI/DQ 组态地址和按下/释放、亮/灭的实际逻辑值。指导书有两种接线方式，不能假设全部按键都是高电平有效。
 4. 项目出队键、复位键、LED1/2/3 的地址、常开/常闭、有效电平、去抖、上电/STOP 行为；见 `../plc/docs/IO_MAP.md`。
 5. 用匹配实际型号的 TIA 工程完成编译/下载/在线监视后分别记录结果；PLC 状态灯不能替代任务要求的 1/2/3 盏外部 LED。
 
-上述事项全部待测试。指导书其他实验（电梯、流水灯等）的地址表是教学例子，不直接复用为“慧眼识珠”接线表。
+上述未完成项继续待测试。指导书其他实验（电梯、流水灯等）的地址表是教学例子，不直接复用为“慧眼识珠”接线表。

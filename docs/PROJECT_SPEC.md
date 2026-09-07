@@ -197,7 +197,7 @@ M1～M6 已完成各自定义范围内的验收。M3 的 VISION-003、VISION-004
 #### HW-001 PLC 实验箱
 
 - **原始要求**：使用实验室现有 PLC 实验箱，含按键、LED 灯组、以太网接口，用于 FIFO、LED、按键和心跳检测。
-- **工程化解释**：负责人已确认实际 CPU 1214C DC/DC/DC；完整订货号、在线固件、编程环境、I/O 与以太网能力仍需现场证据，参数统一见 `PLC_HARDWARE.md`。
+- **工程化解释**：负责人已现场确认实际设备为普通 S7-1200 CPU 1214C DC/DC/DC、完整 MLFB `6ES7 214-1AG40-0XB0`；PLC 登记地址 `192.0.2.1/24` 与 Host Realtek 专用网卡 `192.0.2.10/24` 已完成只读可达性检查。固件仍待 TIA 在线读取，目标 PLC 在线身份、VM 网络、I/O 与通信能力仍需现场证据，参数统一见 `PLC_HARDWARE.md`。
 - **验收条件**：记录设备铭牌、软件版本、I/O 表和可用接口照片；与实现配置一致。
 - **当前状态**：TODO
 - **对应代码模块**：`plc/`、`pc/config/`
@@ -356,4 +356,4 @@ M1～M6 已完成各自定义范围内的验收。M3 的 VISION-003、VISION-004
 
 ## 6. PLC 资料补充（2026-09-05）
 
-HW-001 的实际设备型号已由负责人确认：S7-1200 CPU 1214C DC/DC/DC。固件 V4.1 和虚拟机 TIA V20 来自同学信息，在线/运行验证待执行。指导书示例为 1215C / V4.1 / TIA V16，不覆盖负责人确认的实物型号。参数来源、端口、IP 和电气待办统一见 `PLC_HARDWARE.md`；协作责任见 `COLLABORATION.md`，共享接口见 `PLC_INTERFACE.md`。硬件资料补齐不等于 HW-001、COMM 或 PLC 功能已验收，原 Requirement ID 与验收标准不变。
+HW-001 的实际设备已由负责人现场确认：普通 S7-1200 CPU 1214C DC/DC/DC，完整 MLFB `6ES7 214-1AG40-0XB0`，不得记为 G2。PLC 登记地址为 `192.0.2.1/24`；Windows Host 的 Realtek PLC 专用网卡为 `192.0.2.10/24`，Host ping 4/4、ARP reachable。该可达性不等于 TIA 已确认目标 PLC 身份。固件 V4.1 仍为操作者报告、待 Online & diagnostics 读取；TIA Portal V20 当前作为实际编程环境使用，但 Update、许可、设备目录兼容性与 VM 网络仍待记录。指导书示例为 1215C / V4.1 / TIA V16，不覆盖项目实物。参数来源和剩余待办统一见 `PLC_HARDWARE.md`；协作责任见 `COLLABORATION.md`，共享接口见 `PLC_INTERFACE.md`。硬件资料补齐不等于 HW-001、COMM 或 PLC 功能已验收，原 Requirement ID、验收标准和 milestone 状态不变。
