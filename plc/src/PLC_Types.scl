@@ -1,0 +1,18 @@
+// Transport-independent PLC data types for M8.
+// Shape codes 1/2/3 are INTERNAL TEST values only. They are not the M7 wire encoding.
+TYPE "PLC_Command"
+    STRUCT
+        Valid : Bool;
+        ShapeCode : USInt;       // INTERNAL: 1=triangle, 2=rectangle, 3=circle
+        SemanticId : DInt;       // local semantic identity; not a wire sequence
+    END_STRUCT;
+END_TYPE
+
+TYPE "PLC_FifoBuffer"
+    STRUCT
+        Items : Array[0..2] of "PLC_Command"; // minimum capacity = 3
+        Head : USInt;
+        Tail : USInt;
+        Count : USInt;
+    END_STRUCT;
+END_TYPE

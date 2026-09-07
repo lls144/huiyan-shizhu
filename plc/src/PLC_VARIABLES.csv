@@ -1,0 +1,14 @@
+scope,name,type,initial_or_range,writer,notes
+UDT,PLC_Command,STRUCT,Valid/ShapeCode/SemanticId,transport adapter,ShapeCode 1/2/3 are INTERNAL TEST only
+UDT,PLC_FifoBuffer,STRUCT,Items[0..2]/Head/Tail/Count,FB_Fifo,capacity fixed at 3 until approved design change
+FB_Fifo,Enqueue,BOOL,one-scan pulse,application,transport adapter must edge/duplicate gate
+FB_Fifo,Dequeue,BOOL,one-scan pulse,FB_ButtonPulse,empty dequeue ignored
+FB_Fifo,Reset,BOOL,one-scan pulse,FB_ButtonPulse,reset has priority
+FB_Fifo,QueueLength,USINT,0..3,FB_Fifo,observable internal status
+FB_Fifo,QueueFull,BOOL,Count=3,FB_Fifo,drives QueueFullLed
+FB_ButtonPulse,Raw,BOOL,physical polarity unknown,application,do not bind address until IO_MAP verified
+FB_ButtonPulse,Pulse,BOOL,one scan,FB_ButtonPulse,one pulse per stable press
+FB_LedDisplay,DisplayedShape,USINT,0..3,FB_LedDisplay,last successful dequeue only
+FB_LedDisplay,SortLed1..3,BOOL,symbolic outputs,FB_LedDisplay,never CPU RUN/ERROR/MAINT lamps
+FB_LedDisplay,QueueFullLed,BOOL,QueueFull,FB_LedDisplay,physical address TODO
+FB_LedDisplay,CommLost/BlinkPhase,BOOL,future M9 input,approved heartbeat block,alarm policy not implemented

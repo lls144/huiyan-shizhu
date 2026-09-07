@@ -1,0 +1,41 @@
+// Scan-based rising-edge/debounce helper. Physical input polarity is configured outside this FB.
+FUNCTION_BLOCK "FB_ButtonPulse"
+VAR_INPUT
+    Raw : Bool;
+    Reset : Bool;
+    DebounceScans : USInt := 2;  // proposal default; tune only after real I/O test
+END_VAR
+VAR_OUTPUT
+    Pulse : Bool;
+    Stable : Bool;
+END_VAR
+VAR
+    PreviousRaw : Bool;
+    StableRaw : Bool;
+    StableCount : USInt;
+END_VAR
+BEGIN
+    #Pulse := FALSE;
+    IF #Reset THEN
+        #PreviousRaw := FALSE;
+        #StableRaw := FALSE;
+        #StableCount := 0;
+    ELSE
+        IF #Raw = #PreviousRaw THEN
+            IF #StableCount < #DebounceScans THEN
+                #StableCount := #StableCount + 1;
+            END_IF;
+        ELSE
+            #StableCount := 0;
+        END_IF;
+
+        IF (#StableCount >= #DebounceScans) AND (#StableRaw <> #Raw) THEN
+            #StableRaw := #Raw;
+            IF #StableRaw THEN
+                #Pulse := TRUE;  // exactly one pulse per stable press
+            END_IF;
+        END_IF;
+        #PreviousRaw := #Raw;
+    END_IF;
+    #Stable := #StableRaw;
+END_FUNCTION_BLOCK

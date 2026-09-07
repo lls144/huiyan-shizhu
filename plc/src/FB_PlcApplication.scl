@@ -1,0 +1,40 @@
+// Transport-neutral application composition for M8.
+// Replace CommandIn with an approved M7 adapter only after the shared contract is frozen.
+FUNCTION_BLOCK "FB_PlcApplication"
+VAR_INPUT
+    CommandIn : "PLC_Command";
+    CommandValid : Bool;
+    DequeueButtonRaw : Bool;
+    ResetButtonRaw : Bool;
+END_VAR
+VAR_OUTPUT
+    QueueEmpty : Bool;
+    QueueFull : Bool;
+    QueueLength : USInt;
+    SortLed1 : Bool;
+    SortLed2 : Bool;
+    SortLed3 : Bool;
+    QueueFullLed : Bool;
+END_VAR
+VAR
+    Fifo : "PLC_FifoBuffer";
+    DequeueButton : "FB_ButtonPulse";
+    ResetButton : "FB_ButtonPulse";
+    FifoBlock : "FB_Fifo";
+    LedBlock : "FB_LedDisplay";
+    Dequeued : "PLC_Command";
+    DequeuedValid : Bool;
+END_VAR
+BEGIN
+    #DequeueButton(Raw := #DequeueButtonRaw, Reset := FALSE, DebounceScans := 2);
+    #ResetButton(Raw := #ResetButtonRaw, Reset := FALSE, DebounceScans := 2);
+    #FifoBlock(Enqueue := #CommandValid, EnqueueItem := #CommandIn,
+               Dequeue := #DequeueButton.Pulse, Reset := #ResetButton.Pulse,
+               Buffer := #Fifo, DequeuedItem => #Dequeued, DequeueValid => #DequeuedValid,
+               QueueEmpty => #QueueEmpty, QueueFull => #QueueFull, QueueLength => #QueueLength);
+    #LedBlock(ItemValid := #DequeuedValid, ShapeCode := #Dequeued.ShapeCode,
+              Reset := #ResetButton.Pulse, QueueFull := #QueueFull,
+              CommLost := FALSE, BlinkPhase := FALSE,
+              SortLed1 => #SortLed1, SortLed2 => #SortLed2, SortLed3 => #SortLed3,
+              QueueFullLed => #QueueFullLed);
+END_FUNCTION_BLOCK
