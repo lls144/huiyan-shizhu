@@ -12,7 +12,7 @@ VAR_OUTPUT
     SortLed1 : Bool;
     SortLed2 : Bool;
     SortLed3 : Bool;
-    QueueFullLed : Bool;      // M4/status LED; physical address remains TODO
+    QueueFullLed : Bool;      // OPTIONAL diagnostic/status hook; no physical Q binding approved
 END_VAR
 VAR
     DisplayedValid : Bool;

@@ -14,7 +14,7 @@ VAR_OUTPUT
     SortLed1 : Bool;
     SortLed2 : Bool;
     SortLed3 : Bool;
-    QueueFullLed : Bool;
+    QueueFullLed : Bool;      // optional diagnostic hook; not a fourth required business LED
 END_VAR
 VAR
     Fifo : "PLC_FifoBuffer";

@@ -10,5 +10,5 @@ FB_ButtonPulse,Raw,BOOL,physical polarity unknown,application,do not bind addres
 FB_ButtonPulse,Pulse,BOOL,one scan,FB_ButtonPulse,one pulse per stable press
 FB_LedDisplay,DisplayedShape,USINT,0..3,FB_LedDisplay,last successful dequeue only
 FB_LedDisplay,SortLed1..3,BOOL,symbolic outputs,FB_LedDisplay,never CPU RUN/ERROR/MAINT lamps
-FB_LedDisplay,QueueFullLed,BOOL,QueueFull,FB_LedDisplay,physical address TODO
+FB_LedDisplay,QueueFullLed,BOOL,QueueFull,FB_LedDisplay,OPTIONAL diagnostic/status hook; no physical Q binding approved
 FB_LedDisplay,CommLost/BlinkPhase,BOOL,future M9 input,approved heartbeat block,alarm policy not implemented

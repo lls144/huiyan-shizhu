@@ -47,14 +47,22 @@ BEGIN
             #DequeuedItem.Valid := TRUE;
             #DequeueValid := TRUE;
             #Buffer.Items[#Buffer.Head].Valid := FALSE;
-            #Buffer.Head := (#Buffer.Head + 1) MOD 3;
+            IF #Buffer.Head >= 2 THEN
+                #Buffer.Head := 0;
+            ELSE
+                #Buffer.Head := #Buffer.Head + 1;
+            END_IF;
             #Buffer.Count := #Buffer.Count - 1;
         END_IF;
 
         IF #DoEnqueue THEN
             #Buffer.Items[#Buffer.Tail] := #EnqueueItem;
             #Buffer.Items[#Buffer.Tail].Valid := TRUE;
-            #Buffer.Tail := (#Buffer.Tail + 1) MOD 3;
+            IF #Buffer.Tail >= 2 THEN
+                #Buffer.Tail := 0;
+            ELSE
+                #Buffer.Tail := #Buffer.Tail + 1;
+            END_IF;
             #Buffer.Count := #Buffer.Count + 1;
         END_IF;
     END_IF;
