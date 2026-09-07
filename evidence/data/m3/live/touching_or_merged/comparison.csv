@@ -1,0 +1,5 @@
+﻿scenario,preprocess_mode,matches_expected_labels,object_index,predicted_label,confidence,center_x,center_y,vertices,area_ratio,solidity,circularity
+touching_or_merged,otsu,False,1,unknown,0.0,725,395,10,0.12919646143330354,0.9440735760253578,0.614625386676591
+touching_or_merged,otsu,False,2,triangle,0.945856,1127,374,3,0.03375681336207652,0.9826849489795918,0.5498363365443241
+touching_or_merged,clahe_otsu,False,1,unknown,0.0,726,395,10,0.1294177313914156,0.9395611823741322,0.6080914992805357
+touching_or_merged,clahe_otsu,False,2,triangle,0.946053,1127,375,3,0.03381596473701737,0.9805297929106848,0.547105826759033

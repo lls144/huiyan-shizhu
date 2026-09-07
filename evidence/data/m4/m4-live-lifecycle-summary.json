@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "milestone": "M4",
+  "acceptance_status": "audited_pass",
+  "audit_date": "2026-09-07",
+  "source_type": "real_camera_session",
+  "source_session": "output/m5/sessions/session-2026-09-07T145826.788_0800.json",
+  "source_session_sha256": "ADF9E4E0D438B076210F5AADDDB7D82BBFE050ED471842143F9C2F9D97184F96",
+  "source_git": {
+    "commit": "78597f58e63f8f262fd0df25757218994345dc39",
+    "dirty": true,
+    "audit_note": "The session records dirty=true. At audit start there were no tracked changes; the only non-ignored files were the operator-saved M4/M5 live screenshots. This note does not rewrite the runtime field."
+  },
+  "configuration": {
+    "min_confirm_frames": 2,
+    "max_missing_frames": 3,
+    "iou_threshold": 0.3,
+    "center_distance_threshold": 80.0
+  },
+  "session_event_audit": {
+    "event_count_field": 117,
+    "actual_event_records": 117,
+    "event_ids_contiguous_1_to_117": true,
+    "object_ids_with_duplicate_enter": [],
+    "object_ids_with_duplicate_exit": [],
+    "object_ids_with_invalid_enter_exit_order": []
+  },
+  "focused_circle_lifecycle": {
+    "events": [
+      {
+        "event_id": 115,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 75,
+        "label": "circle",
+        "confidence": 0.924981,
+        "frame_index": 31606
+      },
+      {
+        "event_id": 116,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 75,
+        "label": "circle",
+        "confidence": 0.97351,
+        "frame_index": 33660
+      },
+      {
+        "event_id": 117,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 76,
+        "label": "circle",
+        "confidence": 0.957774,
+        "frame_index": 33928
+      }
+    ],
+    "object_75": {
+      "first_seen": 31605,
+      "last_seen": 33656,
+      "hit_count": 2050,
+      "final_status": "exited"
+    },
+    "object_76": {
+      "first_seen": 33927,
+      "last_seen": 46234,
+      "hit_count": 12308,
+      "final_status": "confirmed",
+      "active_at_stop": true
+    },
+    "result": "pass"
+  },
+  "short_occlusion": {
+    "result": "pass_by_operator_observation",
+    "evidence_basis": "现场人工观察 + GUI 截图",
+    "structured_session_proof_available": false,
+    "note": "The session summary does not preserve per-frame snapshots for the observed short-occlusion interval, so no JSON-only claim is made."
+  },
+  "screenshot": "evidence/screenshots/m4/live/m4-live-lifecycle-events.png.png"
+}

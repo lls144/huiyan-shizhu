@@ -1,0 +1,7 @@
+﻿scenario,preprocess_mode,matches_expected_labels,object_index,predicted_label,confidence,center_x,center_y,vertices,area_ratio,solidity,circularity
+bright_or_side_light,otsu,True,1,circle,0.948629,667,565,8,0.05927405927405927,0.9945413442628976,0.8975517503226342
+bright_or_side_light,otsu,True,2,rectangle,0.97742,765,259,4,0.07067932067932067,0.9891312679165453,0.671342952908988
+bright_or_side_light,otsu,True,3,triangle,0.945787,1126,368,3,0.033736000841264,0.9810779816513762,0.5484141010108425
+bright_or_side_light,clahe_otsu,True,1,circle,0.941491,667,565,8,0.05928501323238165,0.9943596244648992,0.8953058314835319
+bright_or_side_light,clahe_otsu,True,2,rectangle,0.980212,765,259,4,0.07072970888760362,0.9888056844458737,0.6703914639577712
+bright_or_side_light,clahe_otsu,True,3,triangle,0.945838,1126,368,3,0.03375133638291533,0.9803060672584392,0.5486633963356737

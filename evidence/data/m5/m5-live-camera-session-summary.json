@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "milestone": "M5",
+  "acceptance_status": "audited_pass",
+  "audit_date": "2026-09-07",
+  "source_session": "output/m5/sessions/session-2026-09-07T145826.788_0800.json",
+  "source_session_sha256": "ADF9E4E0D438B076210F5AADDDB7D82BBFE050ED471842143F9C2F9D97184F96",
+  "source_git": {
+    "commit": "78597f58e63f8f262fd0df25757218994345dc39",
+    "dirty": true,
+    "audit_note": "The runtime field is preserved. At audit start no tracked changes existed; only the operator-saved M4/M5 live screenshots were untracked."
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10",
+    "pyside6": "6.11.2"
+  },
+  "camera": {
+    "name": "Insta360 Ace Pro 2",
+    "index": 0,
+    "vid": 11802,
+    "pid": 4099,
+    "backend": "DSHOW",
+    "requested_width": 1920,
+    "requested_height": 1080,
+    "requested_fps": 30.0,
+    "fourcc": "MJPG",
+    "actual_width": 1920.0,
+    "actual_height": 1080.0,
+    "reported_fps": 30.00003000003
+  },
+  "calibration": {
+    "requested_mode": "auto",
+    "selected_mode": "manual",
+    "source": "selected",
+    "auto_score": null,
+    "fallback_message": "auto ROI found no acceptable central white quadrilateral (area=6, not_convex_quadrilateral=1)",
+    "pixel_roi": [548, 126, 1346, 698],
+    "normalized_roi": {
+      "left": 0.28541666666666665,
+      "top": 0.11666666666666667,
+      "right": 0.7010416666666667,
+      "bottom": 0.6462962962962963
+    },
+    "locked_for_run": true
+  },
+  "session": {
+    "started_at": "2026-09-07T14:58:26.788+08:00",
+    "finished_at": "2026-09-07T15:24:43.931+08:00",
+    "duration_seconds": 1577.142974,
+    "frames_read": 46235,
+    "frames_processed": 46235,
+    "detection_count": 94975,
+    "event_count": 117,
+    "processing_fps": 29.315668,
+    "gui_updates": 46235,
+    "gui_update_fps": 29.315668,
+    "average_processing_ms": 3.342837,
+    "p95_processing_ms": 4.62059,
+    "failed_reads": 0,
+    "display_frames_dropped": 0,
+    "buffer_overwrites": 0,
+    "error": null,
+    "ended_reason": "stopped",
+    "worker_clean_shutdown": true,
+    "clean_shutdown": true
+  },
+  "m3_evidence_records": [
+    "normal_light",
+    "bright_or_side_light",
+    "dark_light",
+    "partial_occlusion",
+    "touching_or_merged"
+  ],
+  "screenshots": {
+    "running": "evidence/screenshots/m5/live/m5-live-camera-running.png",
+    "stopped_idle": "evidence/screenshots/m5/live/m5-live-after-stop-idle.png"
+  },
+  "qt_warning": {
+    "text": "QFont::setPointSize Point size <=0 (-1)",
+    "source": "operator_console_observation",
+    "present_in_session_json": false,
+    "classification": "non_blocking_ui_warning",
+    "basis": "The GUI remained operational; the running screenshot shows Last error: No errors; session error is null and clean_shutdown is true."
+  }
+}

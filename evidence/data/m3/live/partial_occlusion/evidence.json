@@ -1,0 +1,2468 @@
+{
+  "schema_version": 1,
+  "milestone": "M3",
+  "acceptance_status": "pending_user_validation",
+  "timestamp": "2026-09-07T15:12:34.211+08:00",
+  "scenario": "partial_occlusion",
+  "scenario_source": "operator_hotkey",
+  "expected_labels": [
+    "triangle",
+    "rectangle",
+    "circle"
+  ],
+  "git": {
+    "commit": "78597f58e63f8f262fd0df25757218994345dc39",
+    "dirty": false
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10",
+    "opencv": "5.0.0",
+    "numpy": "2.5.2"
+  },
+  "camera_device": {
+    "index": 0,
+    "name": "Insta360 Ace Pro 2",
+    "path": "<device-instance-redacted>",
+    "vid": 11802,
+    "pid": 4099,
+    "backend_name": "DSHOW",
+    "backend_id": 700
+  },
+  "camera_config": {
+    "device_name": "Insta360 Ace Pro 2",
+    "fallback_index": null,
+    "backend": "DSHOW",
+    "requested_width": 1920,
+    "requested_height": 1080,
+    "requested_fps": 30.0,
+    "fourcc": "MJPG",
+    "warmup_frames": 15,
+    "test_duration_seconds": 60.0,
+    "reopen_cycles": 3,
+    "minimum_read_success_rate": 0.99,
+    "maximum_frame_gap_seconds": 2.0
+  },
+  "camera_actual_properties": {
+    "width": 1920.0,
+    "height": 1080.0,
+    "reported_fps": 30.00003000003,
+    "backend": "DSHOW"
+  },
+  "frame_resolution": {
+    "width": 1920,
+    "height": 1080
+  },
+  "roi_mode": "manual",
+  "roi_source": "selected",
+  "normalized_roi": {
+    "left": 0.28541666666666665,
+    "top": 0.11666666666666667,
+    "right": 0.7010416666666667,
+    "bottom": 0.6462962962962963
+  },
+  "pixel_roi": [
+    548,
+    126,
+    1346,
+    698
+  ],
+  "lighting_statistics": {
+    "mean": 167.64,
+    "standard_deviation": 62.799,
+    "p10": 36.0,
+    "median": 200.0,
+    "p90": 207.0
+  },
+  "methods": {
+    "otsu": {
+      "preprocess_mode": "otsu",
+      "object_count": 3,
+      "predicted_labels": [
+        "circle",
+        "unknown",
+        "triangle"
+      ],
+      "objects": [
+        {
+          "object_index": 1,
+          "predicted_label": "circle",
+          "confidence": 0.951542,
+          "center": [
+            681,
+            561
+          ],
+          "features": {
+            "area": 27699.5,
+            "area_ratio": 0.0606838337101495,
+            "perimeter": 623.7127650976181,
+            "vertices": 8,
+            "solidity": 0.9944532203633231,
+            "circularity": 0.8947722953693211,
+            "bounding_box": [
+              43,
+              337,
+              182,
+              196
+            ],
+            "aspect_ratio": 0.9285714285714286,
+            "min_rect_fill_ratio": 0.7847995466779997,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          },
+          "classification_scores": {
+            "topology": 1.0,
+            "geometry": 0.8384724834618612,
+            "quality": 1.0
+          }
+        },
+        {
+          "object_index": 2,
+          "predicted_label": "unknown",
+          "confidence": 0.0,
+          "center": [
+            767,
+            261
+          ],
+          "features": {
+            "area": 32067.5,
+            "area_ratio": 0.07025321170058012,
+            "perimeter": 853.7127656936646,
+            "vertices": 7,
+            "solidity": 0.9408235414924673,
+            "circularity": 0.5529061445382654,
+            "bounding_box": [
+              98,
+              37,
+              245,
+              198
+            ],
+            "aspect_ratio": 0.8081632653061225,
+            "min_rect_fill_ratio": 0.8732456850647009,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": false
+          },
+          "classification_scores": {
+            "topology": 0.0,
+            "geometry": 0.0,
+            "quality": 0.755147
+          }
+        },
+        {
+          "object_index": 3,
+          "predicted_label": "triangle",
+          "confidence": 0.945878,
+          "center": [
+            1127,
+            374
+          ],
+          "features": {
+            "area": 15411.5,
+            "area_ratio": 0.03376338573706995,
+            "perimeter": 593.4284929037094,
+            "vertices": 3,
+            "solidity": 0.9827822593501897,
+            "circularity": 0.5499433884318947,
+            "bounding_box": [
+              515,
+              152,
+              175,
+              182
+            ],
+            "aspect_ratio": 0.9615384615384616,
+            "min_rect_fill_ratio": 0.5076680554278478,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          },
+          "classification_scores": {
+            "topology": 1.0,
+            "geometry": 1.0,
+            "quality": 0.72939
+          }
+        }
+      ],
+      "otsu_threshold": 120.0,
+      "roi_bounds": [
+        548,
+        126,
+        1346,
+        698
+      ],
+      "total_external_contours": 12,
+      "valid_contours": 3,
+      "contour_filter_details": [
+        {
+          "passed_filter": true,
+          "rejection_reasons": [],
+          "features": {
+            "area": 32067.5,
+            "area_ratio": 0.07025321170058012,
+            "perimeter": 853.7127656936646,
+            "vertices": 7,
+            "solidity": 0.9408235414924673,
+            "circularity": 0.5529061445382654,
+            "bounding_box": [
+              98,
+              37,
+              245,
+              198
+            ],
+            "aspect_ratio": 0.8081632653061225,
+            "min_rect_fill_ratio": 0.8732456850647009,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": true,
+          "rejection_reasons": [],
+          "features": {
+            "area": 27699.5,
+            "area_ratio": 0.0606838337101495,
+            "perimeter": 623.7127650976181,
+            "vertices": 8,
+            "solidity": 0.9944532203633231,
+            "circularity": 0.8947722953693211,
+            "bounding_box": [
+              43,
+              337,
+              182,
+              196
+            ],
+            "aspect_ratio": 0.9285714285714286,
+            "min_rect_fill_ratio": 0.7847995466779997,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": true,
+          "rejection_reasons": [],
+          "features": {
+            "area": 15411.5,
+            "area_ratio": 0.03376338573706995,
+            "perimeter": 593.4284929037094,
+            "vertices": 3,
+            "solidity": 0.9827822593501897,
+            "circularity": 0.5499433884318947,
+            "bounding_box": [
+              515,
+              152,
+              175,
+              182
+            ],
+            "aspect_ratio": 0.9615384615384616,
+            "min_rect_fill_ratio": 0.5076680554278478,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 5938.5,
+            "area_ratio": 0.013010016299489984,
+            "perimeter": 773.134119272232,
+            "vertices": 7,
+            "solidity": 0.618207370393504,
+            "circularity": 0.1248466650020996,
+            "bounding_box": [
+              0,
+              126,
+              112,
+              124
+            ],
+            "aspect_ratio": 0.9032258064516129,
+            "min_rect_fill_ratio": 0.45710875000873946,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 4671.5,
+            "area_ratio": 0.01023428326059905,
+            "perimeter": 676.7422014474869,
+            "vertices": 8,
+            "solidity": 0.4608820047355959,
+            "circularity": 0.1281798318693429,
+            "bounding_box": [
+              0,
+              240,
+              158,
+              98
+            ],
+            "aspect_ratio": 0.620253164556962,
+            "min_rect_fill_ratio": 0.3272303497035125,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 220.0,
+            "area_ratio": 0.0004819741661846925,
+            "perimeter": 81.5979791879654,
+            "vertices": 6,
+            "solidity": 0.7913669064748201,
+            "circularity": 0.41521567278045446,
+            "bounding_box": [
+              0,
+              436,
+              17,
+              33
+            ],
+            "aspect_ratio": 0.5151515151515151,
+            "min_rect_fill_ratio": 0.5509542726004705,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 54.0,
+            "area_ratio": 0.00011830274988169724,
+            "perimeter": 76.82842707633972,
+            "vertices": 3,
+            "solidity": 0.8571428571428571,
+            "circularity": 0.11496343723631826,
+            "bounding_box": [
+              0,
+              569,
+              38,
+              3
+            ],
+            "aspect_ratio": 0.07894736842105263,
+            "min_rect_fill_ratio": 0.7297297297297297,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 53.5,
+            "area_ratio": 0.00011720735404945931,
+            "perimeter": 33.55634880065918,
+            "vertices": 6,
+            "solidity": 0.9067796610169492,
+            "circularity": 0.5970548712588978,
+            "bounding_box": [
+              168,
+              273,
+              15,
+              7
+            ],
+            "aspect_ratio": 0.4666666666666667,
+            "min_rect_fill_ratio": 0.6369047619047619,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum"
+          ],
+          "features": {
+            "area": 17.0,
+            "area_ratio": 3.7243458296089876e-05,
+            "perimeter": 20.485281229019165,
+            "vertices": 8,
+            "solidity": 0.8717948717948718,
+            "circularity": 0.5090669758672365,
+            "bounding_box": [
+              27,
+              347,
+              10,
+              4
+            ],
+            "aspect_ratio": 0.4,
+            "min_rect_fill_ratio": 0.6353535181356905,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 12.0,
+            "area_ratio": 2.62894999737105e-05,
+            "perimeter": 22.14213538169861,
+            "vertices": 12,
+            "solidity": 0.6666666666666666,
+            "circularity": 0.30757576046729485,
+            "bounding_box": [
+              2,
+              350,
+              10,
+              4
+            ],
+            "aspect_ratio": 0.4,
+            "min_rect_fill_ratio": 0.5381818035972907,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum"
+          ],
+          "features": {
+            "area": 8.0,
+            "area_ratio": 1.7526333315807e-05,
+            "perimeter": 12.485281229019165,
+            "vertices": 10,
+            "solidity": 0.8888888888888888,
+            "circularity": 0.6449160607605229,
+            "bounding_box": [
+              38,
+              346,
+              6,
+              4
+            ],
+            "aspect_ratio": 0.6666666666666666,
+            "min_rect_fill_ratio": 0.7272727764120228,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 6.0,
+            "area_ratio": 1.314474998685525e-05,
+            "perimeter": 10.485281229019165,
+            "vertices": 7,
+            "solidity": 0.9230769230769231,
+            "circularity": 0.6858054748288855,
+            "bounding_box": [
+              93,
+              257,
+              5,
+              4
+            ],
+            "aspect_ratio": 0.8,
+            "min_rect_fill_ratio": 0.800000036374163,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": false
+          }
+        }
+      ],
+      "matches_expected_labels": false
+    },
+    "clahe_otsu": {
+      "preprocess_mode": "clahe_otsu",
+      "object_count": 3,
+      "predicted_labels": [
+        "circle",
+        "unknown",
+        "triangle"
+      ],
+      "objects": [
+        {
+          "object_index": 1,
+          "predicted_label": "circle",
+          "confidence": 0.951334,
+          "center": [
+            681,
+            561
+          ],
+          "features": {
+            "area": 27693.5,
+            "area_ratio": 0.060670688960162644,
+            "perimeter": 623.7127655744553,
+            "vertices": 8,
+            "solidity": 0.9942378114453938,
+            "circularity": 0.8945784770094022,
+            "bounding_box": [
+              43,
+              337,
+              182,
+              196
+            ],
+            "aspect_ratio": 0.9285714285714286,
+            "min_rect_fill_ratio": 0.7846295509278934,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          },
+          "classification_scores": {
+            "topology": 1.0,
+            "geometry": 0.8377802750335792,
+            "quality": 1.0
+          }
+        },
+        {
+          "object_index": 2,
+          "predicted_label": "unknown",
+          "confidence": 0.0,
+          "center": [
+            767,
+            261
+          ],
+          "features": {
+            "area": 32027.0,
+            "area_ratio": 0.07016448463816885,
+            "perimeter": 853.9554057121277,
+            "vertices": 8,
+            "solidity": 0.9396215343992959,
+            "circularity": 0.5518940852928789,
+            "bounding_box": [
+              98,
+              37,
+              245,
+              198
+            ],
+            "aspect_ratio": 0.8081632653061225,
+            "min_rect_fill_ratio": 0.8721428098719006,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": false
+          },
+          "classification_scores": {
+            "topology": 0.0,
+            "geometry": 0.0,
+            "quality": 0.747635
+          }
+        },
+        {
+          "object_index": 3,
+          "predicted_label": "triangle",
+          "confidence": 0.946013,
+          "center": [
+            1127,
+            374
+          ],
+          "features": {
+            "area": 15430.0,
+            "area_ratio": 0.03380391538286275,
+            "perimeter": 594.0142792463303,
+            "vertices": 3,
+            "solidity": 0.9808034579201628,
+            "circularity": 0.5495181233842257,
+            "bounding_box": [
+              515,
+              152,
+              175,
+              182
+            ],
+            "aspect_ratio": 0.9615384615384616,
+            "min_rect_fill_ratio": 0.5066879504968362,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          },
+          "classification_scores": {
+            "topology": 1.0,
+            "geometry": 1.0,
+            "quality": 0.730065
+          }
+        }
+      ],
+      "otsu_threshold": 120.0,
+      "roi_bounds": [
+        548,
+        126,
+        1346,
+        698
+      ],
+      "total_external_contours": 17,
+      "valid_contours": 3,
+      "contour_filter_details": [
+        {
+          "passed_filter": true,
+          "rejection_reasons": [],
+          "features": {
+            "area": 32027.0,
+            "area_ratio": 0.07016448463816885,
+            "perimeter": 853.9554057121277,
+            "vertices": 8,
+            "solidity": 0.9396215343992959,
+            "circularity": 0.5518940852928789,
+            "bounding_box": [
+              98,
+              37,
+              245,
+              198
+            ],
+            "aspect_ratio": 0.8081632653061225,
+            "min_rect_fill_ratio": 0.8721428098719006,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": true,
+          "rejection_reasons": [],
+          "features": {
+            "area": 27693.5,
+            "area_ratio": 0.060670688960162644,
+            "perimeter": 623.7127655744553,
+            "vertices": 8,
+            "solidity": 0.9942378114453938,
+            "circularity": 0.8945784770094022,
+            "bounding_box": [
+              43,
+              337,
+              182,
+              196
+            ],
+            "aspect_ratio": 0.9285714285714286,
+            "min_rect_fill_ratio": 0.7846295509278934,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": true,
+          "rejection_reasons": [],
+          "features": {
+            "area": 15430.0,
+            "area_ratio": 0.03380391538286275,
+            "perimeter": 594.0142792463303,
+            "vertices": 3,
+            "solidity": 0.9808034579201628,
+            "circularity": 0.5495181233842257,
+            "bounding_box": [
+              515,
+              152,
+              175,
+              182
+            ],
+            "aspect_ratio": 0.9615384615384616,
+            "min_rect_fill_ratio": 0.5066879504968362,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 6001.5,
+            "area_ratio": 0.013148036174351964,
+            "perimeter": 664.7665889263153,
+            "vertices": 7,
+            "solidity": 0.647900248299687,
+            "circularity": 0.17065982932539212,
+            "bounding_box": [
+              0,
+              126,
+              109,
+              122
+            ],
+            "aspect_ratio": 0.8934426229508197,
+            "min_rect_fill_ratio": 0.47754590638559463,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 5963.0,
+            "area_ratio": 0.013063690695269643,
+            "perimeter": 799.5533833503723,
+            "vertices": 8,
+            "solidity": 0.5089621031068624,
+            "circularity": 0.11721406906383573,
+            "bounding_box": [
+              0,
+              239,
+              164,
+              100
+            ],
+            "aspect_ratio": 0.6097560975609756,
+            "min_rect_fill_ratio": 0.39322557494323496,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum"
+          ],
+          "features": {
+            "area": 1146.0,
+            "area_ratio": 0.0025106472474893528,
+            "perimeter": 574.0386656522751,
+            "vertices": 2,
+            "solidity": 0.47779862414008756,
+            "circularity": 0.04370309448452233,
+            "bounding_box": [
+              166,
+              272,
+              232,
+              131
+            ],
+            "aspect_ratio": 0.5646551724137931,
+            "min_rect_fill_ratio": 0.36950691271121167,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 258.5,
+            "area_ratio": 0.0005663196452670137,
+            "perimeter": 92.66904616355896,
+            "vertices": 8,
+            "solidity": 0.7180555555555556,
+            "circularity": 0.3782692389642423,
+            "bounding_box": [
+              0,
+              436,
+              17,
+              37
+            ],
+            "aspect_ratio": 0.4594594594594595,
+            "min_rect_fill_ratio": 0.5153218954303338,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 157.5,
+            "area_ratio": 0.0003450496871549503,
+            "perimeter": 73.69848418235779,
+            "vertices": 8,
+            "solidity": 0.735981308411215,
+            "circularity": 0.36439575683116954,
+            "bounding_box": [
+              436,
+              562,
+              28,
+              10
+            ],
+            "aspect_ratio": 0.35714285714285715,
+            "min_rect_fill_ratio": 0.6481481481481481,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 126.5,
+            "area_ratio": 0.0002771351455561982,
+            "perimeter": 106.87005722522736,
+            "vertices": 4,
+            "solidity": 0.6571428571428571,
+            "circularity": 0.13918367700287823,
+            "bounding_box": [
+              0,
+              345,
+              49,
+              10
+            ],
+            "aspect_ratio": 0.20408163265306123,
+            "min_rect_fill_ratio": 0.608691957869436,
+            "max_right_angle_deviation_degrees": 63.434948822921996,
+            "is_convex": true,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 63.0,
+            "area_ratio": 0.00013801987486198014,
+            "perimeter": 82.82842707633972,
+            "vertices": 3,
+            "solidity": 0.8936170212765957,
+            "circularity": 0.11539622059344903,
+            "bounding_box": [
+              0,
+              569,
+              41,
+              3
+            ],
+            "aspect_ratio": 0.07317073170731707,
+            "min_rect_fill_ratio": 0.7875,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 39.5,
+            "area_ratio": 8.653627074679707e-05,
+            "perimeter": 50.24264061450958,
+            "vertices": 3,
+            "solidity": 0.8229166666666666,
+            "circularity": 0.19663555411404796,
+            "bounding_box": [
+              794,
+              0,
+              4,
+              24
+            ],
+            "aspect_ratio": 0.16666666666666666,
+            "min_rect_fill_ratio": 0.572463768115942,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 39.5,
+            "area_ratio": 8.653627074679707e-05,
+            "perimeter": 43.071067690849304,
+            "vertices": 5,
+            "solidity": 0.7383177570093458,
+            "circularity": 0.26756893150569894,
+            "bounding_box": [
+              0,
+              0,
+              6,
+              19
+            ],
+            "aspect_ratio": 0.3157894736842105,
+            "min_rect_fill_ratio": 0.4388888888888889,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 19.5,
+            "area_ratio": 4.2720437457279566e-05,
+            "perimeter": 17.899494767189026,
+            "vertices": 9,
+            "solidity": 0.9512195121951219,
+            "circularity": 0.7648265049708362,
+            "bounding_box": [
+              146,
+              312,
+              7,
+              6
+            ],
+            "aspect_ratio": 0.8571428571428571,
+            "min_rect_fill_ratio": 0.7222222865770905,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 9.0,
+            "area_ratio": 1.9717124980282875e-05,
+            "perimeter": 12.485281229019165,
+            "vertices": 8,
+            "solidity": 0.9473684210526315,
+            "circularity": 0.7255305683555883,
+            "bounding_box": [
+              462,
+              547,
+              4,
+              6
+            ],
+            "aspect_ratio": 0.6666666666666666,
+            "min_rect_fill_ratio": 0.7500001099651162,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 4.0,
+            "area_ratio": 8.7631666579035e-06,
+            "perimeter": 7.656854152679443,
+            "vertices": 6,
+            "solidity": 1.0,
+            "circularity": 0.8573716241035623,
+            "bounding_box": [
+              492,
+              23,
+              4,
+              3
+            ],
+            "aspect_ratio": 0.75,
+            "min_rect_fill_ratio": 0.8888889692660855,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 2.0,
+            "area_ratio": 4.38158332895175e-06,
+            "perimeter": 5.656854152679443,
+            "vertices": 4,
+            "solidity": 1.0,
+            "circularity": 0.7853981902804831,
+            "bounding_box": [
+              4,
+              470,
+              3,
+              3
+            ],
+            "aspect_ratio": 1.0,
+            "min_rect_fill_ratio": 1.000000202815967,
+            "max_right_angle_deviation_degrees": 0.0,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 2.0,
+            "area_ratio": 4.38158332895175e-06,
+            "perimeter": 5.656854152679443,
+            "vertices": 4,
+            "solidity": 1.0,
+            "circularity": 0.7853981902804831,
+            "bounding_box": [
+              473,
+              61,
+              3,
+              3
+            ],
+            "aspect_ratio": 1.0,
+            "min_rect_fill_ratio": 1.000000202815967,
+            "max_right_angle_deviation_degrees": 0.0,
+            "is_convex": true,
+            "touches_border": false
+          }
+        }
+      ],
+      "matches_expected_labels": false
+    }
+  },
+  "vision_config_snapshot": {
+    "roi_left": 0.24,
+    "roi_top": 0.08,
+    "roi_right": 0.76,
+    "roi_bottom": 0.75,
+    "gaussian_kernel_size": 5,
+    "morphology_kernel_size": 3,
+    "morphology_open_iterations": 1,
+    "canny_low_threshold": 50,
+    "canny_high_threshold": 150,
+    "min_area_ratio": 0.02,
+    "max_area_ratio": 0.25,
+    "min_solidity": 0.9,
+    "border_margin_pixels": 2,
+    "approx_epsilon_ratio": 0.02,
+    "rectangle_max_angle_deviation_degrees": 25.0,
+    "rectangle_min_fill_ratio": 0.8,
+    "circle_min_vertices": 6,
+    "circle_min_circularity": 0.78,
+    "circle_min_aspect_ratio": 0.8,
+    "triangle_confidence_good_circularity": 0.62,
+    "triangle_confidence_max_circularity": 0.72,
+    "rectangle_confidence_good_angle_deviation_degrees": 5.0,
+    "rectangle_confidence_good_fill_ratio": 0.95,
+    "circle_confidence_good_vertices": 8,
+    "circle_confidence_good_circularity": 0.92,
+    "circle_confidence_good_aspect_ratio": 0.95,
+    "confidence_good_solidity": 0.98,
+    "confidence_good_area_clearance_ratio": 0.03,
+    "confidence_topology_weight": 0.5,
+    "confidence_geometry_weight": 0.3,
+    "confidence_quality_weight": 0.2,
+    "auto_hsv_min_value": 140,
+    "auto_hsv_max_saturation": 100,
+    "auto_morphology_kernel_size": 11,
+    "auto_morphology_close_iterations": 2,
+    "auto_morphology_open_iterations": 1,
+    "auto_min_area_ratio": 0.12,
+    "auto_max_area_ratio": 0.85,
+    "auto_preferred_area_ratio": 0.35,
+    "auto_min_rectangularity": 0.7,
+    "auto_max_center_distance_ratio": 0.5,
+    "auto_min_bright_fraction": 0.6,
+    "auto_approx_epsilon_ratio": 0.03,
+    "auto_inner_margin_ratio": 0.04,
+    "auto_min_score": 0.45,
+    "auto_score_area_weight": 0.2,
+    "auto_score_rectangularity_weight": 0.3,
+    "auto_score_center_weight": 0.25,
+    "auto_score_brightness_weight": 0.25,
+    "manual_min_width_pixels": 80,
+    "manual_min_height_pixels": 80,
+    "stability_window_size": 5,
+    "stability_min_votes": 3,
+    "fps_smoothing_window": 30,
+    "live_max_consecutive_read_failures": 30,
+    "live_preview_width": 1280,
+    "live_preview_height": 720,
+    "preprocess_mode": "otsu",
+    "comparison_preprocess_mode": "clahe_otsu",
+    "clahe_clip_limit": 2.0,
+    "clahe_tile_grid_size": 8
+  },
+  "m4_event_snapshot": {
+    "frame_index": 24489,
+    "detections": [
+      {
+        "label": "circle",
+        "confidence": 0.951542,
+        "bbox": [
+          591,
+          463,
+          182,
+          196
+        ],
+        "frame_index": 24489
+      },
+      {
+        "label": "unknown",
+        "confidence": 0.0,
+        "bbox": [
+          646,
+          163,
+          245,
+          198
+        ],
+        "frame_index": 24489
+      },
+      {
+        "label": "triangle",
+        "confidence": 0.945878,
+        "bbox": [
+          1063,
+          278,
+          175,
+          182
+        ],
+        "frame_index": 24489
+      }
+    ],
+    "object_states": [
+      {
+        "object_id": 1,
+        "label": "triangle",
+        "bbox": [
+          1054,
+          132,
+          173,
+          179
+        ],
+        "first_seen": 544,
+        "last_seen": 920,
+        "hit_count": 377,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.950543
+      },
+      {
+        "object_id": 2,
+        "label": "triangle",
+        "bbox": [
+          1052,
+          173,
+          175,
+          177
+        ],
+        "first_seen": 928,
+        "last_seen": 1660,
+        "hit_count": 733,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.933924
+      },
+      {
+        "object_id": 3,
+        "label": "rectangle",
+        "bbox": [
+          552,
+          134,
+          328,
+          283
+        ],
+        "first_seen": 968,
+        "last_seen": 968,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.97839
+      },
+      {
+        "object_id": 4,
+        "label": "rectangle",
+        "bbox": [
+          641,
+          132,
+          270,
+          256
+        ],
+        "first_seen": 974,
+        "last_seen": 975,
+        "hit_count": 2,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.964146
+      },
+      {
+        "object_id": 5,
+        "label": "circle",
+        "bbox": [
+          690,
+          475,
+          160,
+          198
+        ],
+        "first_seen": 1030,
+        "last_seen": 1358,
+        "hit_count": 329,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.973936
+      },
+      {
+        "object_id": 6,
+        "label": "rectangle",
+        "bbox": [
+          641,
+          155,
+          264,
+          248
+        ],
+        "first_seen": 1259,
+        "last_seen": 1260,
+        "hit_count": 2,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 1.0
+      },
+      {
+        "object_id": 7,
+        "label": "unknown",
+        "bbox": [
+          641,
+          155,
+          263,
+          246
+        ],
+        "first_seen": 1261,
+        "last_seen": 1349,
+        "hit_count": 88,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 8,
+        "label": "rectangle",
+        "bbox": [
+          641,
+          155,
+          263,
+          247
+        ],
+        "first_seen": 1339,
+        "last_seen": 1339,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 1.0
+      },
+      {
+        "object_id": 9,
+        "label": "rectangle",
+        "bbox": [
+          641,
+          155,
+          251,
+          245
+        ],
+        "first_seen": 1350,
+        "last_seen": 1361,
+        "hit_count": 12,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 1.0
+      },
+      {
+        "object_id": 10,
+        "label": "unknown",
+        "bbox": [
+          682,
+          460,
+          98,
+          231
+        ],
+        "first_seen": 1359,
+        "last_seen": 1363,
+        "hit_count": 5,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 11,
+        "label": "unknown",
+        "bbox": [
+          641,
+          155,
+          263,
+          234
+        ],
+        "first_seen": 1370,
+        "last_seen": 1379,
+        "hit_count": 10,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 12,
+        "label": "rectangle",
+        "bbox": [
+          640,
+          164,
+          264,
+          248
+        ],
+        "first_seen": 1380,
+        "last_seen": 1574,
+        "hit_count": 195,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.999795
+      },
+      {
+        "object_id": 13,
+        "label": "circle",
+        "bbox": [
+          571,
+          477,
+          177,
+          194
+        ],
+        "first_seen": 1419,
+        "last_seen": 1603,
+        "hit_count": 185,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.931865
+      },
+      {
+        "object_id": 14,
+        "label": "circle",
+        "bbox": [
+          571,
+          477,
+          178,
+          194
+        ],
+        "first_seen": 1630,
+        "last_seen": 1659,
+        "hit_count": 30,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.936933
+      },
+      {
+        "object_id": 15,
+        "label": "rectangle",
+        "bbox": [
+          640,
+          177,
+          264,
+          234
+        ],
+        "first_seen": 1635,
+        "last_seen": 1645,
+        "hit_count": 11,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.986521
+      },
+      {
+        "object_id": 16,
+        "label": "unknown",
+        "bbox": [
+          1069,
+          212,
+          158,
+          138
+        ],
+        "first_seen": 1667,
+        "last_seen": 1669,
+        "hit_count": 3,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 17,
+        "label": "unknown",
+        "bbox": [
+          1062,
+          205,
+          167,
+          177
+        ],
+        "first_seen": 1690,
+        "last_seen": 1696,
+        "hit_count": 7,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 18,
+        "label": "triangle",
+        "bbox": [
+          1081,
+          247,
+          176,
+          184
+        ],
+        "first_seen": 1697,
+        "last_seen": 5975,
+        "hit_count": 4279,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.946883
+      },
+      {
+        "object_id": 19,
+        "label": "circle",
+        "bbox": [
+          576,
+          496,
+          179,
+          165
+        ],
+        "first_seen": 1711,
+        "last_seen": 6024,
+        "hit_count": 4312,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.938879
+      },
+      {
+        "object_id": 20,
+        "label": "rectangle",
+        "bbox": [
+          650,
+          134,
+          266,
+          273
+        ],
+        "first_seen": 1714,
+        "last_seen": 3545,
+        "hit_count": 1832,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.999884
+      },
+      {
+        "object_id": 21,
+        "label": "rectangle",
+        "bbox": [
+          648,
+          161,
+          241,
+          195
+        ],
+        "first_seen": 4453,
+        "last_seen": 5994,
+        "hit_count": 1542,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.978208
+      },
+      {
+        "object_id": 22,
+        "label": "unknown",
+        "bbox": [
+          576,
+          449,
+          179,
+          212
+        ],
+        "first_seen": 6022,
+        "last_seen": 6032,
+        "hit_count": 7,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 23,
+        "label": "circle",
+        "bbox": [
+          576,
+          460,
+          179,
+          201
+        ],
+        "first_seen": 6031,
+        "last_seen": 6031,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.828995
+      },
+      {
+        "object_id": 24,
+        "label": "circle",
+        "bbox": [
+          575,
+          466,
+          180,
+          195
+        ],
+        "first_seen": 6033,
+        "last_seen": 6123,
+        "hit_count": 91,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.943023
+      },
+      {
+        "object_id": 25,
+        "label": "rectangle",
+        "bbox": [
+          648,
+          161,
+          241,
+          195
+        ],
+        "first_seen": 6036,
+        "last_seen": 6121,
+        "hit_count": 86,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.977746
+      },
+      {
+        "object_id": 26,
+        "label": "unknown",
+        "bbox": [
+          1025,
+          229,
+          196,
+          122
+        ],
+        "first_seen": 6037,
+        "last_seen": 6037,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 27,
+        "label": "triangle",
+        "bbox": [
+          1149,
+          208,
+          191,
+          173
+        ],
+        "first_seen": 6040,
+        "last_seen": 6153,
+        "hit_count": 114,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.945827
+      },
+      {
+        "object_id": 28,
+        "label": "circle",
+        "bbox": [
+          568,
+          493,
+          182,
+          195
+        ],
+        "first_seen": 6159,
+        "last_seen": 23414,
+        "hit_count": 17256,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.945842
+      },
+      {
+        "object_id": 29,
+        "label": "rectangle",
+        "bbox": [
+          647,
+          161,
+          243,
+          196
+        ],
+        "first_seen": 6162,
+        "last_seen": 8614,
+        "hit_count": 2453,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.980442
+      },
+      {
+        "object_id": 30,
+        "label": "triangle",
+        "bbox": [
+          1062,
+          272,
+          175,
+          182
+        ],
+        "first_seen": 6887,
+        "last_seen": 8611,
+        "hit_count": 1725,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.945003
+      },
+      {
+        "object_id": 31,
+        "label": "unknown",
+        "bbox": [
+          1062,
+          320,
+          175,
+          134
+        ],
+        "first_seen": 8628,
+        "last_seen": 8628,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 32,
+        "label": "triangle",
+        "bbox": [
+          1063,
+          278,
+          175,
+          182
+        ],
+        "first_seen": 8629,
+        "last_seen": 24489,
+        "hit_count": 15858,
+        "consecutive_hits": 15854,
+        "miss_count": 0,
+        "confirmed": true,
+        "active": true,
+        "event_emitted": true,
+        "status": "confirmed",
+        "confidence": 0.945649
+      },
+      {
+        "object_id": 33,
+        "label": "unknown",
+        "bbox": [
+          647,
+          154,
+          273,
+          203
+        ],
+        "first_seen": 8633,
+        "last_seen": 8633,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 34,
+        "label": "rectangle",
+        "bbox": [
+          648,
+          163,
+          242,
+          195
+        ],
+        "first_seen": 8634,
+        "last_seen": 23657,
+        "hit_count": 15024,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.980822
+      },
+      {
+        "object_id": 35,
+        "label": "circle",
+        "bbox": [
+          590,
+          468,
+          183,
+          191
+        ],
+        "first_seen": 23444,
+        "last_seen": 23753,
+        "hit_count": 310,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.950455
+      },
+      {
+        "object_id": 36,
+        "label": "unknown",
+        "bbox": [
+          648,
+          163,
+          243,
+          198
+        ],
+        "first_seen": 23749,
+        "last_seen": 23753,
+        "hit_count": 5,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 37,
+        "label": "unknown",
+        "bbox": [
+          590,
+          470,
+          183,
+          189
+        ],
+        "first_seen": 23754,
+        "last_seen": 23754,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 38,
+        "label": "rectangle",
+        "bbox": [
+          648,
+          163,
+          243,
+          195
+        ],
+        "first_seen": 23754,
+        "last_seen": 23754,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.983697
+      },
+      {
+        "object_id": 39,
+        "label": "unknown",
+        "bbox": [
+          648,
+          163,
+          243,
+          198
+        ],
+        "first_seen": 23768,
+        "last_seen": 23770,
+        "hit_count": 3,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 40,
+        "label": "unknown",
+        "bbox": [
+          590,
+          478,
+          183,
+          181
+        ],
+        "first_seen": 23773,
+        "last_seen": 23773,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 41,
+        "label": "circle",
+        "bbox": [
+          590,
+          480,
+          183,
+          179
+        ],
+        "first_seen": 23774,
+        "last_seen": 23782,
+        "hit_count": 9,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.627338
+      },
+      {
+        "object_id": 42,
+        "label": "unknown",
+        "bbox": [
+          590,
+          479,
+          183,
+          180
+        ],
+        "first_seen": 23783,
+        "last_seen": 23793,
+        "hit_count": 11,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 43,
+        "label": "unknown",
+        "bbox": [
+          590,
+          480,
+          183,
+          179
+        ],
+        "first_seen": 23804,
+        "last_seen": 23806,
+        "hit_count": 3,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 44,
+        "label": "circle",
+        "bbox": [
+          591,
+          463,
+          182,
+          196
+        ],
+        "first_seen": 23807,
+        "last_seen": 24489,
+        "hit_count": 682,
+        "consecutive_hits": 555,
+        "miss_count": 0,
+        "confirmed": true,
+        "active": true,
+        "event_emitted": true,
+        "status": "confirmed",
+        "confidence": 0.911307
+      },
+      {
+        "object_id": 45,
+        "label": "unknown",
+        "bbox": [
+          645,
+          163,
+          246,
+          198
+        ],
+        "first_seen": 23954,
+        "last_seen": 23958,
+        "hit_count": 3,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 46,
+        "label": "unknown",
+        "bbox": [
+          642,
+          163,
+          249,
+          198
+        ],
+        "first_seen": 23983,
+        "last_seen": 23991,
+        "hit_count": 7,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 47,
+        "label": "unknown",
+        "bbox": [
+          641,
+          163,
+          250,
+          198
+        ],
+        "first_seen": 24044,
+        "last_seen": 24053,
+        "hit_count": 8,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 48,
+        "label": "rectangle",
+        "bbox": [
+          648,
+          163,
+          243,
+          197
+        ],
+        "first_seen": 24051,
+        "last_seen": 24059,
+        "hit_count": 8,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.967457
+      },
+      {
+        "object_id": 49,
+        "label": "unknown",
+        "bbox": [
+          648,
+          163,
+          243,
+          198
+        ],
+        "first_seen": 24060,
+        "last_seen": 24070,
+        "hit_count": 11,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 50,
+        "label": "unknown",
+        "bbox": [
+          648,
+          163,
+          243,
+          198
+        ],
+        "first_seen": 24104,
+        "last_seen": 24132,
+        "hit_count": 27,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 51,
+        "label": "unknown",
+        "bbox": [
+          648,
+          163,
+          243,
+          198
+        ],
+        "first_seen": 24140,
+        "last_seen": 24140,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 52,
+        "label": "unknown",
+        "bbox": [
+          648,
+          163,
+          243,
+          198
+        ],
+        "first_seen": 24146,
+        "last_seen": 24178,
+        "hit_count": 33,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 53,
+        "label": "rectangle",
+        "bbox": [
+          648,
+          163,
+          243,
+          198
+        ],
+        "first_seen": 24240,
+        "last_seen": 24241,
+        "hit_count": 2,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.96663
+      },
+      {
+        "object_id": 54,
+        "label": "unknown",
+        "bbox": [
+          648,
+          163,
+          243,
+          198
+        ],
+        "first_seen": 24242,
+        "last_seen": 24267,
+        "hit_count": 22,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 55,
+        "label": "unknown",
+        "bbox": [
+          648,
+          163,
+          243,
+          198
+        ],
+        "first_seen": 24274,
+        "last_seen": 24274,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 56,
+        "label": "unknown",
+        "bbox": [
+          648,
+          163,
+          243,
+          198
+        ],
+        "first_seen": 24279,
+        "last_seen": 24279,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 57,
+        "label": "unknown",
+        "bbox": [
+          648,
+          163,
+          243,
+          198
+        ],
+        "first_seen": 24281,
+        "last_seen": 24289,
+        "hit_count": 8,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 58,
+        "label": "unknown",
+        "bbox": [
+          648,
+          163,
+          243,
+          198
+        ],
+        "first_seen": 24301,
+        "last_seen": 24301,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 59,
+        "label": "unknown",
+        "bbox": [
+          648,
+          163,
+          243,
+          198
+        ],
+        "first_seen": 24339,
+        "last_seen": 24394,
+        "hit_count": 52,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 60,
+        "label": "unknown",
+        "bbox": [
+          648,
+          163,
+          243,
+          198
+        ],
+        "first_seen": 24399,
+        "last_seen": 24399,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 61,
+        "label": "unknown",
+        "bbox": [
+          648,
+          163,
+          243,
+          198
+        ],
+        "first_seen": 24415,
+        "last_seen": 24415,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 62,
+        "label": "unknown",
+        "bbox": [
+          648,
+          163,
+          243,
+          198
+        ],
+        "first_seen": 24417,
+        "last_seen": 24422,
+        "hit_count": 6,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 63,
+        "label": "unknown",
+        "bbox": [
+          648,
+          163,
+          243,
+          198
+        ],
+        "first_seen": 24437,
+        "last_seen": 24437,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 64,
+        "label": "unknown",
+        "bbox": [
+          646,
+          163,
+          245,
+          198
+        ],
+        "first_seen": 24462,
+        "last_seen": 24489,
+        "hit_count": 26,
+        "consecutive_hits": 1,
+        "miss_count": 0,
+        "confirmed": true,
+        "active": true,
+        "event_emitted": true,
+        "status": "confirmed",
+        "confidence": 0.0
+      }
+    ],
+    "events": []
+  },
+  "artifacts": {
+    "frame": "frame.jpg",
+    "roi": "roi.jpg",
+    "comparison_csv": "comparison.csv",
+    "methods": {
+      "otsu": {
+        "normalized_gray": "otsu-normalized-gray.png",
+        "binary": "otsu-binary.png",
+        "canny": "otsu-canny.png",
+        "annotated": "otsu-annotated.jpg"
+      },
+      "clahe_otsu": {
+        "normalized_gray": "clahe_otsu-normalized-gray.png",
+        "binary": "clahe_otsu-binary.png",
+        "canny": "clahe_otsu-canny.png",
+        "annotated": "clahe_otsu-annotated.jpg"
+      }
+    }
+  }
+}

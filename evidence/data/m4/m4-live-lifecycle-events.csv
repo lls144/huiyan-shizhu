@@ -1,0 +1,4 @@
+event_id,event_type,object_id,label,confidence,frame_index
+115,OBJECT_ENTER,75,circle,0.924981,31606
+116,OBJECT_EXIT,75,circle,0.97351,33660
+117,OBJECT_ENTER,76,circle,0.957774,33928
