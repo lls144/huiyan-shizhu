@@ -51,8 +51,6 @@ BEGIN
                 #SortLed1 := TRUE;
                 #SortLed2 := TRUE;
                 #SortLed3 := TRUE;                          // circle (internal test)
-            ELSE
-                // Unknown shape is deliberately all-off until M7 policy is approved.
         END_CASE;
     END_IF;
 END_FUNCTION_BLOCK

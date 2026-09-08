@@ -4,7 +4,7 @@
 
 ## 恢复步骤（待现场 TIA V20 核验）
 
-1. 在 TIA Portal V20 新建与在线诊断完全一致的 S7-1200 G2 CPU 1214C DC/DC/DC 项目。
+1. 在 TIA Portal V20 新建与在线诊断完全一致的普通 S7-1200 CPU 1214C DC/DC/DC 项目（MLFB `6ES7 214-1AG40-0XB0`，不得写成 G2）。
 2. 核对 MLFB、固件、设备目录和 Optimized block access 后导入 `../src/*.scl`。
 3. 按 `../docs/IO_MAP.md` 的现场核验结果建立符号 I/O；当前所有地址均 TODO。
 4. 编译并分别记录 compile、PLCSIM、REAL PLC 结果；不得把源码审阅结果当作下载验收。

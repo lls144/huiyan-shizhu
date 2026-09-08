@@ -25,6 +25,35 @@ class Fifo:
         self.items.clear()
 
 
+class ButtonPulse:
+    """Small reference model of FB_ButtonPulse's scan-count semantics."""
+
+    def __init__(self, debounce_scans=2):
+        self.debounce_scans = debounce_scans
+        self.previous_raw = False
+        self.stable_raw = False
+        self.stable_count = 0
+
+    def scan(self, raw, reset=False):
+        pulse = False
+        if reset:
+            self.previous_raw = False
+            self.stable_raw = False
+            self.stable_count = 0
+        else:
+            if raw == self.previous_raw:
+                if self.stable_count < self.debounce_scans:
+                    self.stable_count += 1
+            else:
+                self.stable_count = 0
+            if self.stable_count >= self.debounce_scans and self.stable_raw != raw:
+                self.stable_raw = raw
+                if self.stable_raw:
+                    pulse = True
+            self.previous_raw = raw
+        return pulse, self.stable_raw
+
+
 def test_fifo_order_and_full_boundary():
     fifo = Fifo()
     values = [Item(1, 1), Item(2, 2), Item(3, 3)]
@@ -65,3 +94,22 @@ def test_internal_led_semantics():
     assert leds(Item(2, 2)) == (True, True, False)
     assert leds(Item(3, 3)) == (True, True, True)
     assert leds(Item(99, 4)) == (True, True, True)  # unknown does not alter display
+
+
+def test_button_pulse_is_single_shot_after_stable_scans():
+    button = ButtonPulse(debounce_scans=2)
+    assert button.scan(False) == (False, False)
+    assert button.scan(True) == (False, False)
+    assert button.scan(True) == (False, False)
+    assert button.scan(True) == (True, True)
+    assert button.scan(True) == (False, True)
+    assert button.scan(False) == (False, True)
+    assert button.scan(False) == (False, True)
+    assert button.scan(False) == (False, False)
+
+
+def test_reset_clears_button_state_and_led_state():
+    button = ButtonPulse(debounce_scans=1)
+    button.scan(True)
+    assert button.scan(True) == (True, True)
+    assert button.scan(False, reset=True) == (False, False)

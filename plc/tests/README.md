@@ -1,6 +1,6 @@
 # M8 测试计划
 
-状态：设计与参考模型测试；真实 PLC/PLCSIM 均 `PENDING REAL PLC TEST`。
+状态：设计与参考模型测试；真实 PLC/PLCSIM 均 `PENDING REAL PLC TEST`。2026-09-08 使用捆绑 Python 直接调用 6 个 `test_*` 函数，结果 `6 reference tests passed`。
 
 | ID | 场景 | 预期 |
 |---|---|---|

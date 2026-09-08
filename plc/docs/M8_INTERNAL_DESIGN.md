@@ -1,6 +1,6 @@
 # M8 内部 PLC 设计（transport-independent）
 
-状态：DESIGN ONLY；尚未在 TIA 编译、PLCSIM 或真实 PLC 下载验证。
+状态：内部设计与 SCL 源生成已具备；PLCSIM/真实 PLC/I/O 仍未验证。
 
 ## 边界
 
@@ -18,6 +18,11 @@
 - Reset 脉冲优先于其他操作并清空数组、索引和计数。
 - `FB_ButtonPulse` 使用稳定扫描次数（默认 2）抑制抖动；有效按下只产生一个脉冲，持续按住不会重复出队。实际扫描周期和电气极性待现场核验。
 - LED 只由 `FB_LedDisplay` 写入。识别/入队不会点灯；成功出队后锁存最近一次结果：triangle=1 灯、rectangle=2 灯、circle=3 灯，直到下一次成功出队或 Reset。FIFO 满只产生内部 `QueueFull`；`QueueFullLed` 是可选诊断/状态输出钩子，物理映射必须经负责人批准，不属于第四盏必接业务灯。`CommLost/BlinkPhase` 仅为后续 M9 报警覆盖钩子，当前应用未驱动它们。unknown 不产生有效业务 LED 组合且不改变既有显示。
+
+## 当前验证边界
+
+- TIA V20：五个 SCL 外部源均已由操作者生成，单源结果为 0 error、1 条优化访问属性 warning；全工程编译结果待补报。
+- 内部参考模型测试可验证 FIFO、按键单脉冲和 LED 锁存语义；该结果不等同于 PLCSIM 或真实 PLC PASS。
 
 ## 并发与协议隔离
 

@@ -1,7 +1,7 @@
 # SCL 静态审计（面向 TIA Portal V20）
 
-日期：2026-09-07
-结论：TEXT REVIEW ONLY；尚未有 TIA 编译器结果。
+日期：2026-09-08
+结论：文本审计完成；TIA 各外部源生成结果已由操作者截图确认，真实运行仍未验证。
 
 ## 检查项目
 
@@ -15,6 +15,7 @@
 
 ## 待 TIA V20 编译确认
 
-- 实际设备目录是否接受现场 1214C G2 MLFB 与固件组合。
+- 实际设备目录是否接受普通 1214C MLFB 与固件组合，需保留工程截图；不得使用 G2 型号描述。
 - 导入后结构化参数的类型推导、FB 实例 DB 生成和 OB1 调用。
-- 编译器报告的 error/warning 文本；本审计不替代 Compile → Software (rebuild all)。
+- 各外部源生成已观察为 0 error、1 条“优化的访问属性”warning；OB1/`DB_M8_Test` 的全工程 Compile → Software (rebuild all) 最终结果仍待操作者补报。
+- 早期 `FB_LedDisplay.scl` 的空 `ELSE` 导致第 34 行语法错误；已从源文件移除空分支，unknown 路径仍由每扫描先清零三盏业务灯保证全灭且不改变锁存状态。
