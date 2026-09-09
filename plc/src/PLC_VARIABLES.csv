@@ -2,6 +2,7 @@ scope,name,type,initial_or_range,writer,notes
 UDT,PLC_Command,STRUCT,Valid/ShapeCode/SemanticId,transport adapter,ShapeCode 1/2/3 are INTERNAL TEST only
 UDT,PLC_FifoBuffer,STRUCT,Items[0..2]/Head/Tail/Count,FB_Fifo,capacity fixed at 3 until approved design change
 FB_Fifo,Enqueue,BOOL,one-scan pulse,application,transport adapter must edge/duplicate gate
+FB_PlcApplication,CommandValid,BOOL,rising-edge accepted,FB_PlcApplication,held TRUE is accepted once; previous level updates during Reset
 FB_Fifo,Dequeue,BOOL,one-scan pulse,FB_ButtonPulse,empty dequeue ignored
 FB_Fifo,Reset,BOOL,one-scan pulse,FB_ButtonPulse,reset has priority
 FB_Fifo,QueueLength,USINT,0..3,FB_Fifo,observable internal status

@@ -54,6 +54,18 @@ class ButtonPulse:
         return pulse, self.stable_raw
 
 
+class CommandValidGate:
+    """Reference model for FB_PlcApplication's rising-edge acceptance."""
+
+    def __init__(self):
+        self.previous = False
+
+    def scan(self, command_valid, command_item_valid=True, reset=False):
+        edge = command_valid and not self.previous
+        self.previous = command_valid
+        return edge and command_item_valid and not reset
+
+
 def test_fifo_order_and_full_boundary():
     fifo = Fifo()
     values = [Item(1, 1), Item(2, 2), Item(3, 3)]
@@ -113,3 +125,19 @@ def test_reset_clears_button_state_and_led_state():
     button.scan(True)
     assert button.scan(True) == (True, True)
     assert button.scan(False, reset=True) == (False, False)
+
+
+def test_command_valid_held_high_is_single_shot_and_reset_safe():
+    gate = CommandValidGate()
+    assert gate.scan(False) is False
+    assert gate.scan(True) is True
+    assert gate.scan(True) is False
+    assert gate.scan(True) is False
+    assert gate.scan(False) is False
+    assert gate.scan(True) is True
+
+    held = CommandValidGate()
+    assert held.scan(True, reset=True) is False
+    assert held.scan(True) is False
+    assert held.scan(False) is False
+    assert held.scan(True) is True

@@ -14,7 +14,7 @@
 
 OB1 每一扫描调用一次 `FB_PlcApplication`：
 
-- `CommandIn`：内部 `PLC_Command` 测试变量；`CommandValid` 必须是单扫描脉冲。
+- `CommandIn`：内部 `PLC_Command` 测试变量；`CommandValid` 由 `FB_PlcApplication` 做上升沿接受，保持 TRUE 也只入队一次；测试时仍建议在一次命令后写回 FALSE，再用下一次 FALSE -> TRUE 触发下一项。
 - `DequeueButtonRaw`、`ResetButtonRaw`：内部 BOOL 测试变量，先用监视表改变。
 - `SortLed1..3`：仅连接到内部 BOOL 监视变量。
 - `QueueFullLed`：可选诊断输出钩子，不连接任何物理 Q，除非负责人另行批准。

@@ -24,14 +24,19 @@ VAR
     LedBlock : "FB_LedDisplay";
     Dequeued : "PLC_Command";
     DequeuedValid : Bool;
+    CommandValidPrev : Bool;
 END_VAR
 BEGIN
+    // Accept each held command-valid level only once. Update the previous
+    // level even during Reset so a held TRUE cannot create a ghost enqueue.
     #DequeueButton(Raw := #DequeueButtonRaw, Reset := FALSE, DebounceScans := 2);
     #ResetButton(Raw := #ResetButtonRaw, Reset := FALSE, DebounceScans := 2);
-    #FifoBlock(Enqueue := #CommandValid, EnqueueItem := #CommandIn,
+    #FifoBlock(Enqueue := #CommandValid AND NOT #CommandValidPrev,
+               EnqueueItem := #CommandIn,
                Dequeue := #DequeueButton.Pulse, Reset := #ResetButton.Pulse,
                Buffer := #Fifo, DequeuedItem => #Dequeued, DequeueValid => #DequeuedValid,
                QueueEmpty => #QueueEmpty, QueueFull => #QueueFull, QueueLength => #QueueLength);
+    #CommandValidPrev := #CommandValid;
     #LedBlock(ItemValid := #DequeuedValid, ShapeCode := #Dequeued.ShapeCode,
               Reset := #ResetButton.Pulse, QueueFull := #QueueFull,
               CommLost := FALSE, BlinkPhase := FALSE,

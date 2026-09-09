@@ -18,5 +18,6 @@
 | M8-T12 | 上电初始化 | 状态明确为 Empty、业务灯全灭，真实上电行为待实机 |
 | M8-T13 | PC 失联超过 2 s | 仅在 M9 心跳块批准后验证三灯闪烁；当前 DEFERRED |
 | M8-T14 | 重复数据包/ACK 丢失 | 不重复点灯或入队；依赖 M7/M9，当前 DEFERRED |
+| M8-T15 | `CommandValid` 持续为 TRUE | 仅第一次 FALSE→TRUE 入队一次；保持 TRUE 不重复；Reset 不制造幽灵入队 |
 
 编译、PLCSIM 和真实 PLC 证据必须分别记录，不能互相替代。
