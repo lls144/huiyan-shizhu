@@ -57,3 +57,17 @@ SortLed1/2/3 = FALSE
 - Python 参考测试：`7 reference tests passed`（Python 3.12.10）。
 - TIA V20 重新编译：PENDING。
 - 实体 PLC 重新下载与保持 TRUE 复测：PENDING。
+
+## 操作者提供的修复后监控截图
+
+证据来源：本次对话附件 `codex-clipboard-3c34be80-6989-4e76-bf72-861b5dd374ee.png`、`codex-clipboard-6c7f7ba6-4425-436f-bed8-ce5d31577e67.png`、`codex-clipboard-38f5b145-b478-46f7-b949-d263657f096d.png`。以下按截图实际值记录；截图标签由操作者提供，未将 M8-T02 标记为 PASS。
+
+| 操作者标签 | CommandValid | QueueLength | QueueEmpty | QueueFull | Q0.1 / SortLed1 | Q0.2 / SortLed2 | Q0.3 / SortLed3 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| 第一张：入队后 | TRUE | 0 | TRUE | FALSE | TRUE | FALSE | FALSE |
+| 第二张：入队前 | TRUE | 1 | FALSE | FALSE | FALSE | FALSE | FALSE |
+| 第三张：出队后，Valid 改为 FALSE | FALSE | 0 | TRUE | FALSE | TRUE | FALSE | FALSE |
+
+第二、三张的状态支持“队列有 1 项且业务灯保持全灭 → 出队后队列归零并点亮 SortLed1”。第一张的 `QueueLength=0/QueueEmpty=TRUE/SortLed1=TRUE` 与“单纯入队后”不一致，具体操作时序待操作者澄清。
+
+仍待补：CommandValid 保持 TRUE 多个扫描周期时 QueueLength 始终为 1 的证据、Reset 后正式三角形复测、TIA V20 重新编译结果及修复后下载记录。
