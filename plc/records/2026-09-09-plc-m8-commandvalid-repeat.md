@@ -64,10 +64,10 @@ SortLed1/2/3 = FALSE
 
 | 操作者标签 | CommandValid | QueueLength | QueueEmpty | QueueFull | Q0.1 / SortLed1 | Q0.2 / SortLed2 | Q0.3 / SortLed3 |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| 第一张：入队后 | TRUE | 0 | TRUE | FALSE | TRUE | FALSE | FALSE |
-| 第二张：入队前 | TRUE | 1 | FALSE | FALSE | FALSE | FALSE | FALSE |
+| 第一张：按 DequeueButton 出队后 | TRUE | 0 | TRUE | FALSE | TRUE | FALSE | FALSE |
+| 第二张：按键出队前（已有 1 项） | TRUE | 1 | FALSE | FALSE | FALSE | FALSE | FALSE |
 | 第三张：出队后，Valid 改为 FALSE | FALSE | 0 | TRUE | FALSE | TRUE | FALSE | FALSE |
 
-第二、三张的状态支持“队列有 1 项且业务灯保持全灭 → 出队后队列归零并点亮 SortLed1”。第一张的 `QueueLength=0/QueueEmpty=TRUE/SortLed1=TRUE` 与“单纯入队后”不一致，具体操作时序待操作者澄清。
+第二张到第一张的状态支持“队列有 1 项且业务灯保持全灭 → 按一次 DequeueButton 后队列归零并点亮 SortLed1”；第三张表明随后将 `CommandValid` 改为 FALSE 时，出队显示保持。该证据支持三角形出队结果，但未覆盖持续 TRUE 多扫描的时间过程。
 
 仍待补：CommandValid 保持 TRUE 多个扫描周期时 QueueLength 始终为 1 的证据、Reset 后正式三角形复测、TIA V20 重新编译结果及修复后下载记录。
