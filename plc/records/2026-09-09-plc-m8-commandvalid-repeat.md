@@ -71,3 +71,15 @@ SortLed1/2/3 = FALSE
 第二张到第一张的状态支持“队列有 1 项且业务灯保持全灭 → 按一次 DequeueButton 后队列归零并点亮 SortLed1”；第三张表明随后将 `CommandValid` 改为 FALSE 时，出队显示保持。该证据支持三角形出队结果，但未覆盖持续 TRUE 多扫描的时间过程。
 
 仍待补：CommandValid 保持 TRUE 多个扫描周期时 QueueLength 始终为 1 的证据、Reset 后正式三角形复测、TIA V20 重新编译结果及修复后下载记录。
+
+## 后续实体截图：矩形出队与防重复
+
+证据来源：本次对话附件 `codex-clipboard-177a4e1a-8a27-48e3-9ff9-de4ddd7219e9.png`、`codex-clipboard-010f690b-3981-43ef-8a62-cce7c3c07e5e.png`、`codex-clipboard-9c31a4ca-eadd-4e06-a70d-5b2e34be911a.png`。
+
+| 截图 | 场景 | ShapeCode | CommandValid | QueueLength | QueueEmpty | Q0.1 | Q0.2 | Q0.3 |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| 第一张 | 矩形出队前 | 2 | TRUE | 1 | FALSE | FALSE | FALSE | FALSE |
+| 第二张 | 矩形出队后 | 2 | TRUE | 0 | TRUE | TRUE | TRUE | FALSE |
+| 第三张 | 防重复：Valid 改回 FALSE 后 | — | FALSE | 1 | FALSE | — | — | — |
+
+第一、二张证明矩形出队后 `SortLed1 + SortLed2` 点亮，`SortLed3` 熄灭。第三张按操作者说明记录为防重复观察：`CommandValid` 为 FALSE 后队列仍为 1，未观察到继续增长；保持 TRUE 的持续时间未在截图中体现，最终结论仍需以完整时序或监控记录确认。
