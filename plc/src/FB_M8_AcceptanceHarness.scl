@@ -1,0 +1,77 @@
+// TEST-ONLY wrapper around the real M8 application core.
+// Test inputs are ignored unless Acceptance.TestEnable is TRUE.
+FUNCTION_BLOCK "FB_M8_AcceptanceHarness"
+VAR_INPUT
+    CommandIn : "PLC_Command";
+    CommandValid : Bool;
+    PhysicalDequeueRaw : Bool;
+    PhysicalResetRaw : Bool;
+END_VAR
+VAR_OUTPUT
+    QueueEmpty : Bool;
+    QueueFull : Bool;
+    QueueLength : USInt;
+    SortLed1 : Bool;
+    SortLed2 : Bool;
+    SortLed3 : Bool;
+    QueueFullLed : Bool;
+END_VAR
+VAR_IN_OUT
+    Acceptance : "M8_AcceptanceData";
+END_VAR
+VAR
+    Application : "FB_PlcApplication";
+END_VAR
+VAR_TEMP
+    EffectiveCommand : "PLC_Command";
+    EffectiveCommandValid : Bool;
+    EffectiveDequeueRaw : Bool;
+    EffectiveResetRaw : Bool;
+    LastDequeuedValid : Bool;
+    LastDequeuedShape : USInt;
+    LastDequeuedSemanticId : DInt;
+END_VAR
+BEGIN
+    #EffectiveCommand := #CommandIn;
+    #EffectiveCommandValid := #CommandValid;
+    #EffectiveDequeueRaw := #PhysicalDequeueRaw;
+    #EffectiveResetRaw := #PhysicalResetRaw;
+
+    IF #Acceptance.TestEnable THEN
+        #EffectiveCommand.Valid := #Acceptance.CommandDataValid;
+        #EffectiveCommand.ShapeCode := #Acceptance.ShapeCode;
+        #EffectiveCommand.SemanticId := #Acceptance.SemanticId;
+        #EffectiveCommandValid := #Acceptance.CommandValidTest;
+        #EffectiveDequeueRaw := #PhysicalDequeueRaw OR #Acceptance.DequeueTestRequest;
+        #EffectiveResetRaw := #PhysicalResetRaw OR #Acceptance.ResetTestRequest;
+    END_IF;
+
+    #Application(CommandIn := #EffectiveCommand,
+                 CommandValid := #EffectiveCommandValid,
+                 DequeueButtonRaw := #EffectiveDequeueRaw,
+                 ResetButtonRaw := #EffectiveResetRaw,
+                 QueueEmpty => #QueueEmpty,
+                 QueueFull => #QueueFull,
+                 QueueLength => #QueueLength,
+                 SortLed1 => #SortLed1,
+                 SortLed2 => #SortLed2,
+                 SortLed3 => #SortLed3,
+                 QueueFullLed => #QueueFullLed,
+                 LastDequeuedValid => #LastDequeuedValid,
+                 LastDequeuedShape => #LastDequeuedShape,
+                 LastDequeuedSemanticId => #LastDequeuedSemanticId);
+
+    #Acceptance.AcceptanceReady := TRUE;
+    #Acceptance.QueueEmpty := #QueueEmpty;
+    #Acceptance.QueueFull := #QueueFull;
+    #Acceptance.SortLed1 := #SortLed1;
+    #Acceptance.SortLed2 := #SortLed2;
+    #Acceptance.SortLed3 := #SortLed3;
+    #Acceptance.LastDequeuedValid := #LastDequeuedValid;
+    #Acceptance.QueueLength := #QueueLength;
+    #Acceptance.LastDequeuedShape := #LastDequeuedShape;
+    #Acceptance.LastDequeuedSemanticId := #LastDequeuedSemanticId;
+    #Acceptance.CycleCounter := #Acceptance.CycleCounter + 1;
+    #Acceptance.LayoutMagic := W#16#4D38;
+    #Acceptance.LayoutVersion := 1;
+END_FUNCTION_BLOCK

@@ -15,6 +15,9 @@ VAR_OUTPUT
     SortLed2 : Bool;
     SortLed3 : Bool;
     QueueFullLed : Bool;      // optional diagnostic hook; not a fourth required business LED
+    LastDequeuedValid : Bool;
+    LastDequeuedShape : USInt;
+    LastDequeuedSemanticId : DInt;
 END_VAR
 VAR
     Fifo : "PLC_FifoBuffer";
@@ -37,6 +40,15 @@ BEGIN
                Buffer := #Fifo, DequeuedItem => #Dequeued, DequeueValid => #DequeuedValid,
                QueueEmpty => #QueueEmpty, QueueFull => #QueueFull, QueueLength => #QueueLength);
     #CommandValidPrev := #CommandValid;
+    IF #ResetButton.Pulse THEN
+        #LastDequeuedValid := FALSE;
+        #LastDequeuedShape := 0;
+        #LastDequeuedSemanticId := 0;
+    ELSIF #DequeuedValid THEN
+        #LastDequeuedValid := TRUE;
+        #LastDequeuedShape := #Dequeued.ShapeCode;
+        #LastDequeuedSemanticId := #Dequeued.SemanticId;
+    END_IF;
     #LedBlock(ItemValid := #DequeuedValid, ShapeCode := #Dequeued.ShapeCode,
               Reset := #ResetButton.Pulse, QueueFull := #QueueFull,
               CommLost := FALSE, BlinkPhase := FALSE,
