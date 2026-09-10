@@ -65,7 +65,8 @@
 
 | # | 核对项 | 判定依据 | 记录 |
 |---|---|---|---|
-| D1 | 外部源导入顺序 | 按 `plc/project/TIA_V20_COMPILE_GUIDE.md`；注意指南当前未列 `DB_M8_Acceptance.scl` 与 `FB_M8_AcceptanceHarness.scl`，现场需一并导入才能跑验收工具 | TODO |
+| D1 | 外部源导入清单与顺序 | 按 `plc/project/TIA_V20_COMPILE_GUIDE.md` 第 1 节：7 个 `.scl` **按序**生成（`PLC_Types` → 4 个 FB → `FB_M8_AcceptanceHarness` → `DB_M8_Acceptance`）；`PLC_VARIABLES.csv` 不导入 | TODO |
+| D1b | OB1 调用路径 | 走路径 B：OB1 只调 `FB_M8_AcceptanceHarness`，`Acceptance` 接 `"DB_M8_Acceptance".Data`；**不要再单独调 `FB_PlcApplication`** | TODO |
 | D2 | 单源生成结果 | 每个 SCL 源的 error/warning 数与截图 | 操作者已观察 0 error + 1 warning，待截图归档 |
 | D3 | 全工程编译 | `Compile → Software (rebuild all)` 的 error/warning 总数 | PENDING |
 | D4 | TIA 完整版本与 Update | 例如 `V20 + Update n` | TODO |

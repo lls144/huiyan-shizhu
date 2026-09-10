@@ -57,11 +57,12 @@
 
 ### 步骤 0 前置：PLC 册子里先准备好 DB（在 TIA 里，需要你操作）
 
-1. 导入 `plc/src/PLC_Types.scl`（含 `M8_AcceptanceData` UDT）、`FB_Fifo.scl`、`FB_ButtonPulse.scl`、`FB_LedDisplay.scl`、`FB_PlcApplication.scl`。
-2. 导入 `DB_M8_Acceptance.scl`（**必须非优化访问**）和 `FB_M8_AcceptanceHarness.scl`。
-3. 在 OB1 里调用 `FB_M8_AcceptanceHarness`，把它的 `Acceptance` 形参连到 `DB_M8_Acceptance`，把 `PhysicalDequeueRaw` / `PhysicalResetRaw` 连到真实输入，`SortLed1..3` 连到真实输出。
-4. `Compile → Software (rebuild all)`，把 error/warning 数和截图记下来。
-5. 下载并进入 RUN。
+1. 从 `plc/src/` 导入 7 个外部源并**按序**生成（清单与方法见 [TIA_V20_COMPILE_GUIDE.md](../plc/project/TIA_V20_COMPILE_GUIDE.md) 第 1 节）：
+   `PLC_Types.scl` → `FB_Fifo.scl` → `FB_ButtonPulse.scl` → `FB_LedDisplay.scl` → `FB_PlcApplication.scl` → `FB_M8_AcceptanceHarness.scl` → `DB_M8_Acceptance.scl`。
+   （`PLC_VARIABLES.csv` 只是参考符号表，不导入。）
+2. 在 OB1 里只调用一次 `FB_M8_AcceptanceHarness`（它内部已调用 `FB_PlcApplication`，不要再单独调一次），把 `Acceptance` 形参连到 `"DB_M8_Acceptance".Data`；`PhysicalDequeueRaw` / `PhysicalResetRaw` / `SortLed1..3` 先在 I/O 确认后接真实地址。
+3. `Compile → Software (rebuild all)`，把 error/warning 数和截图记下来。
+4. 下载并进入 RUN。
 
 > 用 harness 而不是直接用 `FB_PlcApplication` 的原因是：harness 让 PLC 同时接受「PC 写的 DB 命令」和「真实按键」，这正是联调需要的组合。
 
