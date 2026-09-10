@@ -25,12 +25,16 @@
 | NumPy | 2.5.2 | `requirements.txt` |
 | pytest | 9.1.1 | 13 项自动化测试通过 |
 | 摄像头枚举 | `cv2-enumerate-cameras` 1.3.3 | `requirements.txt` |
-| 首选摄像头 | Insta360 Ace Pro 2，VID `2E1A`，PID `1003` | TEST-001 |
-| 当前 DirectShow 索引 | 1 | 仅为本次枚举结果；运行时仍按名称选择 |
-| 采集模式 | DirectShow / MJPG / 1920×1080 / 请求 30 fps | TEST-001 |
+| 摄像头（当前） | 笔记本内置 `HD Webcam`，VID `2B7E`，PID `B663`；2026-09-10 起使用 | TEST-010 |
+| 摄像头（历史） | Insta360 Ace Pro 2，VID `2E1A`，PID `1003`；已不再接入本机 | TEST-001 |
+| 当前枚举索引 | 0（MSMF） | 仅为本次枚举结果；运行时仍按名称选择 |
+| 采集模式（当前） | MSMF / 1280×720 / 请求 30 fps；实测 29.99 fps、1800/1800 帧、最大帧间隔 0.084 s | TEST-010 |
+| 采集模式（历史） | DirectShow / MJPG / 1920×1080 / 请求 30 fps | TEST-001 |
 
-- 另检测到 `USB2.0 HD UVC WebCam`（索引 0）和 `OBS Virtual Camera`（DirectShow 索引 2）。
-- FFmpeg 未安装；M1 使用 OpenCV/DirectShow，不依赖 FFmpeg。
+- 2026-09-10 枚举结果只剩内置 `HD Webcam`；Insta360 与旧的 `OBS Virtual Camera` 均不在列表中。
+- 内置摄像头对 1920×1080 的请求会被降到 1280×720，且不接受 MJPG（实际为 YUY2）；
+  同一机位下 DSHOW 只能跑到约 10 fps，MSMF 才能跑满 30 fps，因此后端选 MSMF。
+- FFmpeg 未安装；M1 使用 OpenCV/DirectShow（2026-09-10 起内置摄像头用 MSMF），不依赖 FFmpeg。
 - Ubuntu 环境具体版本与本项目用途仍为 TODO。
 
 ## 待确认或待安装评估
