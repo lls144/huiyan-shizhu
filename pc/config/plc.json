@@ -1,9 +1,9 @@
 {
-  "enabled": false,
+  "enabled": true,
   "host": "192.0.2.1",
   "rack": 0,
   "slot": 1,
-  "db_number": null,
+  "db_number": 3,
   "auto_dequeue": false,
   "command_pulse_seconds": 0.05,
   "dequeue_pulse_seconds": 0.20,
