@@ -423,6 +423,83 @@ TESTS: dict[str, Callable[[Runner], None]] = {
 }
 
 
+def run_diagnostics(host: str, rack: int, slot: int, db_number: int | None) -> dict:
+    """Read-only probes that separate transport, protection and block-access faults.
+
+    This never writes to the PLC. It exists because the classic S7 failure modes
+    (cable, PUT/GET disabled, wrong DB number, still-optimized block) all surface
+    as generic protocol errors during the first DB read.
+    """
+
+    steps: list[dict] = []
+
+    def probe(name: str, func: Callable[[], object]) -> None:
+        started = utc_now()
+        try:
+            steps.append({"step": name, "ok": True, "at": started, "result": func()})
+        except Exception as exc:  # a probe failing is data, not an abort
+            steps.append(
+                {"step": name, "ok": False, "at": started, "error": f"{type(exc).__name__}: {exc}"}
+            )
+
+    def result_of(name: str) -> dict:
+        for item in steps:
+            if item["step"] == name:
+                return item
+        return {}
+
+    client = snap7.client.Client()
+    probe("connect", lambda: (client.connect(host, rack, slot), bool(client.get_connected()))[1])
+    if client.get_connected():
+        probe("get_cpu_info", client.get_cpu_info)
+        probe("get_cpu_state", client.get_cpu_state)
+        if db_number is not None:
+            probe("db_read_control_byte", lambda: client.db_read(db_number, 0, 1).hex())
+            probe("db_read_status_region", lambda: client.db_read(db_number, 8, 16).hex())
+        probe("disconnect", lambda: (client.disconnect(), "closed")[1])
+    else:
+        steps.append({"step": "probes skipped", "ok": False, "error": "no S7 session established"})
+
+    connect_ok = bool(result_of("connect").get("ok"))
+    db_read_ok = bool(result_of("db_read_control_byte").get("ok")) if db_number is not None else False
+    db_error = str(result_of("db_read_control_byte").get("error", ""))
+
+    hint: list[str] = []
+    if not connect_ok:
+        hint.append("S7 connect failed: check cable/link, PLC IP and rack=0/slot=1 before anything else.")
+    elif db_number is None and bool(result_of("get_cpu_state").get("ok")):
+        hint.append("Session is healthy but no --db-number was given, so block access was not probed.")
+    elif not db_read_ok:
+        if "code=0x04" in db_error:
+            hint.append(
+                "class=0x81 code=0x04 on DB access: the CPU does not offer read/write services to "
+                "remote partners. In TIA enable Protection & Security > Connection mechanisms > "
+                "'Permit access with PUT/GET communication from remote partner', then re-download."
+            )
+            hint.append(
+                "If that option is already ticked and downloaded, verify the DB number is really "
+                "DB_M8_Acceptance and that 'optimized block access' is still unchecked on it."
+            )
+        elif "code=0x05" in db_error:
+            hint.append("code=0x05 usually means the CPU access level denies this partner.")
+        else:
+            hint.append(f"DB access failed with: {db_error or 'unknown error'}")
+
+    return {
+        "generated_at": utc_now(),
+        "host": host,
+        "rack": rack,
+        "slot": slot,
+        "db_number": db_number,
+        "snap7_version": getattr(snap7, "__version__", "unknown"),
+        "git_commit": git_commit(),
+        "connect_ok": connect_ok,
+        "db_read_ok": db_read_ok,
+        "hint": hint,
+        "steps": steps,
+    }
+
+
 def check_access(client: S7AcceptanceClient, poll: float) -> dict:
     first = client.read_state()
     time.sleep(max(0.2, poll * 2))
@@ -526,6 +603,11 @@ def build_parser() -> argparse.ArgumentParser:
     mode.add_argument("--test", choices=sorted(TESTS))
     mode.add_argument("--verify-power-on", action="store_true")
     mode.add_argument("--dry-run", action="store_true")
+    mode.add_argument(
+        "--diagnose",
+        action="store_true",
+        help="read-only probes that separate cable, PUT/GET protection and DB-access faults",
+    )
     return parser
 
 
@@ -534,6 +616,11 @@ def main() -> int:
     if args.dry_run:
         print(json.dumps({"tests": list(TESTS), "writes": "DBB0..DBB7 only", "status": "DRY RUN"}, indent=2))
         return 0
+
+    if args.diagnose:
+        document = run_diagnostics(args.host, args.rack, args.slot, args.db_number)
+        print(json.dumps(document, indent=2, ensure_ascii=False))
+        return 0 if document["connect_ok"] and (args.db_number is None or document["db_read_ok"]) else 1
 
     if args.db_number is None:
         parser_error = "--db-number is required unless --dry-run is used"
