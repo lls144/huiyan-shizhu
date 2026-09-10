@@ -9,6 +9,8 @@ import tracemalloc
 from pathlib import Path
 from typing import Sequence
 
+from pc.communication.config import load_plc_communication_config
+from pc.communication.sink import build_plc_sink
 from pc.events.config import load_event_config
 from pc.vision.config import load_vision_config
 from pc.vision.pipeline import analyze_multiple_objects
@@ -22,6 +24,7 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--source", choices=("synthetic", "camera"), default="synthetic")
     parser.add_argument("--vision-config", type=Path, default=Path("pc/config/vision.json"))
     parser.add_argument("--event-config", type=Path, default=Path("pc/config/events.json"))
+    parser.add_argument("--plc-config", type=Path, default=Path("pc/config/plc.json"))
     parser.add_argument("--camera-config", type=Path, default=Path("pc/config/camera.json"))
     parser.add_argument(
         "--roi-mode", choices=("auto", "manual", "fixed_normalized"), default="auto"
@@ -63,6 +66,8 @@ def run(argv: Sequence[str] | None = None) -> int:
 
     vision_config = load_vision_config(args.vision_config)
     event_config = load_event_config(args.event_config)
+    plc_config = load_plc_communication_config(args.plc_config)
+    command_sink = build_plc_sink(plc_config)
 
     if args.source == "synthetic":
         source_factory = lambda: SyntheticFrameSource(
@@ -91,6 +96,7 @@ def run(argv: Sequence[str] | None = None) -> int:
         evidence_root=args.m3_evidence_dir,
         expected_labels=args.expected_labels,
         analyzer=analyze_multiple_objects,
+        command_sink=command_sink,
     )
     window.show()
     if not args.no_auto_start:

@@ -30,6 +30,7 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+from pc.communication.sink import PlcCommandSink
 from pc.events.config import EventConfig
 from pc.vision.config import VisionConfig
 from pc.vision.live import _git_state
@@ -96,6 +97,7 @@ class MainWindow(QMainWindow):
         evidence_root: Path,
         expected_labels: Sequence[str],
         analyzer: Analyzer,
+        command_sink: PlcCommandSink | None = None,
     ) -> None:
         super().__init__()
         load_ui_fonts()
@@ -107,6 +109,7 @@ class MainWindow(QMainWindow):
         self.evidence_root = evidence_root
         self.expected_labels = tuple(expected_labels)
         self.analyzer = analyzer
+        self.command_sink = command_sink
         self._thread: QThread | None = None
         self._worker: VisionWorker | None = None
         self._buffer: LatestSnapshotBuffer | None = None
@@ -368,6 +371,7 @@ class MainWindow(QMainWindow):
             self.evidence_root,
             self.expected_labels,
             self.analyzer,
+            self.command_sink,
         )
         worker.moveToThread(thread)
         thread.started.connect(worker.run)

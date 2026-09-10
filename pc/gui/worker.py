@@ -12,9 +12,10 @@ from typing import Callable, Sequence
 import numpy as np
 from PySide6.QtCore import QObject, QThread, Signal, Slot
 
+from pc.communication.sink import PlcCommandSink
 from pc.events.adapters import detections_from_analysis
 from pc.events.config import EventConfig
-from pc.events.models import VisionEvent
+from pc.events.models import EventType, VisionEvent
 from pc.events.tracker import ObjectStateManager
 from pc.vision.config import VisionConfig
 from pc.vision.m3_live import analyze_preprocess_modes, save_m3_comparison_evidence
@@ -95,6 +96,7 @@ class VisionWorker(QObject):
         evidence_root: Path,
         expected_labels: Sequence[str],
         analyzer: Analyzer = analyze_multiple_objects,
+        command_sink: PlcCommandSink | None = None,
     ) -> None:
         super().__init__()
         self.source = source
@@ -105,6 +107,9 @@ class VisionWorker(QObject):
         self.evidence_root = evidence_root
         self.expected_labels = tuple(expected_labels)
         self.analyzer = analyzer
+        self.command_sink = command_sink
+        self.plc_command_results: list[object] = []
+        self.plc_sink_error: str | None = None
 
     @Slot()
     def run(self) -> None:
@@ -124,6 +129,7 @@ class VisionWorker(QObject):
         try:
             self.source.open()
             source_metadata = self.source.metadata()
+            self._start_plc_sink()
             self.state_changed.emit(GuiState.RUNNING.value)
             while not QThread.currentThread().isInterruptionRequested():
                 loop_started = time.perf_counter()
@@ -136,6 +142,7 @@ class VisionWorker(QObject):
                 analysis = self.analyzer(frame, self.vision_config, self.source.roi)
                 detections = detections_from_analysis(analysis, frames_processed)
                 update = manager.process_frame(frames_processed, detections)
+                self._dispatch_plc_events(update.events)
                 annotated = annotated_gui_frame(
                     frame,
                     analysis,
@@ -204,6 +211,7 @@ class VisionWorker(QObject):
             ended_reason = "error"
             self.state_changed.emit(GuiState.ERROR.value)
         finally:
+            self._stop_plc_sink()
             try:
                 self.source.close()
             except Exception as close_error:
@@ -233,5 +241,41 @@ class VisionWorker(QObject):
                 events=tuple(all_events),
                 final_object_states=manager.object_states(),
                 evidence_records=tuple(evidence_records),
+                plc_command_count=len(self.plc_command_results),
+                plc_sink_error=self.plc_sink_error,
+                plc_results=tuple(
+                    result.to_record() if hasattr(result, "to_record") else {}
+                    for result in self.plc_command_results
+                ),
             )
             self.finished.emit(summary)
+
+    def _start_plc_sink(self) -> None:
+        if self.command_sink is None:
+            return
+        try:
+            self.command_sink.start()
+        except Exception as error:
+            self.plc_sink_error = f"{type(error).__name__}: {error}"
+
+    def _stop_plc_sink(self) -> None:
+        if self.command_sink is None:
+            return
+        try:
+            self.command_sink.stop()
+        except Exception as error:
+            if self.plc_sink_error is None:
+                self.plc_sink_error = f"{type(error).__name__}: {error}"
+
+    def _dispatch_plc_events(self, events: tuple[VisionEvent, ...]) -> None:
+        if self.command_sink is None or not events:
+            return
+        for event in events:
+            if event.event_type is not EventType.OBJECT_ENTER:
+                continue
+            try:
+                result = self.command_sink.send_event(event)
+            except Exception as error:
+                self.plc_sink_error = f"{type(error).__name__}: {error}"
+                return
+            self.plc_command_results.append(result)

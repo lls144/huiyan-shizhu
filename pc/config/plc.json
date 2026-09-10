@@ -1,0 +1,13 @@
+{
+  "enabled": false,
+  "host": "192.0.2.1",
+  "rack": 0,
+  "slot": 1,
+  "db_number": null,
+  "auto_dequeue": false,
+  "command_pulse_seconds": 0.05,
+  "dequeue_pulse_seconds": 0.20,
+  "reset_pulse_seconds": 0.20,
+  "timeout_seconds": 2.0,
+  "poll_seconds": 0.02
+}

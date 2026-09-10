@@ -60,6 +60,9 @@ class WorkerSummary:
     events: tuple[VisionEvent, ...]
     final_object_states: tuple[ObjectState, ...]
     evidence_records: tuple[dict[str, str], ...]
+    plc_command_count: int = 0
+    plc_sink_error: str | None = None
+    plc_results: tuple[dict[str, Any], ...] = ()
 
     def to_record(self) -> dict[str, Any]:
         record = asdict(self)
