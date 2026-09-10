@@ -12,14 +12,14 @@
 
 ## 2 系统架构（2 页，约 1.5 分钟）
 
-4. 总体架构图（0:50）：`摄像头 → PC(Python/OpenCV) → 通信 → PLC → FIFO → 按键 → LED`；**已完成段与 TODO 段用颜色区分**。
+4. 总体架构图（0:50）：直接使用 `evidence/plots/system-architecture.png`（绿=已验收 / 橙=仅离线验证 / 灰虚线=未实现）；**口头点明橙色段未经真机**。
 5. 模块与配置原则（0:40）：`pc/`、`plc/`、`simulator/` 分离；阈值/地址/超时全部进配置。
 
 ## 3 实现（4 页，约 4 分钟）
 
 6. 视觉算法（1:10）：预处理 → 轮廓 → `approxPolyDP` → 几何判据；ROI 启动校准后锁定；多目标与抗光照对比结论。配 `evidence/screenshots/m3/live/` 的标注图。
 7. 事件与 GUI（1:00）：逐帧检测 → 离散事件（ENTER/EXIT、防重复）；PySide6 双线程与 latest-frame-wins。配 M4 生命周期截图与 M5 running 截图。
-8. PLC FIFO 与分拣逻辑（1:00）：环形缓冲容量 3、入队边沿、按键去抖单脉冲、LED 锁存 1/2/3、复位优先级。
+8. PLC FIFO 与分拣逻辑（1:00）：用 `evidence/plots/plc-fifo-flow.png` 讲环形缓冲容量 3、入队边沿、按键去抖单脉冲、LED 锁存 1/2/3、复位优先级；**必须点出“入队不点灯，出队才点灯”**。
 9. 通信（0:50）：**当前诚实结论**——仅完成 PC 侧命令桥与 Fake PLC 离线验收；共享协议未冻结；真实链路为 TODO。引用 `docs/PLC_INTERFACE.md`。
 
 ## 4 测试与结果（3 页，约 2 分钟）

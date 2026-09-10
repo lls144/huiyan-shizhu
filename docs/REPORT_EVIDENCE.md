@@ -81,3 +81,12 @@ M6 fault scenarios 可供未来 M7/M9 复用，仅为 supporting simulator avail
 本轮同时修复了两处测试基础设施缺陷（`plc/tests` 的 pytest 收集、验收工具 `--dry-run` 参数），使全量回归首次真正覆盖 `plc/tests` 的 10 项；此前 M6 时段的“全量 172 项”并未包含它们。
 
 现场执行清单见 `docs/PLC_FIELD_CHECKLIST.md`；最终交付物骨架见 `docs/deliverables/`。
+
+同一轮的**报告图件**（非测试证据，属于由规格与 SCL 反推的示意图，均已标注未验证部分）：
+
+| 图 | 源文件 | 导出 | 依据 |
+|---|---|---|---|
+| 系统架构图 | `evidence/plots/system-architecture.svg` | `system-architecture.png` | `PROJECT_SPEC.md`、`ROADMAP.md`、本表 M1–M6 行 |
+| 入队/出队/LED 判定流程图 | `evidence/plots/plc-fifo-flow.svg` | `plc-fifo-flow.png` | `plc/docs/M8_INTERNAL_DESIGN.md`、`plc/src/*.scl`、`plc/docs/SCL_STATIC_AUDIT.md` |
+
+视觉接入真机的操作步骤见 `docs/INTEGRATION_VISION_TO_LED.md`（流程手册，不含验收结论）。

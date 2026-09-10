@@ -112,4 +112,6 @@ scripts/               辅助脚本
 ## 现场联调与交付物准备
 
 - PLC 现场只读核对表：[docs/PLC_FIELD_CHECKLIST.md](docs/PLC_FIELD_CHECKLIST.md)（A 设备身份 / B 网络 / C I/O 与 DB / D 编译 / E 下载 / F 录像前检查）。A~D 只读，E/F 需操作者当次授权。
+- 视觉接入 → PLC 亮灯的操作手册：[docs/INTEGRATION_VISION_TO_LED.md](docs/INTEGRATION_VISION_TO_LED.md)（含“识别不点灯、出队才点灯”的语义说明、分步命令与故障排查表）。
 - 最终交付物骨架：[docs/deliverables/](docs/deliverables/README.md)（报告、测试用例矩阵、PPT、视频分镜）。所有结果列在真机执行前保持 `TODO` / 待测试。
+- 报告图件：[evidence/plots/](evidence/plots/) 下的系统架构图与 PLC 判定流程图（`.svg` 可编辑，`.png` 供文档嵌入）。

@@ -22,7 +22,8 @@
 2.1 总体架构图；2.2 数据流与事件模型；2.3 模块划分与代码结构；2.4 配置与参数管理原则。
 
 - **系统架构图（必需）**：`USB 摄像头 → PC(Python/OpenCV) → 通信 → PLC → FIFO → 按键出队 → 1/2/3 盏 LED`。
-  - 图中用不同颜色区分“已完成”与“TODO”部分；M7–M10 的链路画成虚线并在图注标明未验收。
+  - 图源：[system-architecture.svg](../../evidence/plots/system-architecture.svg) / [system-architecture.png](../../evidence/plots/system-architecture.png)（用绿 / 橙 / 灰三色区分“已验收 / 仅离线验证 / 未实现”）。
+  - 写正文时**必须**保留图注：橙色环节未经真机，真实闭环仍属 M10 TODO。
 - 证据：`README.md` 目录结构、`pc/`、`plc/`、`simulator/`；`docs/PLC_INTERFACE.md`（标注未冻结）。
 
 ## 3 视觉识别子系统（约 900 字）
@@ -46,6 +47,8 @@
 5.1 FIFO 数据结构与容量；5.2 入队边沿与防重复；5.3 按键去抖与单次出队；5.4 LED 锁存与 1/2/3 映射；5.5 空/满/长度与复位；5.6 心跳与断连报警（M9）。
 
 - **队列逻辑流程图（必需）**：入队判定（满？）→ 出队判定（空？）→ LED 锁存 → 复位优先级 → 心跳超时分支。M9 分支标注 DEFERRED。
+  - 图源：[plc-fifo-flow.svg](../../evidence/plots/plc-fifo-flow.svg) / [plc-fifo-flow.png](../../evidence/plots/plc-fifo-flow.png)。
+  - 图已含“识别不点灯、出队才点灯”的判定顺序，正文可直接据此解释按键语义。
 - 证据：`plc/docs/M8_INTERNAL_DESIGN.md`、`plc/src/*.scl`、`plc/docs/SCL_STATIC_AUDIT.md`、`plc/docs/IO_MAP.md`。
 - 状态标注：源码与内部参考模型已验证；**TIA 全工程编译、PLCSIM、真实 I/O 均 PENDING**，不得写成已通过。
 

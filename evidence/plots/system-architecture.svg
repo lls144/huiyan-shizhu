@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="580" viewBox="0 0 1320 580" font-family="Microsoft YaHei, Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#495057"/>
+    </marker>
+  </defs>
+  <rect width="1320" height="580" fill="#ffffff"/>
+
+  <text x="40" y="42" font-size="24" font-weight="700" fill="#212529">“慧眼识珠” 系统架构（状态截至 2026-09-10）</text>
+
+  <rect x="40" y="64" width="660" height="44" rx="6" fill="#E7F1FF" stroke="#4C6EF5"/>
+  <text x="56" y="93" font-size="16" fill="#1B3A6B">PC 上位机 · Python / OpenCV / PySide6</text>
+  <rect x="700" y="64" width="200" height="44" rx="6" fill="#FFF3BF" stroke="#E8A600"/>
+  <text x="716" y="93" font-size="16" fill="#7A5200">通信 · PC 到 PLC</text>
+  <rect x="900" y="64" width="380" height="44" rx="6" fill="#FFE8CC" stroke="#E8590C"/>
+  <text x="916" y="93" font-size="16" fill="#7A2E00">PLC 实验箱 · S7-1200 CPU 1214C</text>
+
+  <rect x="40" y="170" width="160" height="110" rx="10" fill="#E6F4EA" stroke="#1E7E34" stroke-width="2"/>
+  <text x="120" y="212" font-size="17" font-weight="700" text-anchor="middle" fill="#12551F">USB 摄像头</text>
+  <text x="120" y="238" font-size="13" text-anchor="middle" fill="#12551F">Insta360</text>
+  <text x="120" y="258" font-size="12" text-anchor="middle" fill="#12551F">M1 真实验收</text>
+
+  <rect x="220" y="170" width="160" height="110" rx="10" fill="#E6F4EA" stroke="#1E7E34" stroke-width="2"/>
+  <text x="300" y="206" font-size="17" font-weight="700" text-anchor="middle" fill="#12551F">视觉识别</text>
+  <text x="300" y="230" font-size="12" text-anchor="middle" fill="#12551F">预处理 · 轮廓</text>
+  <text x="300" y="250" font-size="12" text-anchor="middle" fill="#12551F">approxPolyDP</text>
+  <text x="300" y="270" font-size="12" text-anchor="middle" fill="#12551F">三类分类</text>
+
+  <rect x="400" y="170" width="160" height="110" rx="10" fill="#E6F4EA" stroke="#1E7E34" stroke-width="2"/>
+  <text x="480" y="206" font-size="17" font-weight="700" text-anchor="middle" fill="#12551F">事件生成</text>
+  <text x="480" y="232" font-size="13" text-anchor="middle" fill="#12551F">ENTER / EXIT</text>
+  <text x="480" y="258" font-size="12" text-anchor="middle" fill="#12551F">M4 去重</text>
+
+  <rect x="580" y="170" width="160" height="110" rx="10" fill="#FFF4E5" stroke="#B26A00" stroke-width="2"/>
+  <text x="660" y="206" font-size="17" font-weight="700" text-anchor="middle" fill="#6B4200">命令桥</text>
+  <text x="660" y="232" font-size="12" text-anchor="middle" fill="#6B4200">S7 DB 边沿写</text>
+  <text x="660" y="254" font-size="12" text-anchor="middle" fill="#6B4200">仅离线验证</text>
+
+  <rect x="760" y="170" width="160" height="110" rx="10" fill="#FFF4E5" stroke="#B26A00" stroke-width="2"/>
+  <text x="840" y="206" font-size="17" font-weight="700" text-anchor="middle" fill="#6B4200">FIFO 队列</text>
+  <text x="840" y="232" font-size="12" text-anchor="middle" fill="#6B4200">容量 ≥ 3</text>
+  <text x="840" y="254" font-size="12" text-anchor="middle" fill="#6B4200">未下载真机</text>
+
+  <rect x="940" y="170" width="160" height="110" rx="10" fill="#FFF4E5" stroke="#B26A00" stroke-width="2"/>
+  <text x="1020" y="206" font-size="17" font-weight="700" text-anchor="middle" fill="#6B4200">按键出队</text>
+  <text x="1020" y="232" font-size="12" text-anchor="middle" fill="#6B4200">去抖 · 单脉冲</text>
+  <text x="1020" y="254" font-size="12" text-anchor="middle" fill="#6B4200">一次一条</text>
+
+  <rect x="1120" y="170" width="160" height="110" rx="10" fill="#FFF4E5" stroke="#B26A00" stroke-width="2"/>
+  <text x="1200" y="200" font-size="16" font-weight="700" text-anchor="middle" fill="#6B4200">LED 分拣</text>
+  <text x="1200" y="228" font-size="12" text-anchor="middle" fill="#6B4200">triangle 1 盏</text>
+  <text x="1200" y="250" font-size="12" text-anchor="middle" fill="#6B4200">rectangle 2 盏</text>
+  <text x="1200" y="272" font-size="12" text-anchor="middle" fill="#6B4200">circle 3 盏</text>
+
+  <line x1="200" y1="225" x2="216" y2="225" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="380" y1="225" x2="396" y2="225" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="560" y1="225" x2="576" y2="225" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="740" y1="225" x2="756" y2="225" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="920" y1="225" x2="936" y2="225" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="1100" y1="225" x2="1116" y2="225" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <rect x="210" y="330" width="180" height="86" rx="10" fill="#E6F4EA" stroke="#1E7E34" stroke-width="2"/>
+  <text x="300" y="362" font-size="16" font-weight="700" text-anchor="middle" fill="#12551F">PySide6 GUI</text>
+  <text x="300" y="386" font-size="13" text-anchor="middle" fill="#12551F">实时画面 · 事件</text>
+  <text x="300" y="406" font-size="12" text-anchor="middle" fill="#12551F">M5 真实验收</text>
+  <line x1="300" y1="280" x2="300" y2="326" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <rect x="760" y="330" width="520" height="86" rx="10" fill="#F1F3F5" stroke="#868E96" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="1020" y="362" font-size="16" font-weight="700" text-anchor="middle" fill="#495057">M9 未实现（TODO）</text>
+  <text x="1020" y="386" font-size="13" text-anchor="middle" fill="#495057">心跳 1 s · 断连 2 s 三灯全闪</text>
+  <text x="1020" y="406" font-size="13" text-anchor="middle" fill="#495057">超时重发 · 队列满通知</text>
+
+  <rect x="40" y="452" width="26" height="20" fill="#E6F4EA" stroke="#1E7E34" stroke-width="2"/>
+  <text x="76" y="468" font-size="15" fill="#212529">真实或离线验收已完成（M1–M6）</text>
+  <rect x="420" y="452" width="26" height="20" fill="#FFF4E5" stroke="#B26A00" stroke-width="2"/>
+  <text x="456" y="468" font-size="15" fill="#212529">已实现，但只经离线 / 参考模型验证，未经真机</text>
+  <rect x="930" y="452" width="26" height="20" fill="#F1F3F5" stroke="#868E96" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="966" y="468" font-size="15" fill="#212529">尚未实现（M7 / M9 / M10）</text>
+
+  <text x="40" y="524" font-size="14" fill="#868E96">注：橙色环节的 SCL 源码与内部参考模型已具备，但 TIA 全工程编译、下载与真实 I/O 均未执行；真实闭环整体仍属 M10 TODO，本图不得作为真实硬件验收证据。</text>
+  <text x="40" y="552" font-size="12" fill="#ADB5BD">生成来源：docs/PROJECT_SPEC.md、docs/ROADMAP.md、docs/REPORT_EVIDENCE.md；同目录 system-architecture.png 为导出栅格版。</text>
+</svg>
