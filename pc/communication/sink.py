@@ -12,6 +12,7 @@ from .config import PlcCommunicationConfig
 from .models import (
     PlcCommandResult,
     PlcCommandStatus,
+    PlcState,
     command_from_event,
 )
 from .s7 import (
@@ -129,12 +130,18 @@ class S7PlcCommandSink:
         self._client.db_write(self.config.db_number, 0, raw)
 
     def _read_queue_length(self) -> int | None:
+        state = self.read_state()
+        return state.queue_length if state is not None else None
+
+    def read_state(self) -> PlcState | None:
+        """Read PLC-owned status bytes, returning ``None`` on layout/transport failure."""
+
         try:
             raw = self._client.db_read(self.config.db_number, 8, 16)
             state = unpack_state(raw)
             if state.layout_magic != LAYOUT_MAGIC or state.layout_version != LAYOUT_VERSION:
                 return None
-            return state.queue_length
+            return state
         except Exception:
             return None
 

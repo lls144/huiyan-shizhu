@@ -39,6 +39,24 @@ class PlcControls:
         return bytes(raw)
 
 
+def unpack_controls(raw: bytes) -> PlcControls:
+    if len(raw) < CONTROL_SIZE:
+        raise ValueError(f"control payload must be at least {CONTROL_SIZE} bytes")
+
+    def bit(index: int) -> bool:
+        return bool(raw[0] & (1 << index))
+
+    return PlcControls(
+        test_enable=bit(0),
+        command_valid=bit(1),
+        command_data_valid=bit(2),
+        dequeue_request=bit(3),
+        reset_request=bit(4),
+        shape_code=raw[1],
+        semantic_id=int.from_bytes(raw[4:8], byteorder="big", signed=True),
+    )
+
+
 class S7LowLevelClient(Protocol):
     def connect(self, host: str, rack: int, slot: int) -> None: ...
 

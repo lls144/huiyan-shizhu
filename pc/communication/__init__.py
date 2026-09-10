@@ -7,6 +7,7 @@ using the TEST-ONLY ``M8_AcceptanceData`` DB layout defined in
 """
 
 from .config import PlcCommunicationConfig, load_plc_communication_config
+from .fake_plc import FakeAcceptancePlc
 from .models import (
     PlcCommand,
     PlcCommandResult,
@@ -22,8 +23,10 @@ from .sink import (
     S7PlcCommandSink,
     build_plc_sink,
 )
+from .acceptance import run_offline_acceptance, write_offline_acceptance
 
 __all__ = [
+    "FakeAcceptancePlc",
     "NullPlcSink",
     "PlcCommand",
     "PlcCommandResult",
@@ -37,4 +40,6 @@ __all__ = [
     "command_from_event",
     "label_to_shape_code",
     "load_plc_communication_config",
+    "run_offline_acceptance",
+    "write_offline_acceptance",
 ]
