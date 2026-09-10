@@ -108,3 +108,23 @@ M1 的最小依赖已锁定在 `requirements.txt`。虚拟环境 `.venv/` 不进
 | health | 0 failed read、0 display drop、0 buffer overwrite、`error=null`、clean shutdown | M5 session summary |
 
 原始 session 报告 `git.dirty=true`；审计开始时没有 tracked diff，只有操作者保存的 M4/M5 live 截图为未跟踪文件。M3 五组 evidence 在保存时均记录 `dirty=false`。Qt 控制台的 `QFont::setPointSize Point size <=0 (-1)` 仅为现场观察且未写入 session；GUI 正常、Last error 为 No errors、session `error=null`，因此记为非阻断 UI warning。
+
+## 2026-09-10 离线全量回归环境（通信桥改动后）
+
+记录日期：2026-09-10（Asia/Shanghai）。本次在**当前开发机**重建 `.venv` 并跑全量回归，用于确认 `pc/communication/` 改动未破坏 M1–M6。
+
+| 项目 | 实际值 | 说明 |
+|---|---|---|
+| 电脑 / OS | Windows 11 10.0.26200 | 当前开发机；与 2026-09-03 记录的 `C:\Users\developer` 机器不是同一台 |
+| Python | 3.12.10，`.venv/Scripts/python.exe` | 系统 Python 为 `C:\Users\developer\AppData\Local\Programs\Python\Python312\python.exe`，未安装 pytest |
+| OpenCV / NumPy | 5.0.0 / 2.5.2 | 按 `requirements.txt` 锁定 |
+| pytest | 9.1.1 | 全量执行环境 |
+| PySide6 | 6.11.2 | GUI 测试依赖；`QT_QPA_PLATFORM=offscreen` |
+| python-snap7 | 3.1.2 | 来自 `plc/tools/requirements.txt`；`plc/tests` 导入验收工具需要它 |
+| `pip check` | `No broken requirements found.` | 两套锁定依赖同时安装后仍一致 |
+| 全量回归 | **190 passed, 1 skipped in 3.15s** | `pc/tests` 180 passed + 1 skipped；`plc/tests` 10 passed |
+| 跳过原因 | `test_offline_m2_dataset.py:18` | 被 Git 忽略的真实 M2 原始图片集不在本机，属预期跳过 |
+| 离线通信桥验收 | 5/5 `OFFLINE PASS` | `python -m pc.communication acceptance` |
+
+- 本次修复了两处测试基础设施缺陷：`plc/tests/test_m8_real_plc_acceptance.py` 的 `sys.modules` 登记，以及 `plc/tools/m8_real_plc_acceptance.py --dry-run` 不再强制 `--db-number`。详见 `notes/tests/TEST-008-PC-PLC通信桥离线验收.md`。
+- 本机**没有**真实摄像头与真实 PLC；本次不含真实硬件结论。

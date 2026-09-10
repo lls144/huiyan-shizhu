@@ -68,3 +68,16 @@
 正式模拟器 JSON 生成时 dirty=false；含源码SHA-256、配置、故障、步骤、expected/actual、最终PLC状态及benchmark。所有 M6 数据为 **simulated / Fake PLC / no physical PLC**，没有截图要求。M5短时冒烟16.73FPS不算性能验收。实现和接口限制见 `M6_FAKE_PLC.md`。
 
 M6 fault scenarios 可供未来 M7/M9 复用，仅为 supporting simulator available；上表 PLC-001–004、COMM-001–003 的真实/正式验收仍待执行，不填未来 PASS。
+
+## PC-PLC 通信桥离线验收（2026-09-10，非硬件证据）
+
+| 范围 | 实现与版本 | Test / Daily | 数据 | 结论 |
+|---|---|---|---|---|
+| PC 侧命令桥 + Fake PLC | `pc/communication/`（`sink.py`、`s7.py`、`fake_plc.py`、`acceptance.py`）；运行基线 `59bc247` | `notes/tests/TEST-008-PC-PLC通信桥离线验收.md`；`notes/daily/2026-09-10-PC-PLC通信桥离线验收与全量回归.md` | `output/m8-bridge/m8-bridge-offline.json` 与 `.csv`（**被 Git 忽略**，可用 CLI 重放） | 5/5 离线场景 PASS |
+| 上游全量回归 | 同上 | TEST-008 | 无单独数据文件 | 190 passed, 1 skipped |
+
+本行的 5 个场景为 `single_shape_led_mapping`、`three_shape_fifo_order`、`held_command_valid_single_shot`、`unknown_event_skipped`、`reset_clears_state`，输入为**合成** `OBJECT_ENTER` 事件，PLC 为**内存** `FakeAcceptancePlc`（`DB_M8_Acceptance` 固定布局）。该结果**不是**真实 PLC 证据，不填入上表 PLC-001–004 或 COMM-001–003 的 TODO，也不改变 M7–M10 状态。
+
+本轮同时修复了两处测试基础设施缺陷（`plc/tests` 的 pytest 收集、验收工具 `--dry-run` 参数），使全量回归首次真正覆盖 `plc/tests` 的 10 项；此前 M6 时段的“全量 172 项”并未包含它们。
+
+现场执行清单见 `docs/PLC_FIELD_CHECKLIST.md`；最终交付物骨架见 `docs/deliverables/`。
