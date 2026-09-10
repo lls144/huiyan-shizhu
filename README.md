@@ -99,3 +99,17 @@ scripts/               辅助脚本
 ```
 
 输出 JSON/CSV 至 `output/m6/`；所有预期通过退出 0，否则非零。支持 `--scenario ack_loss` 等单场景和 `--config`。使用虚拟毫秒时钟，无摄像头、无真实 PLC、无真实通信。Fake PLC ≠ real PLC，不代表 M7/M8/M9 完成。架构、接口、边界见 [M6 使用说明](docs/M6_FAKE_PLC.md)，正式证据见 [TEST-007](notes/tests/TEST-007-M6-Fake-PLC模拟器验收.md)。
+
+## PC→PLC 命令桥（离线，非真实硬件）
+
+```powershell
+.\.venv\Scripts\python.exe -m pc.communication acceptance --output-dir output/m8-bridge
+.\.venv\Scripts\python.exe plc\tools\m8_real_plc_acceptance.py --dry-run
+```
+
+用合成 `OBJECT_ENTER` 事件驱动命令桥，对内存 Fake PLC 核对 FIFO 顺序、`CommandValid` 边沿、1/2/3 灯映射、unknown 拒绝与 Reset；输出 JSON/CSV 至被 Git 忽略的 `output/m8-bridge/`。这不连接真实 PLC，不代表 M7/M8/M9 完成。见 [TEST-008](notes/tests/TEST-008-PC-PLC通信桥离线验收.md)。
+
+## 现场联调与交付物准备
+
+- PLC 现场只读核对表：[docs/PLC_FIELD_CHECKLIST.md](docs/PLC_FIELD_CHECKLIST.md)（A 设备身份 / B 网络 / C I/O 与 DB / D 编译 / E 下载 / F 录像前检查）。A~D 只读，E/F 需操作者当次授权。
+- 最终交付物骨架：[docs/deliverables/](docs/deliverables/README.md)（报告、测试用例矩阵、PPT、视频分镜）。所有结果列在真机执行前保持 `TODO` / 待测试。
