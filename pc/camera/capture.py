@@ -24,7 +24,12 @@ def _timestamp() -> str:
 
 def _fourcc_text(value: float) -> str:
     integer = int(value)
-    return "".join(chr((integer >> (8 * offset)) & 0xFF) for offset in range(4))
+    text = "".join(chr((integer >> (8 * offset)) & 0xFF) for offset in range(4))
+    # MSMF does not report a fourcc back, so the property comes back as a
+    # non-printable code; keep the report readable instead of emitting raw bytes.
+    if all(32 <= ord(char) < 127 for char in text):
+        return text
+    return f"0x{integer & 0xFFFFFFFF:08X}"
 
 
 def open_configured_camera(device: CameraDevice, config: CameraConfig) -> cv2.VideoCapture:
