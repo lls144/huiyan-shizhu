@@ -515,7 +515,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--host", default="192.0.2.1")
     parser.add_argument("--rack", type=int, default=0)
     parser.add_argument("--slot", type=int, default=1)
-    parser.add_argument("--db-number", type=int, required=True)
+    # Not required so that `--dry-run` can be used as a no-hardware smoke test.
+    parser.add_argument("--db-number", type=int)
     parser.add_argument("--output", type=Path, default=Path("evidence/data/m8-real"))
     parser.add_argument("--timeout", type=float, default=2.0)
     parser.add_argument("--poll", type=float, default=0.05)
@@ -533,6 +534,11 @@ def main() -> int:
     if args.dry_run:
         print(json.dumps({"tests": list(TESTS), "writes": "DBB0..DBB7 only", "status": "DRY RUN"}, indent=2))
         return 0
+
+    if args.db_number is None:
+        parser_error = "--db-number is required unless --dry-run is used"
+        print(parser_error, file=sys.stderr)
+        return 2
 
     client = S7AcceptanceClient(args.host, args.rack, args.slot, args.db_number)
     document = {
