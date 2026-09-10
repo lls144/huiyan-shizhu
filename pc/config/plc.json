@@ -9,5 +9,7 @@
   "dequeue_pulse_seconds": 0.20,
   "reset_pulse_seconds": 0.20,
   "timeout_seconds": 2.0,
-  "poll_seconds": 0.02
+  "poll_seconds": 0.02,
+  "write_confirm_attempts": 12,
+  "write_confirm_interval_seconds": 0.02
 }

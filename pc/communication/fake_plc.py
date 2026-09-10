@@ -18,18 +18,25 @@ from .s7 import (
 
 
 class FakeAcceptancePlc:
-    """In-memory implementation of ``DB_M8_Acceptance``."""
+    """In-memory implementation of ``DB_M8_Acceptance``.
 
-    def __init__(self, capacity: int = 3) -> None:
+    ``drop_control_writes`` models the real CPU measured on 2026-09-10, which
+    silently discards put/get writes into this DB roughly half the time. The default
+    of 0 keeps the ideal behaviour used by the offline acceptance scenarios.
+    """
+
+    def __init__(self, capacity: int = 3, drop_control_writes: int = 0) -> None:
         if capacity < 1:
             raise ValueError("fake PLC capacity must be positive")
         self.capacity = capacity
+        self.drop_control_writes = drop_control_writes
         self.queue: deque[tuple[int, int]] = deque()
         self.displayed_shape: int | None = None
         self.last_dequeued: tuple[int, int] | None = None
         self.cycle_counter = 0
         self.connected = False
         self.writes: list[tuple[int, int, bytes]] = []
+        self.control_bytes = bytes(8)
         self._previous_command_valid = False
         self._previous_dequeue_request = False
         self._previous_reset_request = False
@@ -44,6 +51,8 @@ class FakeAcceptancePlc:
         return self.connected
 
     def db_read(self, db_number: int, offset: int, size: int) -> bytes:
+        if offset == 0 and size == 8:
+            return self.control_bytes
         if offset != 8 or size != 16:
             raise ValueError(f"unsupported fake DB read: db={db_number}, offset={offset}, size={size}")
         self.cycle_counter += 1
@@ -54,6 +63,10 @@ class FakeAcceptancePlc:
             raise ValueError(f"unsupported fake DB write: db={db_number}, offset={offset}, size={len(raw)}")
         controls = unpack_controls(raw)
         self.writes.append((db_number, offset, bytes(raw)))
+        if self.drop_control_writes > 0:
+            self.drop_control_writes -= 1
+            return
+        self.control_bytes = bytes(raw[:8])
         self.cycle_counter += 1
         self._apply(controls)
 

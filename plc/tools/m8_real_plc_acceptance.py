@@ -30,6 +30,14 @@ DB_SIZE = 24
 STATUS_OFFSET = 8
 STATUS_SIZE = DB_SIZE - STATUS_OFFSET
 
+# Measured on the lab CPU on 2026-09-10: put/get writes into
+# DB_M8_Acceptance.DBB0..7 are silently dropped roughly half the time (writes into
+# the M area were never dropped, and the program itself keeps updating DBB8..23 on
+# every scan). A dropped control write produces no protocol error, so every control
+# write is read back and re-sent until the PLC really holds the requested value.
+WRITE_CONFIRM_ATTEMPTS = 12
+WRITE_CONFIRM_INTERVAL_SECONDS = 0.02
+
 
 @dataclass(frozen=True)
 class State:
@@ -67,13 +75,27 @@ class AcceptanceError(RuntimeError):
 
 
 class S7AcceptanceClient:
-    def __init__(self, host: str, rack: int, slot: int, db_number: int):
+    def __init__(
+        self,
+        host: str,
+        rack: int,
+        slot: int,
+        db_number: int,
+        *,
+        write_confirm_attempts: int = WRITE_CONFIRM_ATTEMPTS,
+        write_confirm_interval: float = WRITE_CONFIRM_INTERVAL_SECONDS,
+    ):
         self.host = host
         self.rack = rack
         self.slot = slot
         self.db_number = db_number
         self.client = snap7.client.Client()
         self.controls = Controls()
+        self.write_confirm_attempts = write_confirm_attempts
+        self.write_confirm_interval = write_confirm_interval
+        # Attempts consumed by every confirmed control write; used as evidence that
+        # the PLC really stored the value instead of silently dropping the write.
+        self.write_log: list[int] = []
 
     def connect(self) -> None:
         self.client.connect(self.host, self.rack, self.slot)
@@ -99,11 +121,7 @@ class S7AcceptanceClient:
             layout_version=get_usint(raw, 14),
         )
 
-    def write_controls(self, **changes: object) -> None:
-        for name, value in changes.items():
-            if not hasattr(self.controls, name):
-                raise ValueError(f"unknown control field: {name}")
-            setattr(self.controls, name, value)
+    def pack_controls(self) -> bytes:
         c = self.controls
         raw = bytearray(CONTROL_SIZE)
         raw[0] = (
@@ -115,7 +133,39 @@ class S7AcceptanceClient:
         )
         raw[1] = int(c.shape_code) & 0xFF
         raw[4:8] = int(c.semantic_id).to_bytes(4, byteorder="big", signed=True)
-        self.client.db_write(self.db_number, 0, raw)
+        return bytes(raw)
+
+    def read_controls(self) -> bytes:
+        return bytes(self.client.db_read(self.db_number, 0, CONTROL_SIZE))
+
+    def write_controls(self, **changes: object) -> None:
+        for name, value in changes.items():
+            if not hasattr(self.controls, name):
+                raise ValueError(f"unknown control field: {name}")
+            setattr(self.controls, name, value)
+        want = self.pack_controls()
+        last = b""
+        for attempt in range(1, self.write_confirm_attempts + 1):
+            self.client.db_write(self.db_number, 0, want)
+            last = self.read_controls()
+            if last == want:
+                self.write_log.append(attempt)
+                return
+            if attempt < self.write_confirm_attempts:
+                time.sleep(self.write_confirm_interval)
+        self.write_log.append(self.write_confirm_attempts)
+        raise AcceptanceError(
+            f"control write to DB{self.db_number} was never confirmed after "
+            f"{self.write_confirm_attempts} attempts: wanted {want.hex()}, last read {last.hex()}"
+        )
+
+    def write_stats(self) -> dict:
+        log = self.write_log
+        return {
+            "confirmed_control_writes": len(log),
+            "writes_needing_retry": sum(1 for attempts in log if attempts > 1),
+            "max_attempts": max(log) if log else 0,
+        }
 
     def restore_safe_controls(self) -> None:
         self.controls = Controls()
@@ -429,6 +479,12 @@ def run_diagnostics(host: str, rack: int, slot: int, db_number: int | None) -> d
     This never writes to the PLC. It exists because the classic S7 failure modes
     (cable, PUT/GET disabled, wrong DB number, still-optimized block) all surface
     as generic protocol errors during the first DB read.
+
+    `get_cpu_state` / `get_cpu_info` are deliberately not probed: plc/tools pins
+    python-snap7 3.1.2, which is a pure-Python re-implementation whose
+    `get_cpu_state` is a stub (it sends a placeholder frame and returns a hard-coded
+    status), so both fail or lie on real hardware regardless of the CPU protection
+    settings. The SZL order-code read below is a real answer from the CPU.
     """
 
     steps: list[dict] = []
@@ -451,8 +507,7 @@ def run_diagnostics(host: str, rack: int, slot: int, db_number: int | None) -> d
     client = snap7.client.Client()
     probe("connect", lambda: (client.connect(host, rack, slot), bool(client.get_connected()))[1])
     if client.get_connected():
-        probe("get_cpu_info", client.get_cpu_info)
-        probe("get_cpu_state", client.get_cpu_state)
+        probe("read_order_code", lambda: cpu_order_code(client))
         if db_number is not None:
             probe("db_read_control_byte", lambda: client.db_read(db_number, 0, 1).hex())
             probe("db_read_status_region", lambda: client.db_read(db_number, 8, 16).hex())
@@ -461,13 +516,19 @@ def run_diagnostics(host: str, rack: int, slot: int, db_number: int | None) -> d
         steps.append({"step": "probes skipped", "ok": False, "error": "no S7 session established"})
 
     connect_ok = bool(result_of("connect").get("ok"))
+    order_code_ok = bool(result_of("read_order_code").get("ok"))
     db_read_ok = bool(result_of("db_read_control_byte").get("ok")) if db_number is not None else False
     db_error = str(result_of("db_read_control_byte").get("error", ""))
 
     hint: list[str] = []
     if not connect_ok:
         hint.append("S7 connect failed: check cable/link, PLC IP and rack=0/slot=1 before anything else.")
-    elif db_number is None and bool(result_of("get_cpu_state").get("ok")):
+    elif not order_code_ok:
+        hint.append(
+            "S7 session is up but the SZL order-code read failed; the CPU is answering only "
+            "partially. Re-check the protection settings before blaming the block access."
+        )
+    elif db_number is None:
         hint.append("Session is healthy but no --db-number was given, so block access was not probed.")
     elif not db_read_ok:
         if "code=0x04" in db_error:
@@ -484,6 +545,12 @@ def run_diagnostics(host: str, rack: int, slot: int, db_number: int | None) -> d
             hint.append("code=0x05 usually means the CPU access level denies this partner.")
         else:
             hint.append(f"DB access failed with: {db_error or 'unknown error'}")
+    else:
+        hint.append(
+            "DB access works. Note: PUT/GET writes into DB_M8_Acceptance.DBB0..7 are dropped "
+            "silently by this CPU roughly half the time, so any control write must be read back "
+            "and re-sent (see --write-attempts) instead of being trusted after one db_write."
+        )
 
     return {
         "generated_at": utc_now(),
@@ -498,6 +565,31 @@ def run_diagnostics(host: str, rack: int, slot: int, db_number: int | None) -> d
         "hint": hint,
         "steps": steps,
     }
+
+
+def cpu_order_code(client: "snap7.client.Client") -> str:
+    """Return the SZL 0x0011 order number / firmware of the CPU that answered.
+
+    The pinned python-snap7 3.1.2 mis-decodes this SZL by six bytes, so an answer
+    that does not look like a Siemens MLFB is flagged instead of being reported as a
+    fact. Use the native-backed python-snap7 (or TIA online) when the value matters.
+    """
+
+    info = client.get_order_code()
+    order = getattr(info, "OrderCode", None)
+    if isinstance(order, (bytes, bytearray)):
+        order = order.decode("ascii", "replace")
+    text = str(order).strip()
+    firmware = ".".join(
+        str(getattr(info, f"V{index}", "")) for index in (1, 2, 3) if getattr(info, f"V{index}", None)
+    )
+    if not text.startswith("6ES"):
+        return (
+            f"order_code={text!r} firmware={firmware or 'unknown'} "
+            "(UNRELIABLE: the pinned pure-Python python-snap7 mis-decodes SZL 0x0011; "
+            "confirm with the native library or TIA online)"
+        )
+    return f"order_code={text!r} firmware={firmware or 'unknown'}"
 
 
 def check_access(client: S7AcceptanceClient, poll: float) -> dict:
@@ -577,6 +669,25 @@ def write_evidence(output: Path, document: dict) -> tuple[Path, Path, Path]:
         f"- Git commit: `{document['git_commit']}`",
         "- Evidence boundary: AUTO reflects S7 DB/Q-state reads; it does not replace visual LED, physical button, or power-cycle evidence.",
         "",
+    ]
+    stats = document.get("control_writes") or {}
+    if stats:
+        confirmation = document.get("control_write_confirmation", {})
+        lines += [
+            "## Control-write confirmation",
+            "",
+            "Every control write is read back and re-sent until the PLC really holds the "
+            "requested value, because this CPU silently drops PUT/GET writes into "
+            "`DB_M8_Acceptance.DBB0..7`.",
+            "",
+            f"- Confirmed control writes: {stats.get('confirmed_control_writes', 0)}",
+            f"- Writes that needed a re-send: {stats.get('writes_needing_retry', 0)}",
+            f"- Most attempts used by one write: {stats.get('max_attempts', 0)}"
+            f" (allowance: {confirmation.get('attempts_per_write', 'n/a')},"
+            f" interval: {confirmation.get('interval_seconds', 'n/a')} s)",
+            "",
+        ]
+    lines += [
         "| Test | Status | Failure |",
         "|---|---|---|",
     ]
@@ -597,6 +708,18 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--output", type=Path, default=Path("evidence/data/m8-real"))
     parser.add_argument("--timeout", type=float, default=2.0)
     parser.add_argument("--poll", type=float, default=0.05)
+    parser.add_argument(
+        "--write-attempts",
+        type=int,
+        default=WRITE_CONFIRM_ATTEMPTS,
+        help="read back and re-send each control write until the PLC really holds it",
+    )
+    parser.add_argument(
+        "--write-interval",
+        type=float,
+        default=WRITE_CONFIRM_INTERVAL_SECONDS,
+        help="seconds to wait between control-write confirmation attempts",
+    )
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--check-access", action="store_true")
     mode.add_argument("--all", action="store_true")
@@ -627,7 +750,14 @@ def main() -> int:
         print(parser_error, file=sys.stderr)
         return 2
 
-    client = S7AcceptanceClient(args.host, args.rack, args.slot, args.db_number)
+    client = S7AcceptanceClient(
+        args.host,
+        args.rack,
+        args.slot,
+        args.db_number,
+        write_confirm_attempts=args.write_attempts,
+        write_confirm_interval=args.write_interval,
+    )
     document = {
         "generated_at": utc_now(),
         "plc_ip": args.host,
@@ -636,6 +766,11 @@ def main() -> int:
         "db_number": args.db_number,
         "git_commit": git_commit(),
         "snap7_version": getattr(snap7, "__version__", "unknown"),
+        "control_write_confirmation": {
+            "attempts_per_write": args.write_attempts,
+            "interval_seconds": args.write_interval,
+        },
+        "control_writes": {},
         "results": [],
     }
     exit_code = 0
@@ -712,6 +847,7 @@ def main() -> int:
     if args.check_access and "access_error" in document:
         print(document["access_error"], file=sys.stderr)
         return exit_code
+    document["control_writes"] = client.write_stats()
     paths = write_evidence(args.output, document)
     print("\n".join(str(path) for path in paths))
     if "access_error" in document:

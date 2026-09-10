@@ -21,6 +21,11 @@ class PlcCommunicationConfig:
     reset_pulse_seconds: float = 0.20
     timeout_seconds: float = 2.0
     poll_seconds: float = 0.02
+    # Measured 2026-09-10 on the lab CPU: put/get writes into
+    # DB_M8_Acceptance.DBB0..7 are silently dropped roughly half the time, so every
+    # control write is read back and re-sent until the PLC really holds it.
+    write_confirm_attempts: int = 12
+    write_confirm_interval_seconds: float = 0.02
 
     @classmethod
     def from_dict(cls, values: dict[str, Any]) -> "PlcCommunicationConfig":
@@ -38,6 +43,8 @@ class PlcCommunicationConfig:
                 ("reset_pulse_seconds", 0.20),
                 ("timeout_seconds", 2.0),
                 ("poll_seconds", 0.02),
+                ("write_confirm_attempts", 12),
+                ("write_confirm_interval_seconds", 0.02),
             )
         }
         config = cls(**known)
@@ -55,9 +62,12 @@ class PlcCommunicationConfig:
             "reset_pulse_seconds",
             "timeout_seconds",
             "poll_seconds",
+            "write_confirm_interval_seconds",
         ):
             if getattr(self, name) < 0:
                 raise ValueError(f"{name} must be non-negative")
+        if self.write_confirm_attempts < 1:
+            raise ValueError("write_confirm_attempts must be at least 1")
 
 
 def load_plc_communication_config(path: str | Path) -> PlcCommunicationConfig:

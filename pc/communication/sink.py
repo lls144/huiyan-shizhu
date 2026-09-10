@@ -16,6 +16,7 @@ from .models import (
     command_from_event,
 )
 from .s7 import (
+    CONTROL_SIZE,
     S7LowLevelClient,
     Snap7LowLevelClient,
     unpack_state,
@@ -99,6 +100,13 @@ class S7PlcCommandSink:
         self.config = config
         self._client = low_level or Snap7LowLevelClient()
         self._started = False
+        self._write_retries = 0
+
+    @property
+    def write_retry_count(self) -> int:
+        """Control writes that had to be re-sent because the PLC dropped the first one."""
+
+        return self._write_retries
 
     def start(self) -> None:
         if not self.config.enabled:
@@ -106,7 +114,18 @@ class S7PlcCommandSink:
         self._client.connect(self.config.host, self.config.rack, self.config.slot)
         self._started = True
 
-    def _write(self, **changes: object) -> None:
+    def _read_controls(self) -> bytes:
+        return bytes(self._client.db_read(self.config.db_number, 0, CONTROL_SIZE))
+
+    def _write(self, **changes: object) -> int:
+        """Write the control block and confirm it, returning the attempts used.
+
+        The lab CPU silently drops roughly half of the put/get writes into this
+        TEST-ONLY DB (measured 2026-09-10), so a single ``db_write`` that returns
+        without error is not evidence that the PLC received the command. Every write
+        is read back and re-sent until the PLC really holds the requested value.
+        """
+
         values = {
             "test_enable": True,
             "command_valid": False,
@@ -127,7 +146,21 @@ class S7PlcCommandSink:
             "semantic_id": int(values["semantic_id"]),
         }
         raw = PlcControls(**controls).pack()
-        self._client.db_write(self.config.db_number, 0, raw)
+        attempts = 0
+        last = b""
+        for attempt in range(1, self.config.write_confirm_attempts + 1):
+            attempts = attempt
+            self._client.db_write(self.config.db_number, 0, raw)
+            last = self._read_controls()
+            if last == raw:
+                self._write_retries += attempt - 1
+                return attempt
+            if attempt < self.config.write_confirm_attempts:
+                time.sleep(self.config.write_confirm_interval_seconds)
+        raise RuntimeError(
+            f"control write to DB{self.config.db_number} was never confirmed after "
+            f"{attempts} attempts (wanted {raw.hex()}, last read {last.hex()})"
+        )
 
     def _read_queue_length(self) -> int | None:
         state = self.read_state()
@@ -150,26 +183,27 @@ class S7PlcCommandSink:
         if command is None:
             return PlcCommandResult(None, PlcCommandStatus.SKIPPED, detail="not a known ENTER shape")
         try:
-            self._write(
+            retries = 0
+            retries += self._write(
                 command_data_valid=True,
                 shape_code=command.shape_code,
                 semantic_id=command.semantic_id,
                 command_valid=False,
-            )
+            ) - 1
             time.sleep(self.config.command_pulse_seconds)
-            self._write(
+            retries += self._write(
                 command_data_valid=True,
                 shape_code=command.shape_code,
                 semantic_id=command.semantic_id,
                 command_valid=True,
-            )
+            ) - 1
             time.sleep(self.config.command_pulse_seconds)
-            self._write(
+            retries += self._write(
                 command_data_valid=True,
                 shape_code=command.shape_code,
                 semantic_id=command.semantic_id,
                 command_valid=False,
-            )
+            ) - 1
             queue_length = self._read_queue_length()
             if self.config.auto_dequeue:
                 self.dequeue()
@@ -177,35 +211,35 @@ class S7PlcCommandSink:
                 command,
                 PlcCommandStatus.SENT,
                 queue_length=queue_length,
-                detail="command edge written to PLC",
+                detail=f"command edge written to PLC (control writes=3, re-sent={retries})",
             )
         except Exception as exc:
             return PlcCommandResult(command, PlcCommandStatus.ERROR, detail=f"{type(exc).__name__}: {exc}")
 
     def dequeue(self) -> PlcCommandResult:
         try:
-            self._write(dequeue_request=True)
+            retries = self._write(dequeue_request=True) - 1
             time.sleep(self.config.dequeue_pulse_seconds)
-            self._write(dequeue_request=False)
+            retries += self._write(dequeue_request=False) - 1
             return PlcCommandResult(
                 None,
                 PlcCommandStatus.SENT,
                 queue_length=self._read_queue_length(),
-                detail="dequeue request written to PLC",
+                detail=f"dequeue request written to PLC (re-sent={retries})",
             )
         except Exception as exc:
             return PlcCommandResult(None, PlcCommandStatus.ERROR, detail=f"{type(exc).__name__}: {exc}")
 
     def reset(self) -> PlcCommandResult:
         try:
-            self._write(reset_request=True)
+            retries = self._write(reset_request=True) - 1
             time.sleep(self.config.reset_pulse_seconds)
-            self._write(reset_request=False)
+            retries += self._write(reset_request=False) - 1
             return PlcCommandResult(
                 None,
                 PlcCommandStatus.SENT,
                 queue_length=self._read_queue_length(),
-                detail="reset request written to PLC",
+                detail=f"reset request written to PLC (re-sent={retries})",
             )
         except Exception as exc:
             return PlcCommandResult(None, PlcCommandStatus.ERROR, detail=f"{type(exc).__name__}: {exc}")
