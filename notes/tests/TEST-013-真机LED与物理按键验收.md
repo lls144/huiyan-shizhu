@@ -16,8 +16,8 @@ result: pass
 
 > [!warning] 证据边界
 > 本轮是**真机**证据，但只覆盖“PC 入队 → PLC FIFO → 按键/P C 出队 → 灯位”这一段。
-> **不含**视觉接入（相机未使用）、不含心跳/断连报警（COMM-002 未实现）、不含 M9/M10 整体验收。
-> 人工证据目前只有**操作者目视确认**（“1/2/3 盏都亮对了”）；LED 照片/视频仍为 TODO。
+> **不含**心跳/断连报警（COMM-002 未实现）、不含 M9/M10 整体验收；视觉接入见同日 `TEST-014`。
+> LED 目视照片已归档；操作视频仍为 TODO。
 
 ## 前置：TIA 工程修复
 
@@ -78,6 +78,14 @@ final          → queue=0  leds=[1,1,1]
 
 操作者目视确认：**三次灯位（1 盏 / 2 盏 / 3 盏）均正确**。
 
+照片证据（操作者拍摄，按顺序对应三个阶段）：
+
+- `evidence/screenshots/m8-real/2026-09-11-led-1-lamp.jpg`：仅 `M1` 红色 LED 点亮（1 盏）
+- `evidence/screenshots/m8-real/2026-09-11-led-2-lamps.jpg`：`M1`、`M2` 点亮（2 盏）
+- `evidence/screenshots/m8-real/2026-09-11-led-3-lamps.jpg`：`M1`、`M2` 与 `M3`（琥珀色）点亮（3 盏）
+
+三张照片中左下角标号 `L1` 的指示灯始终点亮，属实验箱模块自身的指示，不是本项目的分拣灯。
+
 ### 4. 控制字丢写复现
 
 PC 侧计数器终值：`dispatches=3、sent_confirmed=3、write_resends=4、
@@ -94,7 +102,7 @@ unconfirmed=0、timeouts=0、errors=0`（另有第二轮 3 次派发 `write_rese
 
 ## 未执行 / 待补
 
-1. **LED 目视照片/视频**（人工证据）：TODO
+1. LED 目视照片 ✅ 已完成（`evidence/screenshots/m8-real/`）；操作视频仍 TODO
 2. **断电重启后 `--verify-power-on`**：TODO
 3. **`DB_M8_Acceptance` 重建后的全量自动验收 `--all`**：TODO（本轮只做了 `--check-access` 与手工步骤）
 4. **视觉 → 传送带 → 真机灯闭环**：TODO（下一步）
