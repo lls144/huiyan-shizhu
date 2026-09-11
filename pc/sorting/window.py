@@ -546,13 +546,15 @@ class SortingWindow(QMainWindow):
                 _set_dynamic_property(self.plc_link_value, "hasError", True)
             else:
                 outages = health.get("outage_count", 0)
+                alarm = state.get("plc_comm_lost_alarm")
                 self.plc_link_value.setText(
                     "正常"
+                    + ("（PLC 报警位置位）" if alarm else "")
                     + (f"（历史中断 {outages} 次）" if outages else "")
                     + (f" 重连 {counters.get('reconnects', 0)} 次"
                        if counters.get("reconnects") else "")
                 )
-                _set_dynamic_property(self.plc_link_value, "hasError", False)
+                _set_dynamic_property(self.plc_link_value, "hasError", bool(alarm))
 
     def _render_preview(self) -> None:
         if self._last_image is None:

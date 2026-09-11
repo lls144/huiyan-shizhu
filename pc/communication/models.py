@@ -67,6 +67,9 @@ class PlcState:
     cycle_counter: int
     layout_magic: int
     layout_version: int
+    # DBX8.7, written by the PLC COMM-002 watchdog. Defaults keep older callers
+    # and fixtures working.
+    comm_lost_alarm: bool = False
 
     def to_record(self) -> dict[str, Any]:
         record = asdict(self)

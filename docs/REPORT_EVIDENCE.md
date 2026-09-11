@@ -130,7 +130,9 @@ SYS-001 / M10 状态不变。
 
 COMM-002 目前只完成 **PC 半边**：`notes/tests/TEST-016-COMM002-PC半边心跳与断连看门狗.md`
 （真机心跳周期 1.00–1.03 s、落点 DBB2 已读回确认；2 s 无响应判定通信中断）。
-**PLC 侧“2 s 无心跳 → 三盏灯全闪”未实现**，所以 COMM-002 仍是 TODO，不能记 PASS。
+**PLC 侧“2 s 无心跳 → 三盏灯全闪”的源码已实现**（`notes/tests/TEST-020-COMM002-PLC侧看门狗与全闪.md`，
+复用 DBB2/DBX0.5/DBX8.7 保留字段，改动面仅 `FB_M8_AcceptanceHarness.scl`），
+但**尚未下载到真机、尚未观察到实体灯闪烁**，因此 COMM-002 仍是 TODO，不能记 PASS。
 
 ## 新相机（内置 HD Webcam）重新验收（2026-09-11）
 

@@ -1,5 +1,15 @@
 // TEST-ONLY wrapper around the real M8 application core.
 // Test inputs are ignored unless Acceptance.TestEnable is TRUE.
+//
+// COMM-002 PC half lives in pc/communication/heartbeat.py: the PC writes a
+// counter into M8_AcceptanceData.ReservedInputByte2 (DBB2) once per second and
+// sets the enable bit M8_AcceptanceData.ReservedControl5 (DBX0.5). This block
+// implements the PLC half: if that counter stops changing for 2 s the three
+// sorting lamps blink at 2 Hz and the alarm state is mirrored into
+// M8_AcceptanceData.ReservedStatus7 (DBX8.7) so the PC can read it back.
+//
+// The alarm is only armed while TestEnable AND the heartbeat enable bit are
+// TRUE, so the acceptance tool (which never sets them) keeps the old behaviour.
 FUNCTION_BLOCK "FB_M8_AcceptanceHarness"
 VAR_INPUT
     CommandIn : "PLC_Command";
@@ -15,12 +25,17 @@ VAR_OUTPUT
     SortLed2 : Bool;
     SortLed3 : Bool;
     QueueFullLed : Bool;
+    CommLostAlarm : Bool;
 END_VAR
 VAR_IN_OUT
     Acceptance : "M8_AcceptanceData";
 END_VAR
 VAR
     Application : "FB_PlcApplication";
+    HeartbeatWatchdog : TON_TIME;
+    BlinkTimer : TON_TIME;
+    BlinkPhaseState : Bool;
+    HeartbeatLast : USInt;
 END_VAR
 VAR_TEMP
     EffectiveCommand : "PLC_Command";
@@ -30,6 +45,9 @@ VAR_TEMP
     LastDequeuedValid : Bool;
     LastDequeuedShape : USInt;
     LastDequeuedSemanticId : DInt;
+    HeartbeatChanged : Bool;
+    HeartbeatArmed : Bool;
+    CommLost : Bool;
 END_VAR
 BEGIN
     #EffectiveCommand := #CommandIn;
@@ -61,6 +79,33 @@ BEGIN
                  LastDequeuedShape => #LastDequeuedShape,
                  LastDequeuedSemanticId => #LastDequeuedSemanticId);
 
+    // ---------------------------------------------------------------- COMM-002
+    // Free-running 2 Hz square wave for the alarm: a TON whose IN is its own
+    // inverted Q runs for 250 ms, resets for one scan, and toggles the phase.
+    #BlinkTimer(IN := NOT #BlinkTimer.Q, PT := T#250MS);
+    IF #BlinkTimer.Q THEN
+        #BlinkPhaseState := NOT #BlinkPhaseState;
+    END_IF;
+
+    #HeartbeatArmed := #Acceptance.TestEnable AND #Acceptance.ReservedControl5;
+    #HeartbeatChanged := (#Acceptance.ReservedInputByte2 <> #HeartbeatLast);
+    IF #HeartbeatChanged THEN
+        #HeartbeatLast := #Acceptance.ReservedInputByte2;
+    END_IF;
+
+    // IN stays TRUE while the counter is quiet; any change to the counter resets
+    // the timer, so Q only becomes TRUE after 2 s without a new heartbeat.
+    #HeartbeatWatchdog(IN := #HeartbeatArmed AND NOT #HeartbeatChanged,
+                       PT := T#2S,
+                       Q => #CommLost);
+
+    // The alarm overrides the sorting display: all three lamps blink together.
+    IF #CommLost THEN
+        #SortLed1 := #BlinkPhaseState;
+        #SortLed2 := #BlinkPhaseState;
+        #SortLed3 := #BlinkPhaseState;
+    END_IF;
+
     #Acceptance.AcceptanceReady := TRUE;
     #Acceptance.QueueEmpty := #QueueEmpty;
     #Acceptance.QueueFull := #QueueFull;
@@ -74,4 +119,6 @@ BEGIN
     #Acceptance.CycleCounter := #Acceptance.CycleCounter + 1;
     #Acceptance.LayoutMagic := W#16#4D38;
     #Acceptance.LayoutVersion := 1;
+    #Acceptance.ReservedStatus7 := #CommLost;   // CommLostAlarm, read back by the PC
+    #CommLostAlarm := #CommLost;
 END_FUNCTION_BLOCK

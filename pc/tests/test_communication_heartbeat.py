@@ -8,6 +8,7 @@ from pc.communication.heartbeat import HeartbeatMonitor
 from pc.communication.models import PlcState
 from pc.communication.reliability import GuardedPlcSink
 from pc.communication.sink import S7PlcCommandSink
+from pc.communication.s7 import PlcControls, unpack_controls, unpack_state
 
 
 class _Clock:
@@ -171,6 +172,46 @@ def test_tick_heartbeat_keeps_the_period_close_to_one_second() -> None:
     intervals = monitor.health().heartbeat_intervals
     assert link.heartbeats[0] == 1
     assert all(1.0 <= value < 1.05 for value in intervals)
+
+
+def test_the_heartbeat_enable_bit_decides_whether_the_plc_watchdog_is_armed() -> None:
+    armed = unpack_controls(PlcControls(heartbeat=7, heartbeat_enabled=True).pack())
+    assert armed.heartbeat == 7
+    assert armed.heartbeat_enabled is True
+    # The acceptance tool never sets it, so its runs cannot blink the alarm.
+    assert unpack_controls(PlcControls().pack()).heartbeat_enabled is False
+
+
+def test_the_plc_alarm_bit_is_read_from_the_status_region() -> None:
+    raw = bytearray(16)
+    raw[0] = 0x80  # DBX8.7
+    raw[12:14] = (0x4D38).to_bytes(2, byteorder="big")
+    raw[14] = 1
+    state = unpack_state(bytes(raw))
+    assert state.comm_lost_alarm is True
+    raw[0] = 0x00
+    assert unpack_state(bytes(raw)).comm_lost_alarm is False
+
+
+def test_the_bridge_arms_the_watchdog_and_reports_the_alarm() -> None:
+    plc = FakeAcceptancePlc(capacity=3)
+    config = PlcCommunicationConfig(
+        enabled=True,
+        db_number=12,
+        command_pulse_seconds=0.0,
+        dequeue_pulse_seconds=0.0,
+        reset_pulse_seconds=0.0,
+        write_confirm_interval_seconds=0.0,
+    )
+    sink = GuardedPlcSink(S7PlcCommandSink(config, low_level=plc), config)
+    sink.start()  # safe_init writes the idle block, which arms the watchdog
+    assert bool(plc.control_bytes[0] & 0x20) is True
+    # Two consecutive status reads tell whether the PLC set the alarm bit.
+    before = sink.status()
+    assert before.plc_comm_lost_alarm is False
+    plc.alarm = True  # simulated PLC-side watchdog trip
+    sink.refresh_state()
+    assert sink.status().plc_comm_lost_alarm is True
 
 
 def test_the_heartbeat_reaches_a_real_bus_path_and_leaves_the_queue_alone() -> None:

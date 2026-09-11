@@ -28,6 +28,9 @@ class PlcControls:
     # counter on its low byte. The remaining reserved control bytes stay zero so
     # the packed block of a plain command is unchanged.
     heartbeat: int = 0
+    # DBX0.5: arms the PLC-side COMM-002 watchdog. The acceptance tool leaves it
+    # FALSE so its runs never blink the alarm.
+    heartbeat_enabled: bool = False
 
     def pack(self) -> bytes:
         raw = bytearray(CONTROL_SIZE)
@@ -41,6 +44,7 @@ class PlcControls:
         raw[1] = int(self.shape_code) & 0xFF
         raw[2] = int(self.heartbeat) & 0xFF
         raw[4:8] = int(self.semantic_id).to_bytes(4, byteorder="big", signed=True)
+        raw[0] |= int(self.heartbeat_enabled) << 5
         return bytes(raw)
 
 
@@ -60,6 +64,7 @@ def unpack_controls(raw: bytes) -> PlcControls:
         shape_code=raw[1],
         semantic_id=int.from_bytes(raw[4:8], byteorder="big", signed=True),
         heartbeat=raw[2],
+        heartbeat_enabled=bit(5),
     )
 
 
@@ -163,6 +168,7 @@ def unpack_state(raw: bytes) -> PlcState:
         queue_full=bit(0, 2),
         leds=(bit(0, 3), bit(0, 4), bit(0, 5)),
         last_dequeued_valid=bit(0, 6),
+        comm_lost_alarm=bit(0, 7),
         queue_length=usint(1),
         last_dequeued_shape=usint(2),
         last_dequeued_semantic_id=int.from_bytes(raw[4:8], byteorder="big", signed=True),

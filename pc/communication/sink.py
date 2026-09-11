@@ -215,6 +215,7 @@ class S7PlcCommandSink:
             "shape_code": 0,
             "semantic_id": 0,
             "heartbeat": self._heartbeat,
+            "heartbeat_enabled": self.config.heartbeat_enabled,
         }
         values.update(changes)
         controls = {
@@ -226,6 +227,7 @@ class S7PlcCommandSink:
             "shape_code": int(values["shape_code"]),
             "semantic_id": int(values["semantic_id"]),
             "heartbeat": int(values["heartbeat"]) & 0xFF,
+            "heartbeat_enabled": bool(values["heartbeat_enabled"]),
         }
         raw = PlcControls(**controls).pack()
         self._heartbeat = int(controls["heartbeat"])

@@ -35,6 +35,9 @@ class FakeAcceptancePlc:
         self.last_dequeued: tuple[int, int] | None = None
         self.cycle_counter = 0
         self.connected = False
+        # COMM-002 alarm bit (DBX8.7). The offline model has no timer, so tests
+        # set it directly to simulate the PLC-side watchdog tripping.
+        self.alarm = False
         self.writes: list[tuple[int, int, bytes]] = []
         self.control_bytes = bytes(8)
         self._previous_command_valid = False
@@ -110,6 +113,7 @@ class FakeAcceptancePlc:
             | (int(self._leds()[1]) << 4)
             | (int(self._leds()[2]) << 5)
             | (int(self.last_dequeued is not None) << 6)
+            | (int(self.alarm) << 7)
         )
         raw[1] = len(self.queue)
         raw[2] = self.last_dequeued[0] if self.last_dequeued is not None else 0

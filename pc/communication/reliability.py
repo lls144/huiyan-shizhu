@@ -97,6 +97,7 @@ class PlcLinkStatus:
     leds: tuple[bool, bool, bool] = (False, False, False)
     last_dequeued_shape: int = 0
     last_dequeued_semantic_id: int = 0
+    plc_comm_lost_alarm: bool = False
     deferred_count: int = 0
     last_error: str | None = None
     counters: ReliabilityCounters = field(default_factory=ReliabilityCounters)
@@ -111,6 +112,7 @@ class PlcLinkStatus:
             "leds": list(self.leds),
             "last_dequeued_shape": self.last_dequeued_shape,
             "last_dequeued_semantic_id": self.last_dequeued_semantic_id,
+            "plc_comm_lost_alarm": self.plc_comm_lost_alarm,
             "deferred_count": self.deferred_count,
             "last_error": self.last_error,
             "counters": self.counters.to_record(),
@@ -194,6 +196,7 @@ class GuardedPlcSink:
             leds=state.leds if state else (False, False, False),
             last_dequeued_shape=state.last_dequeued_shape if state else 0,
             last_dequeued_semantic_id=state.last_dequeued_semantic_id if state else 0,
+            plc_comm_lost_alarm=state.comm_lost_alarm if state else False,
             deferred_count=len(self.deferred),
             last_error=self._last_error,
             counters=self.counters,
