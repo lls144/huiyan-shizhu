@@ -1,0 +1,3198 @@
+{
+  "generated_at": "2026-09-11T11:01:13.816+08:00",
+  "plc_ip": "192.0.2.1",
+  "rack": 0,
+  "slot": 1,
+  "db_number": 3,
+  "git_commit": "04b4622c669ac7dac0b902efb6afef802108d5d1",
+  "snap7_version": "3.1.2",
+  "control_write_confirmation": {
+    "attempts_per_write": 12,
+    "interval_seconds": 0.02
+  },
+  "control_writes": {
+    "confirmed_control_writes": 193,
+    "writes_needing_retry": 90,
+    "max_attempts": 5
+  },
+  "results": [
+    {
+      "test_id": "M8-T01",
+      "started_at": "2026-09-11T11:01:14.159+08:00",
+      "ended_at": "2026-09-11T11:01:15.391+08:00",
+      "pre_state": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          0,
+          0,
+          0
+        ],
+        "last_dequeued_valid": false,
+        "queue_length": 0,
+        "last_dequeued_shape": 0,
+        "last_dequeued_semantic_id": 0,
+        "cycle_counter": 1073280,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "actions": [
+        {
+          "at": "2026-09-11T11:01:14.190+08:00",
+          "action": "reset"
+        },
+        {
+          "at": "2026-09-11T11:01:14.671+08:00",
+          "action": "dequeue press",
+          "hold_seconds": 0.25
+        }
+      ],
+      "samples": [
+        {
+          "at": "2026-09-11T11:01:14.671+08:00",
+          "label": "reset complete",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 0,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1073660,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:15.032+08:00",
+          "label": "dequeue to length 0",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 0,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1073943,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        }
+      ],
+      "post_state": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          0,
+          0,
+          0
+        ],
+        "last_dequeued_valid": false,
+        "queue_length": 0,
+        "last_dequeued_shape": 0,
+        "last_dequeued_semantic_id": 0,
+        "cycle_counter": 1074217,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "expected": "See plc/tests/README.md and test implementation",
+      "actual": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          0,
+          0,
+          0
+        ],
+        "last_dequeued_valid": false,
+        "queue_length": 0,
+        "last_dequeued_shape": 0,
+        "last_dequeued_semantic_id": 0,
+        "cycle_counter": 1074217,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "status": "AUTO PASS",
+      "pass": true,
+      "failure_reason": null
+    },
+    {
+      "test_id": "M8-T02",
+      "started_at": "2026-09-11T11:01:15.391+08:00",
+      "ended_at": "2026-09-11T11:01:16.981+08:00",
+      "pre_state": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          0,
+          0,
+          0
+        ],
+        "last_dequeued_valid": false,
+        "queue_length": 0,
+        "last_dequeued_shape": 0,
+        "last_dequeued_semantic_id": 0,
+        "cycle_counter": 1074223,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "actions": [
+        {
+          "at": "2026-09-11T11:01:15.401+08:00",
+          "action": "reset"
+        },
+        {
+          "at": "2026-09-11T11:01:15.965+08:00",
+          "action": "enqueue edge",
+          "shape_code": 1,
+          "semantic_id": 101,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:16.312+08:00",
+          "action": "dequeue press",
+          "hold_seconds": 0.25
+        }
+      ],
+      "samples": [
+        {
+          "at": "2026-09-11T11:01:15.954+08:00",
+          "label": "reset complete",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 0,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1074652,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:16.130+08:00",
+          "label": "enqueue 1/101",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1074781,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:16.599+08:00",
+          "label": "dequeue to length 0",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              1,
+              0,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 0,
+            "last_dequeued_shape": 1,
+            "last_dequeued_semantic_id": 101,
+            "cycle_counter": 1075149,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        }
+      ],
+      "post_state": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          1,
+          0,
+          0
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 0,
+        "last_dequeued_shape": 1,
+        "last_dequeued_semantic_id": 101,
+        "cycle_counter": 1075444,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "expected": "See plc/tests/README.md and test implementation",
+      "actual": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          1,
+          0,
+          0
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 0,
+        "last_dequeued_shape": 1,
+        "last_dequeued_semantic_id": 101,
+        "cycle_counter": 1075444,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "status": "AUTO PASS",
+      "pass": true,
+      "failure_reason": null
+    },
+    {
+      "test_id": "M8-T03",
+      "started_at": "2026-09-11T11:01:16.981+08:00",
+      "ended_at": "2026-09-11T11:01:20.820+08:00",
+      "pre_state": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          1,
+          0,
+          0
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 0,
+        "last_dequeued_shape": 1,
+        "last_dequeued_semantic_id": 101,
+        "cycle_counter": 1075452,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "actions": [
+        {
+          "at": "2026-09-11T11:01:16.992+08:00",
+          "action": "reset"
+        },
+        {
+          "at": "2026-09-11T11:01:17.426+08:00",
+          "action": "enqueue edge",
+          "shape_code": 1,
+          "semantic_id": 101,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:17.853+08:00",
+          "action": "enqueue edge",
+          "shape_code": 2,
+          "semantic_id": 102,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:18.221+08:00",
+          "action": "enqueue edge",
+          "shape_code": 3,
+          "semantic_id": 103,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:18.639+08:00",
+          "action": "dequeue press",
+          "hold_seconds": 0.25
+        },
+        {
+          "at": "2026-09-11T11:01:19.358+08:00",
+          "action": "dequeue press",
+          "hold_seconds": 0.25
+        },
+        {
+          "at": "2026-09-11T11:01:20.039+08:00",
+          "action": "dequeue press",
+          "hold_seconds": 0.25
+        }
+      ],
+      "samples": [
+        {
+          "at": "2026-09-11T11:01:17.416+08:00",
+          "label": "reset complete",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 0,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1075781,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:17.720+08:00",
+          "label": "enqueue 1/101",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1076004,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:18.052+08:00",
+          "label": "enqueue 2/102",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 2,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1076245,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:18.507+08:00",
+          "label": "enqueue 3/103",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": true,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 3,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1076590,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:18.639+08:00",
+          "label": "fifo full",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": true,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 3,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1076693,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:19.021+08:00",
+          "label": "dequeue to length 2",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              1,
+              0,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 2,
+            "last_dequeued_shape": 1,
+            "last_dequeued_semantic_id": 101,
+            "cycle_counter": 1076988,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:19.743+08:00",
+          "label": "dequeue to length 1",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              1,
+              1,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 1,
+            "last_dequeued_shape": 2,
+            "last_dequeued_semantic_id": 102,
+            "cycle_counter": 1077552,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:20.355+08:00",
+          "label": "dequeue to length 0",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              1,
+              1,
+              1
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 0,
+            "last_dequeued_shape": 3,
+            "last_dequeued_semantic_id": 103,
+            "cycle_counter": 1078035,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        }
+      ],
+      "post_state": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          1,
+          1,
+          1
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 0,
+        "last_dequeued_shape": 3,
+        "last_dequeued_semantic_id": 103,
+        "cycle_counter": 1078388,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "expected": "See plc/tests/README.md and test implementation",
+      "actual": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          1,
+          1,
+          1
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 0,
+        "last_dequeued_shape": 3,
+        "last_dequeued_semantic_id": 103,
+        "cycle_counter": 1078388,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "status": "AUTO PASS",
+      "pass": true,
+      "failure_reason": null
+    },
+    {
+      "test_id": "M8-T04",
+      "started_at": "2026-09-11T11:01:20.820+08:00",
+      "ended_at": "2026-09-11T11:01:24.742+08:00",
+      "pre_state": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          1,
+          1,
+          1
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 0,
+        "last_dequeued_shape": 3,
+        "last_dequeued_semantic_id": 103,
+        "cycle_counter": 1078398,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "actions": [
+        {
+          "at": "2026-09-11T11:01:20.841+08:00",
+          "action": "reset"
+        },
+        {
+          "at": "2026-09-11T11:01:21.299+08:00",
+          "action": "enqueue edge",
+          "shape_code": 1,
+          "semantic_id": 101,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:21.590+08:00",
+          "action": "enqueue edge",
+          "shape_code": 2,
+          "semantic_id": 102,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:22.091+08:00",
+          "action": "enqueue edge",
+          "shape_code": 3,
+          "semantic_id": 103,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:22.570+08:00",
+          "action": "enqueue edge",
+          "shape_code": 1,
+          "semantic_id": 104,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:22.893+08:00",
+          "action": "dequeue press",
+          "hold_seconds": 0.25
+        },
+        {
+          "at": "2026-09-11T11:01:23.521+08:00",
+          "action": "dequeue press",
+          "hold_seconds": 0.25
+        },
+        {
+          "at": "2026-09-11T11:01:24.148+08:00",
+          "action": "dequeue press",
+          "hold_seconds": 0.25
+        }
+      ],
+      "samples": [
+        {
+          "at": "2026-09-11T11:01:21.287+08:00",
+          "label": "reset complete",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 0,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1078752,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:21.452+08:00",
+          "label": "enqueue 1/101",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1078876,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:21.965+08:00",
+          "label": "enqueue 2/102",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 2,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1079248,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:22.347+08:00",
+          "label": "enqueue 3/103",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": true,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 3,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1079536,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:22.723+08:00",
+          "label": "enqueue 1/104",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": true,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 3,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1079815,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:22.893+08:00",
+          "label": "fourth rejected",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": true,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 3,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1079946,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:23.170+08:00",
+          "label": "dequeue to length 2",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              1,
+              0,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 2,
+            "last_dequeued_shape": 1,
+            "last_dequeued_semantic_id": 101,
+            "cycle_counter": 1080167,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:23.877+08:00",
+          "label": "dequeue to length 1",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              1,
+              1,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 1,
+            "last_dequeued_shape": 2,
+            "last_dequeued_semantic_id": 102,
+            "cycle_counter": 1080713,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:24.422+08:00",
+          "label": "dequeue to length 0",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              1,
+              1,
+              1
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 0,
+            "last_dequeued_shape": 3,
+            "last_dequeued_semantic_id": 103,
+            "cycle_counter": 1081138,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        }
+      ],
+      "post_state": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          1,
+          1,
+          1
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 0,
+        "last_dequeued_shape": 3,
+        "last_dequeued_semantic_id": 103,
+        "cycle_counter": 1081390,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "expected": "See plc/tests/README.md and test implementation",
+      "actual": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          1,
+          1,
+          1
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 0,
+        "last_dequeued_shape": 3,
+        "last_dequeued_semantic_id": 103,
+        "cycle_counter": 1081390,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "status": "AUTO PASS",
+      "pass": true,
+      "failure_reason": null
+    },
+    {
+      "test_id": "M8-T05",
+      "started_at": "2026-09-11T11:01:24.742+08:00",
+      "ended_at": "2026-09-11T11:01:27.854+08:00",
+      "pre_state": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          1,
+          1,
+          1
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 0,
+        "last_dequeued_shape": 3,
+        "last_dequeued_semantic_id": 103,
+        "cycle_counter": 1081398,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "actions": [
+        {
+          "at": "2026-09-11T11:01:24.754+08:00",
+          "action": "reset"
+        },
+        {
+          "at": "2026-09-11T11:01:25.222+08:00",
+          "action": "enqueue edge",
+          "shape_code": 1,
+          "semantic_id": 101,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:25.651+08:00",
+          "action": "enqueue edge",
+          "shape_code": 2,
+          "semantic_id": 102,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:25.928+08:00",
+          "action": "enqueue edge",
+          "shape_code": 3,
+          "semantic_id": 103,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:26.287+08:00",
+          "action": "held dequeue",
+          "hold_seconds": 1.0
+        }
+      ],
+      "samples": [
+        {
+          "at": "2026-09-11T11:01:25.211+08:00",
+          "label": "reset complete",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 0,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1081753,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:25.473+08:00",
+          "label": "enqueue 1/101",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1081943,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:25.800+08:00",
+          "label": "enqueue 2/102",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 2,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1082186,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:26.124+08:00",
+          "label": "enqueue 3/103",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": true,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 3,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1082430,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:26.562+08:00",
+          "label": "held dequeue sample",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              1,
+              0,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 2,
+            "last_dequeued_shape": 1,
+            "last_dequeued_semantic_id": 101,
+            "cycle_counter": 1082778,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:26.671+08:00",
+          "label": "held dequeue sample",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              1,
+              0,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 2,
+            "last_dequeued_shape": 1,
+            "last_dequeued_semantic_id": 101,
+            "cycle_counter": 1082865,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:26.791+08:00",
+          "label": "held dequeue sample",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              1,
+              0,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 2,
+            "last_dequeued_shape": 1,
+            "last_dequeued_semantic_id": 101,
+            "cycle_counter": 1082960,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:26.900+08:00",
+          "label": "held dequeue sample",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              1,
+              0,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 2,
+            "last_dequeued_shape": 1,
+            "last_dequeued_semantic_id": 101,
+            "cycle_counter": 1083046,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:27.009+08:00",
+          "label": "held dequeue sample",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              1,
+              0,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 2,
+            "last_dequeued_shape": 1,
+            "last_dequeued_semantic_id": 101,
+            "cycle_counter": 1083129,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:27.120+08:00",
+          "label": "held dequeue sample",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              1,
+              0,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 2,
+            "last_dequeued_shape": 1,
+            "last_dequeued_semantic_id": 101,
+            "cycle_counter": 1083221,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:27.228+08:00",
+          "label": "held dequeue sample",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              1,
+              0,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 2,
+            "last_dequeued_shape": 1,
+            "last_dequeued_semantic_id": 101,
+            "cycle_counter": 1083303,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:27.336+08:00",
+          "label": "held dequeue sample",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              1,
+              0,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 2,
+            "last_dequeued_shape": 1,
+            "last_dequeued_semantic_id": 101,
+            "cycle_counter": 1083391,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:27.445+08:00",
+          "label": "held dequeue sample",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              1,
+              0,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 2,
+            "last_dequeued_shape": 1,
+            "last_dequeued_semantic_id": 101,
+            "cycle_counter": 1083482,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        }
+      ],
+      "post_state": {
+        "acceptance_ready": true,
+        "queue_empty": false,
+        "queue_full": false,
+        "leds": [
+          1,
+          0,
+          0
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 2,
+        "last_dequeued_shape": 1,
+        "last_dequeued_semantic_id": 101,
+        "cycle_counter": 1083800,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "expected": "See plc/tests/README.md and test implementation",
+      "actual": {
+        "acceptance_ready": true,
+        "queue_empty": false,
+        "queue_full": false,
+        "leds": [
+          1,
+          0,
+          0
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 2,
+        "last_dequeued_shape": 1,
+        "last_dequeued_semantic_id": 101,
+        "cycle_counter": 1083800,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "status": "AUTO PASS",
+      "pass": true,
+      "failure_reason": null
+    },
+    {
+      "test_id": "M8-T06",
+      "started_at": "2026-09-11T11:01:27.854+08:00",
+      "ended_at": "2026-09-11T11:01:30.598+08:00",
+      "pre_state": {
+        "acceptance_ready": true,
+        "queue_empty": false,
+        "queue_full": false,
+        "leds": [
+          1,
+          0,
+          0
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 2,
+        "last_dequeued_shape": 1,
+        "last_dequeued_semantic_id": 101,
+        "cycle_counter": 1083813,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "actions": [
+        {
+          "at": "2026-09-11T11:01:27.870+08:00",
+          "action": "reset"
+        },
+        {
+          "at": "2026-09-11T11:01:28.361+08:00",
+          "action": "enqueue edge",
+          "shape_code": 1,
+          "semantic_id": 101,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:28.849+08:00",
+          "action": "enqueue edge",
+          "shape_code": 2,
+          "semantic_id": 102,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:29.169+08:00",
+          "action": "enqueue edge",
+          "shape_code": 3,
+          "semantic_id": 103,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:29.492+08:00",
+          "action": "dequeue press",
+          "hold_seconds": 0.25
+        },
+        {
+          "at": "2026-09-11T11:01:30.037+08:00",
+          "action": "dequeue press",
+          "hold_seconds": 0.25
+        }
+      ],
+      "samples": [
+        {
+          "at": "2026-09-11T11:01:28.351+08:00",
+          "label": "reset complete",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 0,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1084189,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:28.664+08:00",
+          "label": "enqueue 1/101",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1084418,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:29.039+08:00",
+          "label": "enqueue 2/102",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 2,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1084694,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:29.326+08:00",
+          "label": "enqueue 3/103",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": true,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 3,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1084912,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:29.767+08:00",
+          "label": "dequeue to length 2",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              1,
+              0,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 2,
+            "last_dequeued_shape": 1,
+            "last_dequeued_semantic_id": 101,
+            "cycle_counter": 1085254,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:30.313+08:00",
+          "label": "dequeue to length 1",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              1,
+              1,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 1,
+            "last_dequeued_shape": 2,
+            "last_dequeued_semantic_id": 102,
+            "cycle_counter": 1085698,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        }
+      ],
+      "post_state": {
+        "acceptance_ready": true,
+        "queue_empty": false,
+        "queue_full": false,
+        "leds": [
+          1,
+          1,
+          0
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 1,
+        "last_dequeued_shape": 2,
+        "last_dequeued_semantic_id": 102,
+        "cycle_counter": 1085917,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "expected": "See plc/tests/README.md and test implementation",
+      "actual": {
+        "acceptance_ready": true,
+        "queue_empty": false,
+        "queue_full": false,
+        "leds": [
+          1,
+          1,
+          0
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 1,
+        "last_dequeued_shape": 2,
+        "last_dequeued_semantic_id": 102,
+        "cycle_counter": 1085917,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "status": "AUTO PASS",
+      "pass": true,
+      "failure_reason": null
+    },
+    {
+      "test_id": "M8-T07",
+      "started_at": "2026-09-11T11:01:30.598+08:00",
+      "ended_at": "2026-09-11T11:01:33.077+08:00",
+      "pre_state": {
+        "acceptance_ready": true,
+        "queue_empty": false,
+        "queue_full": false,
+        "leds": [
+          1,
+          1,
+          0
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 1,
+        "last_dequeued_shape": 2,
+        "last_dequeued_semantic_id": 102,
+        "cycle_counter": 1085924,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "actions": [
+        {
+          "at": "2026-09-11T11:01:30.608+08:00",
+          "action": "reset"
+        },
+        {
+          "at": "2026-09-11T11:01:31.159+08:00",
+          "action": "enqueue edge",
+          "shape_code": 1,
+          "semantic_id": 101,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:31.549+08:00",
+          "action": "enqueue edge",
+          "shape_code": 2,
+          "semantic_id": 102,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:31.903+08:00",
+          "action": "dequeue press",
+          "hold_seconds": 0.25
+        },
+        {
+          "at": "2026-09-11T11:01:32.494+08:00",
+          "action": "reset"
+        }
+      ],
+      "samples": [
+        {
+          "at": "2026-09-11T11:01:31.148+08:00",
+          "label": "reset complete",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 0,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1086333,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:31.306+08:00",
+          "label": "enqueue 1/101",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1086458,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:31.747+08:00",
+          "label": "enqueue 2/102",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 2,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1086777,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:32.220+08:00",
+          "label": "dequeue to length 1",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              1,
+              0,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 1,
+            "last_dequeued_shape": 1,
+            "last_dequeued_semantic_id": 101,
+            "cycle_counter": 1087151,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:33.066+08:00",
+          "label": "reset complete",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 0,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1087808,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        }
+      ],
+      "post_state": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          0,
+          0,
+          0
+        ],
+        "last_dequeued_valid": false,
+        "queue_length": 0,
+        "last_dequeued_shape": 0,
+        "last_dequeued_semantic_id": 0,
+        "cycle_counter": 1087815,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "expected": "See plc/tests/README.md and test implementation",
+      "actual": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          0,
+          0,
+          0
+        ],
+        "last_dequeued_valid": false,
+        "queue_length": 0,
+        "last_dequeued_shape": 0,
+        "last_dequeued_semantic_id": 0,
+        "cycle_counter": 1087815,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "status": "AUTO PASS",
+      "pass": true,
+      "failure_reason": null
+    },
+    {
+      "test_id": "M8-T08",
+      "started_at": "2026-09-11T11:01:33.077+08:00",
+      "ended_at": "2026-09-11T11:01:37.664+08:00",
+      "pre_state": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          0,
+          0,
+          0
+        ],
+        "last_dequeued_valid": false,
+        "queue_length": 0,
+        "last_dequeued_shape": 0,
+        "last_dequeued_semantic_id": 0,
+        "cycle_counter": 1087822,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "actions": [
+        {
+          "at": "2026-09-11T11:01:33.087+08:00",
+          "action": "reset"
+        },
+        {
+          "at": "2026-09-11T11:01:33.560+08:00",
+          "action": "enqueue edge",
+          "shape_code": 1,
+          "semantic_id": 101,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:33.834+08:00",
+          "action": "dequeue press",
+          "hold_seconds": 0.25
+        },
+        {
+          "at": "2026-09-11T11:01:34.529+08:00",
+          "action": "reset"
+        },
+        {
+          "at": "2026-09-11T11:01:35.107+08:00",
+          "action": "enqueue edge",
+          "shape_code": 2,
+          "semantic_id": 102,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:35.443+08:00",
+          "action": "dequeue press",
+          "hold_seconds": 0.25
+        },
+        {
+          "at": "2026-09-11T11:01:36.032+08:00",
+          "action": "reset"
+        },
+        {
+          "at": "2026-09-11T11:01:36.728+08:00",
+          "action": "enqueue edge",
+          "shape_code": 3,
+          "semantic_id": 103,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:37.086+08:00",
+          "action": "dequeue press",
+          "hold_seconds": 0.25
+        }
+      ],
+      "samples": [
+        {
+          "at": "2026-09-11T11:01:33.547+08:00",
+          "label": "reset complete",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 0,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1088173,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:33.710+08:00",
+          "label": "enqueue 1/101",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1088298,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:34.143+08:00",
+          "label": "dequeue to length 0",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              1,
+              0,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 0,
+            "last_dequeued_shape": 1,
+            "last_dequeued_semantic_id": 101,
+            "cycle_counter": 1088639,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:35.096+08:00",
+          "label": "reset complete",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 0,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1089375,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:35.319+08:00",
+          "label": "enqueue 2/102",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1089539,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:35.722+08:00",
+          "label": "dequeue to length 0",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              1,
+              1,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 0,
+            "last_dequeued_shape": 2,
+            "last_dequeued_semantic_id": 102,
+            "cycle_counter": 1089859,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:36.716+08:00",
+          "label": "reset complete",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 0,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1090619,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:36.965+08:00",
+          "label": "enqueue 3/103",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1090799,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:37.366+08:00",
+          "label": "dequeue to length 0",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              1,
+              1,
+              1
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 0,
+            "last_dequeued_shape": 3,
+            "last_dequeued_semantic_id": 103,
+            "cycle_counter": 1091117,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        }
+      ],
+      "post_state": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          1,
+          1,
+          1
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 0,
+        "last_dequeued_shape": 3,
+        "last_dequeued_semantic_id": 103,
+        "cycle_counter": 1091358,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "expected": "See plc/tests/README.md and test implementation",
+      "actual": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          1,
+          1,
+          1
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 0,
+        "last_dequeued_shape": 3,
+        "last_dequeued_semantic_id": 103,
+        "cycle_counter": 1091358,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "status": "AUTO PASS",
+      "pass": true,
+      "failure_reason": null
+    },
+    {
+      "test_id": "M8-T09",
+      "started_at": "2026-09-11T11:01:37.664+08:00",
+      "ended_at": "2026-09-11T11:01:40.322+08:00",
+      "pre_state": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          1,
+          1,
+          1
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 0,
+        "last_dequeued_shape": 3,
+        "last_dequeued_semantic_id": 103,
+        "cycle_counter": 1091366,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "actions": [
+        {
+          "at": "2026-09-11T11:01:37.676+08:00",
+          "action": "reset"
+        },
+        {
+          "at": "2026-09-11T11:01:38.302+08:00",
+          "action": "enqueue edge",
+          "shape_code": 1,
+          "semantic_id": 101,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:38.640+08:00",
+          "action": "enqueue edge",
+          "shape_code": 2,
+          "semantic_id": 102,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:39.036+08:00",
+          "action": "enqueue edge",
+          "shape_code": 3,
+          "semantic_id": 103,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:39.392+08:00",
+          "action": "enqueue edge",
+          "shape_code": 1,
+          "semantic_id": 104,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:39.760+08:00",
+          "action": "dequeue press",
+          "hold_seconds": 0.25
+        }
+      ],
+      "samples": [
+        {
+          "at": "2026-09-11T11:01:38.290+08:00",
+          "label": "reset complete",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 0,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1091831,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:38.484+08:00",
+          "label": "enqueue 1/101",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1091969,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:38.802+08:00",
+          "label": "enqueue 2/102",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 2,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1092219,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:39.249+08:00",
+          "label": "enqueue 3/103",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": true,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 3,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1092552,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:39.382+08:00",
+          "label": "full boundary",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": true,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 3,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1092656,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:39.578+08:00",
+          "label": "enqueue 1/104",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": true,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 3,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1092803,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:40.038+08:00",
+          "label": "dequeue to length 2",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              1,
+              0,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 2,
+            "last_dequeued_shape": 1,
+            "last_dequeued_semantic_id": 101,
+            "cycle_counter": 1093162,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        }
+      ],
+      "post_state": {
+        "acceptance_ready": true,
+        "queue_empty": false,
+        "queue_full": false,
+        "leds": [
+          1,
+          0,
+          0
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 2,
+        "last_dequeued_shape": 1,
+        "last_dequeued_semantic_id": 101,
+        "cycle_counter": 1093389,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "expected": "See plc/tests/README.md and test implementation",
+      "actual": {
+        "acceptance_ready": true,
+        "queue_empty": false,
+        "queue_full": false,
+        "leds": [
+          1,
+          0,
+          0
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 2,
+        "last_dequeued_shape": 1,
+        "last_dequeued_semantic_id": 101,
+        "cycle_counter": 1093389,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "status": "AUTO PASS",
+      "pass": true,
+      "failure_reason": null
+    },
+    {
+      "test_id": "M8-T10",
+      "started_at": "2026-09-11T11:01:40.322+08:00",
+      "ended_at": "2026-09-11T11:01:44.672+08:00",
+      "pre_state": {
+        "acceptance_ready": true,
+        "queue_empty": false,
+        "queue_full": false,
+        "leds": [
+          1,
+          0,
+          0
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 2,
+        "last_dequeued_shape": 1,
+        "last_dequeued_semantic_id": 101,
+        "cycle_counter": 1093395,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "actions": [
+        {
+          "at": "2026-09-11T11:01:40.332+08:00",
+          "action": "reset"
+        },
+        {
+          "at": "2026-09-11T11:01:40.764+08:00",
+          "action": "enqueue edge",
+          "shape_code": 2,
+          "semantic_id": 102,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:41.217+08:00",
+          "action": "dequeue press",
+          "hold_seconds": 0.25
+        },
+        {
+          "at": "2026-09-11T11:01:41.814+08:00",
+          "action": "enqueue edge",
+          "shape_code": 0,
+          "semantic_id": 200,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:42.241+08:00",
+          "action": "dequeue press",
+          "hold_seconds": 0.25
+        },
+        {
+          "at": "2026-09-11T11:01:42.955+08:00",
+          "action": "enqueue edge",
+          "shape_code": 99,
+          "semantic_id": 299,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:43.509+08:00",
+          "action": "dequeue press",
+          "hold_seconds": 0.25
+        }
+      ],
+      "samples": [
+        {
+          "at": "2026-09-11T11:01:40.754+08:00",
+          "label": "reset complete",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 0,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1093723,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:41.056+08:00",
+          "label": "enqueue 2/102",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1093944,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:41.535+08:00",
+          "label": "dequeue to length 0",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              1,
+              1,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 0,
+            "last_dequeued_shape": 2,
+            "last_dequeued_semantic_id": 102,
+            "cycle_counter": 1094314,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:42.005+08:00",
+          "label": "enqueue 0/200",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              1,
+              1,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 1,
+            "last_dequeued_shape": 2,
+            "last_dequeued_semantic_id": 102,
+            "cycle_counter": 1094680,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:42.558+08:00",
+          "label": "dequeue to length 0",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              1,
+              1,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 0,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 200,
+            "cycle_counter": 1095097,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:43.348+08:00",
+          "label": "enqueue 99/299",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              1,
+              1,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 200,
+            "cycle_counter": 1095688,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:43.871+08:00",
+          "label": "dequeue to length 0",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              1,
+              1,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 0,
+            "last_dequeued_shape": 99,
+            "last_dequeued_semantic_id": 299,
+            "cycle_counter": 1096087,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:44.603+08:00",
+          "label": "CommandData.Valid FALSE rejected",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              1,
+              1,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 0,
+            "last_dequeued_shape": 99,
+            "last_dequeued_semantic_id": 299,
+            "cycle_counter": 1096662,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        }
+      ],
+      "post_state": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          1,
+          1,
+          0
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 0,
+        "last_dequeued_shape": 99,
+        "last_dequeued_semantic_id": 299,
+        "cycle_counter": 1096710,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "expected": "See plc/tests/README.md and test implementation",
+      "actual": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          1,
+          1,
+          0
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 0,
+        "last_dequeued_shape": 99,
+        "last_dequeued_semantic_id": 299,
+        "cycle_counter": 1096710,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "status": "AUTO PASS",
+      "pass": true,
+      "failure_reason": null
+    },
+    {
+      "test_id": "M8-T11",
+      "started_at": "2026-09-11T11:01:44.673+08:00",
+      "ended_at": "2026-09-11T11:01:48.074+08:00",
+      "pre_state": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          1,
+          1,
+          0
+        ],
+        "last_dequeued_valid": true,
+        "queue_length": 0,
+        "last_dequeued_shape": 99,
+        "last_dequeued_semantic_id": 299,
+        "cycle_counter": 1096719,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "actions": [
+        {
+          "at": "2026-09-11T11:01:44.685+08:00",
+          "action": "reset"
+        },
+        {
+          "at": "2026-09-11T11:01:45.332+08:00",
+          "action": "enqueue edge",
+          "shape_code": 1,
+          "semantic_id": 101,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:45.611+08:00",
+          "action": "enqueue edge",
+          "shape_code": 2,
+          "semantic_id": 102,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:45.952+08:00",
+          "action": "enqueue edge",
+          "shape_code": 3,
+          "semantic_id": 103,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:46.304+08:00",
+          "action": "dequeue press",
+          "hold_seconds": 0.25
+        },
+        {
+          "at": "2026-09-11T11:01:47.057+08:00",
+          "action": "enqueue edge",
+          "shape_code": 1,
+          "semantic_id": 104,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:47.562+08:00",
+          "action": "reset"
+        }
+      ],
+      "samples": [
+        {
+          "at": "2026-09-11T11:01:45.321+08:00",
+          "label": "reset complete",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 0,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1097202,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:45.484+08:00",
+          "label": "enqueue 1/101",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1097326,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:45.763+08:00",
+          "label": "enqueue 2/102",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 2,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1097535,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:46.141+08:00",
+          "label": "enqueue 3/103",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": true,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 3,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1097812,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:46.629+08:00",
+          "label": "dequeue to length 2",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              1,
+              0,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 2,
+            "last_dequeued_shape": 1,
+            "last_dequeued_semantic_id": 101,
+            "cycle_counter": 1098187,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:47.430+08:00",
+          "label": "enqueue 1/104",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": true,
+            "leds": [
+              1,
+              0,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 3,
+            "last_dequeued_shape": 1,
+            "last_dequeued_semantic_id": 101,
+            "cycle_counter": 1098788,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:47.562+08:00",
+          "label": "full with display",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": true,
+            "leds": [
+              1,
+              0,
+              0
+            ],
+            "last_dequeued_valid": true,
+            "queue_length": 3,
+            "last_dequeued_shape": 1,
+            "last_dequeued_semantic_id": 101,
+            "cycle_counter": 1098890,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:48.066+08:00",
+          "label": "reset complete",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 0,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1099276,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        }
+      ],
+      "post_state": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          0,
+          0,
+          0
+        ],
+        "last_dequeued_valid": false,
+        "queue_length": 0,
+        "last_dequeued_shape": 0,
+        "last_dequeued_semantic_id": 0,
+        "cycle_counter": 1099282,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "expected": "See plc/tests/README.md and test implementation",
+      "actual": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          0,
+          0,
+          0
+        ],
+        "last_dequeued_valid": false,
+        "queue_length": 0,
+        "last_dequeued_shape": 0,
+        "last_dequeued_semantic_id": 0,
+        "cycle_counter": 1099282,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "status": "AUTO PASS",
+      "pass": true,
+      "failure_reason": null
+    },
+    {
+      "test_id": "M8-T15",
+      "started_at": "2026-09-11T11:01:48.074+08:00",
+      "ended_at": "2026-09-11T11:01:52.113+08:00",
+      "pre_state": {
+        "acceptance_ready": true,
+        "queue_empty": true,
+        "queue_full": false,
+        "leds": [
+          0,
+          0,
+          0
+        ],
+        "last_dequeued_valid": false,
+        "queue_length": 0,
+        "last_dequeued_shape": 0,
+        "last_dequeued_semantic_id": 0,
+        "cycle_counter": 1099289,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "actions": [
+        {
+          "at": "2026-09-11T11:01:48.087+08:00",
+          "action": "reset"
+        },
+        {
+          "at": "2026-09-11T11:01:48.616+08:00",
+          "action": "enqueue edge",
+          "shape_code": 1,
+          "semantic_id": 101,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:50.224+08:00",
+          "action": "enqueue edge",
+          "shape_code": 2,
+          "semantic_id": 102,
+          "command_data_valid": true
+        },
+        {
+          "at": "2026-09-11T11:01:50.376+08:00",
+          "action": "reset while CommandValid remains TRUE"
+        },
+        {
+          "at": "2026-09-11T11:01:51.715+08:00",
+          "action": "enqueue edge",
+          "shape_code": 3,
+          "semantic_id": 103,
+          "command_data_valid": true
+        }
+      ],
+      "samples": [
+        {
+          "at": "2026-09-11T11:01:48.606+08:00",
+          "label": "reset complete",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 0,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1099695,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:48.808+08:00",
+          "label": "enqueue 1/101",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1099838,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:48.818+08:00",
+          "label": "CommandValid held TRUE",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1099845,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:48.924+08:00",
+          "label": "CommandValid held TRUE",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1099933,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:49.030+08:00",
+          "label": "CommandValid held TRUE",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1100022,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:49.141+08:00",
+          "label": "CommandValid held TRUE",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1100103,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:49.249+08:00",
+          "label": "CommandValid held TRUE",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1100193,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:49.359+08:00",
+          "label": "CommandValid held TRUE",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1100286,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:49.466+08:00",
+          "label": "CommandValid held TRUE",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1100361,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:49.576+08:00",
+          "label": "CommandValid held TRUE",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1100452,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:49.684+08:00",
+          "label": "CommandValid held TRUE",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1100543,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:49.793+08:00",
+          "label": "CommandValid held TRUE",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1100625,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:50.214+08:00",
+          "label": "CommandValid released",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1100962,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:50.376+08:00",
+          "label": "enqueue 2/102",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 2,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1101081,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:51.357+08:00",
+          "label": "held TRUE after reset release",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": true,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 0,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1101865,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        },
+        {
+          "at": "2026-09-11T11:01:51.943+08:00",
+          "label": "enqueue 3/103",
+          "state": {
+            "acceptance_ready": true,
+            "queue_empty": false,
+            "queue_full": false,
+            "leds": [
+              0,
+              0,
+              0
+            ],
+            "last_dequeued_valid": false,
+            "queue_length": 1,
+            "last_dequeued_shape": 0,
+            "last_dequeued_semantic_id": 0,
+            "cycle_counter": 1102310,
+            "layout_magic": 19768,
+            "layout_version": 1
+          }
+        }
+      ],
+      "post_state": {
+        "acceptance_ready": true,
+        "queue_empty": false,
+        "queue_full": false,
+        "leds": [
+          0,
+          0,
+          0
+        ],
+        "last_dequeued_valid": false,
+        "queue_length": 1,
+        "last_dequeued_shape": 0,
+        "last_dequeued_semantic_id": 0,
+        "cycle_counter": 1102441,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "expected": "See plc/tests/README.md and test implementation",
+      "actual": {
+        "acceptance_ready": true,
+        "queue_empty": false,
+        "queue_full": false,
+        "leds": [
+          0,
+          0,
+          0
+        ],
+        "last_dequeued_valid": false,
+        "queue_length": 1,
+        "last_dequeued_shape": 0,
+        "last_dequeued_semantic_id": 0,
+        "cycle_counter": 1102441,
+        "layout_magic": 19768,
+        "layout_version": 1
+      },
+      "status": "AUTO PASS",
+      "pass": true,
+      "failure_reason": null
+    }
+  ],
+  "access_check": {
+    "first": {
+      "acceptance_ready": true,
+      "queue_empty": true,
+      "queue_full": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "last_dequeued_valid": false,
+      "queue_length": 0,
+      "last_dequeued_shape": 0,
+      "last_dequeued_semantic_id": 0,
+      "cycle_counter": 1073079,
+      "layout_magic": 19768,
+      "layout_version": 1
+    },
+    "second": {
+      "acceptance_ready": true,
+      "queue_empty": true,
+      "queue_full": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "last_dequeued_valid": false,
+      "queue_length": 0,
+      "last_dequeued_shape": 0,
+      "last_dequeued_semantic_id": 0,
+      "cycle_counter": 1073262,
+      "layout_magic": 19768,
+      "layout_version": 1
+    },
+    "pass": true
+  }
+}
