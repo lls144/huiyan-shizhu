@@ -26,6 +26,10 @@ class PlcCommunicationConfig:
     # control write is read back and re-sent until the PLC really holds it.
     write_confirm_attempts: int = 12
     write_confirm_interval_seconds: float = 0.02
+    # M9 PC-side reliability layer (see pc/communication/reliability.py).
+    queue_full_policy: str = "defer"
+    duplicate_policy: str = "refuse"
+    command_timeout_seconds: float = 3.0
 
     @classmethod
     def from_dict(cls, values: dict[str, Any]) -> "PlcCommunicationConfig":
@@ -45,6 +49,9 @@ class PlcCommunicationConfig:
                 ("poll_seconds", 0.02),
                 ("write_confirm_attempts", 12),
                 ("write_confirm_interval_seconds", 0.02),
+                ("queue_full_policy", "defer"),
+                ("duplicate_policy", "refuse"),
+                ("command_timeout_seconds", 3.0),
             )
         }
         config = cls(**known)
@@ -68,6 +75,12 @@ class PlcCommunicationConfig:
                 raise ValueError(f"{name} must be non-negative")
         if self.write_confirm_attempts < 1:
             raise ValueError("write_confirm_attempts must be at least 1")
+        if self.queue_full_policy not in ("defer", "drop"):
+            raise ValueError("queue_full_policy must be 'defer' or 'drop'")
+        if self.duplicate_policy not in ("refuse", "allow"):
+            raise ValueError("duplicate_policy must be 'refuse' or 'allow'")
+        if self.command_timeout_seconds <= 0:
+            raise ValueError("command_timeout_seconds must be positive")
 
 
 def load_plc_communication_config(path: str | Path) -> PlcCommunicationConfig:

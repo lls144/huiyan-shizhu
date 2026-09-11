@@ -41,7 +41,7 @@ from pc.vision.live import _git_state
 from .config import SortingConfig
 from .model import STAGES, SortingResult
 from .widget import ConveyorWidget
-from .worker import SortingVisionWorker
+from .worker import ControlRequestBuffer, SortingVisionWorker
 
 SourceFactory = Callable[[], FrameSource]
 
@@ -123,6 +123,7 @@ class SortingWindow(QMainWindow):
         self._pending_labels: tuple[str, ...] = ()
         self._plc_state: dict[str, object] | None = None
         self._plc_error: str | None = None
+        self._controls = ControlRequestBuffer()
         self._state = GuiState.IDLE
         self.last_session_summary: dict[str, object] | None = None
         self.session_annotations: dict[str, object] = {}
@@ -207,7 +208,7 @@ class SortingWindow(QMainWindow):
         tools.addWidget(self.stop_button)
         layout.addWidget(toolbar)
 
-        self.conveyor = ConveyorWidget()
+        self.conveyor = ConveyorWidget(max_pending=self.sorting_config.max_pending_items)
         layout.addWidget(self.conveyor, 1)
 
         preview_bar = QFrame()
@@ -254,20 +255,30 @@ class SortingWindow(QMainWindow):
         layout.addWidget(_divider())
 
         plc = QWidget()
-        grid = QGridLayout(plc)
+        plc_layout = QVBoxLayout(plc)
+        plc_layout.setContentsMargins(0, 0, 0, 0)
+        plc_layout.setSpacing(6)
+        grid_host = QWidget()
+        grid = QGridLayout(grid_host)
         grid.setContentsMargins(0, 0, 0, 0)
         grid.setHorizontalSpacing(10)
         grid.setVerticalSpacing(4)
         self.plc_enabled_value = QLabel("—")
         self.plc_queue_value = QLabel("—")
+        self.plc_full_value = QLabel("—")
         self.plc_led_value = QLabel("—")
+        self.plc_deferred_value = QLabel("—")
+        self.plc_resend_value = QLabel("—")
         self.plc_error_value = QLabel("No errors")
         self.plc_error_value.setObjectName("errorValue")
         self.plc_error_value.setWordWrap(True)
         rows = (
             ("Bridge", self.plc_enabled_value),
             ("Queue length", self.plc_queue_value),
+            ("Queue full", self.plc_full_value),
             ("Real LEDs", self.plc_led_value),
+            ("Deferred (queue full)", self.plc_deferred_value),
+            ("Resends / timeouts", self.plc_resend_value),
             ("Last error", self.plc_error_value),
         )
         for row, (key_text, value) in enumerate(rows):
@@ -276,6 +287,18 @@ class SortingWindow(QMainWindow):
             value.setObjectName("metadataValue")
             grid.addWidget(key, row, 0)
             grid.addWidget(value, row, 1)
+        plc_layout.addWidget(grid_host)
+        buttons = QHBoxLayout()
+        buttons.setContentsMargins(0, 0, 0, 0)
+        buttons.setSpacing(5)
+        self.dequeue_button = _tool_button("出队（等同按键）")
+        self.reset_button = _tool_button("复位")
+        self.dequeue_button.clicked.connect(lambda: self._send_control("dequeue"))
+        self.reset_button.clicked.connect(lambda: self._send_control("reset"))
+        buttons.addWidget(self.dequeue_button)
+        buttons.addWidget(self.reset_button)
+        buttons.addStretch()
+        plc_layout.addLayout(buttons)
         layout.addWidget(_section("PLC", plc))
         layout.addWidget(_divider())
 
@@ -342,6 +365,17 @@ class SortingWindow(QMainWindow):
         active = state in {GuiState.STARTING, GuiState.RUNNING, GuiState.STOPPING}
         self.start_button.setEnabled(not active)
         self.stop_button.setEnabled(state in {GuiState.STARTING, GuiState.RUNNING})
+        plc_ready = state is GuiState.RUNNING and self.command_sink is not None
+        self.dequeue_button.setEnabled(plc_ready)
+        self.reset_button.setEnabled(plc_ready)
+
+    def _send_control(self, action: str) -> None:
+        if not self.is_running or self.command_sink is None:
+            return
+        self._controls.request(action)
+        self.statusBar().showMessage(
+            "已请求出队（等同按下实验箱出队键）" if action == "dequeue" else "已请求复位", 2500
+        )
 
     # -------------------------------------------------------------- lifecycle
 
@@ -372,6 +406,7 @@ class SortingWindow(QMainWindow):
             self.sorting_config,
             self.analyzer,
             self.command_sink,
+            self._controls,
         )
         worker.moveToThread(thread)
         thread.started.connect(worker.run)
@@ -464,7 +499,7 @@ class SortingWindow(QMainWindow):
             self.plc_error_value.setText(self._plc_error)
             _set_dynamic_property(self.plc_error_value, "hasError", True)
             return
-        state = data.get("state")
+        state = data.get("status") or data.get("state")
         if not isinstance(state, dict):
             self.plc_enabled_value.setText(
                 "disabled" if self.command_sink is None else "no state"
@@ -473,10 +508,21 @@ class SortingWindow(QMainWindow):
             self.plc_led_value.setText("—")
             return
         self._plc_state = state
-        self.plc_enabled_value.setText("connected")
+        counters = state.get("counters") or {}
+        self.plc_enabled_value.setText("connected" if state.get("connected", True) else "no state")
         self.plc_queue_value.setText(f"{state.get('queue_length', '—')}")
         leds = state.get("leds") or [False, False, False]
         self.plc_led_value.setText("".join("●" if led else "○" for led in leds))
+        full = state.get("queue_full")
+        if full is None:
+            self.plc_full_value.setText("—")
+        else:
+            self.plc_full_value.setText("FULL（队列满）" if full else "ok")
+            _set_dynamic_property(self.plc_full_value, "hasError", bool(full))
+        self.plc_deferred_value.setText(f"{state.get('deferred_count', 0)} 条待入队")
+        self.plc_resend_value.setText(
+            f"{counters.get('write_resends', 0)} / {counters.get('timeouts', 0)}"
+        )
 
     def _render_preview(self) -> None:
         if self._last_image is None:
@@ -515,11 +561,21 @@ class SortingWindow(QMainWindow):
                 "plc_enabled": self.command_sink is not None,
                 "plc_state_last": self._plc_state,
                 "plc_dispatch_count": len(summary.plc_results),
+                "plc_status_counts": {
+                    status: sum(
+                        1 for item in summary.plc_results if item.get("status") == status
+                    )
+                    for status in sorted(
+                        {str(item.get("status")) for item in summary.plc_results}
+                    )
+                },
                 "plc_sent_count": sum(
                     1 for item in summary.plc_results if item.get("status") == "SENT"
                 ),
                 "plc_error_count": sum(
-                    1 for item in summary.plc_results if item.get("status") == "ERROR"
+                    1
+                    for item in summary.plc_results
+                    if item.get("status") in ("ERROR", "UNCONFIRMED")
                 ),
                 "sorting_results": list(results),
                 "sorting_result_count": len(results),

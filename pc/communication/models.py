@@ -20,6 +20,9 @@ class PlcCommandStatus(StrEnum):
     SENT = "SENT"
     SKIPPED = "SKIPPED"
     ERROR = "ERROR"
+    QUEUE_FULL = "QUEUE_FULL"
+    DUPLICATE = "DUPLICATE"
+    UNCONFIRMED = "UNCONFIRMED"
 
 
 @dataclass(frozen=True)
@@ -37,6 +40,11 @@ class PlcCommandResult:
     status: PlcCommandStatus
     queue_length: int | None = None
     detail: str = ""
+    queue_length_before: int | None = None
+    attempts: int = 0
+    resends: int = 0
+    elapsed_seconds: float = 0.0
+    confirmed: bool = False
 
     def to_record(self) -> dict[str, Any]:
         record = asdict(self)

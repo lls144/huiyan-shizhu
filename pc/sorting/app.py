@@ -24,7 +24,7 @@ from pathlib import Path
 from typing import Sequence
 
 from pc.communication.config import load_plc_communication_config
-from pc.communication.sink import build_plc_sink
+from pc.communication.reliability import GuardedPlcSink, build_guarded_plc_sink
 from pc.events.config import load_event_config
 from pc.vision.config import load_vision_config
 from pc.vision.pipeline import analyze_multiple_objects
@@ -78,6 +78,14 @@ def _parser() -> argparse.ArgumentParser:
         action="store_true",
         help="force the PLC bridge off even when a plc config would otherwise be used",
     )
+    parser.add_argument(
+        "--plc-fake",
+        action="store_true",
+        help=(
+            "run the whole window against the in-memory FakeAcceptancePlc instead of a "
+            "real S7 connection; for offline demos and screenshots only"
+        ),
+    )
     parser.add_argument("--no-auto-start", action="store_true")
     parser.add_argument("--offscreen", action="store_true")
     parser.add_argument("--soak-seconds", type=float, default=0.0)
@@ -107,6 +115,8 @@ def run(argv: Sequence[str] | None = None) -> int:
     plc_config_path = args.plc_config
     if args.no_plc:
         plc_config_path = None
+    elif args.plc_fake and plc_config_path is None:
+        plc_config_path = Path("pc/config/plc.json")
     elif plc_config_path is None:
         plc_config_path = Path("pc/config/plc.json") if args.source == "camera" else None
     if plc_config_path is None:
@@ -115,7 +125,16 @@ def run(argv: Sequence[str] | None = None) -> int:
         plc_config = load_plc_communication_config(plc_config_path)
         if args.auto_dequeue:
             plc_config = replace(plc_config, auto_dequeue=True)
-        command_sink = build_plc_sink(plc_config)
+        if args.plc_fake:
+            from pc.communication.fake_plc import FakeAcceptancePlc
+            from pc.communication.sink import S7PlcCommandSink
+
+            inner = S7PlcCommandSink(
+                plc_config, low_level=FakeAcceptancePlc(capacity=3)
+            )
+            command_sink = GuardedPlcSink(inner, plc_config)
+        else:
+            command_sink = build_guarded_plc_sink(plc_config)
 
     if args.source == "synthetic":
         source_factory = lambda: SyntheticFrameSource(

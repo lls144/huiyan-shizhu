@@ -147,6 +147,7 @@ class ConveyorSimulator:
         self._pending: deque[tuple[str, int, VisionEvent | None]] = deque()
         self._results: list[SortingResult] = []
         self._lamp_state: tuple[bool, bool, bool] = (False, False, False)
+        self._entered: list[ConveyorItem] = []
         self._next_item_id = 1
         self._frame_index = 0
         self.rejected_labels: list[str] = []
@@ -238,6 +239,18 @@ class ConveyorSimulator:
     def pending_count(self) -> int:
         return len(self._pending)
 
+    def take_entered(self) -> tuple[ConveyorItem, ...]:
+        """Items that actually joined the belt since the last call.
+
+        With ``plc_trigger="enter"`` the PLC command must be written when the
+        item leaves the intake buffer, not when the camera saw it, otherwise a
+        buffered item would never be sent at all.
+        """
+
+        entered = tuple(self._entered)
+        self._entered.clear()
+        return entered
+
     def snapshot(self) -> ConveyorSnapshot:
         views = tuple(
             ConveyorItemView(
@@ -284,6 +297,7 @@ class ConveyorSimulator:
         )
         self._items.append(item)
         self._next_item_id += 1
+        self._entered.append(item)
         return item
 
     def _complete(self, item: ConveyorItem) -> SortingResult:

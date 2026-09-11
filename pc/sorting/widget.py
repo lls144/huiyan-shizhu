@@ -20,6 +20,8 @@ from PySide6.QtWidgets import QSizePolicy, QWidget
 
 from .model import STAGES, ConveyorItemView, ConveyorSnapshot, ConveyorStage
 
+STAGE_BY_LABEL_ZH = {stage.key: stage.label_zh for stage in STAGES}
+
 _STAGE_RGB = {
     "triangle": (34, 197, 94),
     "rectangle": (59, 130, 246),
@@ -56,12 +58,19 @@ def _belt_and_local(progress: float) -> tuple[int, float]:
 
 
 class ConveyorWidget(QWidget):
-    """Animated three-station conveyor sorted by the recognized shape label."""
+    """Animated three-station conveyor sorted by the recognized shape label.
 
-    def __init__(self, parent: QWidget | None = None) -> None:
+    A visible intake buffer in front of station 1 holds the objects the camera
+    has already recognized but that have not entered the belt yet. The buffer is
+    the physical counterpart of ``ConveyorSnapshot.pending_labels``: it is what
+    stops more than one object at a time from overlapping on a single lane.
+    """
+
+    def __init__(self, max_pending: int = 6, parent: QWidget | None = None) -> None:
         super().__init__(parent)
         self.setMinimumSize(720, 430)
         self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        self.max_pending = max(1, max_pending)
         self._snapshot = ConveyorSnapshot(
             frame_index=0,
             items=(),
@@ -124,6 +133,7 @@ class ConveyorWidget(QWidget):
             return
         geometry = self._geometry()
         self._paint_belts(painter, geometry)
+        self._paint_buffer(painter, geometry)
         self._paint_items(painter, geometry)
         self._paint_toast(painter, geometry)
         painter.end()
@@ -135,7 +145,10 @@ class ConveyorWidget(QWidget):
         belt_h = 74.0
         bin_gap = 46.0
         bin_h = 82.0
-        usable = self.width() - 2 * margin
+        buffer_w = 150.0
+        gutter = 16.0
+        belts_left = margin + buffer_w + gutter
+        usable = self.width() - margin - belts_left
         seg_w = max(60.0, (usable - 2 * gap) / 3.0)
         belt_top = margin + header_h
         bin_top = belt_top + belt_h + bin_gap
@@ -147,13 +160,15 @@ class ConveyorWidget(QWidget):
             "header_h": header_h,
             "belt_h": belt_h,
             "seg_w": seg_w,
+            "buffer_w": buffer_w,
+            "belts_left": belts_left,
             "belt_top": belt_top,
             "bin_top": bin_top,
             "bin_h": bin_h,
         }
 
     def _belt_left(self, geometry: dict[str, float], index: int) -> float:
-        return geometry["margin"] + index * (geometry["seg_w"] + geometry["gap"])
+        return geometry["belts_left"] + index * (geometry["seg_w"] + geometry["gap"])
 
     def _paint_belts(self, painter: QPainter, geometry: dict[str, float]) -> None:
         for index, stage in enumerate(STAGES):
@@ -198,6 +213,74 @@ class ConveyorWidget(QWidget):
 
             self._paint_gate(painter, geometry, index, accent)
             self._paint_bin(painter, geometry, index, stage, accent)
+
+    def _paint_buffer(self, painter: QPainter, geometry: dict[str, float]) -> None:
+        left = geometry["margin"]
+        width = geometry["buffer_w"]
+        top = geometry["belt_top"]
+        height = geometry["bin_top"] + geometry["bin_h"] - top
+        waiting = self._snapshot.pending_labels
+        full = len(waiting) >= self.max_pending
+
+        rect = QRectF(left, top, width, height)
+        edge = QColor("#e07a7a") if full else QColor("#4a4a4a")
+        painter.setPen(QPen(edge, 1.6))
+        painter.setBrush(QBrush(PANEL))
+        painter.drawRoundedRect(rect, 8.0, 8.0)
+
+        font = painter.font()
+        font.setPointSize(10)
+        font.setBold(True)
+        painter.setFont(font)
+        painter.setPen(QPen(QColor("#e07a7a") if full else MUTED))
+        painter.drawText(
+            QRectF(left + 10, top + 8, width - 20, 20),
+            Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter,
+            f"缓冲区 {len(waiting)}/{self.max_pending}",
+        )
+        if full:
+            font.setPointSize(9)
+            painter.setFont(font)
+            painter.setPen(QPen(QColor("#e07a7a")))
+            painter.drawText(
+                QRectF(left + 10, top + 28, width - 20, 18),
+                Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter,
+                "缓冲区满 · 未入队",
+            )
+
+        block = 34.0
+        step = 44.0
+        y = top + (48.0 if full else 34.0)
+        for index, label in enumerate(waiting):
+            if y + block > top + height - 8:
+                break
+            item_rect = QRectF(left + 10, y, block, block)
+            color = stage_color(label)
+            painter.setPen(QPen(color, 2.0))
+            painter.setBrush(QBrush(BLOCK))
+            painter.drawRoundedRect(item_rect, 6.0, 6.0)
+            self._paint_shape(painter, item_rect, label, color)
+            font.setPointSize(9)
+            font.setBold(False)
+            painter.setFont(font)
+            painter.setPen(QPen(color))
+            painter.drawText(
+                QRectF(left + 52, y, width - 62, block),
+                Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter,
+                STAGE_BY_LABEL_ZH.get(label, label),
+            )
+            y += step
+
+        if not waiting:
+            font.setPointSize(9)
+            font.setBold(False)
+            painter.setFont(font)
+            painter.setPen(QPen(QColor("#5f5f5f")))
+            painter.drawText(
+                QRectF(left + 10, top + 34, width - 20, height - 44),
+                Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignTop | Qt.TextFlag.TextWordWrap,
+                "等待识别结果…\n识别到的图形先停在这里",
+            )
 
     def _paint_gate(
         self,

@@ -37,16 +37,19 @@ class SortingController:
     # ------------------------------------------------------------------ input
 
     def submit_events(self, events: Iterable[VisionEvent]) -> None:
-        created = self.simulator.submit_events(events)
-        if self.config.plc_trigger != "enter":
-            return
-        for item in created:
-            if item.source_event is not None:
-                self._dispatch(item.source_event, item.label, item.semantic_id, item.item_id)
+        self.simulator.submit_events(events)
+        self._dispatch_entered()
 
     def advance(self, dt_seconds: float, frame_index: int | None = None) -> tuple[SortingResult, ...]:
         results = self.simulator.advance(dt_seconds, frame_index)
-        if self.config.plc_trigger == "exit":
+        entered = self.simulator.take_entered()
+        if self.config.plc_trigger == "enter":
+            for item in entered:
+                if item.source_event is not None:
+                    self._dispatch(
+                        item.source_event, item.label, item.semantic_id, item.item_id
+                    )
+        else:
             for result in results:
                 self._dispatch(
                     result.source_event,
@@ -55,6 +58,13 @@ class SortingController:
                     result.item_id,
                 )
         return results
+
+    def _dispatch_entered(self) -> None:
+        for item in self.simulator.take_entered():
+            if self.config.plc_trigger != "enter":
+                continue
+            if item.source_event is not None:
+                self._dispatch(item.source_event, item.label, item.semantic_id, item.item_id)
 
     # ---------------------------------------------------------------- outputs
 
@@ -98,7 +108,10 @@ class SortingController:
             )
             return
         self.plc_results.append(outcome)
-        if outcome.status is PlcCommandStatus.ERROR and self.plc_error is None:
+        if (
+            outcome.status in (PlcCommandStatus.ERROR, PlcCommandStatus.UNCONFIRMED)
+            and self.plc_error is None
+        ):
             self.plc_error = outcome.detail
 
     @property
