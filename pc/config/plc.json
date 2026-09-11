@@ -14,5 +14,7 @@
   "write_confirm_interval_seconds": 0.02,
   "queue_full_policy": "defer",
   "duplicate_policy": "refuse",
-  "command_timeout_seconds": 3.0
+  "command_timeout_seconds": 3.0,
+  "confirm_repoll_attempts": 3,
+  "confirm_repoll_interval_seconds": 0.15
 }

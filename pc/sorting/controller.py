@@ -108,10 +108,10 @@ class SortingController:
             )
             return
         self.plc_results.append(outcome)
-        if (
-            outcome.status in (PlcCommandStatus.ERROR, PlcCommandStatus.UNCONFIRMED)
-            and self.plc_error is None
-        ):
+        # UNCONFIRMED is reported through the counters and the notable log: with a
+        # manual dequeue press it can mean "landed but the reading raced", so it is
+        # not an error. Only a real write failure becomes plc_error.
+        if outcome.status is PlcCommandStatus.ERROR and self.plc_error is None:
             self.plc_error = outcome.detail
 
     @property

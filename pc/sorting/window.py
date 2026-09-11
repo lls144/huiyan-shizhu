@@ -269,6 +269,7 @@ class SortingWindow(QMainWindow):
         self.plc_led_value = QLabel("—")
         self.plc_deferred_value = QLabel("—")
         self.plc_resend_value = QLabel("—")
+        self.plc_unconfirmed_value = QLabel("—")
         self.plc_error_value = QLabel("No errors")
         self.plc_error_value.setObjectName("errorValue")
         self.plc_error_value.setWordWrap(True)
@@ -279,6 +280,7 @@ class SortingWindow(QMainWindow):
             ("Real LEDs", self.plc_led_value),
             ("Deferred (queue full)", self.plc_deferred_value),
             ("Resends / timeouts", self.plc_resend_value),
+            ("Unconfirmed", self.plc_unconfirmed_value),
             ("Last error", self.plc_error_value),
         )
         for row, (key_text, value) in enumerate(rows):
@@ -523,6 +525,7 @@ class SortingWindow(QMainWindow):
         self.plc_resend_value.setText(
             f"{counters.get('write_resends', 0)} / {counters.get('timeouts', 0)}"
         )
+        self.plc_unconfirmed_value.setText(f"{counters.get('unconfirmed', 0)} 笔待核实")
 
     def _render_preview(self) -> None:
         if self._last_image is None:

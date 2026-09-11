@@ -297,30 +297,23 @@ class GuardedPlcSink:
                 detail=result.detail,
             )
 
+        fallback_sent = result.status is PlcCommandStatus.SENT
         after_state = self.refresh_state()
+        confirmed, confirmation = self._confirmed_by(
+            command, before_length, after_state, fallback_sent
+        )
+        # A physical dequeue press can land between the two status reads, which
+        # makes the queue look unchanged even though the command did land, so a
+        # negative reading is re-checked briefly before it is reported.
+        repolls = 0
+        while not confirmed and repolls < max(0, self.config.confirm_repoll_attempts - 1):
+            time.sleep(self.config.confirm_repoll_interval_seconds)
+            repolls += 1
+            after_state = self.refresh_state()
+            confirmed, confirmation = self._confirmed_by(
+                command, before_length, after_state, fallback_sent
+            )
         after_length = after_state.queue_length if after_state else result.queue_length
-        confirmed = False
-        confirmation = ""
-        if before_length is not None and after_length is not None:
-            confirmed = after_length == before_length + 1
-            confirmation = f"queue {before_length} -> {after_length}"
-        elif after_length is not None:
-            confirmed = after_length > 0
-            confirmation = f"queue length {after_length}"
-        else:
-            # No readable status: fall back to the inner sink's own confirmation.
-            confirmed = result.status is PlcCommandStatus.SENT
-            confirmation = "inner sink reported SENT (no status region readable)"
-        if not confirmed and after_state is not None and command.semantic_id:
-            # auto_dequeue drains the queue inside send_event, so the length can
-            # return to its previous value; the dequeued semantic id is then the
-            # proof that this exact command reached the PLC.
-            if after_state.last_dequeued_semantic_id == command.semantic_id:
-                confirmed = True
-                confirmation = (
-                    f"dequeued semantic id {command.semantic_id} "
-                    f"(queue length returned to {after_length})"
-                )
 
         timed_out = elapsed > self.config.command_timeout_seconds
         if confirmed and not timed_out:
@@ -353,6 +346,11 @@ class GuardedPlcSink:
             f"write did not raise but the queue did not grow "
             f"({before_length} -> {after_length}); elapsed={elapsed:.3f}s"
         )
+        if before_length is not None and before_length == after_length:
+            detail += (
+                "; a manual dequeue press inside the same window produces the same "
+                "reading, so treat this as unverified rather than lost"
+            )
         if timed_out:
             detail += f"; exceeded command_timeout_seconds={self.config.command_timeout_seconds}"
         self._last_error = detail
@@ -366,6 +364,32 @@ class GuardedPlcSink:
             elapsed_seconds=round(elapsed, 6),
             detail=detail,
         )
+
+    def _confirmed_by(
+        self,
+        command: PlcCommand,
+        before_length: int | None,
+        state: PlcState | None,
+        fallback_sent: bool,
+    ) -> tuple[bool, str]:
+        """Decide whether one written command really reached the PLC queue."""
+
+        if state is None:
+            if before_length is None and fallback_sent:
+                return True, "inner sink reported SENT (no status region readable)"
+            return False, ""
+        if before_length is not None and state.queue_length == before_length + 1:
+            return True, f"queue {before_length} -> {state.queue_length}"
+        if before_length is None and state.queue_length > 0:
+            return True, f"queue length {state.queue_length}"
+        if command.semantic_id and state.last_dequeued_semantic_id == command.semantic_id:
+            # auto_dequeue, or a fast manual press, drains the queue inside the
+            # call: the dequeued semantic id is then the proof this command landed.
+            return True, (
+                f"dequeued semantic id {command.semantic_id} "
+                f"(queue length {state.queue_length})"
+            )
+        return False, ""
 
     def flush_deferred(self, limit: int = 4) -> tuple[PlcCommandResult, ...]:
         """Re-send deferred commands once the queue has room again."""

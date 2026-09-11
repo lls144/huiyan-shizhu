@@ -146,7 +146,7 @@ class SortingVisionWorker(VisionWorker):
             return
         self.controller.plc_results.extend(results)
         for result in results:
-            if result.status.value in ("ERROR", "UNCONFIRMED") and self.controller.plc_error is None:
+            if result.status.value == "ERROR" and self.controller.plc_error is None:
                 self.controller.plc_error = result.detail
 
     def _publish_plc_status(self, force: bool = False) -> None:

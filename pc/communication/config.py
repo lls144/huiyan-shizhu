@@ -30,6 +30,11 @@ class PlcCommunicationConfig:
     queue_full_policy: str = "defer"
     duplicate_policy: str = "refuse"
     command_timeout_seconds: float = 3.0
+    # A manual dequeue press can land between the pre-write and post-write status
+    # reads, so a missing queue growth is re-checked briefly before it is called
+    # unconfirmed.
+    confirm_repoll_attempts: int = 3
+    confirm_repoll_interval_seconds: float = 0.15
 
     @classmethod
     def from_dict(cls, values: dict[str, Any]) -> "PlcCommunicationConfig":
@@ -52,6 +57,8 @@ class PlcCommunicationConfig:
                 ("queue_full_policy", "defer"),
                 ("duplicate_policy", "refuse"),
                 ("command_timeout_seconds", 3.0),
+                ("confirm_repoll_attempts", 3),
+                ("confirm_repoll_interval_seconds", 0.15),
             )
         }
         config = cls(**known)
@@ -81,6 +88,10 @@ class PlcCommunicationConfig:
             raise ValueError("duplicate_policy must be 'refuse' or 'allow'")
         if self.command_timeout_seconds <= 0:
             raise ValueError("command_timeout_seconds must be positive")
+        if self.confirm_repoll_attempts < 1:
+            raise ValueError("confirm_repoll_attempts must be at least 1")
+        if self.confirm_repoll_interval_seconds < 0:
+            raise ValueError("confirm_repoll_interval_seconds must be non-negative")
 
 
 def load_plc_communication_config(path: str | Path) -> PlcCommunicationConfig:

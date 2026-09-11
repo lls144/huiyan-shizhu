@@ -24,6 +24,8 @@ def make_config(**overrides: object) -> PlcCommunicationConfig:
         "queue_full_policy": "defer",
         "duplicate_policy": "refuse",
         "command_timeout_seconds": 3.0,
+        "confirm_repoll_attempts": 1,
+        "confirm_repoll_interval_seconds": 0.0,
     }
     values.update(overrides)
     return PlcCommunicationConfig(**values)  # type: ignore[arg-type]
@@ -87,6 +89,33 @@ def _state(queue_length: int, capacity: int = 3) -> PlcState:
         layout_magic=0x4D38,
         layout_version=1,
     )
+
+
+class _ScriptedInner(_StubInner):
+    """Inner sink that returns a scripted sequence of status reads."""
+
+    def __init__(self, states: list[PlcState]) -> None:
+        super().__init__(states[-1])
+        self._states = list(states)
+        self._index = 0
+
+    def read_state(self) -> PlcState:
+        state = self._states[min(self._index, len(self._states) - 1)]
+        self._index += 1
+        return state
+
+
+def test_a_late_queue_growth_is_still_confirmed_by_the_repoll() -> None:
+    # A manual press can land between the two reads: pre-write 0, post-write 0
+    # (raced), then the queue really shows the new command on the re-check.
+    inner = _ScriptedInner([_state(0), _state(0), _state(1)])
+    sink = GuardedPlcSink(
+        inner, make_config(confirm_repoll_attempts=2, confirm_repoll_interval_seconds=0.0)
+    )
+    result = sink.send_event(enter("triangle", 77))
+    assert result.status is PlcCommandStatus.SENT
+    assert result.confirmed is True
+    assert sink.counters.unconfirmed == 0
 
 
 def test_confirmed_send_reports_the_queue_growth() -> None:
