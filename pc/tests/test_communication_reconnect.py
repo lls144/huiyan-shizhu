@@ -62,6 +62,8 @@ def _config() -> PlcCommunicationConfig:
         dequeue_pulse_seconds=0.0,
         reset_pulse_seconds=0.0,
         write_confirm_interval_seconds=0.0,
+        # Hermetic: never probe the lab PLC from a unit test.
+        reconnect_probe_enabled=False,
     )
 
 

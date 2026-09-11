@@ -40,6 +40,9 @@ class PlcCommunicationConfig:
     heartbeat_interval_seconds: float = 1.0
     comm_loss_timeout_seconds: float = 2.0
     reconnect_min_interval_seconds: float = 2.0
+    # Probe <host>:102 with a short TCP connect before the expensive snap7
+    # reconnect. Disable it in tests so they never depend on lab hardware.
+    reconnect_probe_enabled: bool = True
 
     @classmethod
     def from_dict(cls, values: dict[str, Any]) -> "PlcCommunicationConfig":
@@ -68,6 +71,7 @@ class PlcCommunicationConfig:
                 ("heartbeat_interval_seconds", 1.0),
                 ("comm_loss_timeout_seconds", 2.0),
                 ("reconnect_min_interval_seconds", 2.0),
+                ("reconnect_probe_enabled", True),
             )
         }
         config = cls(**known)

@@ -137,7 +137,7 @@ class S7PlcCommandSink:
         ):
             return False
         self._last_reconnect_attempt = now
-        if not self._tcp_reachable():
+        if self.config.reconnect_probe_enabled and not self._tcp_reachable():
             self._last_transport_error = f"{self.config.host}:102 is not reachable"
             return False
         try:
