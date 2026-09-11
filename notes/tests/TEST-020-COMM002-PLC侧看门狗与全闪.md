@@ -95,12 +95,47 @@ harness 内新增：
 2. 停止心跳 / 拔掉网线 → **2 秒后实验箱三盏灯应开始全闪**，PC 读到 DBX8.7 = TRUE；
 3. 恢复心跳 / 插回网线 → 报警位清零、灯恢复正常显示。
 
+## 真机第一轮验证（2026-09-11 15:16，工具 `plc/tools/m8_comm002_real_check.py`）
+
+操作者完成重新生成与下载后，用专用工具跑了一遍五阶段场景，证据
+`evidence/data/m8-real/2026-09-11-comm002-heartbeat-alarm.json` / `.csv`：
+
+| 阶段 | 结果 |
+|---|---|
+| ARM（发 1 s 心跳 4 次，62 次采样） | 报警位**始终 FALSE** ✅ |
+| SILENCE（停发心跳） | **在最后一条心跳后 2.047 s 检测到报警**，落在预期窗口内 ✅ |
+| BLINK（报警期间 42 次采样 / 2.469 s） | `transitions=0`、`saw_lit=false` —— **灯没有闪** ❌ |
+| RESUME（恢复心跳） | 报警位清零 ✅ |
+| CLEANUP | 解除武装、队列 0、灯空闲 ✅ |
+
+工具给出失败原因：`the lamp bits never blinked during the alarm`。
+
+### 根因与修复
+
+看门狗用的是 `Q => #CommLost`（输出**显式赋值给变量**），真机上工作正常；
+闪烁振荡器却用了**直接读实例成员** `IF #BlinkTimer.Q THEN`，
+同一次扫描里拿到的是旧值，因此相位永不翻转、`BlinkPhaseState` 恒为 FALSE。
+
+修复：改成与看门狗一致的写法 —— `Q => #BlinkPulseState` 再判断该变量。改动 3 行，
+见 `plc/src/FB_M8_AcceptanceHarness.scl`（commit `3228f0f`）。
+
+**修复后的真机复验待操作者重新生成并下载后由同一工具执行。**
+
 ## 未执行 / 待补
 
-1. TIA 重新生成与下载（操作者）
-2. 真机观察"2 秒后三盏灯全闪"与自动恢复
+1. **修复版的 TIA 重新生成与下载**（操作者），随后重跑 `m8_comm002_real_check.py`
+2. 真机观察"2 秒后三盏灯全闪"的目视确认（工具只读 Q 状态位，不替代肉眼）
 3. 报警闪烁频率（2 Hz）是否符合需求未确认；需求只写"全闪"，频率为本轮设计选择
 4. 报警期间是否应暂停出队/入队：本轮未改，仍按原语义工作
+
+## 验收工具
+
+```powershell
+.\.venv\Scripts\python.exe plc\tools\m8_comm002_real_check.py --output-dir output/m8-comm002
+```
+
+工具走的是**生产用 PC 桥**（`pc.communication`），因此验证的就是排序 GUI 同一条代码路径；
+输出 JSON/CSV 含每个阶段的时间线、延迟秒数、闪烁跳变次数与失败原因。
 
 ## 证据位置
 
