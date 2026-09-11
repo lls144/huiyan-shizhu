@@ -47,3 +47,25 @@ status: open
   不能只在磁盘上替换文件；导入清单以 `plc/project/TIA_V20_COMPILE_GUIDE.md` 第 1 节为准。
 - 记录：操作者完成后的编译 error/warning 数与 `DB_M8_Acceptance` 实际块号需回报，
   按指南第 4 节格式补进 `plc/records/`。
+
+## 同日后续：编译降到 4 个错误（同一根因的第二形态）
+
+操作者按上述步骤重新添加 `PLC_Types.scl` 并生成后，`rebuild all` 从 **31 error** 降到
+**4 error / 0 warning**：`M8_AcceptanceData` 更新成功、`DB_M8_Acceptance (DB3)` 编译成功，
+只剩 OB1 里那一处 harness 调用：
+
+| 路径 | 描述 |
+|---|---|
+| 16 | 传递到函数或功能块的参数数目不匹配 |
+| 27 | 形参 `LastDequeuedValid` 无效 |
+| 28 | 形参 `LastDequeuedShape` 无效 |
+| 29 | 形参 `LastDequeuedSemanticId` 无效 |
+
+原因与前一条同源：`da32354` 在给 UDT 加 `M8_AcceptanceData` 的同时，也给
+`FB_M8_AcceptanceHarness` 加了三个 OUT 形参；而 OB1 里那个调用块是在此之前放置的，
+缓存的接口还是旧版，因此“形参无效 / 数目不匹配”。
+
+处理：在 OB1 里右键该调用块 → **更新块调用**；若菜单不可用，删掉调用块后从“程序块”重新拖入
+`FB_M8_AcceptanceHarness` 再接线。新增的三个 OUT 形参可以留空。
+
+预防同上：FB/DB 的接口变动后，**调用点也要更新**，不能只重新生成被调用的块。
