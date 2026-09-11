@@ -1,0 +1,1162 @@
+{
+  "started_at": "2026-09-11T12:09:26.667+08:00",
+  "finished_at": "2026-09-11T12:11:57.019+08:00",
+  "duration_seconds": 150.310035,
+  "source_type": "camera",
+  "source_metadata": {
+    "source_type": "camera",
+    "camera_config_path": "pc\\config\\camera.json",
+    "device": {
+      "index": 0,
+      "name": "HD Webcam",
+      "path": "<device-instance-redacted>",
+      "vid": 11134,
+      "pid": 46691,
+      "backend_name": "MSMF",
+      "backend_id": 1400
+    },
+    "camera_config": {
+      "device_name": "HD Webcam",
+      "fallback_index": null,
+      "backend": "MSMF",
+      "requested_width": 1280,
+      "requested_height": 720,
+      "requested_fps": 30.0,
+      "fourcc": "YUY2",
+      "warmup_frames": 15,
+      "test_duration_seconds": 60.0,
+      "reopen_cycles": 3,
+      "minimum_read_success_rate": 0.99,
+      "maximum_frame_gap_seconds": 2.0
+    },
+    "actual_properties": {
+      "width": 1280.0,
+      "height": 720.0,
+      "reported_fps": 30.0,
+      "backend": "MSMF"
+    },
+    "calibration": {
+      "requested_mode": "manual",
+      "selected_mode": "manual",
+      "source": "restored",
+      "normalized_roi": {
+        "left": 0.2,
+        "top": 0.25,
+        "right": 0.8,
+        "bottom": 0.88
+      },
+      "pixel_roi": [
+        256,
+        180,
+        1024,
+        634
+      ],
+      "fallback_messages": [
+        "auto ROI of the hand-held composition accepted once with score 0.634; the frozen value below is that region widened to a symmetric centre box"
+      ],
+      "auto_score": null
+    }
+  },
+  "frames_read": 3993,
+  "frames_processed": 3993,
+  "detection_count": 273,
+  "event_count": 30,
+  "processing_fps": 26.565093,
+  "average_processing_ms": 16.006508,
+  "p95_processing_ms": 22.49646,
+  "failed_reads": 0,
+  "error": null,
+  "ended_reason": "stopped",
+  "worker_clean_shutdown": true,
+  "events": [
+    {
+      "event_id": 1,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 1,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 45
+    },
+    {
+      "event_id": 2,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 1,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 51
+    },
+    {
+      "event_id": 3,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 3,
+      "label": "triangle",
+      "confidence": 0.922589,
+      "frame_index": 112
+    },
+    {
+      "event_id": 4,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 3,
+      "label": "triangle",
+      "confidence": 0.931971,
+      "frame_index": 153
+    },
+    {
+      "event_id": 5,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 5,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 219
+    },
+    {
+      "event_id": 6,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 6,
+      "label": "rectangle",
+      "confidence": 0.776666,
+      "frame_index": 239
+    },
+    {
+      "event_id": 7,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 5,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 241
+    },
+    {
+      "event_id": 8,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 7,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 247
+    },
+    {
+      "event_id": 9,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 7,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 251
+    },
+    {
+      "event_id": 10,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 6,
+      "label": "rectangle",
+      "confidence": 0.850797,
+      "frame_index": 264
+    },
+    {
+      "event_id": 11,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 9,
+      "label": "circle",
+      "confidence": 0.826221,
+      "frame_index": 366
+    },
+    {
+      "event_id": 12,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 9,
+      "label": "circle",
+      "confidence": 0.867646,
+      "frame_index": 404
+    },
+    {
+      "event_id": 13,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 10,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 1318
+    },
+    {
+      "event_id": 14,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 11,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 1321
+    },
+    {
+      "event_id": 15,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 11,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 1325
+    },
+    {
+      "event_id": 16,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 10,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 1351
+    },
+    {
+      "event_id": 17,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 12,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 1432
+    },
+    {
+      "event_id": 18,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 12,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 1439
+    },
+    {
+      "event_id": 19,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 14,
+      "label": "circle",
+      "confidence": 0.96146,
+      "frame_index": 1506
+    },
+    {
+      "event_id": 20,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 14,
+      "label": "circle",
+      "confidence": 0.967453,
+      "frame_index": 1549
+    },
+    {
+      "event_id": 21,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 15,
+      "label": "circle",
+      "confidence": 0.94219,
+      "frame_index": 2124
+    },
+    {
+      "event_id": 22,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 15,
+      "label": "circle",
+      "confidence": 0.957278,
+      "frame_index": 2150
+    },
+    {
+      "event_id": 23,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 16,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 2491
+    },
+    {
+      "event_id": 24,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 17,
+      "label": "triangle",
+      "confidence": 0.958437,
+      "frame_index": 2493
+    },
+    {
+      "event_id": 25,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 16,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 2495
+    },
+    {
+      "event_id": 26,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 18,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 2515
+    },
+    {
+      "event_id": 27,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 17,
+      "label": "triangle",
+      "confidence": 0.974011,
+      "frame_index": 2517
+    },
+    {
+      "event_id": 28,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 18,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 2519
+    },
+    {
+      "event_id": 29,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 20,
+      "label": "rectangle",
+      "confidence": 0.900393,
+      "frame_index": 2639
+    },
+    {
+      "event_id": 30,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 20,
+      "label": "rectangle",
+      "confidence": 0.963977,
+      "frame_index": 2656
+    }
+  ],
+  "final_object_states": [
+    {
+      "object_id": 1,
+      "label": "unknown",
+      "bbox": [
+        269,
+        367,
+        133,
+        130
+      ],
+      "first_seen": 44,
+      "last_seen": 47,
+      "hit_count": 4,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 2,
+      "label": "unknown",
+      "bbox": [
+        640,
+        266,
+        105,
+        134
+      ],
+      "first_seen": 110,
+      "last_seen": 110,
+      "hit_count": 1,
+      "consecutive_hits": 0,
+      "miss_count": 1,
+      "confirmed": false,
+      "active": false,
+      "event_emitted": false,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 3,
+      "label": "triangle",
+      "bbox": [
+        262,
+        375,
+        143,
+        143
+      ],
+      "first_seen": 111,
+      "last_seen": 149,
+      "hit_count": 39,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.931971
+    },
+    {
+      "object_id": 4,
+      "label": "rectangle",
+      "bbox": [
+        263,
+        280,
+        162,
+        142
+      ],
+      "first_seen": 217,
+      "last_seen": 217,
+      "hit_count": 1,
+      "consecutive_hits": 0,
+      "miss_count": 1,
+      "confirmed": false,
+      "active": false,
+      "event_emitted": false,
+      "status": "exited",
+      "confidence": 0.781105
+    },
+    {
+      "object_id": 5,
+      "label": "unknown",
+      "bbox": [
+        331,
+        310,
+        182,
+        154
+      ],
+      "first_seen": 218,
+      "last_seen": 237,
+      "hit_count": 20,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 6,
+      "label": "rectangle",
+      "bbox": [
+        260,
+        300,
+        154,
+        157
+      ],
+      "first_seen": 238,
+      "last_seen": 260,
+      "hit_count": 23,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.850797
+    },
+    {
+      "object_id": 7,
+      "label": "unknown",
+      "bbox": [
+        707,
+        260,
+        108,
+        139
+      ],
+      "first_seen": 246,
+      "last_seen": 247,
+      "hit_count": 2,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 8,
+      "label": "unknown",
+      "bbox": [
+        637,
+        253,
+        180,
+        168
+      ],
+      "first_seen": 260,
+      "last_seen": 260,
+      "hit_count": 1,
+      "consecutive_hits": 0,
+      "miss_count": 1,
+      "confirmed": false,
+      "active": false,
+      "event_emitted": false,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 9,
+      "label": "circle",
+      "bbox": [
+        265,
+        373,
+        147,
+        172
+      ],
+      "first_seen": 365,
+      "last_seen": 400,
+      "hit_count": 36,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.867646
+    },
+    {
+      "object_id": 10,
+      "label": "unknown",
+      "bbox": [
+        264,
+        401,
+        113,
+        146
+      ],
+      "first_seen": 1317,
+      "last_seen": 1347,
+      "hit_count": 31,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 11,
+      "label": "unknown",
+      "bbox": [
+        660,
+        260,
+        98,
+        205
+      ],
+      "first_seen": 1320,
+      "last_seen": 1321,
+      "hit_count": 2,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 12,
+      "label": "unknown",
+      "bbox": [
+        275,
+        442,
+        92,
+        135
+      ],
+      "first_seen": 1431,
+      "last_seen": 1435,
+      "hit_count": 5,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 13,
+      "label": "circle",
+      "bbox": [
+        273,
+        205,
+        198,
+        195
+      ],
+      "first_seen": 1486,
+      "last_seen": 1486,
+      "hit_count": 1,
+      "consecutive_hits": 0,
+      "miss_count": 1,
+      "confirmed": false,
+      "active": false,
+      "event_emitted": false,
+      "status": "exited",
+      "confidence": 0.94311
+    },
+    {
+      "object_id": 14,
+      "label": "circle",
+      "bbox": [
+        330,
+        429,
+        185,
+        183
+      ],
+      "first_seen": 1505,
+      "last_seen": 1545,
+      "hit_count": 41,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.967453
+    },
+    {
+      "object_id": 15,
+      "label": "circle",
+      "bbox": [
+        264,
+        427,
+        155,
+        170
+      ],
+      "first_seen": 2123,
+      "last_seen": 2146,
+      "hit_count": 24,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.957278
+    },
+    {
+      "object_id": 16,
+      "label": "unknown",
+      "bbox": [
+        310,
+        395,
+        168,
+        166
+      ],
+      "first_seen": 2490,
+      "last_seen": 2491,
+      "hit_count": 2,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 17,
+      "label": "triangle",
+      "bbox": [
+        343,
+        364,
+        179,
+        169
+      ],
+      "first_seen": 2492,
+      "last_seen": 2513,
+      "hit_count": 22,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.974011
+    },
+    {
+      "object_id": 18,
+      "label": "unknown",
+      "bbox": [
+        265,
+        362,
+        176,
+        163
+      ],
+      "first_seen": 2514,
+      "last_seen": 2515,
+      "hit_count": 2,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 19,
+      "label": "unknown",
+      "bbox": [
+        316,
+        364,
+        139,
+        153
+      ],
+      "first_seen": 2637,
+      "last_seen": 2637,
+      "hit_count": 1,
+      "consecutive_hits": 0,
+      "miss_count": 1,
+      "confirmed": false,
+      "active": false,
+      "event_emitted": false,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 20,
+      "label": "rectangle",
+      "bbox": [
+        271,
+        449,
+        195,
+        169
+      ],
+      "first_seen": 2638,
+      "last_seen": 2652,
+      "hit_count": 15,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.963977
+    }
+  ],
+  "evidence_records": [],
+  "plc_command_count": 11,
+  "plc_sink_error": null,
+  "plc_results": [
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 3,
+        "source_event_id": 3,
+        "source_object_id": 3
+      },
+      "status": "SENT",
+      "queue_length": 1,
+      "detail": "confirmed by queue 0 -> 1; write resends=2; elapsed=0.274s",
+      "queue_length_before": 0,
+      "attempts": 0,
+      "resends": 2,
+      "elapsed_seconds": 0.2742,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 6,
+        "source_event_id": 6,
+        "source_object_id": 6
+      },
+      "status": "SENT",
+      "queue_length": 2,
+      "detail": "confirmed by queue 1 -> 2; write resends=4; elapsed=0.336s",
+      "queue_length_before": 1,
+      "attempts": 0,
+      "resends": 4,
+      "elapsed_seconds": 0.336008,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 9,
+        "source_event_id": 11,
+        "source_object_id": 9
+      },
+      "status": "SENT",
+      "queue_length": 3,
+      "detail": "confirmed by queue 2 -> 3; write resends=7; elapsed=0.464s",
+      "queue_length_before": 2,
+      "attempts": 0,
+      "resends": 7,
+      "elapsed_seconds": 0.464086,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 14,
+        "source_event_id": 19,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 14,
+        "source_event_id": 19,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 14,
+        "source_event_id": 19,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 14,
+        "source_event_id": 19,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 14,
+        "source_event_id": 19,
+        "source_object_id": 14
+      },
+      "status": "SENT",
+      "queue_length": 3,
+      "detail": "confirmed by queue 2 -> 3; write resends=1; elapsed=0.213s",
+      "queue_length_before": 2,
+      "attempts": 0,
+      "resends": 1,
+      "elapsed_seconds": 0.212991,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 15,
+        "source_event_id": 21,
+        "source_object_id": 15
+      },
+      "status": "SENT",
+      "queue_length": 1,
+      "detail": "confirmed by queue 0 -> 1; write resends=3; elapsed=0.287s",
+      "queue_length_before": 0,
+      "attempts": 0,
+      "resends": 3,
+      "elapsed_seconds": 0.287238,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 17,
+        "source_event_id": 24,
+        "source_object_id": 17
+      },
+      "status": "SENT",
+      "queue_length": 1,
+      "detail": "confirmed by queue 0 -> 1; write resends=1; elapsed=0.207s",
+      "queue_length_before": 0,
+      "attempts": 0,
+      "resends": 1,
+      "elapsed_seconds": 0.206887,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 20,
+        "source_event_id": 29,
+        "source_object_id": 20
+      },
+      "status": "SENT",
+      "queue_length": 1,
+      "detail": "confirmed by queue 0 -> 1; write resends=0; elapsed=0.184s",
+      "queue_length_before": 0,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.184033,
+      "confirmed": true
+    }
+  ],
+  "schema_version": 1,
+  "milestone": "M-SORTING-VIZ",
+  "acceptance_status": "pending_user_validation",
+  "git": {
+    "commit": "a084d9c9842638e24409b5c50ccf9125ec90aff2",
+    "dirty": true
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10",
+    "pyside6": "6.11.2"
+  },
+  "vision_config": {
+    "roi_left": 0.24,
+    "roi_top": 0.08,
+    "roi_right": 0.76,
+    "roi_bottom": 0.75,
+    "gaussian_kernel_size": 5,
+    "morphology_kernel_size": 3,
+    "morphology_open_iterations": 1,
+    "canny_low_threshold": 50,
+    "canny_high_threshold": 150,
+    "min_area_ratio": 0.02,
+    "max_area_ratio": 0.25,
+    "min_solidity": 0.9,
+    "border_margin_pixels": 2,
+    "approx_epsilon_ratio": 0.02,
+    "rectangle_max_angle_deviation_degrees": 25.0,
+    "rectangle_min_fill_ratio": 0.8,
+    "circle_min_vertices": 6,
+    "circle_min_circularity": 0.78,
+    "circle_min_aspect_ratio": 0.8,
+    "triangle_confidence_good_circularity": 0.62,
+    "triangle_confidence_max_circularity": 0.72,
+    "rectangle_confidence_good_angle_deviation_degrees": 5.0,
+    "rectangle_confidence_good_fill_ratio": 0.95,
+    "circle_confidence_good_vertices": 8,
+    "circle_confidence_good_circularity": 0.92,
+    "circle_confidence_good_aspect_ratio": 0.95,
+    "confidence_good_solidity": 0.98,
+    "confidence_good_area_clearance_ratio": 0.03,
+    "confidence_topology_weight": 0.5,
+    "confidence_geometry_weight": 0.3,
+    "confidence_quality_weight": 0.2,
+    "auto_hsv_min_value": 140,
+    "auto_hsv_max_saturation": 100,
+    "auto_morphology_kernel_size": 11,
+    "auto_morphology_close_iterations": 2,
+    "auto_morphology_open_iterations": 1,
+    "auto_min_area_ratio": 0.12,
+    "auto_max_area_ratio": 0.85,
+    "auto_preferred_area_ratio": 0.35,
+    "auto_min_rectangularity": 0.7,
+    "auto_max_center_distance_ratio": 0.5,
+    "auto_min_bright_fraction": 0.6,
+    "auto_approx_epsilon_ratio": 0.03,
+    "auto_inner_margin_ratio": 0.04,
+    "auto_min_score": 0.45,
+    "auto_score_area_weight": 0.2,
+    "auto_score_rectangularity_weight": 0.3,
+    "auto_score_center_weight": 0.25,
+    "auto_score_brightness_weight": 0.25,
+    "manual_min_width_pixels": 80,
+    "manual_min_height_pixels": 80,
+    "stability_window_size": 5,
+    "stability_min_votes": 3,
+    "fps_smoothing_window": 30,
+    "live_max_consecutive_read_failures": 30,
+    "live_preview_width": 1280,
+    "live_preview_height": 720,
+    "preprocess_mode": "otsu",
+    "comparison_preprocess_mode": "clahe_otsu",
+    "clahe_clip_limit": 2.0,
+    "clahe_tile_grid_size": 8
+  },
+  "event_config": {
+    "min_confirm_frames": 2,
+    "max_missing_frames": 3,
+    "iou_threshold": 0.3,
+    "center_distance_threshold": 80.0
+  },
+  "sorting_config": {
+    "belt_speed_units_per_second": 0.6,
+    "min_gap_units": 0.3,
+    "eject_seconds": 0.85,
+    "max_pending_items": 6,
+    "plc_trigger": "exit"
+  },
+  "shape_to_lamp_map": {
+    "triangle": 1,
+    "rectangle": 2,
+    "circle": 3
+  },
+  "plc_enabled": true,
+  "plc_state_last": {
+    "connected": true,
+    "queue_length": 0,
+    "queue_empty": true,
+    "queue_full": false,
+    "leds": [
+      true,
+      true,
+      false
+    ],
+    "last_dequeued_shape": 2,
+    "last_dequeued_semantic_id": 20,
+    "deferred_count": 0,
+    "last_error": null,
+    "counters": {
+      "dispatches": 7,
+      "sent_confirmed": 7,
+      "write_resends": 18,
+      "queue_full_deferrals": 1,
+      "deferred_retries": 4,
+      "queue_full_drops": 0,
+      "duplicate_rejections": 0,
+      "unconfirmed": 0,
+      "timeouts": 0,
+      "errors": 0
+    },
+    "fresh": true
+  },
+  "plc_dispatch_count": 11,
+  "plc_status_counts": {
+    "QUEUE_FULL": 4,
+    "SENT": 7
+  },
+  "plc_sent_count": 7,
+  "plc_error_count": 0,
+  "sorting_results": [
+    {
+      "item_id": 1,
+      "label": "triangle",
+      "shape_code": 1,
+      "lamp_count": 1,
+      "stage_index": 0,
+      "stage_key": "triangle",
+      "semantic_id": 3,
+      "source_event_id": 3,
+      "frame_index": 187,
+      "lamps": [
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "item_id": 2,
+      "label": "rectangle",
+      "shape_code": 2,
+      "lamp_count": 2,
+      "stage_index": 1,
+      "stage_key": "rectangle",
+      "semantic_id": 6,
+      "source_event_id": 6,
+      "frame_index": 364,
+      "lamps": [
+        true,
+        true,
+        false
+      ]
+    },
+    {
+      "item_id": 3,
+      "label": "circle",
+      "shape_code": 3,
+      "lamp_count": 3,
+      "stage_index": 2,
+      "stage_key": "circle",
+      "semantic_id": 9,
+      "source_event_id": 11,
+      "frame_index": 542,
+      "lamps": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "item_id": 4,
+      "label": "circle",
+      "shape_code": 3,
+      "lamp_count": 3,
+      "stage_index": 2,
+      "stage_key": "circle",
+      "semantic_id": 14,
+      "source_event_id": 19,
+      "frame_index": 1680,
+      "lamps": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "item_id": 5,
+      "label": "circle",
+      "shape_code": 3,
+      "lamp_count": 3,
+      "stage_index": 2,
+      "stage_key": "circle",
+      "semantic_id": 15,
+      "source_event_id": 21,
+      "frame_index": 2298,
+      "lamps": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "item_id": 6,
+      "label": "triangle",
+      "shape_code": 1,
+      "lamp_count": 1,
+      "stage_index": 0,
+      "stage_key": "triangle",
+      "semantic_id": 17,
+      "source_event_id": 24,
+      "frame_index": 2566,
+      "lamps": [
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "item_id": 7,
+      "label": "rectangle",
+      "shape_code": 2,
+      "lamp_count": 2,
+      "stage_index": 1,
+      "stage_key": "rectangle",
+      "semantic_id": 20,
+      "source_event_id": 29,
+      "frame_index": 2763,
+      "lamps": [
+        true,
+        true,
+        false
+      ]
+    }
+  ],
+  "sorting_result_count": 7,
+  "sorting_results_by_shape": {
+    "triangle": 2,
+    "rectangle": 2,
+    "circle": 3
+  },
+  "gui_updates": 3992,
+  "clean_shutdown": true,
+  "requested_soak_seconds": 150.0,
+  "python_traced_current_bytes": 21400932,
+  "python_traced_peak_bytes": 24021667,
+  "screenshot": "output\\sorting\\camera-plc-clean.png"
+}

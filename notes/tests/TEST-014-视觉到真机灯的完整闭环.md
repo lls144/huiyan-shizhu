@@ -112,6 +112,29 @@ result: pass
 
 ## 证据位置
 
+## 补充：加入 `safe_init` 与确认复读后的干净复跑（同日）
+
+第二次完整闭环（同样相机 + 真机 PLC + 人工按键）：
+
+| 字段 | 值 |
+|---|---|
+| frames_read / failed_reads | 3993 / 0 |
+| event_count | 30 |
+| 分拣结果 | 7 条：三角形 2、矩形 2、圆形 3 |
+| 段位与灯数 | 全部正确（triangle→第1段/1 盏、rectangle→第2段/2 盏、circle→第3段/3 盏） |
+| PLC 派发 | 7 次 |
+| 状态分布 | `SENT` 7、`UNCONFIRMED` 0、`ERROR` 0 |
+| 丢写重发 | 18 次 |
+| 队列满延后 | 1 条 |
+| plc_sink_error / error | null / null |
+| clean_shutdown | true |
+
+与第一次相比，`UNCONFIRMED` 归零，说明确认复读与 `safe_init` 生效；
+本轮未出现任何未确认或失败命令。
+
+证据：`evidence/data/sorting/2026-09-11-vision-to-plc-clean-loop.json`、
+`evidence/screenshots/sorting/2026-09-11-vision-to-plc-clean-loop.png`。
+
 - 会话数据：`evidence/data/sorting/2026-09-11-vision-to-plc-closed-loop.json`
 - 截图：`evidence/screenshots/sorting/2026-09-11-vision-to-plc-closed-loop.png`
   （画面里操作者正举着三角形与矩形，第 1 段上有三角物料块，右侧为真实 PLC 状态与分拣日志）
