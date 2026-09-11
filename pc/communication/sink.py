@@ -114,6 +114,29 @@ class S7PlcCommandSink:
         self._client.connect(self.config.host, self.config.rack, self.config.slot)
         self._started = True
 
+    def safe_init(self) -> int:
+        """Clear every request bit before the first command of a session.
+
+        ``DB_M8_Acceptance`` keeps its values across a power cycle (measured
+        2026-09-11: the harness ``CycleCounter`` continued after a power-off),
+        so a session that was killed instead of stopped can leave
+        ``TestEnable``/``CommandDataValid``/``CommandValidTest`` set. The PLC
+        enqueues on the ``CommandValid`` rising edge and its edge memory starts
+        clear, so a retained ``CommandValidTest := TRUE`` would enqueue one
+        ghost item on the first scan after power-up. Writing an idle-but-enabled
+        control block on connect makes that impossible.
+        """
+
+        return self._write(
+            test_enable=True,
+            command_valid=False,
+            command_data_valid=False,
+            dequeue_request=False,
+            reset_request=False,
+            shape_code=0,
+            semantic_id=0,
+        )
+
     def _read_controls(self) -> bytes:
         return bytes(self._client.db_read(self.config.db_number, 0, CONTROL_SIZE))
 

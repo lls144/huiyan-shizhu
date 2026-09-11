@@ -123,3 +123,7 @@ M6 fault scenarios 可供未来 M7/M9 复用，仅为 supporting simulator avail
 这两行是**真机证据**，但仍然只覆盖单次会话与既有 I/O：
 断电重启、故障注入、心跳/断连报警（COMM-002）与多工况矩阵（TEST-001）仍为 TODO，
 SYS-001 / M10 状态不变。
+
+断电重启与状态清空见 `notes/tests/TEST-015-断电重启状态清空.md`（真机 PASS）：
+打脏状态（队列 2、亮 1 盏、last_sid=501）后断电上电，队列/灯/last-dequeued 全部清除；
+同轮发现 `DB_M8_Acceptance` 的值掉电后保留，因而在 PC 侧加入 `safe_init()` 防止残留脉冲造成幽灵入队。

@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
+from collections import deque
+
 from pc.communication.config import PlcCommunicationConfig
 from pc.communication.fake_plc import FakeAcceptancePlc
 from pc.communication.models import PlcCommandResult, PlcCommandStatus, PlcState
 from pc.communication.reliability import GuardedPlcSink
 from pc.communication.sink import S7PlcCommandSink
+from pc.communication.s7 import PlcControls
 from pc.events.models import EventType, VisionEvent
 from pc.sorting.config import SortingConfig
 from pc.sorting.controller import SortingController
@@ -234,6 +237,24 @@ def test_reset_clears_deferred_items_and_the_duplicate_guard() -> None:
     assert sink.sent_semantic_ids == set()
     assert sink.status().queue_length == 0
     assert sink.send_event(enter("triangle", 2)).status is PlcCommandStatus.SENT
+
+
+def test_starting_a_session_clears_a_retained_ghost_command() -> None:
+    # Simulates the DB_M8_Acceptance values surviving a power cycle with a
+    # command pulse that was interrupted: TestEnable and CommandValidTest are
+    # both TRUE while the PLC edge memory is fresh.
+    plc = FakeAcceptancePlc(capacity=3)
+    plc.control_bytes = PlcControls(
+        test_enable=True,
+        command_valid=True,
+        command_data_valid=True,
+        shape_code=1,
+        semantic_id=999,
+    ).pack()
+    plc._previous_command_valid = False
+    sink = guarded(make_config(), plc)
+    assert plc.queue == deque()
+    assert sink.status().queue_length == 0
 
 
 def test_two_objects_in_one_frame_both_enter_the_plc_queue() -> None:

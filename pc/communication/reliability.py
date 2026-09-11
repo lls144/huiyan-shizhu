@@ -136,6 +136,14 @@ class GuardedPlcSink:
 
     def start(self) -> None:
         self.inner.start()
+        initialiser = getattr(self.inner, "safe_init", None)
+        if initialiser is not None:
+            # Never fatal: a PLC that is not ready yet must not stop the bridge
+            # from starting, and the first real command re-writes these bits anyway.
+            try:
+                initialiser()
+            except Exception as error:
+                self._last_error = f"safe init failed: {type(error).__name__}: {error}"
         self.refresh_state()
 
     def stop(self) -> None:
