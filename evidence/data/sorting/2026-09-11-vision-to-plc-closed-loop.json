@@ -1,0 +1,4062 @@
+{
+  "started_at": "2026-09-11T11:02:24.811+08:00",
+  "finished_at": "2026-09-11T11:05:25.145+08:00",
+  "duration_seconds": 180.295805,
+  "source_type": "camera",
+  "source_metadata": {
+    "source_type": "camera",
+    "camera_config_path": "pc\\config\\camera.json",
+    "device": {
+      "index": 0,
+      "name": "HD Webcam",
+      "path": "<device-instance-redacted>",
+      "vid": 11134,
+      "pid": 46691,
+      "backend_name": "MSMF",
+      "backend_id": 1400
+    },
+    "camera_config": {
+      "device_name": "HD Webcam",
+      "fallback_index": null,
+      "backend": "MSMF",
+      "requested_width": 1280,
+      "requested_height": 720,
+      "requested_fps": 30.0,
+      "fourcc": "YUY2",
+      "warmup_frames": 15,
+      "test_duration_seconds": 60.0,
+      "reopen_cycles": 3,
+      "minimum_read_success_rate": 0.99,
+      "maximum_frame_gap_seconds": 2.0
+    },
+    "actual_properties": {
+      "width": 1280.0,
+      "height": 720.0,
+      "reported_fps": 30.0,
+      "backend": "MSMF"
+    },
+    "calibration": {
+      "requested_mode": "manual",
+      "selected_mode": "manual",
+      "source": "restored",
+      "normalized_roi": {
+        "left": 0.2,
+        "top": 0.25,
+        "right": 0.8,
+        "bottom": 0.88
+      },
+      "pixel_roi": [
+        256,
+        180,
+        1024,
+        634
+      ],
+      "fallback_messages": [
+        "auto ROI of the hand-held composition accepted once with score 0.634; the frozen value below is that region widened to a symmetric centre box"
+      ],
+      "auto_score": null
+    }
+  },
+  "frames_read": 4747,
+  "frames_processed": 4747,
+  "detection_count": 612,
+  "event_count": 60,
+  "processing_fps": 26.328954,
+  "average_processing_ms": 19.400208,
+  "p95_processing_ms": 34.27004,
+  "failed_reads": 0,
+  "error": null,
+  "ended_reason": "stopped",
+  "worker_clean_shutdown": true,
+  "events": [
+    {
+      "event_id": 1,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 1,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 298
+    },
+    {
+      "event_id": 2,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 2,
+      "label": "triangle",
+      "confidence": 0.922866,
+      "frame_index": 311
+    },
+    {
+      "event_id": 3,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 3,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 315
+    },
+    {
+      "event_id": 4,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 1,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 317
+    },
+    {
+      "event_id": 5,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 2,
+      "label": "triangle",
+      "confidence": 0.920305,
+      "frame_index": 317
+    },
+    {
+      "event_id": 6,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 4,
+      "label": "triangle",
+      "confidence": 0.939115,
+      "frame_index": 320
+    },
+    {
+      "event_id": 7,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 3,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 322
+    },
+    {
+      "event_id": 8,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 4,
+      "label": "triangle",
+      "confidence": 0.960229,
+      "frame_index": 406
+    },
+    {
+      "event_id": 9,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 5,
+      "label": "triangle",
+      "confidence": 0.96966,
+      "frame_index": 536
+    },
+    {
+      "event_id": 10,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 6,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 542
+    },
+    {
+      "event_id": 11,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 5,
+      "label": "triangle",
+      "confidence": 0.967223,
+      "frame_index": 544
+    },
+    {
+      "event_id": 12,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 6,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 548
+    },
+    {
+      "event_id": 13,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 8,
+      "label": "rectangle",
+      "confidence": 0.941468,
+      "frame_index": 761
+    },
+    {
+      "event_id": 14,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 9,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 1019
+    },
+    {
+      "event_id": 15,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 8,
+      "label": "rectangle",
+      "confidence": 0.981784,
+      "frame_index": 1021
+    },
+    {
+      "event_id": 16,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 9,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 1024
+    },
+    {
+      "event_id": 17,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 10,
+      "label": "triangle",
+      "confidence": 0.920413,
+      "frame_index": 1159
+    },
+    {
+      "event_id": 18,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 10,
+      "label": "triangle",
+      "confidence": 0.920413,
+      "frame_index": 1163
+    },
+    {
+      "event_id": 19,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 11,
+      "label": "triangle",
+      "confidence": 0.925297,
+      "frame_index": 1339
+    },
+    {
+      "event_id": 20,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 11,
+      "label": "triangle",
+      "confidence": 0.931667,
+      "frame_index": 1350
+    },
+    {
+      "event_id": 21,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 13,
+      "label": "triangle",
+      "confidence": 0.911972,
+      "frame_index": 1575
+    },
+    {
+      "event_id": 22,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 13,
+      "label": "triangle",
+      "confidence": 0.925345,
+      "frame_index": 1598
+    },
+    {
+      "event_id": 23,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 14,
+      "label": "rectangle",
+      "confidence": 0.988981,
+      "frame_index": 1709
+    },
+    {
+      "event_id": 24,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 14,
+      "label": "rectangle",
+      "confidence": 0.942289,
+      "frame_index": 1732
+    },
+    {
+      "event_id": 25,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 15,
+      "label": "circle",
+      "confidence": 0.939184,
+      "frame_index": 2124
+    },
+    {
+      "event_id": 26,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 15,
+      "label": "circle",
+      "confidence": 0.937567,
+      "frame_index": 2160
+    },
+    {
+      "event_id": 27,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 16,
+      "label": "circle",
+      "confidence": 0.871077,
+      "frame_index": 2206
+    },
+    {
+      "event_id": 28,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 16,
+      "label": "circle",
+      "confidence": 0.887128,
+      "frame_index": 2213
+    },
+    {
+      "event_id": 29,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 17,
+      "label": "rectangle",
+      "confidence": 0.919565,
+      "frame_index": 2927
+    },
+    {
+      "event_id": 30,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 17,
+      "label": "rectangle",
+      "confidence": 0.972076,
+      "frame_index": 2955
+    },
+    {
+      "event_id": 31,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 18,
+      "label": "circle",
+      "confidence": 0.924576,
+      "frame_index": 3351
+    },
+    {
+      "event_id": 32,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 18,
+      "label": "circle",
+      "confidence": 0.946196,
+      "frame_index": 3369
+    },
+    {
+      "event_id": 33,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 19,
+      "label": "circle",
+      "confidence": 0.907821,
+      "frame_index": 3675
+    },
+    {
+      "event_id": 34,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 19,
+      "label": "circle",
+      "confidence": 0.900527,
+      "frame_index": 3689
+    },
+    {
+      "event_id": 35,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 20,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 3710
+    },
+    {
+      "event_id": 36,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 21,
+      "label": "triangle",
+      "confidence": 0.881218,
+      "frame_index": 3713
+    },
+    {
+      "event_id": 37,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 20,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 3715
+    },
+    {
+      "event_id": 38,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 21,
+      "label": "triangle",
+      "confidence": 0.881218,
+      "frame_index": 3717
+    },
+    {
+      "event_id": 39,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 22,
+      "label": "triangle",
+      "confidence": 0.902036,
+      "frame_index": 3721
+    },
+    {
+      "event_id": 40,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 23,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 3734
+    },
+    {
+      "event_id": 41,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 22,
+      "label": "triangle",
+      "confidence": 0.914981,
+      "frame_index": 3736
+    },
+    {
+      "event_id": 42,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 23,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 3738
+    },
+    {
+      "event_id": 43,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 25,
+      "label": "circle",
+      "confidence": 0.754073,
+      "frame_index": 3754
+    },
+    {
+      "event_id": 44,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 25,
+      "label": "circle",
+      "confidence": 0.85827,
+      "frame_index": 3771
+    },
+    {
+      "event_id": 45,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 28,
+      "label": "rectangle",
+      "confidence": 0.986055,
+      "frame_index": 3842
+    },
+    {
+      "event_id": 46,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 29,
+      "label": "rectangle",
+      "confidence": 0.941442,
+      "frame_index": 3844
+    },
+    {
+      "event_id": 47,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 28,
+      "label": "rectangle",
+      "confidence": 0.986055,
+      "frame_index": 3846
+    },
+    {
+      "event_id": 48,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 29,
+      "label": "rectangle",
+      "confidence": 0.933755,
+      "frame_index": 3850
+    },
+    {
+      "event_id": 49,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 31,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 3923
+    },
+    {
+      "event_id": 50,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 32,
+      "label": "triangle",
+      "confidence": 0.90338,
+      "frame_index": 3929
+    },
+    {
+      "event_id": 51,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 31,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 3931
+    },
+    {
+      "event_id": 52,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 32,
+      "label": "triangle",
+      "confidence": 0.908217,
+      "frame_index": 3936
+    },
+    {
+      "event_id": 53,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 33,
+      "label": "triangle",
+      "confidence": 0.892457,
+      "frame_index": 3940
+    },
+    {
+      "event_id": 54,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 33,
+      "label": "triangle",
+      "confidence": 0.892457,
+      "frame_index": 3944
+    },
+    {
+      "event_id": 55,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 34,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 4716
+    },
+    {
+      "event_id": 56,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 34,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 4726
+    },
+    {
+      "event_id": 57,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 36,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 4728
+    },
+    {
+      "event_id": 58,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 38,
+      "label": "triangle",
+      "confidence": 0.92684,
+      "frame_index": 4732
+    },
+    {
+      "event_id": 59,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 38,
+      "label": "triangle",
+      "confidence": 0.928489,
+      "frame_index": 4744
+    },
+    {
+      "event_id": 60,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 36,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 4745
+    }
+  ],
+  "final_object_states": [
+    {
+      "object_id": 1,
+      "label": "unknown",
+      "bbox": [
+        440,
+        185,
+        250,
+        186
+      ],
+      "first_seen": 297,
+      "last_seen": 313,
+      "hit_count": 17,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 2,
+      "label": "triangle",
+      "bbox": [
+        508,
+        473,
+        141,
+        129
+      ],
+      "first_seen": 310,
+      "last_seen": 313,
+      "hit_count": 4,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.920305
+    },
+    {
+      "object_id": 3,
+      "label": "unknown",
+      "bbox": [
+        489,
+        330,
+        148,
+        132
+      ],
+      "first_seen": 314,
+      "last_seen": 318,
+      "hit_count": 5,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 4,
+      "label": "triangle",
+      "bbox": [
+        430,
+        183,
+        185,
+        161
+      ],
+      "first_seen": 319,
+      "last_seen": 402,
+      "hit_count": 84,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.960229
+    },
+    {
+      "object_id": 5,
+      "label": "triangle",
+      "bbox": [
+        487,
+        252,
+        171,
+        167
+      ],
+      "first_seen": 535,
+      "last_seen": 540,
+      "hit_count": 6,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.967223
+    },
+    {
+      "object_id": 6,
+      "label": "unknown",
+      "bbox": [
+        573,
+        406,
+        177,
+        172
+      ],
+      "first_seen": 541,
+      "last_seen": 544,
+      "hit_count": 4,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 7,
+      "label": "unknown",
+      "bbox": [
+        478,
+        473,
+        200,
+        136
+      ],
+      "first_seen": 759,
+      "last_seen": 759,
+      "hit_count": 1,
+      "consecutive_hits": 0,
+      "miss_count": 1,
+      "confirmed": false,
+      "active": false,
+      "event_emitted": false,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 8,
+      "label": "rectangle",
+      "bbox": [
+        341,
+        338,
+        202,
+        155
+      ],
+      "first_seen": 760,
+      "last_seen": 1017,
+      "hit_count": 258,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.981784
+    },
+    {
+      "object_id": 9,
+      "label": "unknown",
+      "bbox": [
+        418,
+        434,
+        222,
+        152
+      ],
+      "first_seen": 1018,
+      "last_seen": 1020,
+      "hit_count": 3,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 10,
+      "label": "triangle",
+      "bbox": [
+        261,
+        447,
+        149,
+        136
+      ],
+      "first_seen": 1158,
+      "last_seen": 1159,
+      "hit_count": 2,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.920413
+    },
+    {
+      "object_id": 11,
+      "label": "triangle",
+      "bbox": [
+        262,
+        373,
+        151,
+        146
+      ],
+      "first_seen": 1338,
+      "last_seen": 1346,
+      "hit_count": 9,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.931667
+    },
+    {
+      "object_id": 12,
+      "label": "unknown",
+      "bbox": [
+        318,
+        455,
+        145,
+        148
+      ],
+      "first_seen": 1573,
+      "last_seen": 1573,
+      "hit_count": 1,
+      "consecutive_hits": 0,
+      "miss_count": 1,
+      "confirmed": false,
+      "active": false,
+      "event_emitted": false,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 13,
+      "label": "triangle",
+      "bbox": [
+        270,
+        453,
+        153,
+        153
+      ],
+      "first_seen": 1574,
+      "last_seen": 1594,
+      "hit_count": 21,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.925345
+    },
+    {
+      "object_id": 14,
+      "label": "rectangle",
+      "bbox": [
+        356,
+        448,
+        175,
+        146
+      ],
+      "first_seen": 1708,
+      "last_seen": 1728,
+      "hit_count": 21,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.942289
+    },
+    {
+      "object_id": 15,
+      "label": "circle",
+      "bbox": [
+        269,
+        401,
+        134,
+        155
+      ],
+      "first_seen": 2123,
+      "last_seen": 2156,
+      "hit_count": 34,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.937567
+    },
+    {
+      "object_id": 16,
+      "label": "circle",
+      "bbox": [
+        263,
+        214,
+        131,
+        123
+      ],
+      "first_seen": 2205,
+      "last_seen": 2209,
+      "hit_count": 5,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.887128
+    },
+    {
+      "object_id": 17,
+      "label": "rectangle",
+      "bbox": [
+        288,
+        315,
+        179,
+        142
+      ],
+      "first_seen": 2926,
+      "last_seen": 2951,
+      "hit_count": 26,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.972076
+    },
+    {
+      "object_id": 18,
+      "label": "circle",
+      "bbox": [
+        260,
+        259,
+        138,
+        144
+      ],
+      "first_seen": 3350,
+      "last_seen": 3365,
+      "hit_count": 16,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.946196
+    },
+    {
+      "object_id": 19,
+      "label": "circle",
+      "bbox": [
+        259,
+        263,
+        122,
+        132
+      ],
+      "first_seen": 3674,
+      "last_seen": 3685,
+      "hit_count": 12,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.900527
+    },
+    {
+      "object_id": 20,
+      "label": "unknown",
+      "bbox": [
+        442,
+        320,
+        142,
+        110
+      ],
+      "first_seen": 3709,
+      "last_seen": 3711,
+      "hit_count": 3,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 21,
+      "label": "triangle",
+      "bbox": [
+        400,
+        285,
+        142,
+        97
+      ],
+      "first_seen": 3712,
+      "last_seen": 3713,
+      "hit_count": 2,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.881218
+    },
+    {
+      "object_id": 22,
+      "label": "triangle",
+      "bbox": [
+        351,
+        261,
+        144,
+        144
+      ],
+      "first_seen": 3720,
+      "last_seen": 3732,
+      "hit_count": 13,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.914981
+    },
+    {
+      "object_id": 23,
+      "label": "unknown",
+      "bbox": [
+        354,
+        306,
+        137,
+        155
+      ],
+      "first_seen": 3733,
+      "last_seen": 3734,
+      "hit_count": 2,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 24,
+      "label": "unknown",
+      "bbox": [
+        265,
+        367,
+        118,
+        148
+      ],
+      "first_seen": 3752,
+      "last_seen": 3752,
+      "hit_count": 1,
+      "consecutive_hits": 0,
+      "miss_count": 1,
+      "confirmed": false,
+      "active": false,
+      "event_emitted": false,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 25,
+      "label": "circle",
+      "bbox": [
+        280,
+        217,
+        133,
+        148
+      ],
+      "first_seen": 3753,
+      "last_seen": 3767,
+      "hit_count": 15,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.85827
+    },
+    {
+      "object_id": 26,
+      "label": "rectangle",
+      "bbox": [
+        604,
+        202,
+        186,
+        157
+      ],
+      "first_seen": 3786,
+      "last_seen": 3786,
+      "hit_count": 1,
+      "consecutive_hits": 0,
+      "miss_count": 1,
+      "confirmed": false,
+      "active": false,
+      "event_emitted": false,
+      "status": "exited",
+      "confidence": 0.787835
+    },
+    {
+      "object_id": 27,
+      "label": "unknown",
+      "bbox": [
+        466,
+        199,
+        241,
+        211
+      ],
+      "first_seen": 3839,
+      "last_seen": 3839,
+      "hit_count": 1,
+      "consecutive_hits": 0,
+      "miss_count": 1,
+      "confirmed": false,
+      "active": false,
+      "event_emitted": false,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 28,
+      "label": "rectangle",
+      "bbox": [
+        455,
+        413,
+        203,
+        144
+      ],
+      "first_seen": 3841,
+      "last_seen": 3842,
+      "hit_count": 2,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.986055
+    },
+    {
+      "object_id": 29,
+      "label": "rectangle",
+      "bbox": [
+        369,
+        208,
+        202,
+        145
+      ],
+      "first_seen": 3843,
+      "last_seen": 3846,
+      "hit_count": 4,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.933755
+    },
+    {
+      "object_id": 30,
+      "label": "unknown",
+      "bbox": [
+        404,
+        213,
+        144,
+        114
+      ],
+      "first_seen": 3915,
+      "last_seen": 3915,
+      "hit_count": 1,
+      "consecutive_hits": 0,
+      "miss_count": 1,
+      "confirmed": false,
+      "active": false,
+      "event_emitted": false,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 31,
+      "label": "unknown",
+      "bbox": [
+        413,
+        384,
+        125,
+        127
+      ],
+      "first_seen": 3922,
+      "last_seen": 3927,
+      "hit_count": 6,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 32,
+      "label": "triangle",
+      "bbox": [
+        415,
+        420,
+        138,
+        126
+      ],
+      "first_seen": 3928,
+      "last_seen": 3932,
+      "hit_count": 5,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.908217
+    },
+    {
+      "object_id": 33,
+      "label": "triangle",
+      "bbox": [
+        349,
+        491,
+        122,
+        132
+      ],
+      "first_seen": 3939,
+      "last_seen": 3940,
+      "hit_count": 2,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.892457
+    },
+    {
+      "object_id": 34,
+      "label": "unknown",
+      "bbox": [
+        454,
+        214,
+        164,
+        361
+      ],
+      "first_seen": 4715,
+      "last_seen": 4722,
+      "hit_count": 4,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 35,
+      "label": "triangle",
+      "bbox": [
+        688,
+        271,
+        137,
+        143
+      ],
+      "first_seen": 4715,
+      "last_seen": 4715,
+      "hit_count": 1,
+      "consecutive_hits": 0,
+      "miss_count": 1,
+      "confirmed": false,
+      "active": false,
+      "event_emitted": false,
+      "status": "exited",
+      "confidence": 0.905636
+    },
+    {
+      "object_id": 36,
+      "label": "unknown",
+      "bbox": [
+        417,
+        212,
+        193,
+        385
+      ],
+      "first_seen": 4727,
+      "last_seen": 4741,
+      "hit_count": 11,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 37,
+      "label": "triangle",
+      "bbox": [
+        659,
+        231,
+        139,
+        150
+      ],
+      "first_seen": 4728,
+      "last_seen": 4728,
+      "hit_count": 1,
+      "consecutive_hits": 0,
+      "miss_count": 1,
+      "confirmed": false,
+      "active": false,
+      "event_emitted": false,
+      "status": "exited",
+      "confidence": 0.923968
+    },
+    {
+      "object_id": 38,
+      "label": "triangle",
+      "bbox": [
+        640,
+        240,
+        141,
+        153
+      ],
+      "first_seen": 4731,
+      "last_seen": 4740,
+      "hit_count": 8,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.928489
+    }
+  ],
+  "evidence_records": [],
+  "plc_command_count": 134,
+  "plc_sink_error": "write did not raise but the queue did not grow (2 -> 2); elapsed=0.342s",
+  "plc_results": [
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 2,
+        "source_event_id": 2,
+        "source_object_id": 2
+      },
+      "status": "SENT",
+      "queue_length": 2,
+      "detail": "confirmed by queue 1 -> 2; write resends=2; elapsed=0.278s",
+      "queue_length_before": 1,
+      "attempts": 0,
+      "resends": 2,
+      "elapsed_seconds": 0.277924,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 4,
+        "source_event_id": 6,
+        "source_object_id": 4
+      },
+      "status": "SENT",
+      "queue_length": 3,
+      "detail": "confirmed by queue 2 -> 3; write resends=2; elapsed=0.272s",
+      "queue_length_before": 2,
+      "attempts": 0,
+      "resends": 2,
+      "elapsed_seconds": 0.271996,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 5,
+        "source_event_id": 9,
+        "source_object_id": 5
+      },
+      "status": "SENT",
+      "queue_length": 3,
+      "detail": "confirmed by queue 2 -> 3; write resends=11; elapsed=0.660s",
+      "queue_length_before": 2,
+      "attempts": 0,
+      "resends": 11,
+      "elapsed_seconds": 0.65999,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 8,
+        "source_event_id": 13,
+        "source_object_id": 8
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 8,
+        "source_event_id": 13,
+        "source_object_id": 8
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 8,
+        "source_event_id": 13,
+        "source_object_id": 8
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 8,
+        "source_event_id": 13,
+        "source_object_id": 8
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 8,
+        "source_event_id": 13,
+        "source_object_id": 8
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 8,
+        "source_event_id": 13,
+        "source_object_id": 8
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 8,
+        "source_event_id": 13,
+        "source_object_id": 8
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 8,
+        "source_event_id": 13,
+        "source_object_id": 8
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 8,
+        "source_event_id": 13,
+        "source_object_id": 8
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 8,
+        "source_event_id": 13,
+        "source_object_id": 8
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 8,
+        "source_event_id": 13,
+        "source_object_id": 8
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 8,
+        "source_event_id": 13,
+        "source_object_id": 8
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 8,
+        "source_event_id": 13,
+        "source_object_id": 8
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 8,
+        "source_event_id": 13,
+        "source_object_id": 8
+      },
+      "status": "SENT",
+      "queue_length": 3,
+      "detail": "confirmed by queue 2 -> 3; write resends=1; elapsed=0.225s",
+      "queue_length_before": 2,
+      "attempts": 0,
+      "resends": 1,
+      "elapsed_seconds": 0.225127,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 10,
+        "source_event_id": 17,
+        "source_object_id": 10
+      },
+      "status": "SENT",
+      "queue_length": 3,
+      "detail": "confirmed by queue 2 -> 3; write resends=1; elapsed=0.245s",
+      "queue_length_before": 2,
+      "attempts": 0,
+      "resends": 1,
+      "elapsed_seconds": 0.245075,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 13,
+        "source_event_id": 21,
+        "source_object_id": 13
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 3 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 3 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 3 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 3 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 3 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 3 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 3 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 3 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 3 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 3 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 3 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 11,
+        "source_event_id": 19,
+        "source_object_id": 11
+      },
+      "status": "SENT",
+      "queue_length": 3,
+      "detail": "confirmed by queue 2 -> 3; write resends=2; elapsed=0.254s",
+      "queue_length_before": 2,
+      "attempts": 0,
+      "resends": 2,
+      "elapsed_seconds": 0.253632,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 13,
+        "source_event_id": 21,
+        "source_object_id": 13
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 13,
+        "source_event_id": 21,
+        "source_object_id": 13
+      },
+      "status": "SENT",
+      "queue_length": 3,
+      "detail": "confirmed by queue 2 -> 3; write resends=1; elapsed=0.213s",
+      "queue_length_before": 2,
+      "attempts": 0,
+      "resends": 1,
+      "elapsed_seconds": 0.213004,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 15,
+        "source_event_id": 25,
+        "source_object_id": 15
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 16,
+        "source_event_id": 27,
+        "source_object_id": 16
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 3 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 3 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 3 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 3 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 3 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 3 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 14,
+        "source_event_id": 23,
+        "source_object_id": 14
+      },
+      "status": "SENT",
+      "queue_length": 3,
+      "detail": "confirmed by queue 2 -> 3; write resends=0; elapsed=0.173s",
+      "queue_length_before": 2,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.172966,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 15,
+        "source_event_id": 25,
+        "source_object_id": 15
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 15,
+        "source_event_id": 25,
+        "source_object_id": 15
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 15,
+        "source_event_id": 25,
+        "source_object_id": 15
+      },
+      "status": "SENT",
+      "queue_length": 3,
+      "detail": "confirmed by queue 2 -> 3; write resends=5; elapsed=0.425s",
+      "queue_length_before": 2,
+      "attempts": 0,
+      "resends": 5,
+      "elapsed_seconds": 0.424933,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 16,
+        "source_event_id": 27,
+        "source_object_id": 16
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 16,
+        "source_event_id": 27,
+        "source_object_id": 16
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 16,
+        "source_event_id": 27,
+        "source_object_id": 16
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 16,
+        "source_event_id": 27,
+        "source_object_id": 16
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 16,
+        "source_event_id": 27,
+        "source_object_id": 16
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 16,
+        "source_event_id": 27,
+        "source_object_id": 16
+      },
+      "status": "SENT",
+      "queue_length": 3,
+      "detail": "confirmed by queue 2 -> 3; write resends=4; elapsed=0.383s",
+      "queue_length_before": 2,
+      "attempts": 0,
+      "resends": 4,
+      "elapsed_seconds": 0.383061,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 17,
+        "source_event_id": 29,
+        "source_object_id": 17
+      },
+      "status": "SENT",
+      "queue_length": 1,
+      "detail": "confirmed by queue 0 -> 1; write resends=1; elapsed=0.238s",
+      "queue_length_before": 0,
+      "attempts": 0,
+      "resends": 1,
+      "elapsed_seconds": 0.237975,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 18,
+        "source_event_id": 31,
+        "source_object_id": 18
+      },
+      "status": "SENT",
+      "queue_length": 1,
+      "detail": "confirmed by queue 0 -> 1; write resends=4; elapsed=0.363s",
+      "queue_length_before": 0,
+      "attempts": 0,
+      "resends": 4,
+      "elapsed_seconds": 0.362928,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 21,
+        "source_event_id": 36,
+        "source_object_id": 21
+      },
+      "status": "SENT",
+      "queue_length": 1,
+      "detail": "confirmed by queue 0 -> 1; write resends=1; elapsed=0.261s",
+      "queue_length_before": 0,
+      "attempts": 0,
+      "resends": 1,
+      "elapsed_seconds": 0.261252,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 22,
+        "source_event_id": 39,
+        "source_object_id": 22
+      },
+      "status": "SENT",
+      "queue_length": 2,
+      "detail": "confirmed by queue 1 -> 2; write resends=0; elapsed=0.184s",
+      "queue_length_before": 1,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.184021,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 19,
+        "source_event_id": 33,
+        "source_object_id": 19
+      },
+      "status": "SENT",
+      "queue_length": 3,
+      "detail": "confirmed by queue 2 -> 3; write resends=0; elapsed=0.177s",
+      "queue_length_before": 2,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.177096,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 25,
+        "source_event_id": 43,
+        "source_object_id": 25
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 25,
+        "source_event_id": 43,
+        "source_object_id": 25
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 1 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 28,
+        "source_event_id": 45,
+        "source_object_id": 28
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 25,
+        "source_event_id": 43,
+        "source_object_id": 25
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 25,
+        "source_event_id": 43,
+        "source_object_id": 25
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 32,
+        "source_event_id": 50,
+        "source_object_id": 32
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 3 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 29,
+        "source_event_id": 46,
+        "source_object_id": 29
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 4 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 25,
+        "source_event_id": 43,
+        "source_object_id": 25
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 4 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 25,
+        "source_event_id": 43,
+        "source_object_id": 25
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 4 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 25,
+        "source_event_id": 43,
+        "source_object_id": 25
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 4 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 33,
+        "source_event_id": 53,
+        "source_object_id": 33
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 5 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 25,
+        "source_event_id": 43,
+        "source_object_id": 25
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 5 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 25,
+        "source_event_id": 43,
+        "source_object_id": 25
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 5 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 25,
+        "source_event_id": 43,
+        "source_object_id": 25
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 5 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 25,
+        "source_event_id": 43,
+        "source_object_id": 25
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 5 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 25,
+        "source_event_id": 43,
+        "source_object_id": 25
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 5 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "circle",
+        "shape_code": 3,
+        "semantic_id": 25,
+        "source_event_id": 43,
+        "source_object_id": 25
+      },
+      "status": "SENT",
+      "queue_length": 3,
+      "detail": "confirmed by queue 2 -> 3; write resends=3; elapsed=0.291s",
+      "queue_length_before": 2,
+      "attempts": 0,
+      "resends": 3,
+      "elapsed_seconds": 0.291192,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 28,
+        "source_event_id": 45,
+        "source_object_id": 28
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 4 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 28,
+        "source_event_id": 45,
+        "source_object_id": 28
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 4 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 28,
+        "source_event_id": 45,
+        "source_object_id": 28
+      },
+      "status": "SENT",
+      "queue_length": 3,
+      "detail": "confirmed by queue 2 -> 3; write resends=4; elapsed=0.370s",
+      "queue_length_before": 2,
+      "attempts": 0,
+      "resends": 4,
+      "elapsed_seconds": 0.370087,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 32,
+        "source_event_id": 50,
+        "source_object_id": 32
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 3 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 32,
+        "source_event_id": 50,
+        "source_object_id": 32
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 3 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 32,
+        "source_event_id": 50,
+        "source_object_id": 32
+      },
+      "status": "SENT",
+      "queue_length": 3,
+      "detail": "confirmed by queue 2 -> 3; write resends=5; elapsed=0.413s",
+      "queue_length_before": 2,
+      "attempts": 0,
+      "resends": 5,
+      "elapsed_seconds": 0.41302,
+      "confirmed": true
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 29,
+        "source_event_id": 46,
+        "source_object_id": 29
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 29,
+        "source_event_id": 46,
+        "source_object_id": 29
+      },
+      "status": "QUEUE_FULL",
+      "queue_length": 3,
+      "detail": "PLC queue is full (length 3); command deferred, 2 waiting",
+      "queue_length_before": 3,
+      "attempts": 0,
+      "resends": 0,
+      "elapsed_seconds": 0.0,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "rectangle",
+        "shape_code": 2,
+        "semantic_id": 29,
+        "source_event_id": 46,
+        "source_object_id": 29
+      },
+      "status": "UNCONFIRMED",
+      "queue_length": 2,
+      "detail": "write did not raise but the queue did not grow (2 -> 2); elapsed=0.342s",
+      "queue_length_before": 2,
+      "attempts": 0,
+      "resends": 3,
+      "elapsed_seconds": 0.341998,
+      "confirmed": false
+    },
+    {
+      "command": {
+        "shape": "triangle",
+        "shape_code": 1,
+        "semantic_id": 33,
+        "source_event_id": 53,
+        "source_object_id": 33
+      },
+      "status": "SENT",
+      "queue_length": 3,
+      "detail": "confirmed by queue 2 -> 3; write resends=5; elapsed=0.409s",
+      "queue_length_before": 2,
+      "attempts": 0,
+      "resends": 5,
+      "elapsed_seconds": 0.40891,
+      "confirmed": true
+    }
+  ],
+  "schema_version": 1,
+  "milestone": "M-SORTING-VIZ",
+  "acceptance_status": "pending_user_validation",
+  "git": {
+    "commit": "0ddc7fa4cf57b05f3b0048dd566da8c209a5d66f",
+    "dirty": true
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10",
+    "pyside6": "6.11.2"
+  },
+  "vision_config": {
+    "roi_left": 0.24,
+    "roi_top": 0.08,
+    "roi_right": 0.76,
+    "roi_bottom": 0.75,
+    "gaussian_kernel_size": 5,
+    "morphology_kernel_size": 3,
+    "morphology_open_iterations": 1,
+    "canny_low_threshold": 50,
+    "canny_high_threshold": 150,
+    "min_area_ratio": 0.02,
+    "max_area_ratio": 0.25,
+    "min_solidity": 0.9,
+    "border_margin_pixels": 2,
+    "approx_epsilon_ratio": 0.02,
+    "rectangle_max_angle_deviation_degrees": 25.0,
+    "rectangle_min_fill_ratio": 0.8,
+    "circle_min_vertices": 6,
+    "circle_min_circularity": 0.78,
+    "circle_min_aspect_ratio": 0.8,
+    "triangle_confidence_good_circularity": 0.62,
+    "triangle_confidence_max_circularity": 0.72,
+    "rectangle_confidence_good_angle_deviation_degrees": 5.0,
+    "rectangle_confidence_good_fill_ratio": 0.95,
+    "circle_confidence_good_vertices": 8,
+    "circle_confidence_good_circularity": 0.92,
+    "circle_confidence_good_aspect_ratio": 0.95,
+    "confidence_good_solidity": 0.98,
+    "confidence_good_area_clearance_ratio": 0.03,
+    "confidence_topology_weight": 0.5,
+    "confidence_geometry_weight": 0.3,
+    "confidence_quality_weight": 0.2,
+    "auto_hsv_min_value": 140,
+    "auto_hsv_max_saturation": 100,
+    "auto_morphology_kernel_size": 11,
+    "auto_morphology_close_iterations": 2,
+    "auto_morphology_open_iterations": 1,
+    "auto_min_area_ratio": 0.12,
+    "auto_max_area_ratio": 0.85,
+    "auto_preferred_area_ratio": 0.35,
+    "auto_min_rectangularity": 0.7,
+    "auto_max_center_distance_ratio": 0.5,
+    "auto_min_bright_fraction": 0.6,
+    "auto_approx_epsilon_ratio": 0.03,
+    "auto_inner_margin_ratio": 0.04,
+    "auto_min_score": 0.45,
+    "auto_score_area_weight": 0.2,
+    "auto_score_rectangularity_weight": 0.3,
+    "auto_score_center_weight": 0.25,
+    "auto_score_brightness_weight": 0.25,
+    "manual_min_width_pixels": 80,
+    "manual_min_height_pixels": 80,
+    "stability_window_size": 5,
+    "stability_min_votes": 3,
+    "fps_smoothing_window": 30,
+    "live_max_consecutive_read_failures": 30,
+    "live_preview_width": 1280,
+    "live_preview_height": 720,
+    "preprocess_mode": "otsu",
+    "comparison_preprocess_mode": "clahe_otsu",
+    "clahe_clip_limit": 2.0,
+    "clahe_tile_grid_size": 8
+  },
+  "event_config": {
+    "min_confirm_frames": 2,
+    "max_missing_frames": 3,
+    "iou_threshold": 0.3,
+    "center_distance_threshold": 80.0
+  },
+  "sorting_config": {
+    "belt_speed_units_per_second": 0.6,
+    "min_gap_units": 0.3,
+    "eject_seconds": 0.85,
+    "max_pending_items": 6,
+    "plc_trigger": "exit"
+  },
+  "shape_to_lamp_map": {
+    "triangle": 1,
+    "rectangle": 2,
+    "circle": 3
+  },
+  "plc_enabled": true,
+  "plc_state_last": {
+    "connected": true,
+    "queue_length": 0,
+    "queue_empty": true,
+    "queue_full": false,
+    "leds": [
+      true,
+      false,
+      false
+    ],
+    "last_dequeued_shape": 1,
+    "last_dequeued_semantic_id": 33,
+    "deferred_count": 0,
+    "last_error": "write did not raise but the queue did not grow (2 -> 2); elapsed=0.342s",
+    "counters": {
+      "dispatches": 20,
+      "sent_confirmed": 19,
+      "write_resends": 55,
+      "queue_full_deferrals": 11,
+      "deferred_retries": 114,
+      "queue_full_drops": 0,
+      "duplicate_rejections": 0,
+      "unconfirmed": 1,
+      "timeouts": 0,
+      "errors": 0
+    },
+    "fresh": true
+  },
+  "plc_dispatch_count": 134,
+  "plc_status_counts": {
+    "QUEUE_FULL": 114,
+    "SENT": 19,
+    "UNCONFIRMED": 1
+  },
+  "plc_sent_count": 19,
+  "plc_error_count": 1,
+  "sorting_results": [
+    {
+      "item_id": 1,
+      "label": "triangle",
+      "shape_code": 1,
+      "lamp_count": 1,
+      "stage_index": 0,
+      "stage_key": "triangle",
+      "semantic_id": 2,
+      "source_event_id": 2,
+      "frame_index": 386,
+      "lamps": [
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "item_id": 2,
+      "label": "triangle",
+      "shape_code": 1,
+      "lamp_count": 1,
+      "stage_index": 0,
+      "stage_key": "triangle",
+      "semantic_id": 4,
+      "source_event_id": 6,
+      "frame_index": 421,
+      "lamps": [
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "item_id": 3,
+      "label": "triangle",
+      "shape_code": 1,
+      "lamp_count": 1,
+      "stage_index": 0,
+      "stage_key": "triangle",
+      "semantic_id": 5,
+      "source_event_id": 9,
+      "frame_index": 610,
+      "lamps": [
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "item_id": 4,
+      "label": "rectangle",
+      "shape_code": 2,
+      "lamp_count": 2,
+      "stage_index": 1,
+      "stage_key": "rectangle",
+      "semantic_id": 8,
+      "source_event_id": 13,
+      "frame_index": 886,
+      "lamps": [
+        true,
+        true,
+        false
+      ]
+    },
+    {
+      "item_id": 5,
+      "label": "triangle",
+      "shape_code": 1,
+      "lamp_count": 1,
+      "stage_index": 0,
+      "stage_key": "triangle",
+      "semantic_id": 10,
+      "source_event_id": 17,
+      "frame_index": 1234,
+      "lamps": [
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "item_id": 6,
+      "label": "triangle",
+      "shape_code": 1,
+      "lamp_count": 1,
+      "stage_index": 0,
+      "stage_key": "triangle",
+      "semantic_id": 11,
+      "source_event_id": 19,
+      "frame_index": 1413,
+      "lamps": [
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "item_id": 7,
+      "label": "triangle",
+      "shape_code": 1,
+      "lamp_count": 1,
+      "stage_index": 0,
+      "stage_key": "triangle",
+      "semantic_id": 13,
+      "source_event_id": 21,
+      "frame_index": 1649,
+      "lamps": [
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "item_id": 8,
+      "label": "rectangle",
+      "shape_code": 2,
+      "lamp_count": 2,
+      "stage_index": 1,
+      "stage_key": "rectangle",
+      "semantic_id": 14,
+      "source_event_id": 23,
+      "frame_index": 1833,
+      "lamps": [
+        true,
+        true,
+        false
+      ]
+    },
+    {
+      "item_id": 9,
+      "label": "circle",
+      "shape_code": 3,
+      "lamp_count": 3,
+      "stage_index": 2,
+      "stage_key": "circle",
+      "semantic_id": 15,
+      "source_event_id": 25,
+      "frame_index": 2298,
+      "lamps": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "item_id": 10,
+      "label": "circle",
+      "shape_code": 3,
+      "lamp_count": 3,
+      "stage_index": 2,
+      "stage_key": "circle",
+      "semantic_id": 16,
+      "source_event_id": 27,
+      "frame_index": 2380,
+      "lamps": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "item_id": 11,
+      "label": "rectangle",
+      "shape_code": 2,
+      "lamp_count": 2,
+      "stage_index": 1,
+      "stage_key": "rectangle",
+      "semantic_id": 17,
+      "source_event_id": 29,
+      "frame_index": 3051,
+      "lamps": [
+        true,
+        true,
+        false
+      ]
+    },
+    {
+      "item_id": 12,
+      "label": "circle",
+      "shape_code": 3,
+      "lamp_count": 3,
+      "stage_index": 2,
+      "stage_key": "circle",
+      "semantic_id": 18,
+      "source_event_id": 31,
+      "frame_index": 3524,
+      "lamps": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "item_id": 14,
+      "label": "triangle",
+      "shape_code": 1,
+      "lamp_count": 1,
+      "stage_index": 0,
+      "stage_key": "triangle",
+      "semantic_id": 21,
+      "source_event_id": 36,
+      "frame_index": 3787,
+      "lamps": [
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "item_id": 15,
+      "label": "triangle",
+      "shape_code": 1,
+      "lamp_count": 1,
+      "stage_index": 0,
+      "stage_key": "triangle",
+      "semantic_id": 22,
+      "source_event_id": 39,
+      "frame_index": 3820,
+      "lamps": [
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "item_id": 13,
+      "label": "circle",
+      "shape_code": 3,
+      "lamp_count": 3,
+      "stage_index": 2,
+      "stage_key": "circle",
+      "semantic_id": 19,
+      "source_event_id": 33,
+      "frame_index": 3837,
+      "lamps": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "item_id": 16,
+      "label": "circle",
+      "shape_code": 3,
+      "lamp_count": 3,
+      "stage_index": 2,
+      "stage_key": "circle",
+      "semantic_id": 25,
+      "source_event_id": 43,
+      "frame_index": 3949,
+      "lamps": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "item_id": 17,
+      "label": "rectangle",
+      "shape_code": 2,
+      "lamp_count": 2,
+      "stage_index": 1,
+      "stage_key": "rectangle",
+      "semantic_id": 28,
+      "source_event_id": 45,
+      "frame_index": 3965,
+      "lamps": [
+        true,
+        true,
+        false
+      ]
+    },
+    {
+      "item_id": 19,
+      "label": "triangle",
+      "shape_code": 1,
+      "lamp_count": 1,
+      "stage_index": 0,
+      "stage_key": "triangle",
+      "semantic_id": 32,
+      "source_event_id": 50,
+      "frame_index": 4003,
+      "lamps": [
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "item_id": 18,
+      "label": "rectangle",
+      "shape_code": 2,
+      "lamp_count": 2,
+      "stage_index": 1,
+      "stage_key": "rectangle",
+      "semantic_id": 29,
+      "source_event_id": 46,
+      "frame_index": 4006,
+      "lamps": [
+        true,
+        true,
+        false
+      ]
+    },
+    {
+      "item_id": 20,
+      "label": "triangle",
+      "shape_code": 1,
+      "lamp_count": 1,
+      "stage_index": 0,
+      "stage_key": "triangle",
+      "semantic_id": 33,
+      "source_event_id": 53,
+      "frame_index": 4043,
+      "lamps": [
+        true,
+        false,
+        false
+      ]
+    }
+  ],
+  "sorting_result_count": 20,
+  "sorting_results_by_shape": {
+    "triangle": 10,
+    "rectangle": 5,
+    "circle": 5
+  },
+  "gui_updates": 4747,
+  "clean_shutdown": true,
+  "requested_soak_seconds": 180.0,
+  "python_traced_current_bytes": 21519269,
+  "python_traced_peak_bytes": 24254477,
+  "screenshot": "output\\sorting\\camera-plc-live.png"
+}

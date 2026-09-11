@@ -112,3 +112,14 @@ M6 fault scenarios 可供未来 M7/M9 复用，仅为 supporting simulator avail
 该表的数据源是内存 `FakeAcceptancePlc`（容量 3）+ 合成事件，**不是**真机证据。
 **心跳 1 s 与断连 2 s 全闪（COMM-002）本轮未实现**；PLC 侧序列号/ACK 去重仍未冻结。
 因此 PLC-001–004、COMM-001–003 的真实/正式验收状态不变。
+
+## 真机闭环里程碑（2026-09-11，硬件证据）
+
+| 范围 | 实现与版本 | Test / Daily | 数据/截图 | 结论 |
+|---|---|---|---|---|
+| 视觉 → 传送带 → 真机 PLC → 实体灯 | `pc/sorting/`、`pc/communication/reliability.py`；PLC 侧为操作者重建后的 TIA 工程（`DB_M8_Acceptance`=DB3）| `notes/tests/TEST-014-视觉到真机灯的完整闭环.md`、`notes/tests/TEST-013-真机LED与物理按键验收.md` | `evidence/data/sorting/2026-09-11-vision-to-plc-closed-loop.json`、`evidence/screenshots/sorting/2026-09-11-vision-to-plc-closed-loop.png` | 首次完整跑通：20 条分拣全部段位/灯数正确，操作者目视 1/2/3 盏均正确 |
+| 重建工程后的真机自动验收 | `plc/tools/m8_real_plc_acceptance.py`，commit `04b4622` | TEST-009（前次）、TEST-013 | `evidence/data/m8-real/2026-09-11-postrebuild-acceptance.json` / `.csv` / `-summary.md` | 12/12 AUTO PASS；193 次确认写、90 次重发 |
+
+这两行是**真机证据**，但仍然只覆盖单次会话与既有 I/O：
+断电重启、故障注入、心跳/断连报警（COMM-002）与多工况矩阵（TEST-001）仍为 TODO，
+SYS-001 / M10 状态不变。
