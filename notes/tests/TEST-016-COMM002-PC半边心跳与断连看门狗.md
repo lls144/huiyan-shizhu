@@ -92,14 +92,36 @@ SUMMARY comm_lost=True lost_for=5.0s outages=1 heartbeat_failures=5
 
 判定发生在 **2.0 s**，与规格一致；心跳失败被计数，中断被记录。
 
-### 4. 真机拔网线实测：本轮未取得
+### 4. 真机拔网线实测（最终通过）
 
-按计划让操作者在对真机运行时拔掉网线，但 35 s 记录内 **心跳 35 次、失败 0、链路始终正常**，
-说明该次网线未被拔下或未被检出，**本项判为未执行**，留待补做。
+操作者在真机运行时拔掉网线，约 10 秒后插回。最终一轮结果：
+
+```
+12:37:20  >>> RUNNING 70 s: unplug now, count to 10, plug back
+12:37:35  >>> COMM LOST: declared after 2.09s of silence (timeout 2.0s) reconnects=0
+12:37:51  >>> RECOVERED: outage=18.109 s reconnects=0
+SUMMARY   comm_lost=False outages=1 heartbeats=51 failures=17
+OUTAGES   [{'started_at': '2026-09-11T12:37:33.812+08:00',
+            'ended_at': '2026-09-11T12:37:51.999+08:00', 'duration_seconds': 18.109}]
+```
+
+**中断判定发生在 2.09 秒静默处（阈值 2.0 秒），插回后自动恢复并记录 18.109 秒中断时长。**
+
+### 5. 这一轮顺带修掉的两个真实缺陷
+
+拔网线测试的价值主要在暴露问题：
+
+| # | 现象 | 原因 | 处置 |
+|---|---|---|---|
+| 1 | 插回网线后链路**永不恢复** | snap7 客户端不会自愈，连接断了之后一直用坏 socket | `S7PlcCommandSink._reconnect()`，每个写操作最多重连一次；`GuardedPlcSink` 暴露 `reconnects` 计数 |
+| 2 | 报警延迟到 **15.8 秒** | 重连里的 `connect()` 对不应答的对端要阻塞约 **10 秒**，把看门狗取样拖稀 | 重连前先做 0.5 秒 TCP 探活（S7 的 102 端口），并给 socket 设置 `PingTimeout/SendTimeout/RecvTimeout=0.5/1/1 s` 与 `KeepAliveTime=1 s`；重连再加 2 秒最小间隔 |
+
+修复后：不可达地址路径上延迟 20.6 s → **2.73 s**，真机拔网线路径上 **2.09 s**。
+新增 5 项重连/限速单元测试，全量 **247 passed / 1 skipped**。
 
 ## 未执行 / 待补
 
-1. **真机拔网线 / 断连恢复实测**（PC 半边）：待补
+1. ~~**真机拔网线 / 断连恢复实测**~~ ✅ 已完成：2.09 s 判定中断、自动恢复、记录 18.109 s 中断
 2. **PLC 侧看门狗与“2 s 全闪”**：未实现。需要改 `FB_M8_AcceptanceHarness`（读 DBB2，
    2 s 无变化则置报警；`FB_PlcApplication` 需把该报警接入 `FB_LedDisplay.CommLost`），
    并重新编译下载；属 PLC 侧改动，需负责人确认后执行
