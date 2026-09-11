@@ -34,6 +34,7 @@ VAR
     Application : "FB_PlcApplication";
     HeartbeatWatchdog : TON_TIME;
     BlinkTimer : TON_TIME;
+    BlinkPulseState : Bool;
     BlinkPhaseState : Bool;
     HeartbeatLast : USInt;
 END_VAR
@@ -81,9 +82,12 @@ BEGIN
 
     // ---------------------------------------------------------------- COMM-002
     // Free-running 2 Hz square wave for the alarm: a TON whose IN is its own
-    // inverted Q runs for 250 ms, resets for one scan, and toggles the phase.
-    #BlinkTimer(IN := NOT #BlinkTimer.Q, PT := T#250MS);
-    IF #BlinkTimer.Q THEN
+    // inverted Q pulses every 250 ms and toggles the phase.
+    // The output goes through the Q parameter into a variable: reading the
+    // instance member #BlinkTimer.Q directly in the same scan returns the stale
+    // value on this CPU and the phase never toggled (measured 2026-09-11).
+    #BlinkTimer(IN := NOT #BlinkPulseState, PT := T#250MS, Q => #BlinkPulseState);
+    IF #BlinkPulseState THEN
         #BlinkPhaseState := NOT #BlinkPhaseState;
     END_IF;
 
