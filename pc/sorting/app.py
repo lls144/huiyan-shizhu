@@ -73,6 +73,11 @@ def _parser() -> argparse.ArgumentParser:
         action="store_true",
         help="light the lamps as soon as the belt finishes, without the physical button",
     )
+    parser.add_argument(
+        "--no-plc",
+        action="store_true",
+        help="force the PLC bridge off even when a plc config would otherwise be used",
+    )
     parser.add_argument("--no-auto-start", action="store_true")
     parser.add_argument("--offscreen", action="store_true")
     parser.add_argument("--soak-seconds", type=float, default=0.0)
@@ -100,7 +105,9 @@ def run(argv: Sequence[str] | None = None) -> int:
     # just because pc/config/plc.json has enabled=true. The bridge therefore only
     # starts for synthetic data when the operator points at a config explicitly.
     plc_config_path = args.plc_config
-    if plc_config_path is None:
+    if args.no_plc:
+        plc_config_path = None
+    elif plc_config_path is None:
         plc_config_path = Path("pc/config/plc.json") if args.source == "camera" else None
     if plc_config_path is None:
         command_sink = None
