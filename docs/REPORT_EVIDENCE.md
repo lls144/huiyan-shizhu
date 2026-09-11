@@ -90,3 +90,15 @@ M6 fault scenarios 可供未来 M7/M9 复用，仅为 supporting simulator avail
 | 入队/出队/LED 判定流程图 | `evidence/plots/plc-fifo-flow.svg` | `plc-fifo-flow.png` | `plc/docs/M8_INTERNAL_DESIGN.md`、`plc/src/*.scl`、`plc/docs/SCL_STATIC_AUDIT.md` |
 
 视觉接入真机的操作步骤见 `docs/INTEGRATION_VISION_TO_LED.md`（流程手册，不含验收结论）。
+
+## 三节传送带分拣可视化（2026-09-11，非硬件证据）
+
+| 范围 | 实现与版本 | Test / Daily | 数据 | 结论 |
+|---|---|---|---|---|
+| PC 端“三节传送带”分拣可视化 | `pc/sorting/`（`model.py`、`controller.py`、`worker.py`、`widget.py`、`window.py`、`app.py`）、`pc/config/sorting.json`；实现与测试 commit `8d306b7` | `notes/tests/TEST-011-三节传送带分拣可视化.md`；`notes/daily/2026-09-11-三节传送带分拣可视化.md` | `evidence/screenshots/sorting/2026-09-11-sorting-synthetic-proof.png`、`evidence/data/sorting/2026-09-11-sorting-synthetic-proof.json` | 合成自检通过（8 条分拣，triangle/rectangle/circle 各按 1/2/3 盏离开）；真实摄像头与真机 PLC 待测试 |
+
+本行的输入为 M3 已提交的**合成**夹具，渲染走 Qt offscreen，**没有使用摄像头，也没有连接 PLC**。
+形状→灯映射沿用 `pc/communication/models.py` 的 `SHAPE_CODES` 与 `plc/src/FB_LedDisplay.scl`，
+不是本程序新定的规则。传送带不做二次识别，只是把视觉已给出的标签可视化，
+因此**不得**填入 VISION-001~004 的证据，也**不改变** PLC-001~004、COMM-001~003、SYS-001 的 TODO 状态。
+运行手册见 `docs/SORTING_LINE.md`。

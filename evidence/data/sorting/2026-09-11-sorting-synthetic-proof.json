@@ -1,0 +1,698 @@
+{
+  "started_at": "2026-09-11T09:18:28.670+08:00",
+  "finished_at": "2026-09-11T09:18:54.760+08:00",
+  "duration_seconds": 26.052912,
+  "source_type": "synthetic",
+  "source_metadata": {
+    "source_type": "synthetic",
+    "dataset_root": "test_data\\m3\\synthetic",
+    "target_fps": 20.0,
+    "frames_per_scene": 20,
+    "loop": true,
+    "sequence": [
+      "blank",
+      "normal",
+      "normal_hold",
+      "bright",
+      "dark",
+      "occlusion",
+      "touching",
+      "blank"
+    ]
+  },
+  "frames_read": 460,
+  "frames_processed": 460,
+  "detection_count": 960,
+  "event_count": 22,
+  "processing_fps": 17.656376,
+  "average_processing_ms": 11.239253,
+  "p95_processing_ms": 18.16729,
+  "failed_reads": 0,
+  "error": null,
+  "ended_reason": "stopped",
+  "worker_clean_shutdown": true,
+  "events": [
+    {
+      "event_id": 1,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 1,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 21
+    },
+    {
+      "event_id": 2,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 2,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 21
+    },
+    {
+      "event_id": 3,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 3,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 21
+    },
+    {
+      "event_id": 4,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 4,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 101
+    },
+    {
+      "event_id": 5,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 2,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 103
+    },
+    {
+      "event_id": 6,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 3,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 103
+    },
+    {
+      "event_id": 7,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 1,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 143
+    },
+    {
+      "event_id": 8,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 4,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 143
+    },
+    {
+      "event_id": 9,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 5,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 181
+    },
+    {
+      "event_id": 10,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 6,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 181
+    },
+    {
+      "event_id": 11,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 7,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 181
+    },
+    {
+      "event_id": 12,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 8,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 261
+    },
+    {
+      "event_id": 13,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 6,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 263
+    },
+    {
+      "event_id": 14,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 7,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 263
+    },
+    {
+      "event_id": 15,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 5,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 303
+    },
+    {
+      "event_id": 16,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 8,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 303
+    },
+    {
+      "event_id": 17,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 9,
+      "label": "triangle",
+      "confidence": 0.990642,
+      "frame_index": 341
+    },
+    {
+      "event_id": 18,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 10,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 341
+    },
+    {
+      "event_id": 19,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 11,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 341
+    },
+    {
+      "event_id": 20,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 12,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 421
+    },
+    {
+      "event_id": 21,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 10,
+      "label": "rectangle",
+      "confidence": 1.0,
+      "frame_index": 423
+    },
+    {
+      "event_id": 22,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 11,
+      "label": "circle",
+      "confidence": 0.975998,
+      "frame_index": 423
+    }
+  ],
+  "final_object_states": [
+    {
+      "object_id": 1,
+      "label": "triangle",
+      "bbox": [
+        510,
+        191,
+        221,
+        310
+      ],
+      "first_seen": 20,
+      "last_seen": 139,
+      "hit_count": 120,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.990642
+    },
+    {
+      "object_id": 2,
+      "label": "rectangle",
+      "bbox": [
+        820,
+        220,
+        221,
+        261
+      ],
+      "first_seen": 20,
+      "last_seen": 99,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 1.0
+    },
+    {
+      "object_id": 3,
+      "label": "circle",
+      "bbox": [
+        1160,
+        230,
+        241,
+        241
+      ],
+      "first_seen": 20,
+      "last_seen": 99,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.975998
+    },
+    {
+      "object_id": 4,
+      "label": "unknown",
+      "bbox": [
+        820,
+        220,
+        461,
+        261
+      ],
+      "first_seen": 100,
+      "last_seen": 139,
+      "hit_count": 40,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 5,
+      "label": "triangle",
+      "bbox": [
+        510,
+        191,
+        221,
+        310
+      ],
+      "first_seen": 180,
+      "last_seen": 299,
+      "hit_count": 120,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.990642
+    },
+    {
+      "object_id": 6,
+      "label": "rectangle",
+      "bbox": [
+        820,
+        220,
+        221,
+        261
+      ],
+      "first_seen": 180,
+      "last_seen": 259,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 1.0
+    },
+    {
+      "object_id": 7,
+      "label": "circle",
+      "bbox": [
+        1160,
+        230,
+        241,
+        241
+      ],
+      "first_seen": 180,
+      "last_seen": 259,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.975998
+    },
+    {
+      "object_id": 8,
+      "label": "unknown",
+      "bbox": [
+        820,
+        220,
+        461,
+        261
+      ],
+      "first_seen": 260,
+      "last_seen": 299,
+      "hit_count": 40,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 9,
+      "label": "triangle",
+      "bbox": [
+        510,
+        191,
+        221,
+        310
+      ],
+      "first_seen": 340,
+      "last_seen": 459,
+      "hit_count": 120,
+      "consecutive_hits": 120,
+      "miss_count": 0,
+      "confirmed": true,
+      "active": true,
+      "event_emitted": true,
+      "status": "confirmed",
+      "confidence": 0.990642
+    },
+    {
+      "object_id": 10,
+      "label": "rectangle",
+      "bbox": [
+        820,
+        220,
+        221,
+        261
+      ],
+      "first_seen": 340,
+      "last_seen": 419,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 1.0
+    },
+    {
+      "object_id": 11,
+      "label": "circle",
+      "bbox": [
+        1160,
+        230,
+        241,
+        241
+      ],
+      "first_seen": 340,
+      "last_seen": 419,
+      "hit_count": 80,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.975998
+    },
+    {
+      "object_id": 12,
+      "label": "unknown",
+      "bbox": [
+        820,
+        220,
+        461,
+        261
+      ],
+      "first_seen": 420,
+      "last_seen": 459,
+      "hit_count": 40,
+      "consecutive_hits": 40,
+      "miss_count": 0,
+      "confirmed": true,
+      "active": true,
+      "event_emitted": true,
+      "status": "confirmed",
+      "confidence": 0.0
+    }
+  ],
+  "evidence_records": [],
+  "plc_command_count": 0,
+  "plc_sink_error": null,
+  "plc_results": [],
+  "schema_version": 1,
+  "milestone": "M-SORTING-VIZ",
+  "acceptance_status": "synthetic_offline_observation",
+  "git": {
+    "commit": "8d306b736ab706f8e8ece47b0d2e92f3b9e1df46",
+    "dirty": true
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10",
+    "pyside6": "6.11.2"
+  },
+  "vision_config": {
+    "roi_left": 0.24,
+    "roi_top": 0.08,
+    "roi_right": 0.76,
+    "roi_bottom": 0.75,
+    "gaussian_kernel_size": 5,
+    "morphology_kernel_size": 3,
+    "morphology_open_iterations": 1,
+    "canny_low_threshold": 50,
+    "canny_high_threshold": 150,
+    "min_area_ratio": 0.02,
+    "max_area_ratio": 0.25,
+    "min_solidity": 0.9,
+    "border_margin_pixels": 2,
+    "approx_epsilon_ratio": 0.02,
+    "rectangle_max_angle_deviation_degrees": 25.0,
+    "rectangle_min_fill_ratio": 0.8,
+    "circle_min_vertices": 6,
+    "circle_min_circularity": 0.78,
+    "circle_min_aspect_ratio": 0.8,
+    "triangle_confidence_good_circularity": 0.62,
+    "triangle_confidence_max_circularity": 0.72,
+    "rectangle_confidence_good_angle_deviation_degrees": 5.0,
+    "rectangle_confidence_good_fill_ratio": 0.95,
+    "circle_confidence_good_vertices": 8,
+    "circle_confidence_good_circularity": 0.92,
+    "circle_confidence_good_aspect_ratio": 0.95,
+    "confidence_good_solidity": 0.98,
+    "confidence_good_area_clearance_ratio": 0.03,
+    "confidence_topology_weight": 0.5,
+    "confidence_geometry_weight": 0.3,
+    "confidence_quality_weight": 0.2,
+    "auto_hsv_min_value": 140,
+    "auto_hsv_max_saturation": 100,
+    "auto_morphology_kernel_size": 11,
+    "auto_morphology_close_iterations": 2,
+    "auto_morphology_open_iterations": 1,
+    "auto_min_area_ratio": 0.12,
+    "auto_max_area_ratio": 0.85,
+    "auto_preferred_area_ratio": 0.35,
+    "auto_min_rectangularity": 0.7,
+    "auto_max_center_distance_ratio": 0.5,
+    "auto_min_bright_fraction": 0.6,
+    "auto_approx_epsilon_ratio": 0.03,
+    "auto_inner_margin_ratio": 0.04,
+    "auto_min_score": 0.45,
+    "auto_score_area_weight": 0.2,
+    "auto_score_rectangularity_weight": 0.3,
+    "auto_score_center_weight": 0.25,
+    "auto_score_brightness_weight": 0.25,
+    "manual_min_width_pixels": 80,
+    "manual_min_height_pixels": 80,
+    "stability_window_size": 5,
+    "stability_min_votes": 3,
+    "fps_smoothing_window": 30,
+    "live_max_consecutive_read_failures": 30,
+    "live_preview_width": 1280,
+    "live_preview_height": 720,
+    "preprocess_mode": "otsu",
+    "comparison_preprocess_mode": "clahe_otsu",
+    "clahe_clip_limit": 2.0,
+    "clahe_tile_grid_size": 8
+  },
+  "event_config": {
+    "min_confirm_frames": 2,
+    "max_missing_frames": 3,
+    "iou_threshold": 0.3,
+    "center_distance_threshold": 80.0
+  },
+  "sorting_config": {
+    "belt_speed_units_per_second": 0.6,
+    "min_gap_units": 0.3,
+    "eject_seconds": 0.85,
+    "max_pending_items": 6,
+    "plc_trigger": "exit"
+  },
+  "shape_to_lamp_map": {
+    "triangle": 1,
+    "rectangle": 2,
+    "circle": 3
+  },
+  "plc_enabled": false,
+  "plc_state_last": null,
+  "plc_dispatch_count": 0,
+  "plc_sent_count": 0,
+  "plc_error_count": 0,
+  "sorting_results": [
+    {
+      "item_id": 1,
+      "label": "triangle",
+      "shape_code": 1,
+      "lamp_count": 1,
+      "stage_index": 0,
+      "stage_key": "triangle",
+      "semantic_id": 1,
+      "source_event_id": 1,
+      "frame_index": 63,
+      "lamps": [
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "item_id": 2,
+      "label": "rectangle",
+      "shape_code": 2,
+      "lamp_count": 2,
+      "stage_index": 1,
+      "stage_key": "rectangle",
+      "semantic_id": 2,
+      "source_event_id": 2,
+      "frame_index": 118,
+      "lamps": [
+        true,
+        true,
+        false
+      ]
+    },
+    {
+      "item_id": 3,
+      "label": "circle",
+      "shape_code": 3,
+      "lamp_count": 3,
+      "stage_index": 2,
+      "stage_key": "circle",
+      "semantic_id": 3,
+      "source_event_id": 3,
+      "frame_index": 173,
+      "lamps": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "item_id": 4,
+      "label": "triangle",
+      "shape_code": 1,
+      "lamp_count": 1,
+      "stage_index": 0,
+      "stage_key": "triangle",
+      "semantic_id": 5,
+      "source_event_id": 9,
+      "frame_index": 225,
+      "lamps": [
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "item_id": 5,
+      "label": "rectangle",
+      "shape_code": 2,
+      "lamp_count": 2,
+      "stage_index": 1,
+      "stage_key": "rectangle",
+      "semantic_id": 6,
+      "source_event_id": 10,
+      "frame_index": 279,
+      "lamps": [
+        true,
+        true,
+        false
+      ]
+    },
+    {
+      "item_id": 6,
+      "label": "circle",
+      "shape_code": 3,
+      "lamp_count": 3,
+      "stage_index": 2,
+      "stage_key": "circle",
+      "semantic_id": 7,
+      "source_event_id": 11,
+      "frame_index": 333,
+      "lamps": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "item_id": 7,
+      "label": "triangle",
+      "shape_code": 1,
+      "lamp_count": 1,
+      "stage_index": 0,
+      "stage_key": "triangle",
+      "semantic_id": 9,
+      "source_event_id": 17,
+      "frame_index": 385,
+      "lamps": [
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "item_id": 8,
+      "label": "rectangle",
+      "shape_code": 2,
+      "lamp_count": 2,
+      "stage_index": 1,
+      "stage_key": "rectangle",
+      "semantic_id": 10,
+      "source_event_id": 18,
+      "frame_index": 438,
+      "lamps": [
+        true,
+        true,
+        false
+      ]
+    }
+  ],
+  "sorting_result_count": 8,
+  "sorting_results_by_shape": {
+    "triangle": 3,
+    "rectangle": 3,
+    "circle": 2
+  },
+  "gui_updates": 460,
+  "clean_shutdown": true,
+  "requested_soak_seconds": 26.0,
+  "python_traced_current_bytes": 58087678,
+  "python_traced_peak_bytes": 62145636,
+  "screenshot": "output\\sorting\\synthetic-proof.png"
+}
