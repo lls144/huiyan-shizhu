@@ -428,6 +428,16 @@ class GuardedPlcSink:
         self.refresh_state()
         return result
 
+    def write_heartbeat(self, counter: int) -> int:
+        """Delegate the COMM-002 heartbeat to the inner transport."""
+
+        sender = getattr(self.inner, "write_heartbeat", None)
+        if sender is None:
+            raise RuntimeError("the inner sink does not support heartbeats")
+        attempts = sender(counter)
+        self._collect_resends()
+        return attempts
+
     def reset(self) -> PlcCommandResult:
         try:
             result = self.inner.reset()

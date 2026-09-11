@@ -24,6 +24,10 @@ class PlcControls:
     reset_request: bool = False
     shape_code: int = 0
     semantic_id: int = 0
+    # DBB2 (M8_AcceptanceData.ReservedInputByte2) carries the COMM-002 heartbeat
+    # counter on its low byte. The remaining reserved control bytes stay zero so
+    # the packed block of a plain command is unchanged.
+    heartbeat: int = 0
 
     def pack(self) -> bytes:
         raw = bytearray(CONTROL_SIZE)
@@ -35,6 +39,7 @@ class PlcControls:
             | (int(self.reset_request) << 4)
         )
         raw[1] = int(self.shape_code) & 0xFF
+        raw[2] = int(self.heartbeat) & 0xFF
         raw[4:8] = int(self.semantic_id).to_bytes(4, byteorder="big", signed=True)
         return bytes(raw)
 
@@ -54,6 +59,7 @@ def unpack_controls(raw: bytes) -> PlcControls:
         reset_request=bit(4),
         shape_code=raw[1],
         semantic_id=int.from_bytes(raw[4:8], byteorder="big", signed=True),
+        heartbeat=raw[2],
     )
 
 

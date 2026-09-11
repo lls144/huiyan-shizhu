@@ -11,6 +11,7 @@ from typing import Sequence
 from PySide6.QtCore import Signal
 
 from pc.communication.sink import PlcCommandSink
+from pc.communication.heartbeat import HeartbeatMonitor
 from pc.events.config import EventConfig
 from pc.events.models import VisionEvent
 from pc.gui.worker import (
@@ -93,6 +94,21 @@ class SortingVisionWorker(VisionWorker):
             command_sink,
         )
         self.controller = SortingController(sorting_config, command_sink)
+        plc_config = getattr(command_sink, "config", None)
+        self.heartbeat: HeartbeatMonitor | None = (
+            HeartbeatMonitor(
+                command_sink,
+                enabled=bool(getattr(plc_config, "heartbeat_enabled", True)),
+                interval_seconds=float(
+                    getattr(plc_config, "heartbeat_interval_seconds", 1.0)
+                ),
+                timeout_seconds=float(
+                    getattr(plc_config, "comm_loss_timeout_seconds", 2.0)
+                ),
+            )
+            if command_sink is not None
+            else None
+        )
         self.control_requests = control_requests or ControlRequestBuffer()
         self._last_tick: float | None = None
         self._last_plc_poll = 0.0
@@ -112,6 +128,8 @@ class SortingVisionWorker(VisionWorker):
         self.sorting_updated.emit(self.controller.snapshot())
         self._serve_control_requests()
         self._flush_deferred()
+        if self.heartbeat is not None:
+            self.heartbeat.tick_heartbeat()
         self._publish_plc_status()
 
     def _serve_control_requests(self) -> None:
@@ -163,11 +181,18 @@ class SortingVisionWorker(VisionWorker):
         self._last_plc_poll = now
         status_reader = getattr(self.command_sink, "status", None)
         if status_reader is not None:
-            refresh = getattr(self.command_sink, "refresh_state", None)
             try:
-                if refresh is not None:
-                    refresh()
-                self.plc_state_updated.emit({"status": status_reader().to_record()})
+                if self.heartbeat is not None:
+                    health = self.heartbeat.tick()
+                else:
+                    refresh = getattr(self.command_sink, "refresh_state", None)
+                    if refresh is not None:
+                        refresh()
+                    health = None
+                payload: dict[str, object] = {"status": status_reader().to_record()}
+                if health is not None:
+                    payload["health"] = health.to_record()
+                self.plc_state_updated.emit(payload)
             except Exception as error:
                 self.plc_state_updated.emit({"error": f"{type(error).__name__}: {error}"})
             return

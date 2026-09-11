@@ -35,6 +35,10 @@ class PlcCommunicationConfig:
     # unconfirmed.
     confirm_repoll_attempts: int = 3
     confirm_repoll_interval_seconds: float = 0.15
+    # COMM-002 PC half: 1 s heartbeat, 2 s communication-loss alarm.
+    heartbeat_enabled: bool = True
+    heartbeat_interval_seconds: float = 1.0
+    comm_loss_timeout_seconds: float = 2.0
 
     @classmethod
     def from_dict(cls, values: dict[str, Any]) -> "PlcCommunicationConfig":
@@ -59,6 +63,9 @@ class PlcCommunicationConfig:
                 ("command_timeout_seconds", 3.0),
                 ("confirm_repoll_attempts", 3),
                 ("confirm_repoll_interval_seconds", 0.15),
+                ("heartbeat_enabled", True),
+                ("heartbeat_interval_seconds", 1.0),
+                ("comm_loss_timeout_seconds", 2.0),
             )
         }
         config = cls(**known)
@@ -92,6 +99,14 @@ class PlcCommunicationConfig:
             raise ValueError("confirm_repoll_attempts must be at least 1")
         if self.confirm_repoll_interval_seconds < 0:
             raise ValueError("confirm_repoll_interval_seconds must be non-negative")
+        if self.heartbeat_interval_seconds <= 0:
+            raise ValueError("heartbeat_interval_seconds must be positive")
+        if self.comm_loss_timeout_seconds <= 0:
+            raise ValueError("comm_loss_timeout_seconds must be positive")
+        if self.comm_loss_timeout_seconds <= self.heartbeat_interval_seconds:
+            raise ValueError(
+                "comm_loss_timeout_seconds must be larger than heartbeat_interval_seconds"
+            )
 
 
 def load_plc_communication_config(path: str | Path) -> PlcCommunicationConfig:

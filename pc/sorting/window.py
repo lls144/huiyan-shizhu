@@ -270,6 +270,8 @@ class SortingWindow(QMainWindow):
         self.plc_deferred_value = QLabel("—")
         self.plc_resend_value = QLabel("—")
         self.plc_unconfirmed_value = QLabel("—")
+        self.plc_heartbeat_value = QLabel("—")
+        self.plc_link_value = QLabel("—")
         self.plc_error_value = QLabel("No errors")
         self.plc_error_value.setObjectName("errorValue")
         self.plc_error_value.setWordWrap(True)
@@ -281,6 +283,8 @@ class SortingWindow(QMainWindow):
             ("Deferred (queue full)", self.plc_deferred_value),
             ("Resends / timeouts", self.plc_resend_value),
             ("Unconfirmed", self.plc_unconfirmed_value),
+            ("Heartbeat", self.plc_heartbeat_value),
+            ("Link (COMM-002)", self.plc_link_value),
             ("Last error", self.plc_error_value),
         )
         for row, (key_text, value) in enumerate(rows):
@@ -526,6 +530,26 @@ class SortingWindow(QMainWindow):
             f"{counters.get('write_resends', 0)} / {counters.get('timeouts', 0)}"
         )
         self.plc_unconfirmed_value.setText(f"{counters.get('unconfirmed', 0)} 笔待核实")
+        health = data.get("health")
+        if isinstance(health, dict):
+            if not health.get("enabled"):
+                self.plc_heartbeat_value.setText("disabled")
+            else:
+                self.plc_heartbeat_value.setText(
+                    f"{health.get('heartbeat_count', 0)} 次 · 均值 "
+                    f"{health.get('heartbeat_interval_mean_seconds', 0):.2f} s"
+                )
+            if health.get("comm_lost"):
+                self.plc_link_value.setText(
+                    f"通信中断 {health.get('comm_lost_for_seconds', 0):.1f} s"
+                )
+                _set_dynamic_property(self.plc_link_value, "hasError", True)
+            else:
+                outages = health.get("outage_count", 0)
+                self.plc_link_value.setText(
+                    "正常" + (f"（历史中断 {outages} 次）" if outages else "")
+                )
+                _set_dynamic_property(self.plc_link_value, "hasError", False)
 
     def _render_preview(self) -> None:
         if self._last_image is None:

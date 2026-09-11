@@ -101,6 +101,7 @@ class S7PlcCommandSink:
         self._client = low_level or Snap7LowLevelClient()
         self._started = False
         self._write_retries = 0
+        self._heartbeat = 0
 
     @property
     def write_retry_count(self) -> int:
@@ -137,6 +138,11 @@ class S7PlcCommandSink:
             semantic_id=0,
         )
 
+    def write_heartbeat(self, counter: int) -> int:
+        """Send the COMM-002 heartbeat (DBB2) and confirm the PLC really holds it."""
+
+        return self._write(heartbeat=int(counter) & 0xFF)
+
     def _read_controls(self) -> bytes:
         return bytes(self._client.db_read(self.config.db_number, 0, CONTROL_SIZE))
 
@@ -157,6 +163,7 @@ class S7PlcCommandSink:
             "reset_request": False,
             "shape_code": 0,
             "semantic_id": 0,
+            "heartbeat": self._heartbeat,
         }
         values.update(changes)
         controls = {
@@ -167,8 +174,10 @@ class S7PlcCommandSink:
             "reset_request": bool(values["reset_request"]),
             "shape_code": int(values["shape_code"]),
             "semantic_id": int(values["semantic_id"]),
+            "heartbeat": int(values["heartbeat"]) & 0xFF,
         }
         raw = PlcControls(**controls).pack()
+        self._heartbeat = int(controls["heartbeat"])
         attempts = 0
         last = b""
         for attempt in range(1, self.config.write_confirm_attempts + 1):

@@ -16,5 +16,8 @@
   "duplicate_policy": "refuse",
   "command_timeout_seconds": 3.0,
   "confirm_repoll_attempts": 3,
-  "confirm_repoll_interval_seconds": 0.15
+  "confirm_repoll_interval_seconds": 0.15,
+  "heartbeat_enabled": true,
+  "heartbeat_interval_seconds": 1.0,
+  "comm_loss_timeout_seconds": 2.0
 }
