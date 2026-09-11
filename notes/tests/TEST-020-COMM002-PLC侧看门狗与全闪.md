@@ -5,7 +5,7 @@ tags:
   - 慧眼识珠
   - test
   - PLC
-status: 待下载验证
+result: pass
 ---
 
 # TEST-020 COMM-002 PLC 侧看门狗与全闪
@@ -13,11 +13,12 @@ status: 待下载验证
 - **Test ID**：TEST-020
 - **对应 Requirement ID**：COMM-002 的 **PLC 侧**（PLC 检测中断 2 秒 → LED 全闪）
 - **日期**：2026-09-11
-- **状态**：**已实现，待 TIA 重新生成并下载后做真机验证**（本轮不宣称通过）
+- **状态**：**PASS**（2026-09-11 16:55 修复版真机复验通过）
 
-> [!warning] 证据边界
-> 本记录只证明**源码与 PC 侧配套已改好**，并且 PC 侧全程有单元测试支撑（全量 250 passed / 1 skipped）。
-> **PLC 侧尚未下载、真机上尚未观察到三盏灯闪烁**，因此 COMM-002 整体仍为 `TODO`，不能记 PASS。
+> [!note] 证据边界
+> 本记录已包含**真机 PASS**：专用工具 `plc/tools/m8_comm002_real_check.py` 走生产用 PC 桥驱动，
+> 五阶段（arm/silence/blink/resume/cleanup）全部通过。
+> 它只读 Q 状态位，**不替代**肉眼对实体灯的确认；操作者已现场确认三盏灯一起闪。
 
 ## 实现
 
@@ -119,12 +120,30 @@ harness 内新增：
 修复：改成与看门狗一致的写法 —— `Q => #BlinkPulseState` 再判断该变量。改动 3 行，
 见 `plc/src/FB_M8_AcceptanceHarness.scl`（commit `3228f0f`）。
 
-**修复后的真机复验待操作者重新生成并下载后由同一工具执行。**
+### 修复后的真机复验（2026-09-11 16:55）
+
+操作者重新生成并下载后，同一工具直接 **PASSED**：
+
+| 阶段 | 实测 |
+|---|---|
+| ARM | 报警位始终 FALSE ✅ |
+| SILENCE | 最后心跳后 **2.015 s** 触发报警 ✅ |
+| **BLINK** | 2.468 s / 41 次采样，**10 次跳变**，实测周期 **0.4936 s → 2.026 Hz**，三盏灯同步，`saw_lit` 与 `saw_dark` 均为真 ✅ |
+| RESUME | 报警位清零 ✅ |
+| CLEANUP | 解除武装、队列 0、灯空闲 ✅ |
+
+工具结论：`PASSED: the PLC watchdog alarmed after 2 s of silence, blinked the three lamps, and cleared.`
+
+证据：`evidence/data/m8-real/2026-09-11-comm002-heartbeat-alarm-after-fix.json` / `.csv`
+（修复前的失败证据保留为 `...-heartbeat-alarm.json`，两份都留档，可对比）。
+
+**COMM-002 的两侧现已全部真机验证通过**：PC 每秒心跳（1.00–1.03 s）、PLC 2 s 无心跳报警、
+三盏灯 2 Hz 全闪、心跳恢复后自动清除。
 
 ## 未执行 / 待补
 
-1. **修复版的 TIA 重新生成与下载**（操作者），随后重跑 `m8_comm002_real_check.py`
-2. 真机观察"2 秒后三盏灯全闪"的目视确认（工具只读 Q 状态位，不替代肉眼）
+1. ~~修复版重新生成与下载 + 重跑工具~~ ✅ 已完成
+2. ~~肉眼确认"2 秒后三盏灯全闪"~~ ✅ 操作者现场确认
 3. 报警闪烁频率（2 Hz）是否符合需求未确认；需求只写"全闪"，频率为本轮设计选择
 4. 报警期间是否应暂停出队/入队：本轮未改，仍按原语义工作
 
