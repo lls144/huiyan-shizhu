@@ -25,7 +25,7 @@
 | NumPy | 2.5.2 | `requirements.txt` |
 | pytest | 9.1.1 | 13 项自动化测试通过 |
 | 摄像头枚举 | `cv2-enumerate-cameras` 1.3.3 | `requirements.txt` |
-| 摄像头（当前） | 笔记本内置 `HD Webcam`，VID `2B7E`，PID `B663`；2026-09-10 起使用 | TEST-010 |
+| 摄像头（当前） | 笔记本内置 `HD Webcam`，VID `2B7E`，PID `B663`；2026-09-10 起使用。**方法学限制：固定在屏幕上方，无法三脚架垂直俯拍，采集须手持 A3 白纸对准镜头** | TEST-010、TEST-017、TEST-018 |
 | 摄像头（历史） | Insta360 Ace Pro 2，VID `2E1A`，PID `1003`；已不再接入本机 | TEST-001 |
 | 当前枚举索引 | 0（MSMF） | 仅为本次枚举结果；运行时仍按名称选择 |
 | 采集模式（当前） | MSMF / 1280×720 / 请求 30 fps；实测 29.99 fps、1800/1800 帧、最大帧间隔 0.084 s | TEST-010 |
@@ -42,10 +42,10 @@
 | 项目 | 状态 | 说明 |
 |---|---|---|
 | PySide6 | 已安装 | M5 实测锁定 6.11.2；绑定 Qt 6.11.2 |
-| PLC 型号与固件 | 型号已确认 / 固件待实测 | 2026-09-05 负责人确认 CPU 1214C DC/DC/DC；同学报 V4.1，在线证据待补 |
+| PLC 型号与固件 | 型号与在线固件已确认 | 2026-09-05 负责人确认 CPU 1214C DC/DC/DC；**在线固件 `V4.5.1`**（TIA 下载预览 + 原生 python-snap7 双来源一致，ISSUE-002 已结案）；Online & diagnostics 截图待归档 |
 | PLC 编程软件及版本 | 计划环境 | 同学使用虚拟机 + TIA Portal V20；来宾 OS、Update、许可及运行验证待补 |
 | PLC IP、端口、协议 | 部分资料已登记 | 本机 .1、虚拟机 .2 为口述；PLC IP 不能据此推定，详见 `PLC_HARDWARE.md` |
-| 固定相机与白色工作区 | PARTIAL | M2 已在两种相机机位下完成实时识别；背景板是否严格为 A3 及其材质未单独测量 |
+| 固定相机与白色工作区 | PARTIAL | 两台相机各完成一轮实时识别（Insta360 为历史，现用内置 HD Webcam）；背景板是否严格为 A3 及其材质未单独测量，受控照明未能复现 |
 
 M1 的最小依赖已锁定在 `requirements.txt`。虚拟环境 `.venv/` 不进入 Git。
 
@@ -68,14 +68,14 @@ M1 的最小依赖已锁定在 `requirements.txt`。虚拟环境 `.venv/` 不进
 ## M2 第二阶段真实验证环境
 
 - 仍使用 Python 3.12.10、OpenCV 5.0.0、NumPy 2.5.2 和 pytest 9.1.1，未新增第三方依赖。
-- 自动化测试通过 mock 验证复用 M1 摄像头打开函数；真实验收另行使用 Insta360 Ace Pro 2 USB Webcam，VID `2E1A`、PID `1003`、DirectShow、MJPG、1920×1080@30。
+- 自动化测试通过 mock 验证复用 M1 摄像头打开函数；M2 的真实验收**历史轮次**使用 Insta360 Ace Pro 2 USB Webcam（VID `2E1A`、PID `1003`、DirectShow、MJPG、1920×1080@30）；**现用相机为内置 `HD Webcam`**，M2 已用 MSMF / 1280×720 / YUY2 重跑（TEST-017）。
 - 第一轮 session 处理 13087 帧，处理 FPS 27.547318；第二轮处理 8989 帧，处理 FPS 29.473403。两轮均 `failed_reads=0`、`error=null`。
 - 第一轮使用 manual / selected ROI；第二轮改变相机机位后未复用旧 ROI，使用 auto / detected ROI，score 0.677265。实际数据见 TEST-003 和 `evidence/data/m2-live-acceptance-summary.json`。
 
 ## M3 软件准备环境
 
 - 继续复用 M2 的 Python、OpenCV、NumPy、摄像头配置和 ROI 校准；未新增第三方依赖。
-- 新增多目标合成测试和 Otsu / CLAHE+Otsu 同帧证据测试；2026-09-07 已用真实 Insta360 Ace Pro 2 完成 normal、bright/side、dark、partial occlusion、touching/merged 五项验收，详见 TEST-004。
+- 新增多目标合成测试和 Otsu / CLAHE+Otsu 同帧证据测试；2026-09-07 已用真实 Insta360 Ace Pro 2 完成 normal、bright/side、dark、partial occlusion、touching/merged 五项验收（历史，详见 TEST-004）。**2026-09-11 在内置 HD Webcam 上完成 normal 与 bright/side 两组复测，详见 TEST-018。**
 
 ## M5 GUI 软件环境
 

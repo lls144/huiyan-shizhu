@@ -14,12 +14,12 @@
 
 - 主开发电脑：Windows 11。
 - 另有 Ubuntu 环境，但版本与用途尚未确认。
-- 摄像头当前计划优先使用 Insta360 Ace Pro 2 的 USB Webcam 模式。
+- 摄像头：**当前唯一可用的是笔记本内置 `HD Webcam`**（MSMF、1280×720、YUY2，实测 30 fps）。原 Insta360 Ace Pro 2 已不再接入本机，其 M1–M5 证据只作历史保留，不得当作现用相机的验收结论。
 - 摄像头计划用三脚架固定并垂直俯拍。
 - 背景计划使用 A3 白色背景。
 - PLC 和最终上位机联调设备主要位于实验室。
-- PLC 参数统一见 `docs/PLC_HARDWARE.md`：现场确认实际设备为普通 S7-1200 CPU 1214C DC/DC/DC，MLFB `6ES7 214-1AG40-0XB0`；PLC 登记地址为 `192.0.2.1/24`，Windows Host 的 Realtek PLC 专用网卡为 `192.0.2.10/24` 且已只读验证可达。固件 V4.1 仍为操作者报告、待 TIA 在线读取；TIA V20 当前作为实际编程环境使用，但 VM 网卡模式、PG/PC 接口、最终协议和项目 I/O 映射仍待确认。指导书 1215C 仅为教学示例。
-- 任务书硬件表写明“电脑摄像头”和“网线”，当前 Insta360 方案及最终通信介质必须通过实际测试或实验室条件确认。
+- PLC 参数统一见 `docs/PLC_HARDWARE.md`：现场确认实际设备为普通 S7-1200 CPU 1214C DC/DC/DC，MLFB `6ES7 214-1AG40-0XB0`；PLC 登记地址为 `192.0.2.1/24`，Windows Host 的 Realtek PLC 专用网卡为 `192.0.2.10/24` 且已只读验证可达。**在线固件 `V4.5.1`**（TIA 下载预览 + 原生 python-snap7 双来源一致，ISSUE-002 已结案；Online & diagnostics 截图待归档）；TIA V20 当前作为实际编程环境使用，操作者已于 2026-09-11 完成工程修复与下载，但 VM 网卡模式、PG/PC 接口、最终协议和项目 I/O 映射仍待确认。指导书 1215C 仅为教学示例。
+- 任务书硬件表写明“电脑摄像头”和“网线”。内置 HD Webcam 符合“电脑摄像头”的字面要求且已完成 M1–M5 重新验收；但它是固定朝向、无法三脚架垂直俯拍，采集时必须手持 A3 白纸对准镜头，这构成方法学限制（见 `notes/tests/TEST-018-内置摄像头多目标与光照验收.md`）。最终通信介质仍须实验室确认。
 
 ## PC 端技术约束
 
@@ -61,7 +61,7 @@ M2、M3、M4、M5 已完成真实摄像头验收；M6 已完成纯离线 Fake PL
 
 ## 两人协作必读
 
-2026-09-05 后续明确授权 M6 纯离线 Fake PLC，并已通过 TEST-007（16 个场景、确定性重放、M4 集成），M6 为 DONE。2026-09-07，M3/M4/M5 的真实 Insta360 验收经 runtime JSON/CSV、图片和 session 审计后均为 DONE。M7/M8/M9 仍 TODO，不自动推进。模拟器位于 `simulator/`，共享协议未冻结，真实 COMM/PLC 需求不因模拟结果关闭。
+2026-09-05 后续明确授权 M6 纯离线 Fake PLC，并已通过 TEST-007（16 个场景、确定性重放、M4 集成），M6 为 DONE。2026-09-07，M3/M4/M5 的真实 Insta360 验收经 runtime JSON/CSV、图片和 session 审计后均为 DONE。**2026-09-11 相机更换为内置 HD Webcam 后，M1–M5 已在 TEST-010 / TEST-017 / TEST-018 / TEST-019 上重新验收**；旧 Insta360 记录保留为历史，两者不可混用。M7/M8/M9 仍 TODO，不自动推进。模拟器位于 `simulator/`，共享协议未冻结，真实 COMM/PLC 需求不因模拟结果关闭。
 
 - 项目负责人（仓库所有者）主导需求、架构、PC 端、接口定版、阶段验收与主分支合并；PLC 同学负责 `plc/`。Collaborator 权限不等于项目决策权。
 - 每次工作先读 `docs/COLLABORATION.md`、`docs/PLC_HARDWARE.md`、`docs/PLC_INTERFACE.md`；修改 `plc/` 前还须读 `plc/AGENTS.md`。

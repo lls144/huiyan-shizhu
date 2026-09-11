@@ -21,7 +21,7 @@
 |---|---|---|---|
 | A1 | 实验箱铭牌与型号 | 现场铭牌照片；CPU 应登记为普通 S7-1200 CPU 1214C DC/DC/DC | TODO（照片路径） |
 | A2 | 完整 MLFB | 铭牌/在线信息读数；应为 `6ES7 214-1AG40-0XB0` | TODO |
-| A3 | 在线固件版本 | TIA Online & diagnostics 实际读数 | **冲突待裁定**，见 [ISSUE-002](../notes/issues/ISSUE-002-固件版本登记不一致.md) |
+| A3 | 在线固件版本 | TIA Online & diagnostics 实际读数 | 已登记 `V4.5.1`（TIA 下载预览 + 原生 python-snap7 双来源一致，[ISSUE-002](../notes/issues/ISSUE-002-固件版本登记不一致.md) 已结案）；**Online & diagnostics 截图仍待归档** |
 | A4 | 目标 PLC 在线身份 | TIA Accessible devices 中确认该设备即项目目标 PLC | TODO |
 | A5 | 设备组态 | 与在线一致的 CPU 型号、固件、机架/插槽 | TODO |
 | A6 | 保留 `Rack=0 / Slot=1` | 与 `pc/config/plc.json` 及 `plc/tools` 默认一致，否则记录偏差 | TODO |

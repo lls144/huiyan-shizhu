@@ -13,11 +13,11 @@
 ## 当前状态
 
 - 当前阶段：M2 单目标、M3 多目标与抗光照、M4 防重复识别与事件生成、M5 GUI、M6 Fake PLC 均已完成各自定义范围内的验收；M7 及以后未开始。
-- 10 张真实离线图片回归与两种机位下共 8 项 Insta360 实时摄像头验收均通过；实时证据见 `TEST-003` 和 `evidence/screenshots/m2/live/`。
+- 10 张真实离线图片回归通过。实时单目标验收先后在两台相机上各做一轮：Insta360（`TEST-003`，历史）与**现用内置 `HD Webcam`（`TEST-017`，2026-09-11）**；后者证据见 `evidence/screenshots/m2/live-builtin/`。
 - 实时入口复用 M1 的设备选择和 `open_configured_camera`，没有复制第二套摄像头管理逻辑。
-- M3 已用 Insta360 对正常、较亮/侧光、较暗、部分遮挡和接触/粘连 5 个真实场景完成 Otsu / CLAHE+Otsu 同帧审计。前三种光照两种方法均完整识别三类；遮挡输出 `circle + unknown + triangle`，接触输出 `unknown + triangle`，失败样例已保留。默认方案继续使用更简单的 Otsu。
+- M3 已用 Insta360 对正常、较亮/侧光、较暗、部分遮挡和接触/粘连 5 个真实场景完成 Otsu / CLAHE+Otsu 同帧审计（`TEST-004`，历史）。前三种光照两种方法均完整识别三类；遮挡输出 `circle + unknown + triangle`，接触输出 `unknown + triangle`，失败样例已保留。默认方案继续使用更简单的 Otsu。**2026-09-11 在内置 HD Webcam 上复测（`TEST-018`）：正常与侧光两组均同屏 3 个目标且标签正确；"较暗"因摄像头自动曝光补偿未能真正变暗，如实记为未验证；遮挡/粘连两组沿用旧结论。**
 - M4 已完成真实 circle 生命周期审计：同一 #75 持续停留仅一次 ENTER，离场产生 EXIT，重入后新 #76 产生 ENTER；短暂遮挡保持 ID 的结论明确标记为现场人工观察 + GUI 截图，而非 JSON 逐帧证据。
-- M5 已完成 1577.142974 秒 Insta360 GUI 真实运行：46235/46235 帧，processing/GUI 均为 29.315668 FPS，0 failed read、0 error，Stop 后 clean shutdown。auto ROI 未找到合格区域后 manual ROI 成功并锁定。
+- M5 已完成 1577.142974 秒 Insta360 GUI 真实运行（历史）：46235/46235 帧，processing/GUI 均为 29.315668 FPS，0 failed read、0 error，Stop 后 clean shutdown。**2026-09-11 在内置 HD Webcam 上重跑（`TEST-019`）：600 秒空场长跑处理与界面更新同为 29.234 FPS、0 丢帧、0 缓冲覆盖、正常停止；另有 75 秒带三类目标的短跑，处理与界面更新同为 23.779 FPS 且画面/类别/置信度/目标状态/事件同步显示。**
 - M6 Fake PLC 已完成纯离线验收（16 场景、确定性故障重放、M4 集成）；通信协议与真实 PLC 实现仍未开始。
 - 所有尚无真实测试证据的结果均标记为 `TODO` 或“待测试”。
 
@@ -68,10 +68,10 @@ scripts/               辅助脚本
 
 ## 当前尚未确定的硬件信息
 
-- 现场确认实际设备为普通 S7-1200 CPU 1214C DC/DC/DC，完整 MLFB `6ES7 214-1AG40-0XB0`；固件 V4.1 仍为操作者报告、待 TIA 在线读取。TIA Portal V20 当前作为实际编程环境使用，其 Update、许可和设备目录兼容性仍待记录。
+- 现场确认实际设备为普通 S7-1200 CPU 1214C DC/DC/DC，完整 MLFB `6ES7 214-1AG40-0XB0`；**在线固件 `V4.5.1`**（TIA 下载预览“(在线) V4.5” + 原生 python-snap7 独立读数一致；Online & diagnostics 截图仍待归档）。TIA Portal V20 当前作为实际编程环境使用，操作者已于 2026-09-11 完成工程修复、编译与下载；其 Update、许可和设备目录兼容性仍待记录。
 - PLC 登记地址为 `192.0.2.1/24`；Windows Host 的 Realtek PLC 专用网卡为 `192.0.2.10/24`，Host ping 4/4 且 ARP reachable。该结果只证明物理链路上地址可达，目标 PLC 身份仍待 TIA Accessible devices / Online diagnostics 确认。完整参数和待核实项见 [PLC 硬件登记](docs/PLC_HARDWARE.md)，最终 I/O 映射仍待确认。
 - PLC 同学克隆后先读 [协作约定](docs/COLLABORATION.md)、[共享接口登记](docs/PLC_INTERFACE.md) 和 [PLC 目录规则](plc/AGENTS.md)；只在 PLC 分支开展所分配工作，负责人审核合并。
-- Insta360 Ace Pro 2 与白色工作区已在 M2 实时识别中完成两种机位验证；背景板是否严格为 A3 及其材质仍未单独测量。
+- 现用相机为笔记本内置 `HD Webcam`（MSMF/1280×720/YUY2，实测 30 fps）；它固定朝向，**无法做三脚架垂直俯拍**，采集需手持 A3 白纸对准镜头（方法学限制，见 `TEST-018`）。背景板是否严格为 A3 及其材质仍未单独测量。A3 背景板的尺寸/材质与受控照明仍待补。
 - 实验室最终使用串口还是以太网；任务书技术要求允许二者之一，但硬件方案表列出了网线。
 
 ## Milestone 状态
@@ -81,9 +81,9 @@ scripts/               辅助脚本
 | M0 | 项目初始化 | DONE |
 | M1 | USB 摄像头稳定采集 | DONE |
 | M2 | 单目标轮廓识别 | DONE |
-| M3 | 多目标识别与抗光照 | DONE（5 个真实摄像头场景及双方案证据已审计） |
+| M3 | 多目标识别与抗光照 | DONE（Insta360 5 场景已审计；内置相机复测：多目标 PASS，"较暗"未成立） |
 | M4 | 防重复识别/事件生成 | DONE（PC 事件层真实生命周期已审计；不代表 PLC-002 整体完成） |
-| M5 | GUI 上位机 | DONE（真实 Insta360 GUI 性能、同步显示与正常关闭已审计） |
+| M5 | GUI 上位机 | DONE（Insta360 长跑 + 内置相机 600 s 长跑与带目标短跑均已审计） |
 | M6 | Fake PLC 模拟器 | DONE（纯软件模拟器验收；无真实 PLC） |
 | M7 | PC-PLC 通信协议 | TODO |
 | M8 | PLC FIFO 与 LED 逻辑 | TODO |

@@ -13,12 +13,12 @@
 
 ## M1 USB 摄像头稳定采集 — DONE
 
-- **输入条件**：Insta360 Ace Pro 2、USB 线、三脚架、A3 白色背景；确认 Webcam 模式操作方法。
+- **输入条件**：USB 摄像头、USB 线、三脚架或固定装置、A3 白色背景；确认设备可用性。（原计划使用 Insta360 Ace Pro 2；2026-09-11 起改用笔记本内置 `HD Webcam`，不再需要三脚架但只能手持取景。）
 - **实现任务**：枚举设备；建立可配置采集模块；测量可用分辨率、帧率、延迟和持续运行稳定性；保存代表性样帧。
 - **验收标准**：目标电脑可重复打开/关闭摄像头并稳定采集；设备 ID 不硬编码；真实参数和失败情况进入测试记录。
 - **所需真实硬件**：USB 摄像头及固定装置。
 - **是否可在宿舍完成**：是。
-- **当前状态**：DONE。2026-09-03 使用 Insta360 Ace Pro 2、DirectShow、MJPG、1920×1080@30 完成 60 秒测试：1793/1793 帧成功，实测 29.869 fps，最大成功帧间隔 0.069 s，3/3 次重新打开成功。该次 M1 测试未验证固定白色工作区；后续 M2 已完成两种机位下的真实视觉验收，但背景板是否严格为 A3 及其材质仍未单独测量。
+- **当前状态**：DONE。历史：2026-09-03 使用 Insta360 Ace Pro 2、DirectShow、MJPG、1920×1080@30 完成 60 秒测试（1793/1793 帧、29.869 fps、3/3 重开成功）。**现用相机：2026-09-10/11 在内置 `HD Webcam` 上重新验收——MSMF、1280×720、YUY2，1800/1800 帧、29.99 fps、最大帧间隔 0.084 s、3/3 重开成功（TEST-010）**；实测 DSHOW 下仅 10 fps，故后端必须用 MSMF。背景板是否严格为 A3 及其材质仍未单独测量。
 
 ## M2 单目标轮廓识别 — DONE
 
@@ -27,7 +27,7 @@
 - **验收标准**：三类单目标均有可复现识别记录；中间图、参数、失败样例和单元测试齐全。
 - **所需真实硬件**：摄像头、三类纸板物体、背景板。
 - **是否可在宿舍完成**：是。
-- **当前状态**：DONE。10 张真实离线图片回归为 10/10；原机位 manual ROI 与改变机位后的 auto ROI 两轮共 8 个实时工况均与真实输入一致。两个 session 均完成且 `failed_reads=0`、`error=null`。ROI 采用“启动校准 → 运行锁定”，相机重新架设时重新校准；不逐帧追踪。证据见 TEST-002、TEST-003、`evidence/screenshots/m2/` 和 `evidence/data/m2-live-acceptance-summary.json`。
+- **当前状态**：DONE。10 张真实离线图片回归为 10/10。实时轮次两轮相机各做过：Insta360 的 8 个工况（TEST-003，历史）与**内置 HD Webcam 的 7 组证据（TEST-017，2026-09-11）：302 s、30.01 FPS、0 读失败，空背景 4/4 无目标，triangle/rectangle/circle 各 1 次全对且未改阈值**。ROI 采用“启动校准 → 运行锁定”，相机重新架设时重新校准；不逐帧追踪。证据另见 `evidence/screenshots/m2/live-builtin/`、`evidence/data/m2/live-builtin/`。
 
 ## M3 多目标识别与抗光照 — DONE
 
@@ -36,7 +36,7 @@
 - **验收标准**：同屏至少 2 个目标可独立输出；完成多种光照的真实对比测试；参数与局限可追溯。
 - **所需真实硬件**：摄像头、多个纸板物体、背景板、可调整照明。
 - **是否可在宿舍完成**：是。
-- **当前状态**：DONE。2026-09-07 在 Insta360 Ace Pro 2、1920×1080、manual/selected ROI 下保存并审计 5 个真实场景。正常、较亮/侧光、较暗三种分离场景中 Otsu 与 CLAHE+Otsu 均为 3 个对象且精确输出 `circle, rectangle, triangle`；CLAHE 未体现额外分类正确性收益，故 Otsu 保持默认，CLAHE+Otsu 保留为对照/诊断。部分遮挡时两种方法均输出 `circle, unknown, triangle`；矩形与圆形接触时均输出 `unknown, triangle`，如实保留为 `RETR_EXTERNAL` 外轮廓局限。原帧、两种标注图、JSON/CSV 与测试记录可追溯。
+- **当前状态**：DONE。历史：2026-09-07 在 Insta360 Ace Pro 2、1920×1080、manual/selected ROI 下保存并审计 5 个真实场景（TEST-004）。正常、较亮/侧光、较暗三种分离场景中 Otsu 与 CLAHE+Otsu 均为 3 个对象且精确输出 `circle, rectangle, triangle`；CLAHE 未体现额外分类正确性收益，故 Otsu 保持默认，CLAHE+Otsu 保留为对照/诊断。部分遮挡时两种方法均输出 `circle, unknown, triangle`；矩形与圆形接触时均输出 `unknown, triangle`，如实保留为 `RETR_EXTERNAL` 外轮廓局限。**2026-09-11 在内置 HD Webcam 上复测（TEST-018）：正常与侧光两组均同屏 3 个目标、标签正确，两种预处理输出一致；"较暗"三次尝试实测亮度均未低于正常组（自动曝光补偿），如实记为未验证；遮挡/粘连沿用旧结论。** 另记录一条既有规则：触及 ROI 边界的目标会被 `touches_roi_border` 排除，取景须留余量。
 
 ## M4 防重复识别/事件生成 — DONE
 
@@ -54,7 +54,7 @@
 - **验收标准**：持续运行无明显阻塞；画面和识别信息同步；性能和恢复行为有实测记录。
 - **所需真实硬件**：摄像头。
 - **是否可在宿舍完成**：是。
-- **当前状态**：DONE。PySide6 6.11.2 的离线自动化与 synthetic soak 保持通过；2026-09-07 使用 Insta360 Ace Pro 2 真实运行 1577.142974 秒，读取/处理/GUI 更新均为 46235 帧，processing 与 GUI update 均为 29.315668 FPS，0 failed read、0 display drop、0 buffer overwrite、`error=null`，Stop 后 `clean_shutdown=true`。running 截图显示真实画面、label/confidence、#76 状态、事件、29.3 FPS、ROI manual 和 No errors；Idle 截图确认 Stop 后正常停止。启动 auto ROI 未找到合格中央白色四边形，按设计降级 manual，ROI `[548,126,1346,698]` 在整次运行中锁定。Qt 的 `QFont::setPointSize Point size <=0 (-1)` 为现场控制台非阻断 UI warning，不是视觉或摄像头错误。
+- **当前状态**：DONE。PySide6 6.11.2 的离线自动化与 synthetic soak 保持通过。历史：2026-09-07 使用 Insta360 Ace Pro 2 真实运行 1577.142974 秒，46235 帧，processing 与 GUI update 均为 29.315668 FPS，0 failed read / 0 display drop / 0 buffer overwrite、`error=null`、Stop 后 `clean_shutdown=true`（TEST-006）。**2026-09-11 在内置 HD Webcam 上重跑（TEST-019）：600 秒空场长跑 17549 帧、处理与界面更新同为 29.234 FPS、0 丢帧、0 缓冲覆盖、正常停止；75 秒带三类目标的短跑 `detection_count=3720`、处理与界面更新同为 23.779 FPS，截图显示画面/类别/置信度/目标状态/事件同步。** 两轮均在启动时复用运行时校准 ROI。
 
 ## M6 Fake PLC 模拟器 — DONE
 

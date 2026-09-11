@@ -17,7 +17,7 @@
 
   <rect x="40" y="170" width="160" height="110" rx="10" fill="#E6F4EA" stroke="#1E7E34" stroke-width="2"/>
   <text x="120" y="212" font-size="17" font-weight="700" text-anchor="middle" fill="#12551F">USB 摄像头</text>
-  <text x="120" y="238" font-size="13" text-anchor="middle" fill="#12551F">Insta360</text>
+  <text x="120" y="238" font-size="13" text-anchor="middle" fill="#12551F">内置 HD Webcam</text>
   <text x="120" y="258" font-size="12" text-anchor="middle" fill="#12551F">M1 真实验收</text>
 
   <rect x="220" y="170" width="160" height="110" rx="10" fill="#E6F4EA" stroke="#1E7E34" stroke-width="2"/>

@@ -4,14 +4,14 @@ date: "2026-09-10"
 tags:
   - 慧眼识珠
   - issue
-status: open
+status: resolved
 ---
 
 # ISSUE-002 固件版本登记不一致
 
 - **Issue ID**：ISSUE-002
 - **创建日期**：2026-09-10
-- **状态**：OPEN
+- **状态**：RESOLVED（2026-09-11 由负责人批准后在“文档一致性”任务中结案）
 - **所属模块**：PLC 硬件登记 / 文档一致性
 
 ## 问题现象
@@ -71,15 +71,26 @@ status: open
 
 ## 最终解决方案
 
-待解决。需要：现场 TIA Online & diagnostics 读数截图 → 归档到 `plc/records/` → 由负责人统一更新 `docs/PLC_HARDWARE.md`，并让 `plc/project/TIA_V20_COMPILE_GUIDE.md` 引用同一值。
+2026-09-10 的隔离环境读数给出了独立于 TIA 界面的第二个来源：
+原生 `python-snap7 1.3` 读到在线订单号 `6ES7 214-1AG40-0XB0` 与固件 **`4.5.1`**，
+与 TIA 下载预览的“(在线) V4.5”一致。据此：
+
+1. `docs/PLC_HARDWARE.md` 参数表“固件”行更新为 **`V4.5.1`（在线读数）**，并写明来源与“截图未归档”的缺口；
+2. `plc/project/TIA_V20_COMPILE_GUIDE.md` 与 `plc/docs/PLC_HARDWARE_VERIFICATION.md` 原本就记 `V4.5.1`，与更新后的值一致；
+3. 指导书中的 `V4.1` 明确标注为 1215C 教学示例，不适用于项目实物。
+
+**仍未补齐**：TIA Online & diagnostics 的固件截图。它不影响本次结案（已有两个独立来源互证），
+但按 `plc/docs/SCL_STATIC_AUDIT.md` 的要求仍需归档，列入待补材料。
 
 ## 修改 commit
 
-待填写。
+`docs(notes): resolve ISSUE-002 and align the camera/firmware descriptions`（见 `docs/PLC_HARDWARE.md` 与本人文件的同一提交）
 
 ## 验证结果
 
-待测试。
+- 两个独立来源一致：TIA 下载预览“(在线) V4.5” 与 原生 snap7 读数 `4.5.1`；
+- 同一读数还确认了订单号 `6ES7 214-1AG40-0XB0`，与现场登记的 MLFB 一致；
+- 未使用“按时间取最新”或“取指导书值”这类推断性做法。
 
 ## 是否可以写入实验报告的问题分析章节
 
