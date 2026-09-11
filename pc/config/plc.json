@@ -19,5 +19,6 @@
   "confirm_repoll_interval_seconds": 0.15,
   "heartbeat_enabled": true,
   "heartbeat_interval_seconds": 1.0,
-  "comm_loss_timeout_seconds": 2.0
+  "comm_loss_timeout_seconds": 2.0,
+  "reconnect_min_interval_seconds": 2.0
 }

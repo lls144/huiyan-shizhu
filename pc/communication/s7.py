@@ -80,6 +80,35 @@ class Snap7LowLevelClient:
 
     def __init__(self) -> None:
         self._client = None
+        self.socket_params_applied = False
+
+    # Short timeouts keep the 2 s comm-loss alarm meaningful: with the defaults a
+    # call against a pulled cable blocks for many seconds, which delays the
+    # watchdog sample instead of letting it fail fast. KeepAliveTime also makes
+    # the OS notice a dead peer in about a second.
+    SOCKET_PARAMS: tuple[tuple[str, int], ...] = (
+        ("PingTimeout", 500),
+        ("SendTimeout", 1000),
+        ("RecvTimeout", 1000),
+        ("KeepAliveTime", 1000),
+    )
+
+    def _apply_socket_params(self) -> None:
+        try:
+            from snap7.type import Parameter
+        except ImportError:  # pragma: no cover - snap7 is a runtime dependency
+            return
+        applied = 0
+        for name, value in self.SOCKET_PARAMS:
+            member = getattr(Parameter, name, None)
+            if member is None:
+                continue
+            try:
+                self._client.set_param(member, value)
+                applied += 1
+            except Exception:
+                continue
+        self.socket_params_applied = applied > 0
 
     @staticmethod
     def _client_type():
@@ -94,6 +123,7 @@ class Snap7LowLevelClient:
 
     def connect(self, host: str, rack: int, slot: int) -> None:
         self._client = self._client_type()()
+        self._apply_socket_params()
         self._client.connect(host, rack, slot)
         if not self._client.get_connected():
             raise RuntimeError(f"S7 connection to {host} did not become active")

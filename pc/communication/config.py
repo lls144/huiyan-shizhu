@@ -39,6 +39,7 @@ class PlcCommunicationConfig:
     heartbeat_enabled: bool = True
     heartbeat_interval_seconds: float = 1.0
     comm_loss_timeout_seconds: float = 2.0
+    reconnect_min_interval_seconds: float = 2.0
 
     @classmethod
     def from_dict(cls, values: dict[str, Any]) -> "PlcCommunicationConfig":
@@ -66,6 +67,7 @@ class PlcCommunicationConfig:
                 ("heartbeat_enabled", True),
                 ("heartbeat_interval_seconds", 1.0),
                 ("comm_loss_timeout_seconds", 2.0),
+                ("reconnect_min_interval_seconds", 2.0),
             )
         }
         config = cls(**known)
@@ -107,6 +109,8 @@ class PlcCommunicationConfig:
             raise ValueError(
                 "comm_loss_timeout_seconds must be larger than heartbeat_interval_seconds"
             )
+        if self.reconnect_min_interval_seconds < 0:
+            raise ValueError("reconnect_min_interval_seconds must be non-negative")
 
 
 def load_plc_communication_config(path: str | Path) -> PlcCommunicationConfig:

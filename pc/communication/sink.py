@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import time
+import socket
 from dataclasses import dataclass, field
 from typing import Protocol
 
@@ -104,6 +105,7 @@ class S7PlcCommandSink:
         self._heartbeat = 0
         self.reconnect_count = 0
         self._last_transport_error: str | None = None
+        self._last_reconnect_attempt: float | None = None
 
     @property
     def write_retry_count(self) -> int:
@@ -123,8 +125,21 @@ class S7PlcCommandSink:
         A snap7 client does not recover on its own: after the cable is pulled
         every later call keeps failing on the dead socket (measured 2026-09-11),
         so the link would stay down until the application restarted.
+
+        Attempts are rate limited: a failing connect blocks for several seconds,
+        and doing that on every watchdog sample made the 2 s alarm fire late.
         """
 
+        now = time.monotonic()
+        if (
+            self._last_reconnect_attempt is not None
+            and now - self._last_reconnect_attempt < self.config.reconnect_min_interval_seconds
+        ):
+            return False
+        self._last_reconnect_attempt = now
+        if not self._tcp_reachable():
+            self._last_transport_error = f"{self.config.host}:102 is not reachable"
+            return False
         try:
             self._client.disconnect()
         except Exception:
@@ -136,6 +151,20 @@ class S7PlcCommandSink:
             return False
         self.reconnect_count += 1
         return True
+
+    def _tcp_reachable(self, timeout: float = 0.5) -> bool:
+        """Cheap liveness probe before the expensive snap7 connect.
+
+        snap7's ``connect`` blocks for ~10 s when the peer never answers (ARP
+        retries). A plain TCP connect to the ISO-on-TCP port bounds that to the
+        probe timeout, which is what keeps the 2 s alarm meaningful.
+        """
+
+        try:
+            with socket.create_connection((self.config.host, 102), timeout=timeout):
+                return True
+        except OSError:
+            return False
 
     def safe_init(self) -> int:
         """Clear every request bit before the first command of a session.

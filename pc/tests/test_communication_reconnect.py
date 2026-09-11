@@ -125,3 +125,19 @@ def test_reconnect_attempts_are_bounded_per_write() -> None:
     assert client.connect_attempts == 2
     assert sink.reconnect_count == 0
     assert plc.queue == deque()
+
+
+def test_reconnect_attempts_are_rate_limited() -> None:
+    plc = FakeAcceptancePlc()
+    client = FlakyLowLevelClient(plc)
+    config = replace(_config(), reconnect_min_interval_seconds=60.0)
+    sink = S7PlcCommandSink(config, low_level=client)
+    sink.start()
+    client.connected = False
+    client.can_connect = False
+    attempts_before = client.connect_attempts
+    for _ in range(5):
+        assert sink.read_state() is None
+    # The first read tried once, the rest were skipped by the rate limit, so a
+    # dead link cannot stall the watchdog with a connect timeout every sample.
+    assert client.connect_attempts == attempts_before + 1
