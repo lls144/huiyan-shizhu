@@ -102,3 +102,13 @@ M6 fault scenarios 可供未来 M7/M9 复用，仅为 supporting simulator avail
 不是本程序新定的规则。传送带不做二次识别，只是把视觉已给出的标签可视化，
 因此**不得**填入 VISION-001~004 的证据，也**不改变** PLC-001~004、COMM-001~003、SYS-001 的 TODO 状态。
 运行手册见 `docs/SORTING_LINE.md`。
+
+同一轮补充的 **PC 侧可靠性层**（同样是非硬件证据）：
+
+| 范围 | 实现与版本 | Test / Daily | 数据 | 结论 |
+|---|---|---|---|---|
+| PC 侧写入确认、重复保护、队列满通知与延后 | `pc/communication/reliability.py`、`pc/communication/models.py`、`pc/communication/config.py`、`pc/config/plc.json` | `notes/tests/TEST-012-PC侧可靠性队列满与写入确认.md` | `evidence/data/sorting/2026-09-11-sorting-fake-plc-queue-full.json`、`...-fake-plc-leds.json`；截图 `evidence/screenshots/sorting/2026-09-11-sorting-buffer-and-queue-full.png`、`...-plc-leds.png` | Fake PLC 下 13 项用例通过；队列满报 `QUEUE_FULL` 并暂存，5/5 自动出队全部确认 |
+
+该表的数据源是内存 `FakeAcceptancePlc`（容量 3）+ 合成事件，**不是**真机证据。
+**心跳 1 s 与断连 2 s 全闪（COMM-002）本轮未实现**；PLC 侧序列号/ACK 去重仍未冻结。
+因此 PLC-001–004、COMM-001–003 的真实/正式验收状态不变。
