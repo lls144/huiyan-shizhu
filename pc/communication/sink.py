@@ -102,6 +102,8 @@ class S7PlcCommandSink:
         self._started = False
         self._write_retries = 0
         self._heartbeat = 0
+        self.reconnect_count = 0
+        self._last_transport_error: str | None = None
 
     @property
     def write_retry_count(self) -> int:
@@ -114,6 +116,26 @@ class S7PlcCommandSink:
             raise RuntimeError("PLC communication is disabled in config")
         self._client.connect(self.config.host, self.config.rack, self.config.slot)
         self._started = True
+
+    def _reconnect(self) -> bool:
+        """Re-establish the S7 socket after a cable pull or a CPU restart.
+
+        A snap7 client does not recover on its own: after the cable is pulled
+        every later call keeps failing on the dead socket (measured 2026-09-11),
+        so the link would stay down until the application restarted.
+        """
+
+        try:
+            self._client.disconnect()
+        except Exception:
+            pass
+        try:
+            self._client.connect(self.config.host, self.config.rack, self.config.slot)
+        except Exception as error:
+            self._last_transport_error = f"{type(error).__name__}: {error}"
+            return False
+        self.reconnect_count += 1
+        return True
 
     def safe_init(self) -> int:
         """Clear every request bit before the first command of a session.
@@ -180,10 +202,21 @@ class S7PlcCommandSink:
         self._heartbeat = int(controls["heartbeat"])
         attempts = 0
         last = b""
+        reconnect_tried = False
         for attempt in range(1, self.config.write_confirm_attempts + 1):
             attempts = attempt
-            self._client.db_write(self.config.db_number, 0, raw)
-            last = self._read_controls()
+            try:
+                self._client.db_write(self.config.db_number, 0, raw)
+                last = self._read_controls()
+            except Exception as error:
+                self._last_transport_error = f"{type(error).__name__}: {error}"
+                last = b""
+                if not reconnect_tried:
+                    reconnect_tried = True
+                    self._reconnect()
+                if attempt < self.config.write_confirm_attempts:
+                    time.sleep(self.config.write_confirm_interval_seconds)
+                continue
             if last == raw:
                 self._write_retries += attempt - 1
                 return attempt
@@ -203,12 +236,22 @@ class S7PlcCommandSink:
 
         try:
             raw = self._client.db_read(self.config.db_number, 8, 16)
-            state = unpack_state(raw)
-            if state.layout_magic != LAYOUT_MAGIC or state.layout_version != LAYOUT_VERSION:
+        except Exception as error:
+            self._last_transport_error = f"{type(error).__name__}: {error}"
+            if not self._reconnect():
                 return None
-            return state
+            try:
+                raw = self._client.db_read(self.config.db_number, 8, 16)
+            except Exception as retry_error:
+                self._last_transport_error = f"{type(retry_error).__name__}: {retry_error}"
+                return None
+        try:
+            state = unpack_state(raw)
         except Exception:
             return None
+        if state.layout_magic != LAYOUT_MAGIC or state.layout_version != LAYOUT_VERSION:
+            return None
+        return state
 
     def send_event(self, event: VisionEvent) -> PlcCommandResult:
         command = command_from_event(event)

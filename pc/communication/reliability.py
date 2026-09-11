@@ -61,6 +61,7 @@ class ReliabilityCounters:
     dispatches: int = 0
     sent_confirmed: int = 0
     write_resends: int = 0
+    reconnects: int = 0
     queue_full_deferrals: int = 0
     deferred_retries: int = 0
     queue_full_drops: int = 0
@@ -74,6 +75,7 @@ class ReliabilityCounters:
             "dispatches": self.dispatches,
             "sent_confirmed": self.sent_confirmed,
             "write_resends": self.write_resends,
+            "reconnects": self.reconnects,
             "queue_full_deferrals": self.queue_full_deferrals,
             "deferred_retries": self.deferred_retries,
             "queue_full_drops": self.queue_full_drops,
@@ -159,6 +161,7 @@ class GuardedPlcSink:
         delta = max(0, current - self._inner_resends_at_last)
         self._inner_resends_at_last = current
         self.counters.write_resends += delta
+        self.counters.reconnects = int(getattr(self.inner, "reconnect_count", 0) or 0)
         return delta
 
     def refresh_state(self) -> PlcState | None:

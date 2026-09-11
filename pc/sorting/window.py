@@ -547,7 +547,10 @@ class SortingWindow(QMainWindow):
             else:
                 outages = health.get("outage_count", 0)
                 self.plc_link_value.setText(
-                    "正常" + (f"（历史中断 {outages} 次）" if outages else "")
+                    "正常"
+                    + (f"（历史中断 {outages} 次）" if outages else "")
+                    + (f" 重连 {counters.get('reconnects', 0)} 次"
+                       if counters.get("reconnects") else "")
                 )
                 _set_dynamic_property(self.plc_link_value, "hasError", False)
 
