@@ -48,7 +48,7 @@ class _StubLink:
         return _state() if self.up else None
 
     def write_heartbeat(self, counter: int) -> None:
-        if self.fail_heartbeat:
+        if self.fail_heartbeat or not self.up:
             raise RuntimeError("link is down")
         self.heartbeats.append(counter)
 
@@ -147,6 +147,18 @@ def test_the_monitor_disables_itself_for_a_sink_without_heartbeat_support() -> N
     monitor = HeartbeatMonitor(_NoHeartbeat(), enabled=True)
     assert monitor.enabled is False
     assert monitor.tick().enabled is False
+
+
+def test_a_link_that_never_answers_still_alarms_after_the_timeout() -> None:
+    link, clock = _StubLink(), _Clock()
+    link.up = False
+    monitor = _monitor(link, clock)
+    assert monitor.tick().comm_lost is False
+    clock.advance(2.1)
+    health = monitor.tick()
+    assert health.comm_lost is True
+    assert health.heartbeat_count == 0
+    assert health.heartbeat_failures >= 1
 
 
 def test_tick_heartbeat_keeps_the_period_close_to_one_second() -> None:

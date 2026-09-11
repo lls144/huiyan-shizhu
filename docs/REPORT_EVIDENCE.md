@@ -127,3 +127,7 @@ SYS-001 / M10 状态不变。
 断电重启与状态清空见 `notes/tests/TEST-015-断电重启状态清空.md`（真机 PASS）：
 打脏状态（队列 2、亮 1 盏、last_sid=501）后断电上电，队列/灯/last-dequeued 全部清除；
 同轮发现 `DB_M8_Acceptance` 的值掉电后保留，因而在 PC 侧加入 `safe_init()` 防止残留脉冲造成幽灵入队。
+
+COMM-002 目前只完成 **PC 半边**：`notes/tests/TEST-016-COMM002-PC半边心跳与断连看门狗.md`
+（真机心跳周期 1.00–1.03 s、落点 DBB2 已读回确认；2 s 无响应判定通信中断）。
+**PLC 侧“2 s 无心跳 → 三盏灯全闪”未实现**，所以 COMM-002 仍是 TODO，不能记 PASS。

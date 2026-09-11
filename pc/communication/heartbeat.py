@@ -109,6 +109,8 @@ class HeartbeatMonitor:
     _last_success_wall: str | None = field(default=None, init=False)
     _consecutive_failures: int = field(default=0, init=False)
     _comm_lost: bool = field(default=False, init=False)
+    _started_clock: float = field(default=0.0, init=False)
+    _started_wall: str = field(default="", init=False)
     _outage: _Outage | None = field(default=None, init=False)
     _outages: list[_Outage] = field(default_factory=list, init=False)
 
@@ -118,6 +120,8 @@ class HeartbeatMonitor:
         if self.interval_seconds <= 0 or self.timeout_seconds <= 0:
             raise ValueError("heartbeat interval and timeout must be positive")
         self.enabled = bool(self.enabled and getattr(self.sink, "write_heartbeat", None))
+        self._started_clock = self.clock()
+        self._started_wall = self.wall_clock()
 
     # ------------------------------------------------------------------ ticking
 
@@ -139,18 +143,21 @@ class HeartbeatMonitor:
                     self._outage = None
         else:
             self._consecutive_failures += 1
-            if (
-                not self._comm_lost
-                and self._last_success_clock is not None
-                and (now - self._last_success_clock) >= self.timeout_seconds
-            ):
+            # A link that never answered must alarm too, so the reference is the
+            # last good read or, before the first one, the monitor start time.
+            reference = (
+                self._last_success_clock
+                if self._last_success_clock is not None
+                else self._started_clock
+            )
+            if not self._comm_lost and (now - reference) >= self.timeout_seconds:
                 self._comm_lost = True
                 # The outage starts when the PLC last answered, not when the
                 # timeout happened to fire, so the recorded duration is the real
                 # silence window.
                 self._outage = _Outage(
-                    started_at=self._last_success_wall or self.wall_clock(),
-                    started_clock=self._last_success_clock,
+                    started_at=self._last_success_wall or self._started_wall,
+                    started_clock=reference,
                 )
                 self._outages.append(self._outage)
 
