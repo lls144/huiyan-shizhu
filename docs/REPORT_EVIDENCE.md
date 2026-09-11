@@ -131,3 +131,20 @@ SYS-001 / M10 状态不变。
 COMM-002 目前只完成 **PC 半边**：`notes/tests/TEST-016-COMM002-PC半边心跳与断连看门狗.md`
 （真机心跳周期 1.00–1.03 s、落点 DBB2 已读回确认；2 s 无响应判定通信中断）。
 **PLC 侧“2 s 无心跳 → 三盏灯全闪”未实现**，所以 COMM-002 仍是 TODO，不能记 PASS。
+
+## 新相机（内置 HD Webcam）重新验收（2026-09-11）
+
+相机由 Insta360 换成笔记本内置 `HD Webcam`（MSMF / 1280×720 / YUY2，实测 30 fps），
+M2–M5 的**真实验收全部重跑**；旧 Insta360 记录（TEST-003/004/005/006）保留为历史，不作为新相机证据。
+
+| Milestone | Test | 结果 | 证据 |
+|---|---|---|---|
+| M2 单目标实时 | `notes/tests/TEST-017-M2内置摄像头实时验收.md` | PASS：302 s、30.01 FPS、0 读失败；空背景 4/4 无目标，triangle/rectangle/circle 各 1 次全对 | `evidence/screenshots/m2/live-builtin/`、`evidence/data/m2/live-builtin/` |
+| M3 多目标与光照 | `notes/tests/TEST-018-M3内置摄像头多目标与光照验收.md` | 多目标 PASS（正常 + 侧光各 3/3 全对）；"较暗"工况**未成立**（自动曝光补偿，3 次尝试亮度均未低于正常） | `evidence/screenshots/m3/live-builtin/`、`evidence/data/m3/live-builtin/` |
+| M4 事件生命周期 | `notes/tests/TEST-019-M4事件与M5界面新相机验收.md` | PASS：66 事件 = 33 ENTER / 33 EXIT，33 个目标**零重复 ENTER** | `evidence/data/m4/m4-builtin-lifecycle-session.json` |
+| M5 GUI 长跑 | 同上 | PASS：600 s、17549 帧、处理与界面更新同为 29.234 FPS、0 丢帧、0 缓冲覆盖、正常停止 | `evidence/data/m5/live-builtin/session.json`、`evidence/screenshots/m5/live-builtin/` |
+
+本批仍有的欠账：M3 的 `partial_occlusion` / `touching_or_merged` 未在新相机上做；
+"较暗"需先关闭摄像头自动曝光并固定曝光值；M5 长跑期间画面无目标（`detection_count=0`），
+需补一次带目标的短时运行。**上述不足以改变 VISION-003/004、GUI-001 的已有 DONE 判定，
+但报告引用时必须注明是新相机还是旧 Insta360 的证据。**

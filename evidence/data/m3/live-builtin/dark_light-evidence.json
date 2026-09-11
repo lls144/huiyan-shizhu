@@ -1,0 +1,1466 @@
+{
+  "schema_version": 1,
+  "milestone": "M3",
+  "acceptance_status": "pending_user_validation",
+  "timestamp": "2026-09-11T13:31:18.983+08:00",
+  "scenario": "dark_light",
+  "scenario_source": "operator_hotkey",
+  "expected_labels": [
+    "triangle",
+    "rectangle",
+    "circle"
+  ],
+  "git": {
+    "commit": "de2c2c8434bd5330639c5c113ad13bf8e5bbc3f3",
+    "dirty": true
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10",
+    "opencv": "5.0.0",
+    "numpy": "2.5.2"
+  },
+  "camera_device": {
+    "index": 0,
+    "name": "HD Webcam",
+    "path": "<device-instance-redacted>",
+    "vid": 11134,
+    "pid": 46691,
+    "backend_name": "MSMF",
+    "backend_id": 1400
+  },
+  "camera_config": {
+    "device_name": "HD Webcam",
+    "fallback_index": null,
+    "backend": "MSMF",
+    "requested_width": 1280,
+    "requested_height": 720,
+    "requested_fps": 30.0,
+    "fourcc": "YUY2",
+    "warmup_frames": 15,
+    "test_duration_seconds": 60.0,
+    "reopen_cycles": 3,
+    "minimum_read_success_rate": 0.99,
+    "maximum_frame_gap_seconds": 2.0
+  },
+  "camera_actual_properties": {
+    "width": 1280.0,
+    "height": 720.0,
+    "reported_fps": 30.0,
+    "backend": "MSMF"
+  },
+  "frame_resolution": {
+    "width": 1280,
+    "height": 720
+  },
+  "roi_mode": "manual",
+  "roi_source": "restored",
+  "normalized_roi": {
+    "left": 0.2,
+    "top": 0.25,
+    "right": 0.8,
+    "bottom": 0.88
+  },
+  "pixel_roi": [
+    256,
+    180,
+    1024,
+    634
+  ],
+  "lighting_statistics": {
+    "mean": 114.086,
+    "standard_deviation": 66.237,
+    "p10": 22.0,
+    "median": 157.0,
+    "p90": 178.0
+  },
+  "methods": {
+    "otsu": {
+      "preprocess_mode": "otsu",
+      "object_count": 3,
+      "predicted_labels": [
+        "circle",
+        "rectangle",
+        "triangle"
+      ],
+      "objects": [
+        {
+          "object_index": 1,
+          "predicted_label": "circle",
+          "confidence": 0.97481,
+          "center": [
+            381,
+            429
+          ],
+          "features": {
+            "area": 34186.0,
+            "area_ratio": 0.09804630139500735,
+            "perimeter": 692.2396769523621,
+            "vertices": 8,
+            "solidity": 0.9947767382985844,
+            "circularity": 0.89648943585479,
+            "bounding_box": [
+              21,
+              144,
+              209,
+              210
+            ],
+            "aspect_ratio": 0.9952380952380953,
+            "min_rect_fill_ratio": 0.7863912403386087,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          },
+          "classification_scores": {
+            "topology": 1.0,
+            "geometry": 0.9160336994813928,
+            "quality": 1.0
+          }
+        },
+        {
+          "object_index": 2,
+          "predicted_label": "rectangle",
+          "confidence": 0.989313,
+          "center": [
+            643,
+            437
+          ],
+          "features": {
+            "area": 48892.5,
+            "area_ratio": 0.14022491051762115,
+            "perimeter": 921.923879981041,
+            "vertices": 4,
+            "solidity": 0.9787504504143812,
+            "circularity": 0.722872960042486,
+            "bounding_box": [
+              280,
+              122,
+              206,
+              271
+            ],
+            "aspect_ratio": 0.7601476014760148,
+            "min_rect_fill_ratio": 0.9408745612798899,
+            "max_right_angle_deviation_degrees": 2.4086483929210942,
+            "is_convex": true,
+            "touches_border": false
+          },
+          "classification_scores": {
+            "topology": 1.0,
+            "geometry": 0.9695818709329664,
+            "quality": 0.99219
+          }
+        },
+        {
+          "object_index": 3,
+          "predicted_label": "triangle",
+          "confidence": 0.955386,
+          "center": [
+            903,
+            423
+          ],
+          "features": {
+            "area": 17249.0,
+            "area_ratio": 0.0494705625917768,
+            "perimeter": 646.0975395441055,
+            "vertices": 3,
+            "solidity": 0.9457207083721695,
+            "circularity": 0.5192513231429088,
+            "bounding_box": [
+              535,
+              145,
+              185,
+              208
+            ],
+            "aspect_ratio": 0.8894230769230769,
+            "min_rect_fill_ratio": 0.4899256143321432,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          },
+          "classification_scores": {
+            "topology": 1.0,
+            "geometry": 1.0,
+            "quality": 0.77693
+          }
+        }
+      ],
+      "otsu_threshold": 103.0,
+      "roi_bounds": [
+        256,
+        180,
+        1024,
+        634
+      ],
+      "total_external_contours": 18,
+      "valid_contours": 3,
+      "contour_filter_details": [
+        {
+          "passed_filter": true,
+          "rejection_reasons": [],
+          "features": {
+            "area": 48892.5,
+            "area_ratio": 0.14022491051762115,
+            "perimeter": 921.923879981041,
+            "vertices": 4,
+            "solidity": 0.9787504504143812,
+            "circularity": 0.722872960042486,
+            "bounding_box": [
+              280,
+              122,
+              206,
+              271
+            ],
+            "aspect_ratio": 0.7601476014760148,
+            "min_rect_fill_ratio": 0.9408745612798899,
+            "max_right_angle_deviation_degrees": 2.4086483929210942,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": true,
+          "rejection_reasons": [],
+          "features": {
+            "area": 34186.0,
+            "area_ratio": 0.09804630139500735,
+            "perimeter": 692.2396769523621,
+            "vertices": 8,
+            "solidity": 0.9947767382985844,
+            "circularity": 0.89648943585479,
+            "bounding_box": [
+              21,
+              144,
+              209,
+              210
+            ],
+            "aspect_ratio": 0.9952380952380953,
+            "min_rect_fill_ratio": 0.7863912403386087,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 21087.5,
+            "area_ratio": 0.0604794764133627,
+            "perimeter": 1149.5605239868164,
+            "vertices": 11,
+            "solidity": 0.715788937730181,
+            "circularity": 0.20052627033513873,
+            "bounding_box": [
+              471,
+              0,
+              297,
+              128
+            ],
+            "aspect_ratio": 0.43097643097643096,
+            "min_rect_fill_ratio": 0.5609571185358587,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 19483.0,
+            "area_ratio": 0.05587773035976505,
+            "perimeter": 714.2152900695801,
+            "vertices": 8,
+            "solidity": 0.9087855960071833,
+            "circularity": 0.4799626115202691,
+            "bounding_box": [
+              129,
+              0,
+              200,
+              143
+            ],
+            "aspect_ratio": 0.715,
+            "min_rect_fill_ratio": 0.6894684691060938,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": true,
+          "rejection_reasons": [],
+          "features": {
+            "area": 17249.0,
+            "area_ratio": 0.0494705625917768,
+            "perimeter": 646.0975395441055,
+            "vertices": 3,
+            "solidity": 0.9457207083721695,
+            "circularity": 0.5192513231429088,
+            "bounding_box": [
+              535,
+              145,
+              185,
+              208
+            ],
+            "aspect_ratio": 0.8894230769230769,
+            "min_rect_fill_ratio": 0.4899256143321432,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 1213.0,
+            "area_ratio": 0.0034789142804698974,
+            "perimeter": 198.22539508342743,
+            "vertices": 4,
+            "solidity": 0.8043766578249337,
+            "circularity": 0.38792885149410566,
+            "bounding_box": [
+              0,
+              0,
+              45,
+              69
+            ],
+            "aspect_ratio": 0.6521739130434783,
+            "min_rect_fill_ratio": 0.4054144385026738,
+            "max_right_angle_deviation_degrees": 73.41553622190227,
+            "is_convex": false,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum"
+          ],
+          "features": {
+            "area": 185.0,
+            "area_ratio": 0.0005305846182085169,
+            "perimeter": 113.05382239818573,
+            "vertices": 10,
+            "solidity": 0.6434782608695652,
+            "circularity": 0.1818909499829846,
+            "bounding_box": [
+              527,
+              397,
+              11,
+              35
+            ],
+            "aspect_ratio": 0.3142857142857143,
+            "min_rect_fill_ratio": 0.5441176470588235,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 108.5,
+            "area_ratio": 0.0003111807085168869,
+            "perimeter": 48.3847758769989,
+            "vertices": 7,
+            "solidity": 0.9004149377593361,
+            "circularity": 0.5824010305910653,
+            "bounding_box": [
+              527,
+              379,
+              9,
+              19
+            ],
+            "aspect_ratio": 0.47368421052631576,
+            "min_rect_fill_ratio": 0.7534722222222222,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 65.5,
+            "area_ratio": 0.00018785563509544787,
+            "perimeter": 36.72792184352875,
+            "vertices": 8,
+            "solidity": 0.9097222222222222,
+            "circularity": 0.6101806803865059,
+            "bounding_box": [
+              527,
+              356,
+              7,
+              15
+            ],
+            "aspect_ratio": 0.4666666666666667,
+            "min_rect_fill_ratio": 0.7797619047619048,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 59.5,
+            "area_ratio": 0.00017064748531571219,
+            "perimeter": 41.55634891986847,
+            "vertices": 9,
+            "solidity": 0.9296875,
+            "circularity": 0.4329642735178189,
+            "bounding_box": [
+              527,
+              336,
+              5,
+              19
+            ],
+            "aspect_ratio": 0.2631578947368421,
+            "min_rect_fill_ratio": 0.8263888888888888,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 16.5,
+            "area_ratio": 4.732241189427313e-05,
+            "perimeter": 15.899494767189026,
+            "vertices": 7,
+            "solidity": 0.9705882352941176,
+            "circularity": 0.8202139662830029,
+            "bounding_box": [
+              527,
+              327,
+              5,
+              7
+            ],
+            "aspect_ratio": 0.7142857142857143,
+            "min_rect_fill_ratio": 0.785714381992757,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum"
+          ],
+          "features": {
+            "area": 15.0,
+            "area_ratio": 4.302037444933921e-05,
+            "perimeter": 19.313708305358887,
+            "vertices": 10,
+            "solidity": 0.7894736842105263,
+            "circularity": 0.5053238393064108,
+            "bounding_box": [
+              527,
+              317,
+              5,
+              9
+            ],
+            "aspect_ratio": 0.5555555555555556,
+            "min_rect_fill_ratio": 0.5595408504535954,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum"
+          ],
+          "features": {
+            "area": 14.0,
+            "area_ratio": 4.015234948604993e-05,
+            "perimeter": 17.313708305358887,
+            "vertices": 7,
+            "solidity": 0.8484848484848485,
+            "circularity": 0.5868913476057492,
+            "bounding_box": [
+              526,
+              438,
+              5,
+              8
+            ],
+            "aspect_ratio": 0.625,
+            "min_rect_fill_ratio": 0.6666667012486309,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 12.0,
+            "area_ratio": 3.441629955947137e-05,
+            "perimeter": 14.485281229019165,
+            "vertices": 6,
+            "solidity": 0.96,
+            "circularity": 0.7186827936802287,
+            "bounding_box": [
+              675,
+              61,
+              7,
+              4
+            ],
+            "aspect_ratio": 0.5714285714285714,
+            "min_rect_fill_ratio": 0.6857143851528409,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 7.0,
+            "area_ratio": 2.0076174743024963e-05,
+            "perimeter": 10.485281229019165,
+            "vertices": 5,
+            "solidity": 1.0,
+            "circularity": 0.8001063873003664,
+            "bounding_box": [
+              474,
+              2,
+              4,
+              5
+            ],
+            "aspect_ratio": 0.8,
+            "min_rect_fill_ratio": 0.8750001774639711,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 6.0,
+            "area_ratio": 1.7208149779735684e-05,
+            "perimeter": 9.656854152679443,
+            "vertices": 6,
+            "solidity": 1.0,
+            "circularity": 0.8085181428902574,
+            "bounding_box": [
+              530,
+              373,
+              5,
+              3
+            ],
+            "aspect_ratio": 0.6,
+            "min_rect_fill_ratio": 0.7500001521119752,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 3.5,
+            "area_ratio": 1.0038087371512482e-05,
+            "perimeter": 8.242640614509583,
+            "vertices": 4,
+            "solidity": 1.0,
+            "circularity": 0.6473589832878452,
+            "bounding_box": [
+              526,
+              451,
+              4,
+              3
+            ],
+            "aspect_ratio": 0.75,
+            "min_rect_fill_ratio": 0.583333418861757,
+            "max_right_angle_deviation_degrees": 45.0,
+            "is_convex": true,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 2.0,
+            "area_ratio": 5.736049926578561e-06,
+            "perimeter": 5.656854152679443,
+            "vertices": 4,
+            "solidity": 1.0,
+            "circularity": 0.7853981902804831,
+            "bounding_box": [
+              659,
+              75,
+              3,
+              3
+            ],
+            "aspect_ratio": 1.0,
+            "min_rect_fill_ratio": 1.000000202815967,
+            "max_right_angle_deviation_degrees": 0.0,
+            "is_convex": true,
+            "touches_border": false
+          }
+        }
+      ],
+      "matches_expected_labels": true
+    },
+    "clahe_otsu": {
+      "preprocess_mode": "clahe_otsu",
+      "object_count": 3,
+      "predicted_labels": [
+        "circle",
+        "rectangle",
+        "triangle"
+      ],
+      "objects": [
+        {
+          "object_index": 1,
+          "predicted_label": "circle",
+          "confidence": 0.973658,
+          "center": [
+            381,
+            429
+          ],
+          "features": {
+            "area": 34145.0,
+            "area_ratio": 0.09792871237151249,
+            "perimeter": 692.2396763563156,
+            "vertices": 8,
+            "solidity": 0.994611127293912,
+            "circularity": 0.8954142584676708,
+            "bounding_box": [
+              21,
+              144,
+              209,
+              210
+            ],
+            "aspect_ratio": 0.9952380952380953,
+            "min_rect_fill_ratio": 0.7854481045270519,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          },
+          "classification_scores": {
+            "topology": 1.0,
+            "geometry": 0.9121937802416811,
+            "quality": 1.0
+          }
+        },
+        {
+          "object_index": 2,
+          "predicted_label": "rectangle",
+          "confidence": 0.987788,
+          "center": [
+            643,
+            437
+          ],
+          "features": {
+            "area": 48880.0,
+            "area_ratio": 0.14018906020558003,
+            "perimeter": 921.6812393665314,
+            "vertices": 4,
+            "solidity": 0.9780401180531239,
+            "circularity": 0.7230687062065279,
+            "bounding_box": [
+              280,
+              122,
+              206,
+              271
+            ],
+            "aspect_ratio": 0.7601476014760148,
+            "min_rect_fill_ratio": 0.9402373878599425,
+            "max_right_angle_deviation_degrees": 2.721214308467779,
+            "is_convex": true,
+            "touches_border": false
+          },
+          "classification_scores": {
+            "topology": 1.0,
+            "geometry": 0.9674579595331417,
+            "quality": 0.987751
+          }
+        },
+        {
+          "object_index": 3,
+          "predicted_label": "triangle",
+          "confidence": 0.951856,
+          "center": [
+            903,
+            423
+          ],
+          "features": {
+            "area": 17234.0,
+            "area_ratio": 0.04942754221732746,
+            "perimeter": 648.925966501236,
+            "vertices": 3,
+            "solidity": 0.9430111351262619,
+            "circularity": 0.5142871194926001,
+            "bounding_box": [
+              534,
+              145,
+              186,
+              209
+            ],
+            "aspect_ratio": 0.8899521531100478,
+            "min_rect_fill_ratio": 0.48430280003455445,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          },
+          "classification_scores": {
+            "topology": 1.0,
+            "geometry": 1.0,
+            "quality": 0.759279
+          }
+        }
+      ],
+      "otsu_threshold": 111.0,
+      "roi_bounds": [
+        256,
+        180,
+        1024,
+        634
+      ],
+      "total_external_contours": 24,
+      "valid_contours": 3,
+      "contour_filter_details": [
+        {
+          "passed_filter": true,
+          "rejection_reasons": [],
+          "features": {
+            "area": 48880.0,
+            "area_ratio": 0.14018906020558003,
+            "perimeter": 921.6812393665314,
+            "vertices": 4,
+            "solidity": 0.9780401180531239,
+            "circularity": 0.7230687062065279,
+            "bounding_box": [
+              280,
+              122,
+              206,
+              271
+            ],
+            "aspect_ratio": 0.7601476014760148,
+            "min_rect_fill_ratio": 0.9402373878599425,
+            "max_right_angle_deviation_degrees": 2.721214308467779,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": true,
+          "rejection_reasons": [],
+          "features": {
+            "area": 34145.0,
+            "area_ratio": 0.09792871237151249,
+            "perimeter": 692.2396763563156,
+            "vertices": 8,
+            "solidity": 0.994611127293912,
+            "circularity": 0.8954142584676708,
+            "bounding_box": [
+              21,
+              144,
+              209,
+              210
+            ],
+            "aspect_ratio": 0.9952380952380953,
+            "min_rect_fill_ratio": 0.7854481045270519,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": true,
+          "rejection_reasons": [],
+          "features": {
+            "area": 17234.0,
+            "area_ratio": 0.04942754221732746,
+            "perimeter": 648.925966501236,
+            "vertices": 3,
+            "solidity": 0.9430111351262619,
+            "circularity": 0.5142871194926001,
+            "bounding_box": [
+              534,
+              145,
+              186,
+              209
+            ],
+            "aspect_ratio": 0.8899521531100478,
+            "min_rect_fill_ratio": 0.48430280003455445,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 15764.0,
+            "area_ratio": 0.04521154552129222,
+            "perimeter": 992.4061957597733,
+            "vertices": 13,
+            "solidity": 0.7471267091637243,
+            "circularity": 0.20113949538811615,
+            "bounding_box": [
+              135,
+              0,
+              194,
+              144
+            ],
+            "aspect_ratio": 0.7422680412371134,
+            "min_rect_fill_ratio": 0.571180115221566,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 12640.0,
+            "area_ratio": 0.0362518355359765,
+            "perimeter": 1435.5331724882126,
+            "vertices": 11,
+            "solidity": 0.607999230380721,
+            "circularity": 0.07707800628902843,
+            "bounding_box": [
+              471,
+              0,
+              232,
+              131
+            ],
+            "aspect_ratio": 0.5646551724137931,
+            "min_rect_fill_ratio": 0.4209124209124209,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 2376.0,
+            "area_ratio": 0.0068144273127753304,
+            "perimeter": 234.85281240940094,
+            "vertices": 7,
+            "solidity": 0.8493297587131368,
+            "circularity": 0.5413333327330054,
+            "bounding_box": [
+              705,
+              0,
+              63,
+              68
+            ],
+            "aspect_ratio": 0.9264705882352942,
+            "min_rect_fill_ratio": 0.5719788155994222,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 1350.0,
+            "area_ratio": 0.003871833700440529,
+            "perimeter": 368.71067690849304,
+            "vertices": 3,
+            "solidity": 0.823170731707317,
+            "circularity": 0.12478782202334512,
+            "bounding_box": [
+              525,
+              286,
+              15,
+              168
+            ],
+            "aspect_ratio": 0.08928571428571429,
+            "min_rect_fill_ratio": 0.5774165953806673,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 1237.5,
+            "area_ratio": 0.0035491808920704846,
+            "perimeter": 200.81118214130402,
+            "vertices": 4,
+            "solidity": 0.7973582474226805,
+            "circularity": 0.38563752425875764,
+            "bounding_box": [
+              0,
+              0,
+              45,
+              70
+            ],
+            "aspect_ratio": 0.6428571428571429,
+            "min_rect_fill_ratio": 0.4076086956521739,
+            "max_right_angle_deviation_degrees": 72.89981445792304,
+            "is_convex": false,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 490.5,
+            "area_ratio": 0.0014067662444933922,
+            "perimeter": 179.9827550649643,
+            "vertices": 5,
+            "solidity": 0.7546153846153846,
+            "circularity": 0.19027734583720363,
+            "bounding_box": [
+              248,
+              380,
+              15,
+              74
+            ],
+            "aspect_ratio": 0.20270270270270271,
+            "min_rect_fill_ratio": 0.5220306014332361,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 48.0,
+            "area_ratio": 0.00013766519823788548,
+            "perimeter": 30.14213538169861,
+            "vertices": 9,
+            "solidity": 0.9320388349514563,
+            "circularity": 0.6639006122701236,
+            "bounding_box": [
+              49,
+              68,
+              8,
+              12
+            ],
+            "aspect_ratio": 0.6666666666666666,
+            "min_rect_fill_ratio": 0.6303030476001967,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 24.5,
+            "area_ratio": 7.026661160058738e-05,
+            "perimeter": 21.899494767189026,
+            "vertices": 7,
+            "solidity": 0.9423076923076923,
+            "circularity": 0.6419596879556541,
+            "bounding_box": [
+              259,
+              367,
+              5,
+              10
+            ],
+            "aspect_ratio": 0.5,
+            "min_rect_fill_ratio": 0.6805555555555556,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 22.5,
+            "area_ratio": 6.453056167400881e-05,
+            "perimeter": 21.55634880065918,
+            "vertices": 7,
+            "solidity": 0.9,
+            "circularity": 0.6084739327670582,
+            "bounding_box": [
+              693,
+              79,
+              8,
+              8
+            ],
+            "aspect_ratio": 1.0,
+            "min_rect_fill_ratio": 0.7694937883331335,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum"
+          ],
+          "features": {
+            "area": 19.5,
+            "area_ratio": 5.592648678414097e-05,
+            "perimeter": 31.213203072547913,
+            "vertices": 13,
+            "solidity": 0.6290322580645161,
+            "circularity": 0.25151726369660393,
+            "bounding_box": [
+              661,
+              65,
+              13,
+              4
+            ],
+            "aspect_ratio": 0.3076923076923077,
+            "min_rect_fill_ratio": 0.5416666666666666,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "solidity_below_minimum"
+          ],
+          "features": {
+            "area": 13.0,
+            "area_ratio": 3.7284324522760644e-05,
+            "perimeter": 16.485281229019165,
+            "vertices": 8,
+            "solidity": 0.896551724137931,
+            "circularity": 0.601119055910142,
+            "bounding_box": [
+              526,
+              277,
+              4,
+              8
+            ],
+            "aspect_ratio": 0.5,
+            "min_rect_fill_ratio": 0.6350574586958432,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 7.5,
+            "area_ratio": 2.1510187224669605e-05,
+            "perimeter": 11.071067690849304,
+            "vertices": 8,
+            "solidity": 0.9375,
+            "circularity": 0.768939401168237,
+            "bounding_box": [
+              677,
+              62,
+              5,
+              4
+            ],
+            "aspect_ratio": 0.8,
+            "min_rect_fill_ratio": 0.7500000762476325,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": false,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 7.0,
+            "area_ratio": 2.0076174743024963e-05,
+            "perimeter": 10.485281229019165,
+            "vertices": 5,
+            "solidity": 1.0,
+            "circularity": 0.8001063873003664,
+            "bounding_box": [
+              49,
+              82,
+              4,
+              5
+            ],
+            "aspect_ratio": 0.8,
+            "min_rect_fill_ratio": 0.8750001774639711,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 6.0,
+            "area_ratio": 1.7208149779735684e-05,
+            "perimeter": 9.656854152679443,
+            "vertices": 6,
+            "solidity": 1.0,
+            "circularity": 0.8085181428902574,
+            "bounding_box": [
+              693,
+              68,
+              5,
+              3
+            ],
+            "aspect_ratio": 0.6,
+            "min_rect_fill_ratio": 0.7500001521119752,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 6.0,
+            "area_ratio": 1.7208149779735684e-05,
+            "perimeter": 9.656854152679443,
+            "vertices": 6,
+            "solidity": 1.0,
+            "circularity": 0.8085181428902574,
+            "bounding_box": [
+              679,
+              68,
+              3,
+              5
+            ],
+            "aspect_ratio": 0.6,
+            "min_rect_fill_ratio": 0.7500001521119752,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 4.0,
+            "area_ratio": 1.1472099853157121e-05,
+            "perimeter": 7.656854152679443,
+            "vertices": 6,
+            "solidity": 1.0,
+            "circularity": 0.8573716241035623,
+            "bounding_box": [
+              611,
+              96,
+              4,
+              3
+            ],
+            "aspect_ratio": 0.75,
+            "min_rect_fill_ratio": 0.8888889692660855,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 4.0,
+            "area_ratio": 1.1472099853157121e-05,
+            "perimeter": 7.656854152679443,
+            "vertices": 6,
+            "solidity": 1.0,
+            "circularity": 0.8573716241035623,
+            "bounding_box": [
+              704,
+              80,
+              4,
+              3
+            ],
+            "aspect_ratio": 0.75,
+            "min_rect_fill_ratio": 0.8888889692660855,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 4.0,
+            "area_ratio": 1.1472099853157121e-05,
+            "perimeter": 7.656854152679443,
+            "vertices": 6,
+            "solidity": 1.0,
+            "circularity": 0.8573716241035623,
+            "bounding_box": [
+              472,
+              18,
+              3,
+              4
+            ],
+            "aspect_ratio": 0.75,
+            "min_rect_fill_ratio": 0.8888889692660855,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 3.0,
+            "area_ratio": 8.604074889867842e-06,
+            "perimeter": 6.828427076339722,
+            "vertices": 5,
+            "solidity": 1.0,
+            "circularity": 0.8085181381420814,
+            "bounding_box": [
+              565,
+              0,
+              3,
+              3
+            ],
+            "aspect_ratio": 1.0,
+            "min_rect_fill_ratio": 0.75,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": true
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum"
+          ],
+          "features": {
+            "area": 2.0,
+            "area_ratio": 5.736049926578561e-06,
+            "perimeter": 5.656854152679443,
+            "vertices": 4,
+            "solidity": 1.0,
+            "circularity": 0.7853981902804831,
+            "bounding_box": [
+              699,
+              75,
+              3,
+              3
+            ],
+            "aspect_ratio": 1.0,
+            "min_rect_fill_ratio": 1.000000202815967,
+            "max_right_angle_deviation_degrees": 0.0,
+            "is_convex": true,
+            "touches_border": false
+          }
+        },
+        {
+          "passed_filter": false,
+          "rejection_reasons": [
+            "area_ratio_below_minimum",
+            "touches_roi_border"
+          ],
+          "features": {
+            "area": 1.0,
+            "area_ratio": 2.8680249632892803e-06,
+            "perimeter": 4.828427076339722,
+            "vertices": 3,
+            "solidity": 1.0,
+            "circularity": 0.5390120952601716,
+            "bounding_box": [
+              277,
+              0,
+              3,
+              2
+            ],
+            "aspect_ratio": 0.6666666666666666,
+            "min_rect_fill_ratio": 0.5000001014079835,
+            "max_right_angle_deviation_degrees": null,
+            "is_convex": true,
+            "touches_border": true
+          }
+        }
+      ],
+      "matches_expected_labels": true
+    }
+  },
+  "vision_config_snapshot": {
+    "roi_left": 0.24,
+    "roi_top": 0.08,
+    "roi_right": 0.76,
+    "roi_bottom": 0.75,
+    "gaussian_kernel_size": 5,
+    "morphology_kernel_size": 3,
+    "morphology_open_iterations": 1,
+    "canny_low_threshold": 50,
+    "canny_high_threshold": 150,
+    "min_area_ratio": 0.02,
+    "max_area_ratio": 0.25,
+    "min_solidity": 0.9,
+    "border_margin_pixels": 2,
+    "approx_epsilon_ratio": 0.02,
+    "rectangle_max_angle_deviation_degrees": 25.0,
+    "rectangle_min_fill_ratio": 0.8,
+    "circle_min_vertices": 6,
+    "circle_min_circularity": 0.78,
+    "circle_min_aspect_ratio": 0.8,
+    "triangle_confidence_good_circularity": 0.62,
+    "triangle_confidence_max_circularity": 0.72,
+    "rectangle_confidence_good_angle_deviation_degrees": 5.0,
+    "rectangle_confidence_good_fill_ratio": 0.95,
+    "circle_confidence_good_vertices": 8,
+    "circle_confidence_good_circularity": 0.92,
+    "circle_confidence_good_aspect_ratio": 0.95,
+    "confidence_good_solidity": 0.98,
+    "confidence_good_area_clearance_ratio": 0.03,
+    "confidence_topology_weight": 0.5,
+    "confidence_geometry_weight": 0.3,
+    "confidence_quality_weight": 0.2,
+    "auto_hsv_min_value": 140,
+    "auto_hsv_max_saturation": 100,
+    "auto_morphology_kernel_size": 11,
+    "auto_morphology_close_iterations": 2,
+    "auto_morphology_open_iterations": 1,
+    "auto_min_area_ratio": 0.12,
+    "auto_max_area_ratio": 0.85,
+    "auto_preferred_area_ratio": 0.35,
+    "auto_min_rectangularity": 0.7,
+    "auto_max_center_distance_ratio": 0.5,
+    "auto_min_bright_fraction": 0.6,
+    "auto_approx_epsilon_ratio": 0.03,
+    "auto_inner_margin_ratio": 0.04,
+    "auto_min_score": 0.45,
+    "auto_score_area_weight": 0.2,
+    "auto_score_rectangularity_weight": 0.3,
+    "auto_score_center_weight": 0.25,
+    "auto_score_brightness_weight": 0.25,
+    "manual_min_width_pixels": 80,
+    "manual_min_height_pixels": 80,
+    "stability_window_size": 5,
+    "stability_min_votes": 3,
+    "fps_smoothing_window": 30,
+    "live_max_consecutive_read_failures": 30,
+    "live_preview_width": 1280,
+    "live_preview_height": 720,
+    "preprocess_mode": "otsu",
+    "comparison_preprocess_mode": "clahe_otsu",
+    "clahe_clip_limit": 2.0,
+    "clahe_tile_grid_size": 8
+  },
+  "m4_event_snapshot": null,
+  "artifacts": {
+    "frame": "frame.jpg",
+    "roi": "roi.jpg",
+    "comparison_csv": "comparison.csv",
+    "methods": {
+      "otsu": {
+        "normalized_gray": "otsu-normalized-gray.png",
+        "binary": "otsu-binary.png",
+        "canny": "otsu-canny.png",
+        "annotated": "otsu-annotated.jpg"
+      },
+      "clahe_otsu": {
+        "normalized_gray": "clahe_otsu-normalized-gray.png",
+        "binary": "clahe_otsu-binary.png",
+        "canny": "clahe_otsu-canny.png",
+        "annotated": "clahe_otsu-annotated.jpg"
+      }
+    }
+  }
+}
