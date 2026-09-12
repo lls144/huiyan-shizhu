@@ -1,0 +1,56 @@
+// Transport-independent PLC data types for M8.
+// Shape codes 1/2/3 are INTERNAL TEST values only. They are not the M7 wire encoding.
+TYPE "PLC_Command" :
+    STRUCT
+        Valid : Bool;
+        ShapeCode : USInt;       // INTERNAL: 1=triangle, 2=rectangle, 3=circle
+        SemanticId : DInt;       // local semantic identity; not a wire sequence
+    END_STRUCT;
+END_TYPE
+
+TYPE "PLC_FifoBuffer" :
+    STRUCT
+        Items : Array[0..2] of "PLC_Command"; // minimum capacity = 3
+        Head : USInt;
+        Tail : USInt;
+        Count : USInt;
+    END_STRUCT;
+END_TYPE
+
+// Fixed byte layout for the TEST-ONLY M8 acceptance DB.
+// DB_M8_Acceptance must use standard (non-optimized) access.
+TYPE "M8_AcceptanceData" :
+    STRUCT
+        // DBB0: Python-owned control bits.
+        TestEnable : Bool;                  // DBX0.0
+        CommandValidTest : Bool;            // DBX0.1
+        CommandDataValid : Bool;            // DBX0.2
+        DequeueTestRequest : Bool;          // DBX0.3
+        ResetTestRequest : Bool;            // DBX0.4
+        ReservedControl5 : Bool;            // DBX0.5
+        ReservedControl6 : Bool;            // DBX0.6
+        ReservedControl7 : Bool;            // DBX0.7
+        ShapeCode : USInt;                  // DBB1
+        ReservedInputByte2 : Byte;          // DBB2
+        ReservedInputByte3 : Byte;          // DBB3
+        SemanticId : DInt;                  // DBD4
+
+        // DBB8 onward: PLC-owned status. Python must never write this range.
+        AcceptanceReady : Bool;             // DBX8.0
+        QueueEmpty : Bool;                  // DBX8.1
+        QueueFull : Bool;                   // DBX8.2
+        SortLed1 : Bool;                    // DBX8.3
+        SortLed2 : Bool;                    // DBX8.4
+        SortLed3 : Bool;                    // DBX8.5
+        LastDequeuedValid : Bool;            // DBX8.6
+        ReservedStatus7 : Bool;             // DBX8.7
+        QueueLength : USInt;                 // DBB9
+        LastDequeuedShape : USInt;           // DBB10
+        ReservedOutputByte11 : Byte;         // DBB11
+        LastDequeuedSemanticId : DInt;       // DBD12
+        CycleCounter : UDInt;                // DBD16
+        LayoutMagic : Word;                  // DBW20, fixed 16#4D38 ("M8")
+        LayoutVersion : USInt;               // DBB22, fixed 1
+        ReservedOutputByte23 : Byte;         // DBB23
+    END_STRUCT;
+END_TYPE

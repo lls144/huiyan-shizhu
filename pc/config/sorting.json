@@ -1,0 +1,7 @@
+{
+  "belt_speed_units_per_second": 0.60,
+  "min_gap_units": 0.30,
+  "eject_seconds": 0.85,
+  "max_pending_items": 6,
+  "plc_trigger": "exit"
+}

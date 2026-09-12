@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-09-10T23:17:18+08:00",
+  "finished_at": "2026-09-10T23:19:14+08:00",
+  "config_path": "pc\\config\\camera.json",
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10",
+    "opencv": "5.0.0"
+  },
+  "device": {
+    "index": 0,
+    "name": "HD Webcam",
+    "path": "<device-instance-redacted>",
+    "vid": 11134,
+    "pid": 46691,
+    "backend_name": "MSMF",
+    "backend_id": 1400
+  },
+  "requested": {
+    "width": 1280,
+    "height": 720,
+    "fps": 30.0,
+    "fourcc": "YUY2"
+  },
+  "actual_properties": {
+    "width": 1280.0,
+    "height": 720.0,
+    "fps": 30.0,
+    "fourcc": "0x00000016",
+    "backend": "MSMF"
+  },
+  "duration": {
+    "requested_seconds": 60.0,
+    "measured_seconds": 60.018228
+  },
+  "frames": {
+    "attempted": 1800,
+    "successful": 1800,
+    "failed": 0,
+    "success_rate": 1.0,
+    "measured_fps": 29.990889,
+    "maximum_successful_frame_gap_seconds": 0.084088,
+    "observed_shapes": {
+      "720x1280x3": 1800
+    }
+  },
+  "reopen_cycles": [
+    {
+      "cycle": 1,
+      "opened": true,
+      "frame_read": true,
+      "frame_shape": [
+        720,
+        1280,
+        3
+      ],
+      "elapsed_seconds": 13.874008
+    },
+    {
+      "cycle": 2,
+      "opened": true,
+      "frame_read": true,
+      "frame_shape": [
+        720,
+        1280,
+        3
+      ],
+      "elapsed_seconds": 13.909447
+    },
+    {
+      "cycle": 3,
+      "opened": true,
+      "frame_read": true,
+      "frame_shape": [
+        720,
+        1280,
+        3
+      ],
+      "elapsed_seconds": 13.847175
+    }
+  ],
+  "criteria": {
+    "all_reopen_cycles_passed": true,
+    "read_success_rate_passed": true,
+    "maximum_frame_gap_passed": true,
+    "actual_frame_size_matches_request": true
+  },
+  "passed": true,
+  "sample_frame": "evidence\\screenshots\\M1-builtin-720p-sample.jpg",
+  "sample_frame_sha256": "d2fa9cde94c8160b1af711ad329cc2cc16df790eb0d3398d249bbf7ad3da6c64"
+}

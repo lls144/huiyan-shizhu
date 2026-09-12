@@ -18,7 +18,7 @@
 - `DONE`：已有实现、测试与可追溯证据。
 - `BLOCKED`：受明确外部条件阻塞，并记录原因。
 
-M1～M6 已完成各自定义范围内的验收。M3 的 VISION-003、VISION-004 已有真实多目标、三种光照、遮挡和接触/粘连证据；M4 的 PC 端事件生成子能力已经真实生命周期验证；M5 GUI 已完成真实 Insta360 持续运行、同步显示、性能和停止验收。M6 仍只代表 Fake PLC 纯离线语义模拟。M4/M6 完成不表示 PLC-002 整体、通信、真实 FIFO 或真实 PLC 完成；M7 及以后保持 `TODO`。
+M1～M6 已完成各自定义范围内的验收。M3 的 VISION-003、VISION-004 已有真实多目标、三种光照、遮挡和接触/粘连证据；M4 的 PC 端事件生成子能力已经真实生命周期验证；M5 GUI 已完成真机持续运行、同步显示、性能和停止验收。**2026-09-11 相机更换为笔记本内置 `HD Webcam` 后，M1–M5 已按同一验收标准重新跑过（TEST-010 / TEST-017 / TEST-018 / TEST-019）；旧 Insta360 记录保留为历史，两类证据不得混用。** M6 仍只代表 Fake PLC 纯离线语义模拟。M4/M6 完成不表示 PLC-002 整体、通信、真实 FIFO 或真实 PLC 完成；M7 及以后保持 `TODO`。
 
 ## 3. 需求明细
 
@@ -81,9 +81,9 @@ M1～M6 已完成各自定义范围内的验收。M3 的 VISION-003、VISION-004
 - **原始要求**：实现识别结果的可视化 GUI，实时显示摄像头画面、识别结果与置信度。
 - **工程化解释**：PySide6 GUI 展示实时视频、每个目标的类别/几何 confidence、M4 object/event 和运行状态；视觉与采集位于 QObject/QThread worker，UI 只消费同步 snapshot。显示缓冲采用容量 1 的 latest-frame-wins 策略。
 - **验收条件**：连续运行时界面可刷新，画面、类别与置信度同步可见；软件目标为 processing ≥ 20 FPS、GUI update ≥ 15 FPS，最终仍需真实摄像头实测。
-- **当前状态**：DONE（离线自动化与 synthetic soak 通过；2026-09-07 真实 Insta360 GUI 连续运行 1577.142974 秒，处理和 GUI 更新均为 29.315668 FPS，0 failed read、`error=null`、正常停止）
+- **当前状态**：DONE（离线自动化与 synthetic soak 通过；2026-09-07 Insta360 GUI 连续运行 1577.142974 秒，处理和 GUI 更新均为 29.315668 FPS，0 failed read、`error=null`、正常停止；**2026-09-11 内置 HD Webcam 复测：600 秒空场长跑 17549 帧、处理与界面更新同为 29.234 FPS、0 丢帧、正常停止，另有 75 秒带三类目标的短跑**）
 - **对应代码模块**：`pc/gui/`、`pc/camera/`、`pc/vision/`、`pc/events/`
-- **对应测试**：`TEST-006` Part A、Part B 均 PASS
+- **对应测试**：`TEST-006` Part A、Part B 均 PASS；`TEST-019`（新相机）
 - **最终报告证据**：实现 `bbb6fa7`、自动化测试 `eb7a1fd`、真实运行基线 `78597f58`、精选真实证据 `68c89d9`；摘要 `evidence/data/m5/m5-live-camera-session-summary.json`，running/Idle 截图位于 `evidence/screenshots/m5/live/`。
 
 ### PLC 队列与分拣控制
@@ -145,7 +145,7 @@ M1～M6 已完成各自定义范围内的验收。M3 的 VISION-003、VISION-004
 - **原始要求**：PC 端每秒发送心跳；PLC 检测中断 2 秒则触发报警（LED 全闪）。
 - **工程化解释**：PC 心跳周期为 1 s；PLC 使用独立看门狗判断连续 2 s 未收到有效心跳并进入全 LED 闪烁状态，同时定义恢复条件。
 - **验收条件**：测得正常心跳间隔符合要求；人为断开通信后 PLC 在 2 s 阈值处触发全闪报警；恢复行为被明确并验证。
-- **当前状态**：TODO
+- **当前状态**：DONE（2026-09-11 真机双向验证：PC 每秒心跳 1.00–1.03 s；停止心跳后 2.015 s PLC 报警位置位；三盏灯 2.026 Hz 同步全闪；心跳恢复后报警自动清除。PC 侧另实测拔网线 2.09 s 判定中断、插回后自动重连恢复。证据见 TEST-016 / TEST-020 与 `evidence/data/m8-real/2026-09-11-comm002-heartbeat-alarm-after-fix.json`）
 - **对应代码模块**：`pc/communication/`、`plc/`
 - **对应测试**：待建立 `T-COMM-HEARTBEAT-001`
 - **最终报告证据**：带时间戳日志、PLC 定时器监控、断连视频/时序图、Git commit；当前 TODO。
@@ -197,7 +197,7 @@ M1～M6 已完成各自定义范围内的验收。M3 的 VISION-003、VISION-004
 #### HW-001 PLC 实验箱
 
 - **原始要求**：使用实验室现有 PLC 实验箱，含按键、LED 灯组、以太网接口，用于 FIFO、LED、按键和心跳检测。
-- **工程化解释**：负责人已现场确认实际设备为普通 S7-1200 CPU 1214C DC/DC/DC、完整 MLFB `6ES7 214-1AG40-0XB0`；PLC 登记地址 `192.0.2.1/24` 与 Host Realtek 专用网卡 `192.0.2.10/24` 已完成只读可达性检查。固件仍待 TIA 在线读取，目标 PLC 在线身份、VM 网络、I/O 与通信能力仍需现场证据，参数统一见 `PLC_HARDWARE.md`。
+- **工程化解释**：负责人已现场确认实际设备为普通 S7-1200 CPU 1214C DC/DC/DC、完整 MLFB `6ES7 214-1AG40-0XB0`；PLC 登记地址 `192.0.2.1/24` 与 Host Realtek 专用网卡 `192.0.2.10/24` 已完成只读可达性检查。**在线固件已读到 `V4.5.1`**（TIA 下载预览 + 原生 python-snap7 双来源一致；Online & diagnostics 截图待归档）。目标 PLC 在线身份、VM 网络、I/O 与通信能力仍需现场证据，参数统一见 `PLC_HARDWARE.md`。
 - **验收条件**：记录设备铭牌、软件版本、I/O 表和可用接口照片；与实现配置一致。
 - **当前状态**：TODO
 - **对应代码模块**：`plc/`、`pc/config/`
@@ -217,12 +217,12 @@ M1～M6 已完成各自定义范围内的验收。M3 的 VISION-003、VISION-004
 #### HW-003 USB 摄像头
 
 - **原始要求**：使用电脑摄像头拍摄待识别物体。
-- **工程化解释**：当前优先尝试 Insta360 Ace Pro 2 USB Webcam 模式；是否满足要求须实测，不写死设备 ID。
+- **工程化解释**：原计划使用 Insta360 Ace Pro 2 USB Webcam；2026-09-11 起现用**笔记本内置 `HD Webcam`**（MSMF / 1280×720 / YUY2）。设备 ID 不写死，按名字匹配并在枚举时校验。
 - **验收条件**：目标电脑能稳定打开摄像头并持续采集；分辨率、帧率、设备 ID 和固定方式有记录。
-- **当前状态**：DONE（USB Webcam 采集与稳定性已验证；M2 又完成两种机位下的固定白色工作区实时识别，背景板 A3 规格与材质未单独测量）
+- **当前状态**：DONE（两台相机各完成一轮：Insta360 的采集/机位验证为历史；内置 HD Webcam 于 2026-09-10/11 重新验收 M1，并完成 M2–M5 复测）。**方法学限制**：内置相机固定在屏幕上方，无法三脚架垂直俯拍，采集需手持 A3 白纸对准镜头；背景板 A3 规格与材质仍未单独测量。
 - **对应代码模块**：`pc/camera/`、`pc/config/`
-- **对应测试**：`notes/tests/TEST-001-M1-Insta360稳定采集.md`
-- **最终报告证据**：`test_data/m1/2026-09-03-insta360-stability.json`、`evidence/screenshots/M1-insta360-1080p-sample.jpg`、TEST-001、commit `d2b864d852e3910ba10a6572c0bd98bb8249a9f0`。
+- **对应测试**：`notes/tests/TEST-001-M1-Insta360稳定采集.md`（历史）、`notes/tests/TEST-010-内置摄像头重新验收.md`（现用相机）
+- **最终报告证据**：历史 `test_data/m1/2026-09-03-insta360-stability.json`、`evidence/screenshots/M1-insta360-1080p-sample.jpg`；现用相机 `test_data/m1/2026-09-10-builtin-msmf-stability.json`、`evidence/screenshots/M1-builtin-720p-sample.jpg`。
 
 #### HW-004 三类纸板物体
 
@@ -343,7 +343,7 @@ M1～M6 已完成各自定义范围内的验收。M3 的 VISION-003、VISION-004
 1. **文件位置**：初始化时任务书位于仓库根目录，而非 `reference/`。Phase 0 已将其移入 `reference/`，移动前后 SHA-256 一致，内容未修改。
 2. **通信介质**：正文写“串口/以太网”，硬件方案表写“网线”。当前不强行二选一；实验室确认 PLC 后形成 Decision 记录。
 3. **单向与反馈**：正文称“单向通信协议（AI → PLC）”，同时要求“超时重发”和“队列满通知”，后两者通常需要 PLC → PC 的确认/状态返回。协议设计前必须向指导教师确认“单向”是指业务指令方向，还是禁止任何返回帧。
-4. **摄像头**：任务书写“电脑摄像头”，项目当前计划使用 Insta360 Ace Pro 2 USB Webcam。只要被系统识别为 USB 摄像头且完成实测，预计可满足用途；最终需以指导教师意见和 M1 实测为准。
+4. **摄像头**：任务书写“电脑摄像头”。项目曾计划使用 Insta360 Ace Pro 2 USB Webcam，2026-09-11 起改用笔记本内置 `HD Webcam`——它更贴合任务书"电脑摄像头"的字面要求且已完成 M1–M5 重新验收；代价是固定朝向、无法俯拍，采集方法受限（见 TEST-018）。若后续改用外接摄像头，须重新按同一标准验收。
 5. **技术方案正文缺失**：四个关键算法/机制标题下没有内容，不存在可照抄的流程、帧格式或时序参数（心跳 1 s、报警 2 s 除外）。
 6. **进程表缺失**：序号 2、3 无阶段名称，序号 4 缺失，不能据此恢复完整课程排期。
 7. **参考资料缺失**：“主要参考资料”只有 `[1]`、`[2]`、`[3]` 占位符，没有书目内容；后续引用来源必须真实补录，不能猜测原条目。
@@ -356,4 +356,4 @@ M1～M6 已完成各自定义范围内的验收。M3 的 VISION-003、VISION-004
 
 ## 6. PLC 资料补充（2026-09-05）
 
-HW-001 的实际设备已由负责人现场确认：普通 S7-1200 CPU 1214C DC/DC/DC，完整 MLFB `6ES7 214-1AG40-0XB0`，不得记为 G2。PLC 登记地址为 `192.0.2.1/24`；Windows Host 的 Realtek PLC 专用网卡为 `192.0.2.10/24`，Host ping 4/4、ARP reachable。该可达性不等于 TIA 已确认目标 PLC 身份。固件 V4.1 仍为操作者报告、待 Online & diagnostics 读取；TIA Portal V20 当前作为实际编程环境使用，但 Update、许可、设备目录兼容性与 VM 网络仍待记录。指导书示例为 1215C / V4.1 / TIA V16，不覆盖项目实物。参数来源和剩余待办统一见 `PLC_HARDWARE.md`；协作责任见 `COLLABORATION.md`，共享接口见 `PLC_INTERFACE.md`。硬件资料补齐不等于 HW-001、COMM 或 PLC 功能已验收，原 Requirement ID、验收标准和 milestone 状态不变。
+HW-001 的实际设备已由负责人现场确认：普通 S7-1200 CPU 1214C DC/DC/DC，完整 MLFB `6ES7 214-1AG40-0XB0`，不得记为 G2。PLC 登记地址为 `192.0.2.1/24`；Windows Host 的 Realtek PLC 专用网卡为 `192.0.2.10/24`，Host ping 4/4、ARP reachable。该可达性不等于 TIA 已确认目标 PLC 身份。**在线固件 `V4.5.1` 已由两个独立来源互证**（TIA 下载预览“(在线) V4.5” + 隔离环境原生 python-snap7 读数；Online & diagnostics 截图仍待归档，ISSUE-002 据此结案）。TIA Portal V20 当前作为实际编程环境使用，操作者已于 2026-09-11 完成工程修复、编译与下载；Update、许可、设备目录兼容性与 VM 网络仍待记录。指导书示例为 1215C / V4.1 / TIA V16，不覆盖项目实物。参数来源和剩余待办统一见 `PLC_HARDWARE.md`；协作责任见 `COLLABORATION.md`，共享接口见 `PLC_INTERFACE.md`。硬件资料补齐不等于 HW-001、COMM 或 PLC 功能已验收，原 Requirement ID、验收标准和 milestone 状态不变。

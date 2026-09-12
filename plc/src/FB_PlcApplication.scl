@@ -1,0 +1,57 @@
+// Transport-neutral application composition for M8.
+// Replace CommandIn with an approved M7 adapter only after the shared contract is frozen.
+FUNCTION_BLOCK "FB_PlcApplication"
+VAR_INPUT
+    CommandIn : "PLC_Command";
+    CommandValid : Bool;
+    DequeueButtonRaw : Bool;
+    ResetButtonRaw : Bool;
+END_VAR
+VAR_OUTPUT
+    QueueEmpty : Bool;
+    QueueFull : Bool;
+    QueueLength : USInt;
+    SortLed1 : Bool;
+    SortLed2 : Bool;
+    SortLed3 : Bool;
+    QueueFullLed : Bool;      // optional diagnostic hook; not a fourth required business LED
+    LastDequeuedValid : Bool;
+    LastDequeuedShape : USInt;
+    LastDequeuedSemanticId : DInt;
+END_VAR
+VAR
+    Fifo : "PLC_FifoBuffer";
+    DequeueButton : "FB_ButtonPulse";
+    ResetButton : "FB_ButtonPulse";
+    FifoBlock : "FB_Fifo";
+    LedBlock : "FB_LedDisplay";
+    Dequeued : "PLC_Command";
+    DequeuedValid : Bool;
+    CommandValidPrev : Bool;
+END_VAR
+BEGIN
+    // Accept each held command-valid level only once. Update the previous
+    // level even during Reset so a held TRUE cannot create a ghost enqueue.
+    #DequeueButton(Raw := #DequeueButtonRaw, Reset := FALSE, DebounceScans := 2);
+    #ResetButton(Raw := #ResetButtonRaw, Reset := FALSE, DebounceScans := 2);
+    #FifoBlock(Enqueue := #CommandValid AND NOT #CommandValidPrev,
+               EnqueueItem := #CommandIn,
+               Dequeue := #DequeueButton.Pulse, Reset := #ResetButton.Pulse,
+               Buffer := #Fifo, DequeuedItem => #Dequeued, DequeueValid => #DequeuedValid,
+               QueueEmpty => #QueueEmpty, QueueFull => #QueueFull, QueueLength => #QueueLength);
+    #CommandValidPrev := #CommandValid;
+    IF #ResetButton.Pulse THEN
+        #LastDequeuedValid := FALSE;
+        #LastDequeuedShape := 0;
+        #LastDequeuedSemanticId := 0;
+    ELSIF #DequeuedValid THEN
+        #LastDequeuedValid := TRUE;
+        #LastDequeuedShape := #Dequeued.ShapeCode;
+        #LastDequeuedSemanticId := #Dequeued.SemanticId;
+    END_IF;
+    #LedBlock(ItemValid := #DequeuedValid, ShapeCode := #Dequeued.ShapeCode,
+              Reset := #ResetButton.Pulse, QueueFull := #QueueFull,
+              CommLost := FALSE, BlinkPhase := FALSE,
+              SortLed1 => #SortLed1, SortLed2 => #SortLed2, SortLed3 => #SortLed3,
+              QueueFullLed => #QueueFullLed);
+END_FUNCTION_BLOCK

@@ -1,0 +1,1549 @@
+{
+  "schema_version": 1,
+  "milestone": "M3",
+  "acceptance_status": "pending_user_validation",
+  "status": "completed",
+  "started_at": "2026-09-11T13:17:49.649+08:00",
+  "git": {
+    "commit": "de2c2c8434bd5330639c5c113ad13bf8e5bbc3f3",
+    "dirty": true
+  },
+  "camera_device": {
+    "index": 0,
+    "name": "HD Webcam",
+    "path": "<device-instance-redacted>",
+    "vid": 11134,
+    "pid": 46691,
+    "backend_name": "MSMF",
+    "backend_id": 1400
+  },
+  "camera_config": {
+    "device_name": "HD Webcam",
+    "fallback_index": null,
+    "backend": "MSMF",
+    "requested_width": 1280,
+    "requested_height": 720,
+    "requested_fps": 30.0,
+    "fourcc": "YUY2",
+    "warmup_frames": 15,
+    "test_duration_seconds": 60.0,
+    "reopen_cycles": 3,
+    "minimum_read_success_rate": 0.99,
+    "maximum_frame_gap_seconds": 2.0
+  },
+  "camera_actual_properties": {
+    "width": 1280.0,
+    "height": 720.0,
+    "reported_fps": 30.0,
+    "backend": "MSMF"
+  },
+  "requested_roi_mode": "auto",
+  "expected_labels": [
+    "triangle",
+    "rectangle",
+    "circle"
+  ],
+  "preprocess_modes": [
+    "otsu",
+    "clahe_otsu"
+  ],
+  "calibration_file": "output\\m2\\runtime-calibration.json",
+  "calibration_history": [
+    {
+      "timestamp": "2026-09-11T13:17:50.580+08:00",
+      "requested_mode": "manual",
+      "selected_mode": "manual",
+      "source": "restored",
+      "normalized_roi": {
+        "left": 0.2,
+        "top": 0.25,
+        "right": 0.8,
+        "bottom": 0.88
+      },
+      "pixel_roi": [
+        256,
+        180,
+        1024,
+        634
+      ],
+      "fallback_messages": [
+        "auto ROI of the hand-held composition accepted once with score 0.634; the frozen value below is that region widened to a symmetric centre box"
+      ],
+      "auto_score": null
+    }
+  ],
+  "evidence_records": [],
+  "m4_event_tracking": {
+    "enabled": true,
+    "config_path": "pc\\config\\events.json",
+    "config": {
+      "min_confirm_frames": 2,
+      "max_missing_frames": 3,
+      "iou_threshold": 0.3,
+      "center_distance_threshold": 80.0
+    },
+    "detection_preprocess_mode": "otsu",
+    "events": [
+      {
+        "event_id": 1,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 1,
+        "label": "unknown",
+        "confidence": 0.0,
+        "frame_index": 1358
+      },
+      {
+        "event_id": 2,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 1,
+        "label": "unknown",
+        "confidence": 0.0,
+        "frame_index": 1365
+      },
+      {
+        "event_id": 3,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 4,
+        "label": "circle",
+        "confidence": 0.956648,
+        "frame_index": 2019
+      },
+      {
+        "event_id": 4,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 5,
+        "label": "rectangle",
+        "confidence": 0.975079,
+        "frame_index": 2019
+      },
+      {
+        "event_id": 5,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 4,
+        "label": "circle",
+        "confidence": 0.957604,
+        "frame_index": 2053
+      },
+      {
+        "event_id": 6,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 5,
+        "label": "rectangle",
+        "confidence": 0.972619,
+        "frame_index": 2054
+      },
+      {
+        "event_id": 7,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 6,
+        "label": "circle",
+        "confidence": 0.910381,
+        "frame_index": 2067
+      },
+      {
+        "event_id": 8,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 7,
+        "label": "rectangle",
+        "confidence": 0.979553,
+        "frame_index": 2067
+      },
+      {
+        "event_id": 9,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 8,
+        "label": "unknown",
+        "confidence": 0.0,
+        "frame_index": 2089
+      },
+      {
+        "event_id": 10,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 9,
+        "label": "unknown",
+        "confidence": 0.0,
+        "frame_index": 2090
+      },
+      {
+        "event_id": 11,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 7,
+        "label": "rectangle",
+        "confidence": 0.965076,
+        "frame_index": 2091
+      },
+      {
+        "event_id": 12,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 6,
+        "label": "circle",
+        "confidence": 0.931174,
+        "frame_index": 2092
+      },
+      {
+        "event_id": 13,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 8,
+        "label": "unknown",
+        "confidence": 0.0,
+        "frame_index": 2095
+      },
+      {
+        "event_id": 14,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 9,
+        "label": "unknown",
+        "confidence": 0.0,
+        "frame_index": 2095
+      },
+      {
+        "event_id": 15,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 10,
+        "label": "circle",
+        "confidence": 0.796196,
+        "frame_index": 2446
+      },
+      {
+        "event_id": 16,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 11,
+        "label": "rectangle",
+        "confidence": 0.965379,
+        "frame_index": 2446
+      },
+      {
+        "event_id": 17,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 11,
+        "label": "rectangle",
+        "confidence": 0.939426,
+        "frame_index": 2456
+      },
+      {
+        "event_id": 18,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 12,
+        "label": "rectangle",
+        "confidence": 1.0,
+        "frame_index": 2473
+      },
+      {
+        "event_id": 19,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 10,
+        "label": "circle",
+        "confidence": 0.919989,
+        "frame_index": 2479
+      },
+      {
+        "event_id": 20,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 12,
+        "label": "rectangle",
+        "confidence": 0.993461,
+        "frame_index": 2486
+      },
+      {
+        "event_id": 21,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 13,
+        "label": "rectangle",
+        "confidence": 0.939985,
+        "frame_index": 2491
+      },
+      {
+        "event_id": 22,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 13,
+        "label": "rectangle",
+        "confidence": 0.926558,
+        "frame_index": 2499
+      },
+      {
+        "event_id": 23,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 14,
+        "label": "rectangle",
+        "confidence": 0.943864,
+        "frame_index": 2511
+      },
+      {
+        "event_id": 24,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 15,
+        "label": "circle",
+        "confidence": 0.940727,
+        "frame_index": 2521
+      },
+      {
+        "event_id": 25,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 16,
+        "label": "unknown",
+        "confidence": 0.0,
+        "frame_index": 2547
+      },
+      {
+        "event_id": 26,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 15,
+        "label": "circle",
+        "confidence": 0.785749,
+        "frame_index": 2549
+      },
+      {
+        "event_id": 27,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 16,
+        "label": "unknown",
+        "confidence": 0.0,
+        "frame_index": 2600
+      },
+      {
+        "event_id": 28,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 17,
+        "label": "unknown",
+        "confidence": 0.0,
+        "frame_index": 2638
+      },
+      {
+        "event_id": 29,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 14,
+        "label": "rectangle",
+        "confidence": 0.969875,
+        "frame_index": 2640
+      },
+      {
+        "event_id": 30,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 17,
+        "label": "unknown",
+        "confidence": 0.0,
+        "frame_index": 2646
+      },
+      {
+        "event_id": 31,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 18,
+        "label": "circle",
+        "confidence": 0.908869,
+        "frame_index": 2892
+      },
+      {
+        "event_id": 32,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 18,
+        "label": "circle",
+        "confidence": 0.936396,
+        "frame_index": 2900
+      },
+      {
+        "event_id": 33,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 20,
+        "label": "rectangle",
+        "confidence": 0.999227,
+        "frame_index": 2932
+      },
+      {
+        "event_id": 34,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 21,
+        "label": "circle",
+        "confidence": 0.966867,
+        "frame_index": 2936
+      },
+      {
+        "event_id": 35,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 20,
+        "label": "rectangle",
+        "confidence": 0.999359,
+        "frame_index": 2964
+      },
+      {
+        "event_id": 36,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 22,
+        "label": "rectangle",
+        "confidence": 0.999817,
+        "frame_index": 2967
+      },
+      {
+        "event_id": 37,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 22,
+        "label": "rectangle",
+        "confidence": 0.991147,
+        "frame_index": 2975
+      },
+      {
+        "event_id": 38,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 23,
+        "label": "triangle",
+        "confidence": 0.953125,
+        "frame_index": 2977
+      },
+      {
+        "event_id": 39,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 25,
+        "label": "rectangle",
+        "confidence": 0.952447,
+        "frame_index": 2995
+      },
+      {
+        "event_id": 40,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 23,
+        "label": "triangle",
+        "confidence": 0.968515,
+        "frame_index": 2998
+      },
+      {
+        "event_id": 41,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 25,
+        "label": "rectangle",
+        "confidence": 0.947922,
+        "frame_index": 3034
+      },
+      {
+        "event_id": 42,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 27,
+        "label": "triangle",
+        "confidence": 0.990183,
+        "frame_index": 3044
+      },
+      {
+        "event_id": 43,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 28,
+        "label": "rectangle",
+        "confidence": 0.899148,
+        "frame_index": 3046
+      },
+      {
+        "event_id": 44,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 28,
+        "label": "rectangle",
+        "confidence": 0.888725,
+        "frame_index": 3058
+      },
+      {
+        "event_id": 45,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 29,
+        "label": "rectangle",
+        "confidence": 0.846583,
+        "frame_index": 3070
+      },
+      {
+        "event_id": 46,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 27,
+        "label": "triangle",
+        "confidence": 0.988856,
+        "frame_index": 3119
+      },
+      {
+        "event_id": 47,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 30,
+        "label": "triangle",
+        "confidence": 0.988096,
+        "frame_index": 3129
+      },
+      {
+        "event_id": 48,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 29,
+        "label": "rectangle",
+        "confidence": 0.860819,
+        "frame_index": 3135
+      },
+      {
+        "event_id": 49,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 31,
+        "label": "rectangle",
+        "confidence": 0.848532,
+        "frame_index": 3137
+      },
+      {
+        "event_id": 50,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 30,
+        "label": "triangle",
+        "confidence": 0.9854,
+        "frame_index": 3200
+      },
+      {
+        "event_id": 51,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 31,
+        "label": "rectangle",
+        "confidence": 0.847599,
+        "frame_index": 3224
+      },
+      {
+        "event_id": 52,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 35,
+        "label": "rectangle",
+        "confidence": 0.853854,
+        "frame_index": 3245
+      },
+      {
+        "event_id": 53,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 35,
+        "label": "rectangle",
+        "confidence": 0.854564,
+        "frame_index": 3250
+      },
+      {
+        "event_id": 54,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 39,
+        "label": "rectangle",
+        "confidence": 0.955306,
+        "frame_index": 3321
+      },
+      {
+        "event_id": 55,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 40,
+        "label": "triangle",
+        "confidence": 0.962091,
+        "frame_index": 3383
+      },
+      {
+        "event_id": 56,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 39,
+        "label": "rectangle",
+        "confidence": 0.994611,
+        "frame_index": 3399
+      },
+      {
+        "event_id": 57,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 41,
+        "label": "rectangle",
+        "confidence": 0.993003,
+        "frame_index": 3402
+      },
+      {
+        "event_id": 58,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 40,
+        "label": "triangle",
+        "confidence": 0.963134,
+        "frame_index": 3404
+      },
+      {
+        "event_id": 59,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 42,
+        "label": "triangle",
+        "confidence": 0.95755,
+        "frame_index": 3416
+      },
+      {
+        "event_id": 60,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 42,
+        "label": "triangle",
+        "confidence": 0.980124,
+        "frame_index": 3462
+      },
+      {
+        "event_id": 61,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 41,
+        "label": "rectangle",
+        "confidence": 0.993681,
+        "frame_index": 3488
+      },
+      {
+        "event_id": 62,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 21,
+        "label": "circle",
+        "confidence": 0.97509,
+        "frame_index": 3492
+      },
+      {
+        "event_id": 63,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 43,
+        "label": "circle",
+        "confidence": 0.969025,
+        "frame_index": 3524
+      },
+      {
+        "event_id": 64,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 43,
+        "label": "circle",
+        "confidence": 0.969678,
+        "frame_index": 3529
+      },
+      {
+        "event_id": 65,
+        "event_type": "OBJECT_ENTER",
+        "object_id": 44,
+        "label": "circle",
+        "confidence": 0.932329,
+        "frame_index": 3647
+      },
+      {
+        "event_id": 66,
+        "event_type": "OBJECT_EXIT",
+        "object_id": 44,
+        "label": "circle",
+        "confidence": 0.957637,
+        "frame_index": 3659
+      }
+    ],
+    "live_acceptance_status": "pending_user_validation",
+    "final_object_states": [
+      {
+        "object_id": 1,
+        "label": "unknown",
+        "bbox": [
+          270,
+          402,
+          198,
+          161
+        ],
+        "first_seen": 1357,
+        "last_seen": 1361,
+        "hit_count": 4,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 2,
+        "label": "rectangle",
+        "bbox": [
+          289,
+          399,
+          174,
+          162
+        ],
+        "first_seen": 1360,
+        "last_seen": 1360,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.713794
+      },
+      {
+        "object_id": 3,
+        "label": "rectangle",
+        "bbox": [
+          260,
+          420,
+          209,
+          166
+        ],
+        "first_seen": 1362,
+        "last_seen": 1362,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.84203
+      },
+      {
+        "object_id": 4,
+        "label": "circle",
+        "bbox": [
+          372,
+          474,
+          151,
+          144
+        ],
+        "first_seen": 2018,
+        "last_seen": 2049,
+        "hit_count": 32,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.957604
+      },
+      {
+        "object_id": 5,
+        "label": "rectangle",
+        "bbox": [
+          597,
+          461,
+          149,
+          161
+        ],
+        "first_seen": 2018,
+        "last_seen": 2050,
+        "hit_count": 33,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.972619
+      },
+      {
+        "object_id": 6,
+        "label": "circle",
+        "bbox": [
+          401,
+          423,
+          152,
+          122
+        ],
+        "first_seen": 2066,
+        "last_seen": 2088,
+        "hit_count": 23,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.931174
+      },
+      {
+        "object_id": 7,
+        "label": "rectangle",
+        "bbox": [
+          609,
+          373,
+          146,
+          149
+        ],
+        "first_seen": 2066,
+        "last_seen": 2087,
+        "hit_count": 22,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.965076
+      },
+      {
+        "object_id": 8,
+        "label": "unknown",
+        "bbox": [
+          610,
+          475,
+          146,
+          133
+        ],
+        "first_seen": 2088,
+        "last_seen": 2091,
+        "hit_count": 4,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 9,
+        "label": "unknown",
+        "bbox": [
+          391,
+          506,
+          154,
+          104
+        ],
+        "first_seen": 2089,
+        "last_seen": 2091,
+        "hit_count": 3,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 10,
+        "label": "circle",
+        "bbox": [
+          278,
+          267,
+          163,
+          174
+        ],
+        "first_seen": 2445,
+        "last_seen": 2475,
+        "hit_count": 31,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.919989
+      },
+      {
+        "object_id": 11,
+        "label": "rectangle",
+        "bbox": [
+          599,
+          194,
+          181,
+          194
+        ],
+        "first_seen": 2445,
+        "last_seen": 2452,
+        "hit_count": 8,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.939426
+      },
+      {
+        "object_id": 12,
+        "label": "rectangle",
+        "bbox": [
+          414,
+          184,
+          180,
+          228
+        ],
+        "first_seen": 2472,
+        "last_seen": 2482,
+        "hit_count": 11,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.993461
+      },
+      {
+        "object_id": 13,
+        "label": "rectangle",
+        "bbox": [
+          269,
+          218,
+          201,
+          246
+        ],
+        "first_seen": 2490,
+        "last_seen": 2495,
+        "hit_count": 6,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.926558
+      },
+      {
+        "object_id": 14,
+        "label": "rectangle",
+        "bbox": [
+          301,
+          214,
+          252,
+          236
+        ],
+        "first_seen": 2510,
+        "last_seen": 2636,
+        "hit_count": 127,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.969875
+      },
+      {
+        "object_id": 15,
+        "label": "circle",
+        "bbox": [
+          458,
+          271,
+          148,
+          185
+        ],
+        "first_seen": 2520,
+        "last_seen": 2545,
+        "hit_count": 26,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.785749
+      },
+      {
+        "object_id": 16,
+        "label": "unknown",
+        "bbox": [
+          363,
+          272,
+          92,
+          160
+        ],
+        "first_seen": 2546,
+        "last_seen": 2596,
+        "hit_count": 51,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 17,
+        "label": "unknown",
+        "bbox": [
+          279,
+          322,
+          263,
+          100
+        ],
+        "first_seen": 2637,
+        "last_seen": 2642,
+        "hit_count": 6,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.0
+      },
+      {
+        "object_id": 18,
+        "label": "circle",
+        "bbox": [
+          263,
+          341,
+          160,
+          155
+        ],
+        "first_seen": 2891,
+        "last_seen": 2896,
+        "hit_count": 6,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.936396
+      },
+      {
+        "object_id": 19,
+        "label": "circle",
+        "bbox": [
+          259,
+          214,
+          145,
+          146
+        ],
+        "first_seen": 2907,
+        "last_seen": 2907,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.962509
+      },
+      {
+        "object_id": 20,
+        "label": "rectangle",
+        "bbox": [
+          642,
+          246,
+          223,
+          275
+        ],
+        "first_seen": 2931,
+        "last_seen": 2960,
+        "hit_count": 25,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.999359
+      },
+      {
+        "object_id": 21,
+        "label": "circle",
+        "bbox": [
+          454,
+          389,
+          233,
+          239
+        ],
+        "first_seen": 2935,
+        "last_seen": 3488,
+        "hit_count": 554,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.97509
+      },
+      {
+        "object_id": 22,
+        "label": "rectangle",
+        "bbox": [
+          682,
+          224,
+          218,
+          274
+        ],
+        "first_seen": 2966,
+        "last_seen": 2971,
+        "hit_count": 6,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.991147
+      },
+      {
+        "object_id": 23,
+        "label": "triangle",
+        "bbox": [
+          259,
+          229,
+          196,
+          178
+        ],
+        "first_seen": 2976,
+        "last_seen": 2994,
+        "hit_count": 19,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.968515
+      },
+      {
+        "object_id": 24,
+        "label": "rectangle",
+        "bbox": [
+          683,
+          321,
+          242,
+          299
+        ],
+        "first_seen": 2982,
+        "last_seen": 2982,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.917596
+      },
+      {
+        "object_id": 25,
+        "label": "rectangle",
+        "bbox": [
+          667,
+          320,
+          225,
+          310
+        ],
+        "first_seen": 2994,
+        "last_seen": 3030,
+        "hit_count": 35,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.947922
+      },
+      {
+        "object_id": 26,
+        "label": "rectangle",
+        "bbox": [
+          708,
+          309,
+          230,
+          321
+        ],
+        "first_seen": 3042,
+        "last_seen": 3042,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.897588
+      },
+      {
+        "object_id": 27,
+        "label": "triangle",
+        "bbox": [
+          259,
+          252,
+          190,
+          189
+        ],
+        "first_seen": 3043,
+        "last_seen": 3115,
+        "hit_count": 72,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.988856
+      },
+      {
+        "object_id": 28,
+        "label": "rectangle",
+        "bbox": [
+          752,
+          322,
+          220,
+          304
+        ],
+        "first_seen": 3045,
+        "last_seen": 3054,
+        "hit_count": 9,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.888725
+      },
+      {
+        "object_id": 29,
+        "label": "rectangle",
+        "bbox": [
+          741,
+          313,
+          208,
+          305
+        ],
+        "first_seen": 3069,
+        "last_seen": 3131,
+        "hit_count": 58,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.860819
+      },
+      {
+        "object_id": 30,
+        "label": "triangle",
+        "bbox": [
+          259,
+          253,
+          191,
+          186
+        ],
+        "first_seen": 3128,
+        "last_seen": 3196,
+        "hit_count": 69,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.9854
+      },
+      {
+        "object_id": 31,
+        "label": "rectangle",
+        "bbox": [
+          691,
+          290,
+          182,
+          286
+        ],
+        "first_seen": 3136,
+        "last_seen": 3220,
+        "hit_count": 59,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.847599
+      },
+      {
+        "object_id": 32,
+        "label": "rectangle",
+        "bbox": [
+          700,
+          296,
+          182,
+          289
+        ],
+        "first_seen": 3227,
+        "last_seen": 3227,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.847964
+      },
+      {
+        "object_id": 33,
+        "label": "rectangle",
+        "bbox": [
+          705,
+          300,
+          183,
+          290
+        ],
+        "first_seen": 3234,
+        "last_seen": 3234,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.850566
+      },
+      {
+        "object_id": 34,
+        "label": "rectangle",
+        "bbox": [
+          707,
+          299,
+          182,
+          289
+        ],
+        "first_seen": 3238,
+        "last_seen": 3238,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.847843
+      },
+      {
+        "object_id": 35,
+        "label": "rectangle",
+        "bbox": [
+          716,
+          297,
+          179,
+          288
+        ],
+        "first_seen": 3244,
+        "last_seen": 3246,
+        "hit_count": 3,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.854564
+      },
+      {
+        "object_id": 36,
+        "label": "rectangle",
+        "bbox": [
+          707,
+          285,
+          182,
+          281
+        ],
+        "first_seen": 3259,
+        "last_seen": 3259,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.87292
+      },
+      {
+        "object_id": 37,
+        "label": "rectangle",
+        "bbox": [
+          683,
+          276,
+          178,
+          276
+        ],
+        "first_seen": 3313,
+        "last_seen": 3313,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.884412
+      },
+      {
+        "object_id": 38,
+        "label": "rectangle",
+        "bbox": [
+          681,
+          275,
+          178,
+          275
+        ],
+        "first_seen": 3315,
+        "last_seen": 3315,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.895931
+      },
+      {
+        "object_id": 39,
+        "label": "rectangle",
+        "bbox": [
+          807,
+          246,
+          211,
+          276
+        ],
+        "first_seen": 3320,
+        "last_seen": 3395,
+        "hit_count": 76,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.994611
+      },
+      {
+        "object_id": 40,
+        "label": "triangle",
+        "bbox": [
+          315,
+          192,
+          172,
+          171
+        ],
+        "first_seen": 3382,
+        "last_seen": 3400,
+        "hit_count": 19,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.963134
+      },
+      {
+        "object_id": 41,
+        "label": "rectangle",
+        "bbox": [
+          737,
+          332,
+          211,
+          294
+        ],
+        "first_seen": 3401,
+        "last_seen": 3484,
+        "hit_count": 84,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.993681
+      },
+      {
+        "object_id": 42,
+        "label": "triangle",
+        "bbox": [
+          259,
+          226,
+          179,
+          191
+        ],
+        "first_seen": 3415,
+        "last_seen": 3458,
+        "hit_count": 44,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.980124
+      },
+      {
+        "object_id": 43,
+        "label": "circle",
+        "bbox": [
+          261,
+          343,
+          268,
+          257
+        ],
+        "first_seen": 3523,
+        "last_seen": 3525,
+        "hit_count": 3,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.969678
+      },
+      {
+        "object_id": 44,
+        "label": "circle",
+        "bbox": [
+          387,
+          354,
+          262,
+          275
+        ],
+        "first_seen": 3646,
+        "last_seen": 3655,
+        "hit_count": 10,
+        "consecutive_hits": 0,
+        "miss_count": 4,
+        "confirmed": true,
+        "active": false,
+        "event_emitted": true,
+        "status": "exited",
+        "confidence": 0.957637
+      },
+      {
+        "object_id": 45,
+        "label": "unknown",
+        "bbox": [
+          391,
+          191,
+          223,
+          159
+        ],
+        "first_seen": 3766,
+        "last_seen": 3766,
+        "hit_count": 1,
+        "consecutive_hits": 0,
+        "miss_count": 1,
+        "confirmed": false,
+        "active": false,
+        "event_emitted": false,
+        "status": "exited",
+        "confidence": 0.0
+      }
+    ]
+  },
+  "runtime_roi": {
+    "requested_mode": "manual",
+    "selected_mode": "manual",
+    "source": "restored",
+    "normalized_roi": {
+      "left": 0.2,
+      "top": 0.25,
+      "right": 0.8,
+      "bottom": 0.88
+    },
+    "pixel_roi": [
+      256,
+      180,
+      1024,
+      634
+    ],
+    "fallback_messages": [
+      "auto ROI of the hand-held composition accepted once with score 0.634; the frozen value below is that region widened to a symmetric centre box"
+    ],
+    "auto_score": null
+  },
+  "finished_at": "2026-09-11T13:20:03.214+08:00",
+  "duration_seconds": 133.269334,
+  "active_processing_seconds": 132.309194,
+  "frames_processed": 3965,
+  "failed_reads": 0,
+  "measured_processing_fps": 29.967683,
+  "evidence_frames_saved": 0,
+  "error": null
+}

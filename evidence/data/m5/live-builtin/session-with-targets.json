@@ -1,0 +1,761 @@
+{
+  "started_at": "2026-09-11T13:57:02.262+08:00",
+  "finished_at": "2026-09-11T13:58:17.578+08:00",
+  "duration_seconds": 75.27522,
+  "source_type": "camera",
+  "source_metadata": {
+    "source_type": "camera",
+    "camera_config_path": "pc\\config\\camera.json",
+    "device": {
+      "index": 0,
+      "name": "HD Webcam",
+      "path": "<device-instance-redacted>",
+      "vid": 11134,
+      "pid": 46691,
+      "backend_name": "MSMF",
+      "backend_id": 1400
+    },
+    "camera_config": {
+      "device_name": "HD Webcam",
+      "fallback_index": null,
+      "backend": "MSMF",
+      "requested_width": 1280,
+      "requested_height": 720,
+      "requested_fps": 30.0,
+      "fourcc": "YUY2",
+      "warmup_frames": 15,
+      "test_duration_seconds": 60.0,
+      "reopen_cycles": 3,
+      "minimum_read_success_rate": 0.99,
+      "maximum_frame_gap_seconds": 2.0
+    },
+    "actual_properties": {
+      "width": 1280.0,
+      "height": 720.0,
+      "reported_fps": 30.0,
+      "backend": "MSMF"
+    },
+    "calibration": {
+      "requested_mode": "manual",
+      "selected_mode": "manual",
+      "source": "restored",
+      "normalized_roi": {
+        "left": 0.2,
+        "top": 0.25,
+        "right": 0.8,
+        "bottom": 0.88
+      },
+      "pixel_roi": [
+        256,
+        180,
+        1024,
+        634
+      ],
+      "fallback_messages": [
+        "auto ROI of the hand-held composition accepted once with score 0.634; the frozen value below is that region widened to a symmetric centre box"
+      ],
+      "auto_score": null
+    }
+  },
+  "frames_read": 1790,
+  "frames_processed": 1790,
+  "detection_count": 3720,
+  "event_count": 29,
+  "processing_fps": 23.779406,
+  "average_processing_ms": 4.514691,
+  "p95_processing_ms": 5.781855,
+  "failed_reads": 0,
+  "error": null,
+  "ended_reason": "stopped",
+  "worker_clean_shutdown": true,
+  "events": [
+    {
+      "event_id": 1,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 1,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 189
+    },
+    {
+      "event_id": 2,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 3,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 194
+    },
+    {
+      "event_id": 3,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 3,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 199
+    },
+    {
+      "event_id": 4,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 1,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 224
+    },
+    {
+      "event_id": 5,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 5,
+      "label": "triangle",
+      "confidence": 0.960569,
+      "frame_index": 290
+    },
+    {
+      "event_id": 6,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 6,
+      "label": "rectangle",
+      "confidence": 0.902156,
+      "frame_index": 307
+    },
+    {
+      "event_id": 7,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 6,
+      "label": "rectangle",
+      "confidence": 0.933332,
+      "frame_index": 366
+    },
+    {
+      "event_id": 8,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 7,
+      "label": "rectangle",
+      "confidence": 0.905185,
+      "frame_index": 375
+    },
+    {
+      "event_id": 9,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 7,
+      "label": "rectangle",
+      "confidence": 0.933713,
+      "frame_index": 453
+    },
+    {
+      "event_id": 10,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 8,
+      "label": "rectangle",
+      "confidence": 0.983592,
+      "frame_index": 476
+    },
+    {
+      "event_id": 11,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 5,
+      "label": "triangle",
+      "confidence": 0.990385,
+      "frame_index": 675
+    },
+    {
+      "event_id": 12,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 9,
+      "label": "triangle",
+      "confidence": 0.908375,
+      "frame_index": 681
+    },
+    {
+      "event_id": 13,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 9,
+      "label": "triangle",
+      "confidence": 0.927302,
+      "frame_index": 739
+    },
+    {
+      "event_id": 14,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 10,
+      "label": "triangle",
+      "confidence": 0.897516,
+      "frame_index": 770
+    },
+    {
+      "event_id": 15,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 10,
+      "label": "triangle",
+      "confidence": 0.901285,
+      "frame_index": 779
+    },
+    {
+      "event_id": 16,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 11,
+      "label": "triangle",
+      "confidence": 0.885798,
+      "frame_index": 787
+    },
+    {
+      "event_id": 17,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 11,
+      "label": "triangle",
+      "confidence": 0.887514,
+      "frame_index": 799
+    },
+    {
+      "event_id": 18,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 12,
+      "label": "triangle",
+      "confidence": 0.866943,
+      "frame_index": 805
+    },
+    {
+      "event_id": 19,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 13,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 818
+    },
+    {
+      "event_id": 20,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 12,
+      "label": "triangle",
+      "confidence": 0.8891,
+      "frame_index": 818
+    },
+    {
+      "event_id": 21,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 8,
+      "label": "rectangle",
+      "confidence": 0.902401,
+      "frame_index": 820
+    },
+    {
+      "event_id": 22,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 14,
+      "label": "rectangle",
+      "confidence": 0.755796,
+      "frame_index": 825
+    },
+    {
+      "event_id": 23,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 13,
+      "label": "unknown",
+      "confidence": 0.0,
+      "frame_index": 827
+    },
+    {
+      "event_id": 24,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 15,
+      "label": "triangle",
+      "confidence": 0.946653,
+      "frame_index": 837
+    },
+    {
+      "event_id": 25,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 16,
+      "label": "circle",
+      "confidence": 0.971846,
+      "frame_index": 945
+    },
+    {
+      "event_id": 26,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 16,
+      "label": "circle",
+      "confidence": 0.97247,
+      "frame_index": 1149
+    },
+    {
+      "event_id": 27,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 17,
+      "label": "circle",
+      "confidence": 0.959477,
+      "frame_index": 1152
+    },
+    {
+      "event_id": 28,
+      "event_type": "OBJECT_EXIT",
+      "object_id": 17,
+      "label": "circle",
+      "confidence": 0.95874,
+      "frame_index": 1578
+    },
+    {
+      "event_id": 29,
+      "event_type": "OBJECT_ENTER",
+      "object_id": 18,
+      "label": "circle",
+      "confidence": 0.963515,
+      "frame_index": 1596
+    }
+  ],
+  "final_object_states": [
+    {
+      "object_id": 1,
+      "label": "unknown",
+      "bbox": [
+        316,
+        259,
+        156,
+        173
+      ],
+      "first_seen": 188,
+      "last_seen": 220,
+      "hit_count": 33,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 2,
+      "label": "rectangle",
+      "bbox": [
+        294,
+        393,
+        202,
+        230
+      ],
+      "first_seen": 192,
+      "last_seen": 192,
+      "hit_count": 1,
+      "consecutive_hits": 0,
+      "miss_count": 1,
+      "confirmed": false,
+      "active": false,
+      "event_emitted": false,
+      "status": "exited",
+      "confidence": 0.77466
+    },
+    {
+      "object_id": 3,
+      "label": "unknown",
+      "bbox": [
+        289,
+        374,
+        194,
+        230
+      ],
+      "first_seen": 193,
+      "last_seen": 195,
+      "hit_count": 3,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 4,
+      "label": "triangle",
+      "bbox": [
+        259,
+        302,
+        165,
+        186
+      ],
+      "first_seen": 247,
+      "last_seen": 247,
+      "hit_count": 1,
+      "consecutive_hits": 0,
+      "miss_count": 1,
+      "confirmed": false,
+      "active": false,
+      "event_emitted": false,
+      "status": "exited",
+      "confidence": 0.981515
+    },
+    {
+      "object_id": 5,
+      "label": "triangle",
+      "bbox": [
+        803,
+        265,
+        178,
+        225
+      ],
+      "first_seen": 289,
+      "last_seen": 671,
+      "hit_count": 383,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.990385
+    },
+    {
+      "object_id": 6,
+      "label": "rectangle",
+      "bbox": [
+        260,
+        301,
+        275,
+        302
+      ],
+      "first_seen": 306,
+      "last_seen": 362,
+      "hit_count": 55,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.933332
+    },
+    {
+      "object_id": 7,
+      "label": "rectangle",
+      "bbox": [
+        432,
+        339,
+        231,
+        292
+      ],
+      "first_seen": 374,
+      "last_seen": 449,
+      "hit_count": 74,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.933713
+    },
+    {
+      "object_id": 8,
+      "label": "rectangle",
+      "bbox": [
+        484,
+        259,
+        216,
+        220
+      ],
+      "first_seen": 475,
+      "last_seen": 816,
+      "hit_count": 342,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.902401
+    },
+    {
+      "object_id": 9,
+      "label": "triangle",
+      "bbox": [
+        717,
+        293,
+        176,
+        207
+      ],
+      "first_seen": 680,
+      "last_seen": 735,
+      "hit_count": 55,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.927302
+    },
+    {
+      "object_id": 10,
+      "label": "triangle",
+      "bbox": [
+        763,
+        298,
+        171,
+        209
+      ],
+      "first_seen": 769,
+      "last_seen": 775,
+      "hit_count": 7,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.901285
+    },
+    {
+      "object_id": 11,
+      "label": "triangle",
+      "bbox": [
+        747,
+        301,
+        159,
+        196
+      ],
+      "first_seen": 786,
+      "last_seen": 795,
+      "hit_count": 10,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.887514
+    },
+    {
+      "object_id": 12,
+      "label": "triangle",
+      "bbox": [
+        742,
+        262,
+        155,
+        185
+      ],
+      "first_seen": 804,
+      "last_seen": 814,
+      "hit_count": 11,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.8891
+    },
+    {
+      "object_id": 13,
+      "label": "unknown",
+      "bbox": [
+        460,
+        201,
+        228,
+        194
+      ],
+      "first_seen": 817,
+      "last_seen": 823,
+      "hit_count": 7,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.0
+    },
+    {
+      "object_id": 14,
+      "label": "rectangle",
+      "bbox": [
+        543,
+        252,
+        180,
+        223
+      ],
+      "first_seen": 824,
+      "last_seen": 1789,
+      "hit_count": 963,
+      "consecutive_hits": 960,
+      "miss_count": 0,
+      "confirmed": true,
+      "active": true,
+      "event_emitted": true,
+      "status": "confirmed",
+      "confidence": 0.979947
+    },
+    {
+      "object_id": 15,
+      "label": "triangle",
+      "bbox": [
+        741,
+        226,
+        165,
+        164
+      ],
+      "first_seen": 836,
+      "last_seen": 1789,
+      "hit_count": 954,
+      "consecutive_hits": 954,
+      "miss_count": 0,
+      "confirmed": true,
+      "active": true,
+      "event_emitted": true,
+      "status": "confirmed",
+      "confidence": 0.971399
+    },
+    {
+      "object_id": 16,
+      "label": "circle",
+      "bbox": [
+        259,
+        249,
+        204,
+        192
+      ],
+      "first_seen": 944,
+      "last_seen": 1145,
+      "hit_count": 202,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.97247
+    },
+    {
+      "object_id": 17,
+      "label": "circle",
+      "bbox": [
+        259,
+        238,
+        200,
+        184
+      ],
+      "first_seen": 1151,
+      "last_seen": 1574,
+      "hit_count": 424,
+      "consecutive_hits": 0,
+      "miss_count": 4,
+      "confirmed": true,
+      "active": false,
+      "event_emitted": true,
+      "status": "exited",
+      "confidence": 0.95874
+    },
+    {
+      "object_id": 18,
+      "label": "circle",
+      "bbox": [
+        297,
+        262,
+        196,
+        183
+      ],
+      "first_seen": 1595,
+      "last_seen": 1789,
+      "hit_count": 195,
+      "consecutive_hits": 195,
+      "miss_count": 0,
+      "confirmed": true,
+      "active": true,
+      "event_emitted": true,
+      "status": "confirmed",
+      "confidence": 0.960647
+    }
+  ],
+  "evidence_records": [],
+  "plc_command_count": 0,
+  "plc_sink_error": null,
+  "plc_results": [],
+  "schema_version": 1,
+  "milestone": "M5",
+  "acceptance_status": "pending_user_validation",
+  "git": {
+    "commit": "467d41d22b2d68be033c1e395c0a3f3c5e6df57d",
+    "dirty": true
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10",
+    "pyside6": "6.11.2"
+  },
+  "vision_config": {
+    "roi_left": 0.24,
+    "roi_top": 0.08,
+    "roi_right": 0.76,
+    "roi_bottom": 0.75,
+    "gaussian_kernel_size": 5,
+    "morphology_kernel_size": 3,
+    "morphology_open_iterations": 1,
+    "canny_low_threshold": 50,
+    "canny_high_threshold": 150,
+    "min_area_ratio": 0.02,
+    "max_area_ratio": 0.25,
+    "min_solidity": 0.9,
+    "border_margin_pixels": 2,
+    "approx_epsilon_ratio": 0.02,
+    "rectangle_max_angle_deviation_degrees": 25.0,
+    "rectangle_min_fill_ratio": 0.8,
+    "circle_min_vertices": 6,
+    "circle_min_circularity": 0.78,
+    "circle_min_aspect_ratio": 0.8,
+    "triangle_confidence_good_circularity": 0.62,
+    "triangle_confidence_max_circularity": 0.72,
+    "rectangle_confidence_good_angle_deviation_degrees": 5.0,
+    "rectangle_confidence_good_fill_ratio": 0.95,
+    "circle_confidence_good_vertices": 8,
+    "circle_confidence_good_circularity": 0.92,
+    "circle_confidence_good_aspect_ratio": 0.95,
+    "confidence_good_solidity": 0.98,
+    "confidence_good_area_clearance_ratio": 0.03,
+    "confidence_topology_weight": 0.5,
+    "confidence_geometry_weight": 0.3,
+    "confidence_quality_weight": 0.2,
+    "auto_hsv_min_value": 140,
+    "auto_hsv_max_saturation": 100,
+    "auto_morphology_kernel_size": 11,
+    "auto_morphology_close_iterations": 2,
+    "auto_morphology_open_iterations": 1,
+    "auto_min_area_ratio": 0.12,
+    "auto_max_area_ratio": 0.85,
+    "auto_preferred_area_ratio": 0.35,
+    "auto_min_rectangularity": 0.7,
+    "auto_max_center_distance_ratio": 0.5,
+    "auto_min_bright_fraction": 0.6,
+    "auto_approx_epsilon_ratio": 0.03,
+    "auto_inner_margin_ratio": 0.04,
+    "auto_min_score": 0.45,
+    "auto_score_area_weight": 0.2,
+    "auto_score_rectangularity_weight": 0.3,
+    "auto_score_center_weight": 0.25,
+    "auto_score_brightness_weight": 0.25,
+    "manual_min_width_pixels": 80,
+    "manual_min_height_pixels": 80,
+    "stability_window_size": 5,
+    "stability_min_votes": 3,
+    "fps_smoothing_window": 30,
+    "live_max_consecutive_read_failures": 30,
+    "live_preview_width": 1280,
+    "live_preview_height": 720,
+    "preprocess_mode": "otsu",
+    "comparison_preprocess_mode": "clahe_otsu",
+    "clahe_clip_limit": 2.0,
+    "clahe_tile_grid_size": 8
+  },
+  "event_config": {
+    "min_confirm_frames": 2,
+    "max_missing_frames": 3,
+    "iou_threshold": 0.3,
+    "center_distance_threshold": 80.0
+  },
+  "gui_updates": 1790,
+  "gui_update_fps": 23.779406,
+  "display_frames_dropped": 0,
+  "buffer_overwrites": 0,
+  "clean_shutdown": true,
+  "requested_soak_seconds": 75.0,
+  "python_traced_current_bytes": 8889808,
+  "python_traced_peak_bytes": 11705533,
+  "screenshot": "output\\m5\\live-builtin-detections\\running.png"
+}

@@ -1,0 +1,56 @@
+// Business LEDs are symbolic outputs. Never map CPU RUN/ERROR/MAINT lamps here.
+FUNCTION_BLOCK "FB_LedDisplay"
+VAR_INPUT
+    ItemValid : Bool;          // one-scan DequeueValid pulse
+    ShapeCode : USInt;       // INTERNAL TEST values: 1/2/3 only
+    Reset : Bool;
+    QueueFull : Bool;
+    CommLost : Bool;          // supplied by a future approved M9 heartbeat block
+    BlinkPhase : Bool;        // future alarm scheduler phase
+END_VAR
+VAR_OUTPUT
+    SortLed1 : Bool;
+    SortLed2 : Bool;
+    SortLed3 : Bool;
+    QueueFullLed : Bool;      // OPTIONAL diagnostic/status hook; no physical Q binding approved
+END_VAR
+VAR
+    DisplayedValid : Bool;
+    DisplayedShape : USInt;
+END_VAR
+BEGIN
+    #SortLed1 := FALSE;
+    #SortLed2 := FALSE;
+    #SortLed3 := FALSE;
+    #QueueFullLed := #QueueFull;
+
+    IF #Reset THEN
+        #DisplayedValid := FALSE;
+        #DisplayedShape := 0;
+    ELSIF #ItemValid THEN
+        // Successful dequeue changes the displayed result; enqueue alone never lights LEDs.
+        IF (#ShapeCode >= 1) AND (#ShapeCode <= 3) THEN
+            #DisplayedValid := TRUE;
+            #DisplayedShape := #ShapeCode;
+        END_IF;
+    END_IF;
+
+    // Communication loss alarm is a future M9 policy. It overrides normal result display.
+    IF #CommLost AND #BlinkPhase THEN
+        #SortLed1 := TRUE;
+        #SortLed2 := TRUE;
+        #SortLed3 := TRUE;
+    ELSIF #DisplayedValid THEN
+        CASE #DisplayedShape OF
+            1:
+                #SortLed1 := TRUE;                         // triangle (internal test)
+            2:
+                #SortLed1 := TRUE;
+                #SortLed2 := TRUE;                          // rectangle (internal test)
+            3:
+                #SortLed1 := TRUE;
+                #SortLed2 := TRUE;
+                #SortLed3 := TRUE;                          // circle (internal test)
+        END_CASE;
+    END_IF;
+END_FUNCTION_BLOCK

@@ -16,9 +16,9 @@
 | PLC 系列 | S7-1200 | 文档基线 |
 | CPU | 创建项目截图 `word/media/image8.jpeg`：CPU 1215C DC/DC/DC | **现场确认：SIMATIC S7-1200 CPU 1214C DC/DC/DC**；不是 G2。1215C 仅为教学示例 |
 | 订货号 / MLFB | 同图：6ES7 215-1AG40-0XB0 | **现场确认：`6ES7 214-1AG40-0XB0`**；教学示例订货号不适用于项目实物 |
-| 固件 | 同图：V4.1；操作者此前也报 V4.1 | **operator-reported / pending online verification**；尚未通过 TIA Online & diagnostics 再次读取，不能写成 online verified |
+| 固件 | 同图：V4.1；操作者此前也报 V4.1 | **`V4.5.1`（在线读数）**：TIA 下载预览显示“(在线) V4.5”，隔离环境中原生 `python-snap7 1.3` 独立读到固件 `4.5.1` 与订单号 `6ES7 214-1AG40-0XB0`，两者一致，见 `plc/records/2026-09-10-m8-real-plc-write-verification.md`。指导书截图 V4.1 仅为教学示例。**注意**：该在线读数目前只有文字记录，**TIA Online & diagnostics 截图尚未归档**（ISSUE-002 已据此结案，截图仍列为待补材料）；TIA 离线工程组态固件是否已改为与在线一致，待操作者确认 |
 | 板载 I/O | image8 / image9：DI14 × 24VDC、DQ10 × 24VDC、AI2、AQ2；说明含 2 个 PROFINET 端口 | 对应示例 1215C，不可套到实际 1214C；实际模拟量配置和网口数量另核 |
-| 编程软件 | 正文“打开Portal V16”，image5 为 TIA V16 | **TIA Portal V20 当前作为实际编程环境使用**；Update、许可、设备目录兼容性和 V4.1 工程编译仍待记录 |
+| 编程软件 | 正文“打开Portal V16”，image5 为 TIA V16 | **TIA Portal V20 当前作为实际编程环境使用**；操作者已于 2026-09-11 完成工程修复、编译与下载（`notes/issues/ISSUE-004`）。Update、许可、设备目录兼容性仍待记录 |
 | PLC IP / 子网 | 教学下载截图 image14 为 192.0.2.1 | **现场登记：`192.0.2.1` / `255.255.255.0`**；仍须 TIA Accessible devices / Online diagnostics 最终确认该可达地址对应目标 PLC |
 | Windows Host PLC 专用网卡 | 指导书未规定本机地址 | **只读检查确认：Realtek PCIe GbE Family Controller（接口“以太网”），`192.0.2.10/24`，无网关、无 DNS，Link Up/Connected，100 Mbps** |
 | TIA 虚拟机 | 指导书未规定；此前提供 192.0.2.2 | VMware Tools **观察到** guest IP `192.0.2.2`；VM 网卡模式、桥接目标、PLC-facing 属性和 TIA PG/PC 接口均未验证 |
@@ -68,7 +68,7 @@ ping 与 ARP 只证明 `192.0.2.1` 在当前 Realtek 物理以太网链路上可
 
 ## 现场必须补齐
 
-1. CPU 与完整 MLFB 已登记；仍须补铭牌照片、TIA Online & diagnostics 读取的固件、Accessible devices 结果和设备组态截图，以锁定可下载的具体设备配置与在线身份。
+1. CPU、完整 MLFB 与在线固件（`V4.5.1`）已登记；仍须补**铭牌照片**、**TIA Online & diagnostics 固件截图**（当前只有文字记录）、Accessible devices 结果和设备组态截图，以锁定可下载的具体设备配置与在线身份。
 2. Host 物理网卡和 PLC 登记地址已记录；继续确认 VM 网卡模式、桥接目标、PG/PC 接口与 VM → PLC 连通性。ping/ARP 成功不能替代 TIA 在线身份或业务通信验收。
 3. 实验箱按键/灯的端子标签、导线接法、DI/DQ 组态地址和按下/释放、亮/灭的实际逻辑值。指导书有两种接线方式，不能假设全部按键都是高电平有效。
 4. 项目出队键、复位键、LED1/2/3 的地址、常开/常闭、有效电平、去抖、上电/STOP 行为；见 `../plc/docs/IO_MAP.md`。

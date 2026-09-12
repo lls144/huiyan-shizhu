@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1330" viewBox="0 0 1200 1330" font-family="Microsoft YaHei, Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#495057"/>
+    </marker>
+    <marker id="arrowDash" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#868E96"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="1330" fill="#ffffff"/>
+
+  <text x="36" y="42" font-size="24" font-weight="700" fill="#212529">入队 / 出队 / LED 分拣 判定流程</text>
+  <text x="36" y="68" font-size="14" fill="#868E96">左侧主干为正常路径；“是 / 否”分支为边界处理；虚线框为尚未实现或非正常路径。</text>
+
+  <rect x="450" y="80" width="300" height="64" rx="24" fill="#E7F1FF" stroke="#4C6EF5" stroke-width="2"/>
+  <text x="600" y="106" font-size="15" text-anchor="middle" fill="#1B3A6B">视觉检测到物体</text>
+  <text x="600" y="130" font-size="15" text-anchor="middle" fill="#1B3A6B">→ 事件 OBJECT_ENTER</text>
+
+  <line x1="600" y1="144" x2="600" y2="162" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow2)"/>
+
+  <polygon points="600,166 810,214 600,262 390,214" fill="#FFF9DB" stroke="#E8A600" stroke-width="2"/>
+  <text x="600" y="208" font-size="14" text-anchor="middle" fill="#7A5200">标签是 triangle /</text>
+  <text x="600" y="228" font-size="14" text-anchor="middle" fill="#7A5200">rectangle / circle ？</text>
+
+  <line x1="810" y1="214" x2="846" y2="214" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow2)"/>
+  <text x="820" y="204" font-size="17" font-weight="700" fill="#C92A2A">否</text>
+  <rect x="850" y="180" width="330" height="70" rx="10" fill="#FFF5F5" stroke="#C92A2A" stroke-width="2"/>
+  <text x="1015" y="208" font-size="14" text-anchor="middle" fill="#8B1A1A">unknown / 非三类标签</text>
+  <text x="1015" y="232" font-size="14" text-anchor="middle" fill="#8B1A1A">→ 不发送命令，队列与灯均不变</text>
+
+  <line x1="600" y1="262" x2="600" y2="288" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow2)"/>
+  <text x="612" y="282" font-size="17" font-weight="700" fill="#1E7E34">是</text>
+
+  <rect x="450" y="292" width="300" height="80" rx="10" fill="#E7F1FF" stroke="#4C6EF5" stroke-width="2"/>
+  <text x="600" y="318" font-size="15" text-anchor="middle" fill="#1B3A6B">PC 写 DB 命令边沿</text>
+  <text x="600" y="340" font-size="13" text-anchor="middle" fill="#1B3A6B">CommandValid</text>
+  <text x="600" y="362" font-size="12" text-anchor="middle" fill="#1B3A6B">FALSE→TRUE→FALSE</text>
+
+  <line x1="600" y1="372" x2="600" y2="380" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow2)"/>
+
+  <polygon points="600,384 810,432 600,480 390,432" fill="#FFF9DB" stroke="#E8A600" stroke-width="2"/>
+  <text x="600" y="426" font-size="14" text-anchor="middle" fill="#7A5200">PLC 采到 CommandValid</text>
+  <text x="600" y="446" font-size="14" text-anchor="middle" fill="#7A5200">上升沿（仅 FALSE→TRUE）？</text>
+
+  <line x1="810" y1="432" x2="846" y2="432" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow2)"/>
+  <text x="820" y="422" font-size="17" font-weight="700" fill="#C92A2A">否</text>
+  <rect x="850" y="398" width="330" height="70" rx="10" fill="#FFF5F5" stroke="#C92A2A" stroke-width="2"/>
+  <text x="1015" y="426" font-size="14" text-anchor="middle" fill="#8B1A1A">CommandValid 持续保持 TRUE</text>
+  <text x="1015" y="450" font-size="14" text-anchor="middle" fill="#8B1A1A">→ 忽略，不重复入队</text>
+
+  <line x1="600" y1="480" x2="600" y2="500" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow2)"/>
+  <text x="612" y="500" font-size="17" font-weight="700" fill="#1E7E34">是</text>
+
+  <polygon points="600,504 810,552 600,600 390,552" fill="#FFF9DB" stroke="#E8A600" stroke-width="2"/>
+  <text x="600" y="546" font-size="14" text-anchor="middle" fill="#7A5200">队列已满（Count = 3）？</text>
+
+  <line x1="810" y1="552" x2="846" y2="552" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow2)"/>
+  <text x="820" y="542" font-size="17" font-weight="700" fill="#C92A2A">是</text>
+  <rect x="850" y="505" width="330" height="90" rx="10" fill="#FFF5F5" stroke="#C92A2A" stroke-width="2"/>
+  <text x="1015" y="533" font-size="14" text-anchor="middle" fill="#8B1A1A">拒绝入队，QueueFull = TRUE</text>
+  <text x="1015" y="557" font-size="13" text-anchor="middle" fill="#8B1A1A">QueueFullLed 仅诊断钩子</text>
+  <text x="1015" y="579" font-size="13" text-anchor="middle" fill="#8B1A1A">不接物理灯，需负责人批准</text>
+
+  <line x1="600" y1="600" x2="600" y2="626" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow2)"/>
+  <text x="612" y="622" font-size="17" font-weight="700" fill="#1E7E34">否</text>
+
+  <rect x="450" y="630" width="300" height="64" rx="10" fill="#E6F4EA" stroke="#1E7E34" stroke-width="2"/>
+  <text x="600" y="668" font-size="15" text-anchor="middle" fill="#12551F">入队：Count + 1（灯不变）</text>
+
+  <line x1="600" y1="694" x2="600" y2="726" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow2)"/>
+
+  <rect x="450" y="730" width="300" height="70" rx="10" fill="#E7F1FF" stroke="#4C6EF5" stroke-width="2"/>
+  <text x="600" y="758" font-size="15" text-anchor="middle" fill="#1B3A6B">操作者按下出队键：</text>
+  <text x="600" y="782" font-size="15" text-anchor="middle" fill="#1B3A6B">去抖 2 个扫描周期 → 单脉冲</text>
+
+  <line x1="600" y1="800" x2="600" y2="818" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow2)"/>
+
+  <polygon points="600,822 810,870 600,918 390,870" fill="#FFF9DB" stroke="#E8A600" stroke-width="2"/>
+  <text x="600" y="864" font-size="14" text-anchor="middle" fill="#7A5200">队列为空（Count = 0）？</text>
+
+  <line x1="810" y1="870" x2="846" y2="870" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow2)"/>
+  <text x="820" y="860" font-size="17" font-weight="700" fill="#C92A2A">是</text>
+  <rect x="850" y="836" width="330" height="70" rx="10" fill="#FFF5F5" stroke="#C92A2A" stroke-width="2"/>
+  <text x="1015" y="864" font-size="13" text-anchor="middle" fill="#8B1A1A">忽略本次按键（QueueEmpty）</text>
+  <text x="1015" y="888" font-size="13" text-anchor="middle" fill="#8B1A1A">→ 灯保持上一次锁存结果</text>
+
+  <line x1="600" y1="918" x2="600" y2="944" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow2)"/>
+  <text x="612" y="940" font-size="17" font-weight="700" fill="#1E7E34">否</text>
+
+  <rect x="450" y="948" width="300" height="70" rx="10" fill="#E6F4EA" stroke="#1E7E34" stroke-width="2"/>
+  <text x="600" y="976" font-size="15" text-anchor="middle" fill="#12551F">出队：移除队头</text>
+  <text x="600" y="1000" font-size="14" text-anchor="middle" fill="#12551F">→ 锁存 DisplayedShape</text>
+
+  <line x1="600" y1="1018" x2="600" y2="1044" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow2)"/>
+
+  <rect x="450" y="1048" width="300" height="100" rx="10" fill="#E6F4EA" stroke="#1E7E34" stroke-width="2"/>
+  <text x="600" y="1074" font-size="15" text-anchor="middle" fill="#12551F">LED 锁存输出</text>
+  <text x="600" y="1096" font-size="13" text-anchor="middle" fill="#12551F">triangle → 1 盏</text>
+  <text x="600" y="1116" font-size="13" text-anchor="middle" fill="#12551F">rectangle → 2 盏</text>
+  <text x="600" y="1136" font-size="13" text-anchor="middle" fill="#12551F">circle → 3 盏</text>
+
+  <line x1="600" y1="1148" x2="600" y2="1160" stroke="#495057" stroke-width="2.5" marker-end="url(#arrow2)"/>
+
+  <rect x="450" y="1164" width="300" height="70" rx="10" fill="#F1F3F5" stroke="#868E96" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="600" y="1192" font-size="15" text-anchor="middle" fill="#495057">Reset（优先级最高）</text>
+  <text x="600" y="1216" font-size="14" text-anchor="middle" fill="#495057">清空队列、索引与三盏业务灯</text>
+
+  <path d="M 450 1199 L 355 1199 L 355 662 L 446 662" fill="none" stroke="#868E96" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#arrowDash)"/>
+  <text x="300" y="900" font-size="13" fill="#868E96" transform="rotate(-90 300 900)" text-anchor="middle">Reset 清空队列并熄灭三盏业务灯</text>
+
+  <rect x="850" y="1150" width="330" height="92" rx="10" fill="#F1F3F5" stroke="#868E96" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="1015" y="1180" font-size="14" text-anchor="middle" fill="#495057">M9 未实现（TODO）</text>
+  <text x="1015" y="1204" font-size="12" text-anchor="middle" fill="#495057">心跳 1 s · 断连 2 s 全闪</text>
+  <text x="1015" y="1226" font-size="12" text-anchor="middle" fill="#495057">超时重发 · 队列满通知</text>
+
+  <text x="36" y="1278" font-size="14" fill="#868E96">注：本流程的 PLC 侧语义已在 SCL 源码与内部参考模型上验证；TIA 全工程编译、PLCSIM、下载与真实 I/O 均未执行，属 M8/M10 TODO。</text>
+  <text x="36" y="1302" font-size="12" fill="#ADB5BD">生成来源：plc/docs/M8_INTERNAL_DESIGN.md、plc/src/*.scl；同目录 plc-fifo-flow.png 为导出栅格版。</text>
+</svg>

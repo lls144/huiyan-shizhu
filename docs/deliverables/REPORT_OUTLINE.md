@@ -1,0 +1,94 @@
+# 综合实验报告骨架（DELIV-001）
+
+验收要求：Word/PDF，正文 **≥ 4000 字**，含 **系统架构图、队列逻辑流程图、测试数据、问题分析** 四类内容。
+
+本文件是提纲，不是报告正文。每个小节后面的“证据”是必须引用的来源；写正文时直接引用路径与数字，不重新造数据。
+
+## 封面与摘要
+
+- 题目：“慧眼识珠”——AI 视觉仓库物流模拟系统。
+- 组员、学号、指导教师、日期、Git commit：TODO。
+- 摘要（约 300 字）：一句话闭环 + 已完成范围 + 未完成范围。**摘要里的完成度必须与 `docs/ROADMAP.md` 一致**，M7–M12 不得写成已完成。
+
+## 1 任务与需求分析（约 400 字）
+
+1.1 任务来源与原文要求；1.2 需求条目化与编号方法；1.3 原文歧义与差异。
+
+- 证据：[PROJECT_SPEC.md](../PROJECT_SPEC.md) 第 1、3、4 节；原文 `reference/课程项目综合实验任务书--“慧眼识珠‘’.docx`。
+- 必须如实写出的差异：技术方案四个标题下原文无正文；“单向通信”与“超时重发/队列满通知”存在张力；进程表序号 2/3/4 缺失。
+
+## 2 系统总体设计（约 700 字 + 图）
+
+2.1 总体架构图；2.2 数据流与事件模型；2.3 模块划分与代码结构；2.4 配置与参数管理原则。
+
+- **系统架构图（必需）**：`USB 摄像头 → PC(Python/OpenCV) → 通信 → PLC → FIFO → 按键出队 → 1/2/3 盏 LED`。
+  - 图源：[system-architecture.svg](../../evidence/plots/system-architecture.svg) / [system-architecture.png](../../evidence/plots/system-architecture.png)（用绿 / 橙 / 灰三色区分“已验收 / 仅离线验证 / 未实现”）。
+  - 写正文时**必须**保留图注：橙色环节未经真机，真实闭环仍属 M10 TODO。
+- 证据：`README.md` 目录结构、`pc/`、`plc/`、`simulator/`；`docs/PLC_INTERFACE.md`（标注未冻结）。
+
+## 3 视觉识别子系统（约 900 字）
+
+3.1 图像预处理；3.2 轮廓提取与 ROI 校准；3.3 `approxPolyDP` 形状分类与几何判据；3.4 多目标检测；3.5 抗光照对比；3.6 事件去重与离散事件生成。
+
+- 证据：VISION-001~004、GUI-001、PLC-002(M4 子能力) 行，见 [REPORT_EVIDENCE.md](../REPORT_EVIDENCE.md)。
+- 数据：`test_data/m2/2026-09-04-offline-results.*`（离线 10/10）；`evidence/data/m3/live/`（三种光照双方案）；`evidence/data/m4/m4-live-lifecycle-summary.json`。
+- 图：`evidence/screenshots/m2/live/`、`evidence/screenshots/m3/live/`。
+- **必须如实写的局限**：`RETR_EXTERNAL` 下部分遮挡输出 `unknown`、接触/粘连只输出 `unknown + triangle`；CLAHE+Otsu 未观察到额外分类收益，故默认仍为 Otsu。
+
+## 4 PC 上位机与通信（约 500 字）
+
+4.1 PySide6 GUI 结构与线程模型；4.2 识别结果与置信度可视化；4.3 PC→PLC 命令桥；4.4 通信模块当前的验证边界。
+
+- 证据：GUI-001 行；`pc/gui/`；`pc/communication/`。
+- 关键限定：`pc/communication/` 目前只对 **测试用 DB 布局** 和 **内存 Fake PLC** 验证过（见第 7 节），没有真实 PLC 证据；`docs/PLC_INTERFACE.md` 协议仍未冻结。
+
+## 5 PLC 队列与分拣控制（约 900 字 + 流程图）
+
+5.1 FIFO 数据结构与容量；5.2 入队边沿与防重复；5.3 按键去抖与单次出队；5.4 LED 锁存与 1/2/3 映射；5.5 空/满/长度与复位；5.6 心跳与断连报警（M9）。
+
+- **队列逻辑流程图（必需）**：入队判定（满？）→ 出队判定（空？）→ LED 锁存 → 复位优先级 → 心跳超时分支。M9 分支标注 DEFERRED。
+  - 图源：[plc-fifo-flow.svg](../../evidence/plots/plc-fifo-flow.svg) / [plc-fifo-flow.png](../../evidence/plots/plc-fifo-flow.png)。
+  - 图已含“识别不点灯、出队才点灯”的判定顺序，正文可直接据此解释按键语义。
+- 证据：`plc/docs/M8_INTERNAL_DESIGN.md`、`plc/src/*.scl`、`plc/docs/SCL_STATIC_AUDIT.md`、`plc/docs/IO_MAP.md`。
+- 状态标注：源码与内部参考模型已验证；**TIA 全工程编译、PLCSIM、真实 I/O 均 PENDING**，不得写成已通过。
+
+## 6 通信协议（约 400 字）
+
+6.1 介质与选型；6.2 帧格式与时序；6.3 心跳与重发；6.4 队列满通知。
+
+- 当前状态：**协议未冻结**。本节在负责人定版前只能写“待冻结项清单”，不得虚构帧格式字段。引用 `docs/PLC_INTERFACE.md` 的待冻结表。
+- 定版后补齐：帧格式图、时序图、正常/重发/心跳/队列满四类场景。
+
+## 7 测试与结果（约 900 字）
+
+7.1 测试方法与环境；7.2 自动化回归；7.3 真实摄像头验收；7.4 Fake PLC 离线验收；7.5 多工况测试（M11）。
+
+- 结果矩阵见 [TEST_CASE_MATRIX.md](TEST_CASE_MATRIX.md)，逐行引用 `notes/tests/TEST-00x-*.md`。
+- 已可引用的真实结论：离线 10/10；M3 三光照双方案 3/3；M4 真实生命周期 117 事件；M5 1577 s / 29.315668 FPS / 0 错误；M6 16/16 场景；本次 PC 侧全量回归 190 passed / 1 skipped（见 TEST-008）。
+- 7.5 与 M10 后的真实闭环数据：TODO。
+
+## 8 问题分析与改进方向（约 600 字，DOC-001）
+
+8.1 真实失败样例；8.2 根因；8.3 影响与规避；8.4 改进方向。
+
+- 证据：`notes/issues/`（ISSUE-001 摄像头枚举、ISSUE-002 固件登记冲突）；M3 遮挡/粘连失败样例；`FB_LedDisplay` 空 `ELSE` 语法错误的历史记录。
+- 改进方向示例（须与证据对应，不得空谈）：增加颜色维度、优先级队列、引入更精细的分割以缓解粘连。
+
+## 9 结论（约 300 字）
+
+已完成 vs 未完成、可演示范围、后续工作。**明确写出 M7–M10 尚未验收**。
+
+## 附录
+
+- A 需求追踪表（ID → 实现 → 测试 → 证据）；B 环境与版本；C 运行说明；D Git 提交记录；E 参考文献（原文参考资料占位符未补全，须真实补录）。
+
+## 字数与自检
+
+| 检查项 | 目标 | 实际 |
+|---|---|---|
+| 正文中文字数 | ≥ 4000 | TODO |
+| 系统架构图 | 有 | TODO |
+| 队列逻辑流程图 | 有 | TODO |
+| 测试数据 | ≥ 3 类场景 | TODO |
+| 问题分析 | 基于真实样例 | TODO |
+| Word/PDF 内容一致 | 是 | TODO |

@@ -1,0 +1,30 @@
+# M8 内部 PLC 设计（transport-independent）
+
+状态：内部设计与 SCL 源生成已具备；PLCSIM/真实 PLC/I/O 仍未验证。
+
+## 边界
+
+`FB_PlcApplication` 只接收一个抽象 `PLC_Command`。`CommandValid` 在应用入口处按上升沿接受：`FALSE -> TRUE` 只产生一次内部入队脉冲，保持 TRUE 不会跨扫描重复入队；未来 M7 适配器仍应负责协议去重和形成有效命令。它不包含 Modbus/S7/PROFINET 帧、寄存器、端口或最终 shape 编码，因此可在 M7 冻结前独立审阅。`plc/src/` 中的 `1/2/3` 仅为 TEST-ONLY 内部值。
+
+## 数据流
+
+```text
+符号 CommandIn → FB_Fifo → DequeuedItem → FB_LedDisplay → SortLed1..3
+按键原始输入 → FB_ButtonPulse → 单扫描 Dequeue/Reset 脉冲
+```
+
+- FIFO 固定容量 3，`Head/Tail/Count` 环形索引；满时拒绝入队，空时忽略出队。
+- 同一扫描同时请求出队和入队时，先出队再入队；即使扫描开始时已满，也允许新项占用该扫描刚释放的位置。
+- Reset 脉冲优先于其他操作并清空数组、索引和计数。
+- `CommandValid` 的前一扫描状态在每一扫描（包括 Reset）更新；Reset 期间或 Reset 释放后，只有实际经历 `TRUE -> FALSE -> TRUE` 才会产生新的入队边沿。
+- `FB_ButtonPulse` 使用稳定扫描次数（默认 2）抑制抖动；有效按下只产生一个脉冲，持续按住不会重复出队。实际扫描周期和电气极性待现场核验。
+- LED 只由 `FB_LedDisplay` 写入。识别/入队不会点灯；成功出队后锁存最近一次结果：triangle=1 灯、rectangle=2 灯、circle=3 灯，直到下一次成功出队或 Reset。FIFO 满只产生内部 `QueueFull`；`QueueFullLed` 是可选诊断/状态输出钩子，物理映射必须经负责人批准，不属于第四盏必接业务灯。`CommLost/BlinkPhase` 仅为后续 M9 报警覆盖钩子，当前应用未驱动它们。unknown 不产生有效业务 LED 组合且不改变既有显示。
+
+## 当前验证边界
+
+- TIA V20：五个 SCL 外部源均已由操作者生成，单源结果为 0 error、1 条优化访问属性 warning；全工程编译结果待补报。
+- 内部参考模型测试可验证 FIFO、按键单脉冲和 LED 锁存语义；该结果不等同于 PLCSIM 或真实 PLC PASS。
+
+## 并发与协议隔离
+
+通信适配器未来只能写入 `CommandIn/CommandValid`，不能直接写 FIFO 内部或物理输出。ACK、重发、心跳、queue_full 线上字段属于 M7/M9，当前不实现。

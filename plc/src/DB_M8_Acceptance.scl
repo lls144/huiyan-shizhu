@@ -1,0 +1,10 @@
+// TEST-ONLY absolute-access DB used by plc/tools/m8_real_plc_acceptance.py.
+// Keep optimized access disabled and assign a known DB number in TIA.
+DATA_BLOCK "DB_M8_Acceptance"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+   VAR
+      Data : "M8_AcceptanceData";
+   END_VAR
+BEGIN
+END_DATA_BLOCK

@@ -1,0 +1,2256 @@
+{
+  "generated_at": "2026-09-11T15:16:33.476+08:00",
+  "git_commit": "18b0c2e046e863bb75ab4cc706b7baecc9ee6445",
+  "target": {
+    "host": "192.0.2.1",
+    "rack": 0,
+    "slot": 1,
+    "db_number": 3
+  },
+  "parameters": {
+    "heartbeat_interval_seconds": 1.0,
+    "comm_loss_timeout_seconds": 2.0,
+    "write_confirm_attempts": 12,
+    "poll_seconds": 0.05
+  },
+  "evidence_boundary": "Reads DBX8.7 and the three lamp state bits over S7. It does not replace the visual check that the physical lamps on Q0.0..Q0.2 are lit.",
+  "results": {
+    "arm": {
+      "samples": 62,
+      "heartbeats": 4,
+      "alarm_stayed_false": true
+    },
+    "silence": {
+      "detected": true,
+      "detected_at": "2026-09-11T15:16:29.204+08:00",
+      "delay_after_last_heartbeat_seconds": 2.047,
+      "within_expected_window": true
+    },
+    "blink": {
+      "samples": 42,
+      "window_seconds": 2.469,
+      "lamps_toggle_together": true,
+      "transitions": 0,
+      "measured_period_seconds": null,
+      "measured_frequency_hz": null,
+      "saw_lit": false,
+      "saw_dark": true
+    },
+    "resume": {
+      "detected": true,
+      "cleared_at": "2026-09-11T15:16:31.832+08:00",
+      "alarm_now_false": true
+    },
+    "cleanup": {
+      "disarm_write_confirmed": true,
+      "samples": 25,
+      "alarm_cleared": true,
+      "lamps_idle": true,
+      "queue_length": 0
+    },
+    "write_stats": {
+      "control_writes_needing_a_resend": 7,
+      "reconnects": 0
+    }
+  },
+  "notes": [
+    {
+      "at": "2026-09-11T15:16:23.804+08:00",
+      "event": "sink started",
+      "host": "192.0.2.1",
+      "db_number": 3
+    },
+    {
+      "at": "2026-09-11T15:16:23.857+08:00",
+      "event": "retained control bytes",
+      "raw": "2100000000000000"
+    },
+    {
+      "at": "2026-09-11T15:16:24.034+08:00",
+      "event": "heartbeat written",
+      "attempts": 5,
+      "counter": 1
+    },
+    {
+      "at": "2026-09-11T15:16:25.068+08:00",
+      "event": "heartbeat written",
+      "attempts": 1,
+      "counter": 2
+    },
+    {
+      "at": "2026-09-11T15:16:26.085+08:00",
+      "event": "heartbeat written",
+      "attempts": 1,
+      "counter": 3
+    },
+    {
+      "at": "2026-09-11T15:16:27.159+08:00",
+      "event": "heartbeat written",
+      "attempts": 2,
+      "counter": 4
+    },
+    {
+      "at": "2026-09-11T15:16:27.868+08:00",
+      "event": "heartbeats stopped",
+      "phase": "silence"
+    },
+    {
+      "at": "2026-09-11T15:16:31.747+08:00",
+      "event": "heartbeats resumed",
+      "phase": "resume"
+    },
+    {
+      "at": "2026-09-11T15:16:31.832+08:00",
+      "event": "disarming",
+      "phase": "cleanup"
+    }
+  ],
+  "samples": [
+    {
+      "at": "2026-09-11T15:16:24.045+08:00",
+      "phase": "arm",
+      "monotonic": 22887.984,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14360121
+    },
+    {
+      "at": "2026-09-11T15:16:24.104+08:00",
+      "phase": "arm",
+      "monotonic": 22888.046,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14360158
+    },
+    {
+      "at": "2026-09-11T15:16:24.161+08:00",
+      "phase": "arm",
+      "monotonic": 22888.093,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14360205
+    },
+    {
+      "at": "2026-09-11T15:16:24.220+08:00",
+      "phase": "arm",
+      "monotonic": 22888.156,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14360249
+    },
+    {
+      "at": "2026-09-11T15:16:24.280+08:00",
+      "phase": "arm",
+      "monotonic": 22888.218,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14360297
+    },
+    {
+      "at": "2026-09-11T15:16:24.339+08:00",
+      "phase": "arm",
+      "monotonic": 22888.281,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14360344
+    },
+    {
+      "at": "2026-09-11T15:16:24.398+08:00",
+      "phase": "arm",
+      "monotonic": 22888.328,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14360391
+    },
+    {
+      "at": "2026-09-11T15:16:24.455+08:00",
+      "phase": "arm",
+      "monotonic": 22888.39,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14360427
+    },
+    {
+      "at": "2026-09-11T15:16:24.512+08:00",
+      "phase": "arm",
+      "monotonic": 22888.453,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14360474
+    },
+    {
+      "at": "2026-09-11T15:16:24.571+08:00",
+      "phase": "arm",
+      "monotonic": 22888.5,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14360519
+    },
+    {
+      "at": "2026-09-11T15:16:24.631+08:00",
+      "phase": "arm",
+      "monotonic": 22888.562,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14360566
+    },
+    {
+      "at": "2026-09-11T15:16:24.690+08:00",
+      "phase": "arm",
+      "monotonic": 22888.625,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14360608
+    },
+    {
+      "at": "2026-09-11T15:16:24.762+08:00",
+      "phase": "arm",
+      "monotonic": 22888.703,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14360663
+    },
+    {
+      "at": "2026-09-11T15:16:24.819+08:00",
+      "phase": "arm",
+      "monotonic": 22888.75,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14360703
+    },
+    {
+      "at": "2026-09-11T15:16:24.879+08:00",
+      "phase": "arm",
+      "monotonic": 22888.812,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14360748
+    },
+    {
+      "at": "2026-09-11T15:16:24.938+08:00",
+      "phase": "arm",
+      "monotonic": 22888.875,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14360797
+    },
+    {
+      "at": "2026-09-11T15:16:24.998+08:00",
+      "phase": "arm",
+      "monotonic": 22888.937,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14360843
+    },
+    {
+      "at": "2026-09-11T15:16:25.077+08:00",
+      "phase": "arm",
+      "monotonic": 22889.015,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14360904
+    },
+    {
+      "at": "2026-09-11T15:16:25.147+08:00",
+      "phase": "arm",
+      "monotonic": 22889.078,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14360950
+    },
+    {
+      "at": "2026-09-11T15:16:25.204+08:00",
+      "phase": "arm",
+      "monotonic": 22889.14,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14360996
+    },
+    {
+      "at": "2026-09-11T15:16:25.263+08:00",
+      "phase": "arm",
+      "monotonic": 22889.203,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361041
+    },
+    {
+      "at": "2026-09-11T15:16:25.322+08:00",
+      "phase": "arm",
+      "monotonic": 22889.25,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361088
+    },
+    {
+      "at": "2026-09-11T15:16:25.380+08:00",
+      "phase": "arm",
+      "monotonic": 22889.312,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361135
+    },
+    {
+      "at": "2026-09-11T15:16:25.438+08:00",
+      "phase": "arm",
+      "monotonic": 22889.375,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361180
+    },
+    {
+      "at": "2026-09-11T15:16:25.511+08:00",
+      "phase": "arm",
+      "monotonic": 22889.453,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361230
+    },
+    {
+      "at": "2026-09-11T15:16:25.578+08:00",
+      "phase": "arm",
+      "monotonic": 22889.515,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361280
+    },
+    {
+      "at": "2026-09-11T15:16:25.636+08:00",
+      "phase": "arm",
+      "monotonic": 22889.578,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361324
+    },
+    {
+      "at": "2026-09-11T15:16:25.697+08:00",
+      "phase": "arm",
+      "monotonic": 22889.625,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361371
+    },
+    {
+      "at": "2026-09-11T15:16:25.755+08:00",
+      "phase": "arm",
+      "monotonic": 22889.687,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361418
+    },
+    {
+      "at": "2026-09-11T15:16:25.837+08:00",
+      "phase": "arm",
+      "monotonic": 22889.765,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361475
+    },
+    {
+      "at": "2026-09-11T15:16:25.895+08:00",
+      "phase": "arm",
+      "monotonic": 22889.828,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361524
+    },
+    {
+      "at": "2026-09-11T15:16:25.955+08:00",
+      "phase": "arm",
+      "monotonic": 22889.89,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361569
+    },
+    {
+      "at": "2026-09-11T15:16:26.015+08:00",
+      "phase": "arm",
+      "monotonic": 22889.953,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361615
+    },
+    {
+      "at": "2026-09-11T15:16:26.096+08:00",
+      "phase": "arm",
+      "monotonic": 22890.031,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361677
+    },
+    {
+      "at": "2026-09-11T15:16:26.154+08:00",
+      "phase": "arm",
+      "monotonic": 22890.093,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361722
+    },
+    {
+      "at": "2026-09-11T15:16:26.215+08:00",
+      "phase": "arm",
+      "monotonic": 22890.156,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361761
+    },
+    {
+      "at": "2026-09-11T15:16:26.273+08:00",
+      "phase": "arm",
+      "monotonic": 22890.203,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361807
+    },
+    {
+      "at": "2026-09-11T15:16:26.333+08:00",
+      "phase": "arm",
+      "monotonic": 22890.265,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361853
+    },
+    {
+      "at": "2026-09-11T15:16:26.395+08:00",
+      "phase": "arm",
+      "monotonic": 22890.328,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361903
+    },
+    {
+      "at": "2026-09-11T15:16:26.453+08:00",
+      "phase": "arm",
+      "monotonic": 22890.39,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361950
+    },
+    {
+      "at": "2026-09-11T15:16:26.520+08:00",
+      "phase": "arm",
+      "monotonic": 22890.453,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14361995
+    },
+    {
+      "at": "2026-09-11T15:16:26.578+08:00",
+      "phase": "arm",
+      "monotonic": 22890.515,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362036
+    },
+    {
+      "at": "2026-09-11T15:16:26.637+08:00",
+      "phase": "arm",
+      "monotonic": 22890.578,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362079
+    },
+    {
+      "at": "2026-09-11T15:16:26.697+08:00",
+      "phase": "arm",
+      "monotonic": 22890.625,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362128
+    },
+    {
+      "at": "2026-09-11T15:16:26.755+08:00",
+      "phase": "arm",
+      "monotonic": 22890.687,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362173
+    },
+    {
+      "at": "2026-09-11T15:16:26.816+08:00",
+      "phase": "arm",
+      "monotonic": 22890.75,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362222
+    },
+    {
+      "at": "2026-09-11T15:16:26.874+08:00",
+      "phase": "arm",
+      "monotonic": 22890.812,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362268
+    },
+    {
+      "at": "2026-09-11T15:16:26.932+08:00",
+      "phase": "arm",
+      "monotonic": 22890.859,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362305
+    },
+    {
+      "at": "2026-09-11T15:16:26.988+08:00",
+      "phase": "arm",
+      "monotonic": 22890.921,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362351
+    },
+    {
+      "at": "2026-09-11T15:16:27.047+08:00",
+      "phase": "arm",
+      "monotonic": 22890.984,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362395
+    },
+    {
+      "at": "2026-09-11T15:16:27.170+08:00",
+      "phase": "arm",
+      "monotonic": 22891.109,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362486
+    },
+    {
+      "at": "2026-09-11T15:16:27.228+08:00",
+      "phase": "arm",
+      "monotonic": 22891.156,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362531
+    },
+    {
+      "at": "2026-09-11T15:16:27.285+08:00",
+      "phase": "arm",
+      "monotonic": 22891.218,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362569
+    },
+    {
+      "at": "2026-09-11T15:16:27.344+08:00",
+      "phase": "arm",
+      "monotonic": 22891.281,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362614
+    },
+    {
+      "at": "2026-09-11T15:16:27.401+08:00",
+      "phase": "arm",
+      "monotonic": 22891.343,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362653
+    },
+    {
+      "at": "2026-09-11T15:16:27.458+08:00",
+      "phase": "arm",
+      "monotonic": 22891.39,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362700
+    },
+    {
+      "at": "2026-09-11T15:16:27.518+08:00",
+      "phase": "arm",
+      "monotonic": 22891.453,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362745
+    },
+    {
+      "at": "2026-09-11T15:16:27.582+08:00",
+      "phase": "arm",
+      "monotonic": 22891.515,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362795
+    },
+    {
+      "at": "2026-09-11T15:16:27.640+08:00",
+      "phase": "arm",
+      "monotonic": 22891.578,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362832
+    },
+    {
+      "at": "2026-09-11T15:16:27.699+08:00",
+      "phase": "arm",
+      "monotonic": 22891.64,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362880
+    },
+    {
+      "at": "2026-09-11T15:16:27.757+08:00",
+      "phase": "arm",
+      "monotonic": 22891.687,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362927
+    },
+    {
+      "at": "2026-09-11T15:16:27.818+08:00",
+      "phase": "arm",
+      "monotonic": 22891.75,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14362974
+    },
+    {
+      "at": "2026-09-11T15:16:27.876+08:00",
+      "phase": "silence",
+      "monotonic": 22891.812,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363021
+    },
+    {
+      "at": "2026-09-11T15:16:27.935+08:00",
+      "phase": "silence",
+      "monotonic": 22891.875,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363068
+    },
+    {
+      "at": "2026-09-11T15:16:27.993+08:00",
+      "phase": "silence",
+      "monotonic": 22891.921,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363106
+    },
+    {
+      "at": "2026-09-11T15:16:28.052+08:00",
+      "phase": "silence",
+      "monotonic": 22891.984,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363151
+    },
+    {
+      "at": "2026-09-11T15:16:28.112+08:00",
+      "phase": "silence",
+      "monotonic": 22892.046,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363198
+    },
+    {
+      "at": "2026-09-11T15:16:28.170+08:00",
+      "phase": "silence",
+      "monotonic": 22892.109,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363244
+    },
+    {
+      "at": "2026-09-11T15:16:28.228+08:00",
+      "phase": "silence",
+      "monotonic": 22892.156,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363291
+    },
+    {
+      "at": "2026-09-11T15:16:28.307+08:00",
+      "phase": "silence",
+      "monotonic": 22892.234,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363343
+    },
+    {
+      "at": "2026-09-11T15:16:28.367+08:00",
+      "phase": "silence",
+      "monotonic": 22892.296,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363386
+    },
+    {
+      "at": "2026-09-11T15:16:28.423+08:00",
+      "phase": "silence",
+      "monotonic": 22892.359,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363432
+    },
+    {
+      "at": "2026-09-11T15:16:28.483+08:00",
+      "phase": "silence",
+      "monotonic": 22892.421,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363478
+    },
+    {
+      "at": "2026-09-11T15:16:28.542+08:00",
+      "phase": "silence",
+      "monotonic": 22892.484,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363525
+    },
+    {
+      "at": "2026-09-11T15:16:28.600+08:00",
+      "phase": "silence",
+      "monotonic": 22892.531,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363572
+    },
+    {
+      "at": "2026-09-11T15:16:28.675+08:00",
+      "phase": "silence",
+      "monotonic": 22892.609,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363623
+    },
+    {
+      "at": "2026-09-11T15:16:28.733+08:00",
+      "phase": "silence",
+      "monotonic": 22892.671,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363669
+    },
+    {
+      "at": "2026-09-11T15:16:28.792+08:00",
+      "phase": "silence",
+      "monotonic": 22892.734,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363716
+    },
+    {
+      "at": "2026-09-11T15:16:28.851+08:00",
+      "phase": "silence",
+      "monotonic": 22892.781,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363763
+    },
+    {
+      "at": "2026-09-11T15:16:28.908+08:00",
+      "phase": "silence",
+      "monotonic": 22892.843,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363811
+    },
+    {
+      "at": "2026-09-11T15:16:28.968+08:00",
+      "phase": "silence",
+      "monotonic": 22892.906,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363856
+    },
+    {
+      "at": "2026-09-11T15:16:29.027+08:00",
+      "phase": "silence",
+      "monotonic": 22892.968,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363896
+    },
+    {
+      "at": "2026-09-11T15:16:29.088+08:00",
+      "phase": "silence",
+      "monotonic": 22893.015,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363941
+    },
+    {
+      "at": "2026-09-11T15:16:29.146+08:00",
+      "phase": "silence",
+      "monotonic": 22893.078,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14363988
+    },
+    {
+      "at": "2026-09-11T15:16:29.204+08:00",
+      "phase": "silence",
+      "monotonic": 22893.14,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364030
+    },
+    {
+      "at": "2026-09-11T15:16:29.216+08:00",
+      "phase": "blink",
+      "monotonic": 22893.156,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364036
+    },
+    {
+      "at": "2026-09-11T15:16:29.276+08:00",
+      "phase": "blink",
+      "monotonic": 22893.203,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364084
+    },
+    {
+      "at": "2026-09-11T15:16:29.340+08:00",
+      "phase": "blink",
+      "monotonic": 22893.281,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364133
+    },
+    {
+      "at": "2026-09-11T15:16:29.399+08:00",
+      "phase": "blink",
+      "monotonic": 22893.328,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364173
+    },
+    {
+      "at": "2026-09-11T15:16:29.459+08:00",
+      "phase": "blink",
+      "monotonic": 22893.39,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364221
+    },
+    {
+      "at": "2026-09-11T15:16:29.519+08:00",
+      "phase": "blink",
+      "monotonic": 22893.453,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364268
+    },
+    {
+      "at": "2026-09-11T15:16:29.577+08:00",
+      "phase": "blink",
+      "monotonic": 22893.515,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364315
+    },
+    {
+      "at": "2026-09-11T15:16:29.638+08:00",
+      "phase": "blink",
+      "monotonic": 22893.578,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364364
+    },
+    {
+      "at": "2026-09-11T15:16:29.717+08:00",
+      "phase": "blink",
+      "monotonic": 22893.656,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364417
+    },
+    {
+      "at": "2026-09-11T15:16:29.777+08:00",
+      "phase": "blink",
+      "monotonic": 22893.718,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364464
+    },
+    {
+      "at": "2026-09-11T15:16:29.836+08:00",
+      "phase": "blink",
+      "monotonic": 22893.765,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364511
+    },
+    {
+      "at": "2026-09-11T15:16:29.896+08:00",
+      "phase": "blink",
+      "monotonic": 22893.828,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364560
+    },
+    {
+      "at": "2026-09-11T15:16:29.951+08:00",
+      "phase": "blink",
+      "monotonic": 22893.89,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364605
+    },
+    {
+      "at": "2026-09-11T15:16:30.008+08:00",
+      "phase": "blink",
+      "monotonic": 22893.937,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364650
+    },
+    {
+      "at": "2026-09-11T15:16:30.084+08:00",
+      "phase": "blink",
+      "monotonic": 22894.015,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364701
+    },
+    {
+      "at": "2026-09-11T15:16:30.141+08:00",
+      "phase": "blink",
+      "monotonic": 22894.078,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364740
+    },
+    {
+      "at": "2026-09-11T15:16:30.203+08:00",
+      "phase": "blink",
+      "monotonic": 22894.14,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364788
+    },
+    {
+      "at": "2026-09-11T15:16:30.262+08:00",
+      "phase": "blink",
+      "monotonic": 22894.203,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364835
+    },
+    {
+      "at": "2026-09-11T15:16:30.321+08:00",
+      "phase": "blink",
+      "monotonic": 22894.25,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364884
+    },
+    {
+      "at": "2026-09-11T15:16:30.381+08:00",
+      "phase": "blink",
+      "monotonic": 22894.312,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364929
+    },
+    {
+      "at": "2026-09-11T15:16:30.459+08:00",
+      "phase": "blink",
+      "monotonic": 22894.39,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14364984
+    },
+    {
+      "at": "2026-09-11T15:16:30.518+08:00",
+      "phase": "blink",
+      "monotonic": 22894.453,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365030
+    },
+    {
+      "at": "2026-09-11T15:16:30.577+08:00",
+      "phase": "blink",
+      "monotonic": 22894.515,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365077
+    },
+    {
+      "at": "2026-09-11T15:16:30.636+08:00",
+      "phase": "blink",
+      "monotonic": 22894.578,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365124
+    },
+    {
+      "at": "2026-09-11T15:16:30.696+08:00",
+      "phase": "blink",
+      "monotonic": 22894.625,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365171
+    },
+    {
+      "at": "2026-09-11T15:16:30.754+08:00",
+      "phase": "blink",
+      "monotonic": 22894.687,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365218
+    },
+    {
+      "at": "2026-09-11T15:16:30.815+08:00",
+      "phase": "blink",
+      "monotonic": 22894.75,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365256
+    },
+    {
+      "at": "2026-09-11T15:16:30.871+08:00",
+      "phase": "blink",
+      "monotonic": 22894.812,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365303
+    },
+    {
+      "at": "2026-09-11T15:16:30.931+08:00",
+      "phase": "blink",
+      "monotonic": 22894.859,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365348
+    },
+    {
+      "at": "2026-09-11T15:16:30.992+08:00",
+      "phase": "blink",
+      "monotonic": 22894.921,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365392
+    },
+    {
+      "at": "2026-09-11T15:16:31.052+08:00",
+      "phase": "blink",
+      "monotonic": 22894.984,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365439
+    },
+    {
+      "at": "2026-09-11T15:16:31.111+08:00",
+      "phase": "blink",
+      "monotonic": 22895.046,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365486
+    },
+    {
+      "at": "2026-09-11T15:16:31.168+08:00",
+      "phase": "blink",
+      "monotonic": 22895.109,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365522
+    },
+    {
+      "at": "2026-09-11T15:16:31.227+08:00",
+      "phase": "blink",
+      "monotonic": 22895.156,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365569
+    },
+    {
+      "at": "2026-09-11T15:16:31.286+08:00",
+      "phase": "blink",
+      "monotonic": 22895.218,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365616
+    },
+    {
+      "at": "2026-09-11T15:16:31.343+08:00",
+      "phase": "blink",
+      "monotonic": 22895.281,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365663
+    },
+    {
+      "at": "2026-09-11T15:16:31.403+08:00",
+      "phase": "blink",
+      "monotonic": 22895.343,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365708
+    },
+    {
+      "at": "2026-09-11T15:16:31.460+08:00",
+      "phase": "blink",
+      "monotonic": 22895.39,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365755
+    },
+    {
+      "at": "2026-09-11T15:16:31.518+08:00",
+      "phase": "blink",
+      "monotonic": 22895.453,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365791
+    },
+    {
+      "at": "2026-09-11T15:16:31.579+08:00",
+      "phase": "blink",
+      "monotonic": 22895.515,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365838
+    },
+    {
+      "at": "2026-09-11T15:16:31.637+08:00",
+      "phase": "blink",
+      "monotonic": 22895.578,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365883
+    },
+    {
+      "at": "2026-09-11T15:16:31.697+08:00",
+      "phase": "blink",
+      "monotonic": 22895.625,
+      "alarm": true,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14365933
+    },
+    {
+      "at": "2026-09-11T15:16:31.832+08:00",
+      "phase": "resume",
+      "monotonic": 22895.765,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366026
+    },
+    {
+      "at": "2026-09-11T15:16:31.940+08:00",
+      "phase": "cleanup",
+      "monotonic": 22895.875,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366095
+    },
+    {
+      "at": "2026-09-11T15:16:32.000+08:00",
+      "phase": "cleanup",
+      "monotonic": 22895.937,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366142
+    },
+    {
+      "at": "2026-09-11T15:16:32.058+08:00",
+      "phase": "cleanup",
+      "monotonic": 22896.0,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366189
+    },
+    {
+      "at": "2026-09-11T15:16:32.119+08:00",
+      "phase": "cleanup",
+      "monotonic": 22896.046,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366237
+    },
+    {
+      "at": "2026-09-11T15:16:32.178+08:00",
+      "phase": "cleanup",
+      "monotonic": 22896.109,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366284
+    },
+    {
+      "at": "2026-09-11T15:16:32.236+08:00",
+      "phase": "cleanup",
+      "monotonic": 22896.171,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366322
+    },
+    {
+      "at": "2026-09-11T15:16:32.297+08:00",
+      "phase": "cleanup",
+      "monotonic": 22896.234,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366369
+    },
+    {
+      "at": "2026-09-11T15:16:32.355+08:00",
+      "phase": "cleanup",
+      "monotonic": 22896.296,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366416
+    },
+    {
+      "at": "2026-09-11T15:16:32.412+08:00",
+      "phase": "cleanup",
+      "monotonic": 22896.343,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366463
+    },
+    {
+      "at": "2026-09-11T15:16:32.471+08:00",
+      "phase": "cleanup",
+      "monotonic": 22896.406,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366509
+    },
+    {
+      "at": "2026-09-11T15:16:32.534+08:00",
+      "phase": "cleanup",
+      "monotonic": 22896.468,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366557
+    },
+    {
+      "at": "2026-09-11T15:16:32.592+08:00",
+      "phase": "cleanup",
+      "monotonic": 22896.531,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366597
+    },
+    {
+      "at": "2026-09-11T15:16:32.650+08:00",
+      "phase": "cleanup",
+      "monotonic": 22896.578,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366644
+    },
+    {
+      "at": "2026-09-11T15:16:32.707+08:00",
+      "phase": "cleanup",
+      "monotonic": 22896.64,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366689
+    },
+    {
+      "at": "2026-09-11T15:16:32.781+08:00",
+      "phase": "cleanup",
+      "monotonic": 22896.718,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366740
+    },
+    {
+      "at": "2026-09-11T15:16:32.841+08:00",
+      "phase": "cleanup",
+      "monotonic": 22896.781,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366788
+    },
+    {
+      "at": "2026-09-11T15:16:32.913+08:00",
+      "phase": "cleanup",
+      "monotonic": 22896.843,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366839
+    },
+    {
+      "at": "2026-09-11T15:16:32.970+08:00",
+      "phase": "cleanup",
+      "monotonic": 22896.906,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366885
+    },
+    {
+      "at": "2026-09-11T15:16:33.029+08:00",
+      "phase": "cleanup",
+      "monotonic": 22896.968,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366929
+    },
+    {
+      "at": "2026-09-11T15:16:33.088+08:00",
+      "phase": "cleanup",
+      "monotonic": 22897.031,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14366977
+    },
+    {
+      "at": "2026-09-11T15:16:33.147+08:00",
+      "phase": "cleanup",
+      "monotonic": 22897.078,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14367024
+    },
+    {
+      "at": "2026-09-11T15:16:33.207+08:00",
+      "phase": "cleanup",
+      "monotonic": 22897.14,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14367072
+    },
+    {
+      "at": "2026-09-11T15:16:33.270+08:00",
+      "phase": "cleanup",
+      "monotonic": 22897.203,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14367114
+    },
+    {
+      "at": "2026-09-11T15:16:33.327+08:00",
+      "phase": "cleanup",
+      "monotonic": 22897.265,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14367160
+    },
+    {
+      "at": "2026-09-11T15:16:33.385+08:00",
+      "phase": "cleanup",
+      "monotonic": 22897.312,
+      "alarm": false,
+      "leds": [
+        0,
+        0,
+        0
+      ],
+      "queue_length": 0,
+      "queue_empty": true,
+      "cycle_counter": 14367205
+    }
+  ],
+  "failure_reasons": [
+    "the lamp bits never blinked during the alarm"
+  ],
+  "passed": false
+}
